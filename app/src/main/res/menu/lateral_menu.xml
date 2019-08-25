@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menulateral"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/events"
+          android:icon="@drawable/events_icon"
+          android:title="@string/events"
+            />
+        <item
+            android:id="@+id/notify"
+          android:icon="@drawable/ic_notify_icon"
+          android:title="@string/notify" />
+        <item
+            android:id="@+id/claim"
+          android:icon="@drawable/claim_icon"
+          android:title="@string/claim" />
+        <item
+            android:id="@+id/health"
+          android:icon="@drawable/ic_medical_health_care"
+          android:title="@string/health" />
+        <item
+            android:id="@+id/date"
+          android:icon="@drawable/ic_dates_icon"
+          android:title="@string/dates" />
+        <item
+            android:id="@+id/personal"
+          android:icon="@drawable/ic_icon_personal"
+          android:title="@string/personal" />
+    </group>
+</menu>

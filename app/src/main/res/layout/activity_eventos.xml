@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/background_light"
+  tools:showIn="@layout/activity_base">
+
+  <ListView
+    android:id="@+id/left_drawer"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/colorPrimaryDark"
+    android:choiceMode="singleChoice"
+    android:divider="#00ff0000"
+    android:dividerHeight="0dp" />
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar_events_activity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_marginTop="0dp"
+    android:layout_marginEnd="0dp"
+    android:background="@color/colorAccent"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+  <!--  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/BottomNavigation"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:scrollbarAlwaysDrawHorizontalTrack="true"
+      app:itemBackground="@color/azuldotlinked"
+      app:itemIconTint="@color/colorWhite"
+      app:itemTextColor="@color/colorWhite"
+      app:menu="@menu/bottom_nav_menu" />-->
+</RelativeLayout>

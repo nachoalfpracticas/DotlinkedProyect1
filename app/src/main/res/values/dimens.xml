@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="fab_margin">16dp</dimen>
+  <dimen name="activity_horizontal_margin">16dp</dimen>
+  <dimen name="activity_vertical_margin">16dp</dimen>
+  <dimen name="app_bar_height">224dp</dimen>
+  <dimen name="text_margin">16dp</dimen>
+  <dimen name="little_text">10sp</dimen>
+  <dimen name="margin_16">16dp</dimen>
+  <dimen name="margin_8">8dp</dimen>
+</resources>

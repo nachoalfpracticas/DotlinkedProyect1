@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="azuldotlinked">#59ABDE</color>
+  <color name="colorWhite">#FFFFFF</color>
+  <color name="colorBlack">#000000</color>
+  <color name="blue">#02F7FF</color>
+  <color name="colorPrimary">#ECEFF1</color>
+  <color name="colorPrimaryDark">#CFD8DC</color>
+  <color name="colorAccent">#FF4081</color>
+
+  <color name="sampleDark">#1B5E20</color>
+  <color name="sampleLight">#388E3C</color>
+  <color name="sampleLighter">#4CAF50</color>
+
+  <color name="dialogAccent">#795548</color>
+  <item name="primary" type="color">#9a28a1</item>
+  <item name="primaryDark" type="color">#5c1760</item>
+</resources>

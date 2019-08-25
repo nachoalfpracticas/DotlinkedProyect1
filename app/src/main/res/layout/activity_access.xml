@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/bitmap"
+    tools:context=".activities.login.AccessActivity">
+
+  <ImageView
+    android:id="@+id/imageView"
+    android:layout_width="120dp"
+    android:layout_height="150dp"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="35dp"
+    android:contentDescription="@string/app_name"
+    app:srcCompat="@drawable/logo" />
+
+
+  <TextView
+    android:id="@+id/tv_welcomeUser"
+    android:layout_width="267dp"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/linearLayout"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="350dp"
+    android:text="@string/well_come_user"
+    android:textAlignment="center"
+    android:textSize="20sp" />
+
+  <com.google.android.material.textview.MaterialTextView
+    android:layout_width="67dp"
+    android:layout_height="21dp"
+    android:layout_alignBottom="@+id/spn_companiesByRol"
+    android:layout_alignParentStart="true"
+    android:layout_marginStart="55dp"
+    android:layout_marginEnd="23dp"
+    android:layout_marginBottom="2dp"
+    android:layout_toStartOf="@+id/spn_companiesByRol"
+    android:text="@string/company"
+    android:textAlignment="center" />
+
+  <com.google.android.material.textview.MaterialTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/sp_roles"
+    android:layout_marginEnd="65dp"
+    android:layout_marginBottom="5dp"
+    android:layout_toStartOf="@+id/sp_roles"
+    android:text="@string/rol" />
+
+  <androidx.appcompat.widget.AppCompatSpinner
+    android:id="@+id/sp_roles"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignStart="@+id/imageView"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="0dp"
+    android:layout_marginBottom="295dp"
+    android:prompt="@string/spinner_prompt"
+    android:textAlignment="textStart"
+    tools:listitem="@android:layout/simple_spinner_item">
+
+  </androidx.appcompat.widget.AppCompatSpinner>
+
+
+  <androidx.appcompat.widget.AppCompatSpinner
+    android:id="@+id/spn_companiesByRol"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignStart="@+id/imageView"
+    android:layout_marginStart="1dp"
+    android:layout_marginTop="370dp"
+    android:textAlignment="textStart"
+    tools:listitem="@android:layout/simple_spinner_item">
+
+  </androidx.appcompat.widget.AppCompatSpinner>
+
+  <com.google.android.material.checkbox.MaterialCheckBox
+    android:id="@+id/checkNotRememberMe"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginStart="120dp"
+    android:layout_marginTop="626dp"
+    android:text="@string/not_remember_me" />
+
+  <androidx.cardview.widget.CardView
+    android:id="@+id/cv_access"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
+    android:layout_above="@+id/tv_backToLogin"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="100dp"
+    app:cardBackgroundColor="@color/colorAccent"
+    app:cardCornerRadius="25dp"
+    app:cardElevation="10dp">
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignStart="@+id/cv_access">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/access"
+        android:textColor="#fff"
+        android:textSize="25sp" />
+    </RelativeLayout>
+  </androidx.cardview.widget.CardView>
+
+  <androidx.cardview.widget.CardView
+    android:id="@+id/cv_fingerprint"
+    android:layout_width="300dp"
+    android:layout_height="50dp"
+    android:layout_above="@+id/tv_backToLogin"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="30dp"
+    android:visibility="gone"
+    app:cardBackgroundColor="@color/colorAccent"
+    app:cardCornerRadius="25dp"
+    app:cardElevation="10dp">
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignStart="@+id/cv_fingerprint">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawableStart="@drawable/fingerprint_black_24x24"
+        android:drawablePadding="5dp"
+        android:gravity="start"
+        android:text="@string/finger_print"
+        android:textColor="#fff"
+        android:textSize="25sp" />
+    </RelativeLayout>
+  </androidx.cardview.widget.CardView>
+
+  <TextView
+    android:id="@+id/tv_backToLogin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/linearLayout"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="0dp"
+    android:text="@string/not_user"
+    android:textSize="15sp" />
+
+  <LinearLayout
+    android:id="@+id/linearLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:layout_alignStart="@+id/imageView"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal">
+
+  </LinearLayout>
+
+</RelativeLayout>
