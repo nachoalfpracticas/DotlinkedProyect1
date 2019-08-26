@@ -5,25 +5,32 @@ import androidx.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Claim {
 
   @SerializedName("quejaId")
   @Expose
   private int claimId;
+
   @SerializedName("asunto")
   @Expose
   private String subject;
+
   @SerializedName("descripcionStatus")
   @Expose
   private String description;
+
   @SerializedName("fechaEmision")
   @Expose
-  private Date broadcastDate;
+  private String broadcastDate;
+
   @SerializedName("fechaactualizacion")
   @Expose
   private Date updateDate;
+
   @SerializedName("resuelta")
   @Expose
   private int resolve; // 1 Resuelta , 0  Abierta
@@ -34,13 +41,13 @@ public class Claim {
 
   // Esta  Persona Genero la  Queja
   private int personaId;
-  private Person personaQueja;
+  private Person claimPerson;
 
   // Una Queja va a varias personas
   // private ICollection<QuejaPersona> quejaPersona { get; set; }
 
 
-  public Claim(int claimId, String subject, String description, Date broadcastDate, Date updateDate, int resolve, int estatusId, int personaId, Person personaQueja) {
+  public Claim(int claimId, String subject, String description, String broadcastDate, Date updateDate, int resolve, int estatusId, int personaId, Person claimPerson) {
     this.claimId = claimId;
     this.subject = subject;
     this.description = description;
@@ -49,7 +56,7 @@ public class Claim {
     this.resolve = resolve;
     this.estatusId = estatusId;
     this.personaId = personaId;
-    this.personaQueja = personaQueja;
+    this.claimPerson = claimPerson;
   }
 
   public int getClaimId() {
@@ -76,12 +83,14 @@ public class Claim {
     this.description = description;
   }
 
-  public Date getBroadcastDate() {
+  public String getBroadcastDate() {
     return broadcastDate;
   }
 
   public void setBroadcastDate(Date broadcastDate) {
-    this.broadcastDate = broadcastDate;
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd:HH:mm:ss.SSS", Locale.GERMANY);
+
+    this.broadcastDate = df.format(broadcastDate);
   }
 
   public Date getUpdateDate() {
@@ -116,12 +125,12 @@ public class Claim {
     this.personaId = personaId;
   }
 
-  public Person getPersonaQueja() {
-    return personaQueja;
+  public Person getClaimPerson() {
+    return claimPerson;
   }
 
-  public void setPersonaQueja(Person personaQueja) {
-    this.personaQueja = personaQueja;
+  public void setClaimPerson(Person claimPerson) {
+    this.claimPerson = claimPerson;
   }
 
   @NonNull
@@ -136,7 +145,7 @@ public class Claim {
         ", resolve=" + resolve +
         ", estatusId=" + estatusId +
         ", personaId=" + personaId +
-        ", personaQueja=" + personaQueja +
+            ", claimPerson=" + claimPerson +
         '}';
   }
 }

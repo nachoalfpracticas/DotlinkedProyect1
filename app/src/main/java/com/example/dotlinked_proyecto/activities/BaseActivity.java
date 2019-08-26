@@ -75,6 +75,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         Toast.LENGTH_SHORT).show());
 
     selectDefaultView(rol, companyId, token);
+    setTitle(R.string.events);
   }
 
   private void selectDefaultView(String rol, String companyId, Token token) {

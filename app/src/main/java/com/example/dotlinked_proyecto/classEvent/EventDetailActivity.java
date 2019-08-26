@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class EventPreviewActivity extends AppCompatActivity {
+public class EventDetailActivity extends AppCompatActivity {
 
   public static String getFormattedDate(Date date) {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
@@ -28,11 +28,11 @@ public class EventPreviewActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_note_preview);
+    setContentView(R.layout.activity_event_detail);
 
     Intent intent = getIntent();
 
-    Toolbar toolbar = findViewById(R.id.toolbar_event_preview);
+    Toolbar toolbar = findViewById(R.id.toolbar_event_detail);
     TextView evTitle = findViewById(R.id.event_title);
     TextView evDes = findViewById(R.id.event_description);
     TextView evLocation = findViewById(R.id.event_location);

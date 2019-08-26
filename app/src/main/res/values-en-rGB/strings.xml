@@ -129,4 +129,10 @@
     <string name="initTime">From hour</string>
     <string name="endTime">To hour</string>
     <string name="cost">Cost</string>
+    <string name="list_claims">Claims list</string>
+    <string name="status">Status</string>
+    <string name="subject">Subject</string>
+    <string name="claimDate">Broadcast date</string>
+    <string name="claim_Id">Claim ident. %1$s</string>
+
 </resources>

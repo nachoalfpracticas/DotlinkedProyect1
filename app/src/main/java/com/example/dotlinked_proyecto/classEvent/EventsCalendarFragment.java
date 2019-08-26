@@ -163,7 +163,7 @@ public class EventsCalendarFragment extends Fragment {
             event.setFechaDesde(date);
             d("RESPONSE", "Event: " + event.toString());
             Toast.makeText(context, "You click in: " + adapter.getItem(position), Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(context, EventPreviewActivity.class);
+            Intent intent = new Intent(context, EventDetailActivity.class);
             intent.putExtra(EVENT, event);
             startActivity(intent);
           });

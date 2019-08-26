@@ -7,5 +7,5 @@ import java.util.List;
 import retrofit2.Call;
 
 public interface IListEventsByCompanyService {
-  Call<List<Event>> getEventsByCompany(String Idcompany, String dateInit, String token);
+  Call<List<Event>> getEventsByCompany(String IdCompany, String dateInit, String token);
 }

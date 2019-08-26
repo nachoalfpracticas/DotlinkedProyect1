@@ -1,6 +1,7 @@
 package com.example.dotlinked_proyecto.Claims;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
+import com.example.dotlinked_proyecto.Claims.Adapter.RecyclerViewClaimsAdapter;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.bean.Claim;
 import com.example.dotlinked_proyecto.services.ListClaimsPersonService;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -29,10 +35,16 @@ import static android.util.Log.d;
 
 public class ClaimsFragment extends Fragment {
   private static final String ARG_TOKEN = "token";
-  private String access_token;
   private Context context;
-  private ListClaimsPersonService listClaimsService;
+  private String access_token;
+
   private AppCompatTextView tvClaimDate;
+  private AppCompatTextView tvClaimTitle;
+  private AppCompatTextView tvClaimescription;
+  private RecyclerView rvClaimsList;
+
+  private RecyclerViewClaimsAdapter claimsAdapter;
+  private ListClaimsPersonService listClaimsService;
   private List<Claim> claimList;
   private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY);
 
@@ -72,7 +84,17 @@ public class ClaimsFragment extends Fragment {
         if (response.body() != null && response.body().size() > 0 && response.body().get(0).getClaimId() != 0) {
           claimList = response.body();
           claimList.forEach(claim -> d("RESPONSE", "Response getPersonClaims: " + claim.toString()));
-          tvClaimDate.setText(df.format(claimList.get(0).getBroadcastDate()));
+          tvClaimDate.setText(claimList.get(0).getBroadcastDate().split("T")[0]);
+          tvClaimTitle.setText(claimList.get(0).getSubject());
+          tvClaimescription.setText(claimList.get(0).getDescription());
+          claimsAdapter = new RecyclerViewClaimsAdapter(context, claimList);
+          rvClaimsList.setAdapter(claimsAdapter);
+          claimsAdapter.setClickListener((view, position) -> {
+            Claim claim = claimList.get(position);
+            Intent intent = new Intent(getActivity(), ClaimDetailActivity.class);
+            intent.putExtra("claim", new Gson().toJson(claim));
+            context.startActivity(intent);
+          });
         } else {
           d("RESPONSE", "Response getPersonClaims []" + response.message());
         }
@@ -89,8 +111,15 @@ public class ClaimsFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_claims, container, false);
-    tvClaimDate = view.findViewById(R.id.claim_date);
-
+    tvClaimDate = view.findViewById(R.id.event_description);
+    tvClaimTitle = view.findViewById(R.id.tv_title);
+    tvClaimescription = view.findViewById(R.id.tv_description);
+    rvClaimsList = view.findViewById(R.id.rv_claims);
+    LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+    rvClaimsList.setLayoutManager(layoutManager);
+    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvClaimsList.getContext(),
+            layoutManager.getOrientation());
+    rvClaimsList.addItemDecoration(dividerItemDecoration);
 
     return view;
   }

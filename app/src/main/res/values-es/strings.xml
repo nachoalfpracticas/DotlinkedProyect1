@@ -13,7 +13,7 @@
     <string name="user_name">Nombre usuario</string>
     <string name="remember_me">Recordarme</string>
     <string name="forgot_pass">Olvido la contraseña</string>
-    <string name="password">Password</string>
+    <string name="password">Contraseña</string>
     <string name="register_here">Registro aquí</string>
     <string name="name">DOTLINKED</string>
     <string name="twitter_img">twitter</string>
@@ -102,7 +102,7 @@
     <string name="input_password_access_rol">Rol seleccionado %1$s</string>
     <string name="input_access_company">Empresa %1$s</string>
     <string name="rol">Rol</string>
-  <string name="company">Empresa</string>
+    <string name="company">Empresa</string>
     <array name="layers_array">
         <item>Eventos</item>
         <item>Notificaciones</item>
@@ -112,19 +112,24 @@
         <item>List. Personal</item>
     </array>
     <string name="menu_eventos">Eventos</string>
-  <string name="navigation_drawer_open">Abierto</string>
-  <string name="navigation_drawer_close">Cerrado</string>
+    <string name="navigation_drawer_open">Abierto</string>
+    <string name="navigation_drawer_close">Cerrado</string>
     <string name="title_click">Título %1$s</string>
     <string name="events">Eventos</string>
     <string name="notify">Notificaciones</string>
     <string name="claim">Quejas</string>
-  <string name="health">Seguimiento médico</string>
-  <string name="dates">Citas</string>
+    <string name="health">Seguimiento médico</string>
+    <string name="dates">Citas</string>
     <string name="personal">Personal</string>
-  <string name="title">Título</string>
-  <string name="description">Descripción</string>
-  <string name="location">Ubicación</string>
-  <string name="initTime">Hora desde</string>
-  <string name="endTime">Hota hasta</string>
-  <string name="cost">Costo</string>
+    <string name="title">Título</string>
+    <string name="description">Descripción</string>
+    <string name="location">Ubicación</string>
+    <string name="initTime">Hora desde</string>
+    <string name="endTime">Hota hasta</string>
+    <string name="cost">Costo</string>
+    <string name="list_claims">Lista de quejas</string>
+    <string name="status">Estado</string>
+    <string name="subject">Asunto</string>
+    <string name="claimDate">Fecha enisión</string>
+    <string name="claim_Id">Queja ident. %1$s</string>
 </resources>
