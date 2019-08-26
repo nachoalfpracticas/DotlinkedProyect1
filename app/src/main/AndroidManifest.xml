@@ -13,8 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".Claims.ClaimDetailActivity"></activity>
-        <activity android:name=".classEvent.EventDetailActivity"></activity>
+        <activity android:name=".claims.ClaimDetailActivity">
+
+        </activity>
+        <activity android:name=".classEvent.EventDetailActivity">
+
+        </activity>
         <activity android:name=".classEvent.AddNoteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -45,6 +49,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.login.AccessActivity" />
         </activity>
+        <activity android:name=".claims.AddNewClaimActivity" />
     </application>
 
 </manifest>

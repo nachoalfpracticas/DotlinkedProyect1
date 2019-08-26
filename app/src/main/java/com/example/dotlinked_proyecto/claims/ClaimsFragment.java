@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.Claims;
+package com.example.dotlinked_proyecto.claims;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
-import com.example.dotlinked_proyecto.Claims.Adapter.RecyclerViewClaimsAdapter;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.bean.Claim;
+import com.example.dotlinked_proyecto.claims.Adapter.RecyclerViewClaimsAdapter;
 import com.example.dotlinked_proyecto.services.ListClaimsPersonService;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -39,13 +40,14 @@ public class ClaimsFragment extends Fragment {
   private String access_token;
 
   private AppCompatTextView tvClaimDate;
-  private AppCompatTextView tvClaimTitle;
-  private AppCompatTextView tvClaimescription;
+  private FloatingActionButton addClaim;
+  private AppCompatTextView tvClaimSubject;
   private RecyclerView rvClaimsList;
 
   private RecyclerViewClaimsAdapter claimsAdapter;
   private ListClaimsPersonService listClaimsService;
   private List<Claim> claimList;
+  private AppCompatTextView tvClaimStatus;
   private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY);
 
   public ClaimsFragment() {
@@ -85,8 +87,8 @@ public class ClaimsFragment extends Fragment {
           claimList = response.body();
           claimList.forEach(claim -> d("RESPONSE", "Response getPersonClaims: " + claim.toString()));
           tvClaimDate.setText(claimList.get(0).getBroadcastDate().split("T")[0]);
-          tvClaimTitle.setText(claimList.get(0).getSubject());
-          tvClaimescription.setText(claimList.get(0).getDescription());
+          tvClaimSubject.setText(claimList.get(0).getSubject());
+          tvClaimStatus.setText(claimList.get(0).getDescription());
           claimsAdapter = new RecyclerViewClaimsAdapter(context, claimList);
           rvClaimsList.setAdapter(claimsAdapter);
           claimsAdapter.setClickListener((view, position) -> {
@@ -111,9 +113,10 @@ public class ClaimsFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_claims, container, false);
-    tvClaimDate = view.findViewById(R.id.event_description);
-    tvClaimTitle = view.findViewById(R.id.tv_title);
-    tvClaimescription = view.findViewById(R.id.tv_description);
+    addClaim = view.findViewById(R.id.btnAddClaims);
+    tvClaimDate = view.findViewById(R.id.claim_date);
+    tvClaimSubject = view.findViewById(R.id.claim_subject);
+    tvClaimStatus = view.findViewById(R.id.claim_status);
     rvClaimsList = view.findViewById(R.id.rv_claims);
     LinearLayoutManager layoutManager = new LinearLayoutManager(context);
     rvClaimsList.setLayoutManager(layoutManager);
@@ -121,7 +124,13 @@ public class ClaimsFragment extends Fragment {
             layoutManager.getOrientation());
     rvClaimsList.addItemDecoration(dividerItemDecoration);
 
+    addClaim.setOnClickListener(view1 -> addNewClaim());
+
     return view;
+  }
+
+  private void addNewClaim() {
+
   }
 
 }

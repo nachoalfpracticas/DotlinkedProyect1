@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.Claims.Adapter;
+package com.example.dotlinked_proyecto.claims.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

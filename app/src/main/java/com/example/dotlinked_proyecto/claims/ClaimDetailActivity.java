@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.Claims;
+package com.example.dotlinked_proyecto.claims;
 
 import android.os.Bundle;
 

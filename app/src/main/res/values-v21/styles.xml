@@ -14,7 +14,7 @@
 
     <style name="Calendario" parent="Theme.AppCompat.Light.DarkActionBar">
 
-        <item name="android:textColor">@color/azuldotlinked</item>
+      <item name="android:textColor">@color/blueDotlinked</item>
       <item name="android:background">@color/colorWhite</item>
       <item name="colorAccent">@color/blue</item>
     </style>

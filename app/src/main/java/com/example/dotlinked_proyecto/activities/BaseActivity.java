@@ -17,10 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
-import com.example.dotlinked_proyecto.Claims.ClaimsFragment;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.login.AccessActivity;
+import com.example.dotlinked_proyecto.claims.ClaimsFragment;
 import com.example.dotlinked_proyecto.classEvent.EventsCalendarFragment;
 import com.google.android.material.navigation.NavigationView;
 

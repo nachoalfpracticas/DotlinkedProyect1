@@ -21,7 +21,7 @@
       android:layout_alignParentEnd="true"
       android:layout_marginTop="0dp"
       android:layout_marginEnd="0dp"
-        android:background="@color/azuldotlinked"
+      android:background="@color/blueDotlinked"
       android:minHeight="?attr/actionBarSize"
       android:theme="@style/AppTheme.Toolbar"
       app:layout_constraintEnd_toEndOf="parent"
