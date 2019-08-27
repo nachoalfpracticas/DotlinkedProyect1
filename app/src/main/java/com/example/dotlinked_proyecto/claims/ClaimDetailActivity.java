@@ -51,4 +51,9 @@ public class ClaimDetailActivity extends AppCompatActivity {
 
 
   }
+
+  @Override
+  public void onBackPressed() {
+    finish();
+  }
 }

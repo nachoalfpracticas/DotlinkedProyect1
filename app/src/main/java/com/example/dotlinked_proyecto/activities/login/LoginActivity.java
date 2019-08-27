@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
-    check = new Check();
+    check = new Check(this);
     session = new Session(LoginActivity.this);
     loginService = new LoginService();
     rolService = new RolService();
@@ -181,12 +181,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
   public boolean checkFields() {
-    boolean successEmail = check.checkEmail(this, edtUserName, tilEmail);
+    boolean successEmail = check.checkEmail(edtUserName, tilEmail);
     if (!successEmail) {
       Toast.makeText(this, Objects.requireNonNull(tilEmail.getError()).toString(), Toast.LENGTH_LONG).show();
       return false;
     }
-    check.checkPassword(this, edtPassword.getText().toString(), tilPassword);
+    check.checkPassword(edtPassword.getText().toString(), tilPassword);
     if (tilPassword.isErrorEnabled()) {
       Toast.makeText(this, Objects.requireNonNull(tilPassword.getError()).toString(), Toast.LENGTH_LONG).show();
       return false;

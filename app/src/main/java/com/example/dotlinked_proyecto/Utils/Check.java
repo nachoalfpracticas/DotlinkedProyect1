@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatEditText;
 
 import com.example.dotlinked_proyecto.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -19,6 +20,11 @@ import java.util.regex.Pattern;
 public class Check {
 
   private static final String PATRON_PWD = "(?=.*[A-Z])(?=.*[0-9])[#@£$-/:-?{-~!\"^_`\\[\\]a-zA-Z0-9]{6,100}";
+  private Activity activity;
+
+  public Check(Activity activity) {
+    this.activity = activity;
+  }
 
   @RequiresApi(api = Build.VERSION_CODES.M)
   public static boolean checkFingerprint(Activity activity) {
@@ -28,7 +34,7 @@ public class Check {
     return Objects.requireNonNull(fingerprintManager).isHardwareDetected();
   }
 
-  public boolean checkEmail(Activity activity, EditText emailEditText, TextInputLayout emailInputLayout) {
+  public boolean checkEmail(EditText emailEditText, TextInputLayout emailInputLayout) {
     boolean success = true;
     if (emailEditText.getText().toString().trim().isEmpty()) {
       emailInputLayout.setErrorEnabled(true);
@@ -54,7 +60,7 @@ public class Check {
     return success;
   }
 
-  public void checkPassword(Activity activity, String pass, TextInputLayout tilPassword) {
+  public void checkPassword(String pass, TextInputLayout tilPassword) {
 
     Pattern p = Pattern.compile(PATRON_PWD);
     Matcher m = p.matcher(pass);
@@ -71,5 +77,13 @@ public class Check {
     } else {
       tilPassword.setErrorEnabled(false);
     }
+  }
+
+  public boolean checkEditText(TextInputLayout inputLayout, AppCompatEditText editText) {
+    inputLayout.setErrorEnabled(false);
+    if (editText.getText() == null || editText.getText().toString().trim().isEmpty()) {
+      inputLayout.setErrorEnabled(true);
+    }
+    return inputLayout.isErrorEnabled();
   }
 }

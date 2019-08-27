@@ -129,8 +129,10 @@ public class ClaimsFragment extends Fragment {
     return view;
   }
 
-  private void addNewClaim() {
 
+  private void addNewClaim() {
+    Intent intent = new Intent(getActivity(), AddNewClaimActivity.class);
+    startActivity(intent);
   }
 
 }

@@ -50,6 +50,8 @@ public class EventsCalendarFragment extends Fragment {
   private static final String ARG_ROL = "rol";
   private static final String ARG_COMPANY_ID = "companyId";
   private static final String ARG_TOKEN = "token";
+
+
   private static final int ADD_NOTE = 44;
 
   private String rol;

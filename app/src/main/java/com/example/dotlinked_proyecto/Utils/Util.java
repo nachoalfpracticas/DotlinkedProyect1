@@ -52,7 +52,7 @@ public class Util {
                 Toast.LENGTH_SHORT).show();
       }*/
     else {
-      if ("Inquilino".equals(rol)) {
+      if ("Inquilino".equals(rol) || "Contacto".equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);
         activity.startActivity(intent);
       } else if ("Proveedor".equals(rol)) {

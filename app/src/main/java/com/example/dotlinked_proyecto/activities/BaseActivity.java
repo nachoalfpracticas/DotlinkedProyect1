@@ -24,11 +24,14 @@ import com.example.dotlinked_proyecto.claims.ClaimsFragment;
 import com.example.dotlinked_proyecto.classEvent.EventsCalendarFragment;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
 import java.util.Map;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-    DrawerLayout.DrawerListener {
+        DrawerLayout.DrawerListener {
 
+  private final static String TAG_EVENT_FRAGMENT = "event_fragment";
+  private final static String TAG_CLAIM_FRAGMENT = "claim_fragment";
   public ListView drawerList;
   protected DrawerLayout drawerLayout;
   public String[] layers;
@@ -42,6 +45,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
   private String rol;
   private String companyId;
   private Token token;
+  private NavigationView navigationView;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,33 +59,38 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     drawerLayout = findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-        this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
     drawerLayout.addDrawerListener(toggle);
     toggle.syncState();
 
-    NavigationView navigationView = findViewById(R.id.navigation_view);
+    navigationView = findViewById(R.id.navigation_view);
     navigationView.setNavigationItemSelectedListener(this);
 
     rol = session.getUserRoles();
     token = session.getToken();
     companyId = session.getCompanyIdUser();
-    MenuItem menuItem = navigationView.getMenu().getItem(0);
-    //onNavigationItemSelected(menuItem);
-    menuItem.setChecked(true);
+    setMenuSelectedItem();
 
     drawerLayout.addDrawerListener(this);
 
     View header = navigationView.getHeaderView(0);
     header.findViewById(R.id.header_list).setOnClickListener(view -> Toast.makeText(BaseActivity.this, String.format(getString(R.string.title_click), navigationView.getTag()),
-        Toast.LENGTH_SHORT).show());
+            Toast.LENGTH_SHORT).show());
 
     selectDefaultView(rol, companyId, token);
     setTitle(R.string.events);
   }
 
+  private void setMenuSelectedItem() {
+    MenuItem menuItem = navigationView.getMenu().getItem(0);
+    //onNavigationItemSelected(menuItem);
+    menuItem.setChecked(true);
+  }
+
   private void selectDefaultView(String rol, String companyId, Token token) {
     fragment = EventsCalendarFragment.newInstance(rol, companyId, token);
     fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
+    setMenuSelectedItem();
   }
 
   @Override
@@ -88,9 +98,18 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
       drawerLayout.closeDrawer(GravityCompat.START);
     } else {
-      Intent intent = new Intent(this, AccessActivity.class);
-      intent.putExtra("needAuth", false);
-      startActivity(intent);
+      List<Fragment> fragments = getSupportFragmentManager().getFragments();
+
+      Fragment currentFragment = fragments.get(0);
+      if (currentFragment instanceof EventsCalendarFragment) {
+        Intent intent = new Intent(this, AccessActivity.class);
+        intent.putExtra("needAuth", false);
+        startActivity(intent);
+      } else if (currentFragment instanceof ClaimsFragment) {
+        finish();
+        startActivity(getIntent());
+      }
+
     }
   }
 
@@ -109,6 +128,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
       case R.id.claim:
         title = R.string.claim;
         fragment = ClaimsFragment.newInstance(token);
+        ;
         fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
         break;
       case R.id.health:
@@ -146,7 +166,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
   public void onDrawerOpened(@NonNull View view) {
     //el drawer se ha abierto completamente
     Toast.makeText(this, getString(R.string.navigation_drawer_open),
-        Toast.LENGTH_SHORT).show();
+            Toast.LENGTH_SHORT).show();
   }
 
   @Override
@@ -162,7 +182,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
   public void onClickListener(View view) {
     Toast.makeText(this, "You clicked " + view.getId(), Toast.LENGTH_SHORT).show();
   }
-
 
 
 }

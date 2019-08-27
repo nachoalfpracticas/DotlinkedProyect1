@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.applandeo.materialcalendarview.EventDay;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.activities.BaseActivity;
 import com.example.dotlinked_proyecto.bean.Event;
 
 import java.text.SimpleDateFormat;
@@ -56,8 +57,6 @@ public class EventDetailActivity extends AppCompatActivity {
         evInitTime.setText(String.valueOf(myEventDay.getHoraDesde()));
         evEndTime.setText(String.valueOf(myEventDay.getHoraHasta()));
         evCost.setText(String.valueOf(myEventDay.getCosto()));
-       /* int imgInt = myEventDay.getImageResource();
-        imgView.setImageResource(imgInt);*/
 
         return;
       }
@@ -67,6 +66,12 @@ public class EventDetailActivity extends AppCompatActivity {
         toolbar.setTitle(getFormattedDate(eventDay.getCalendar().getTime()));
       }
     }
+  }
+
+  @Override
+  public void onBackPressed() {
+    Intent intent = new Intent(this, BaseActivity.class);
+    startActivity(intent);
   }
 }
 

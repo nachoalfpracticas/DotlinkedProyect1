@@ -135,4 +135,6 @@
     <string name="img_close_button">Boton cerrar</string>
     <string name="add_new_claim">Añadir nueva queja</string>
     <string name="action">Acción</string>
+    <string name="dismiss">Descartar</string>
+    <string name="dismiss_fields">Al cerrar esta ventana, todos los cambios serán ignorados Estas seguro?</string>
 </resources>
