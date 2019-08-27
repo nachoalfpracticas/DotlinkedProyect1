@@ -45,7 +45,7 @@ public class AddNewClaimActivity extends AppCompatActivity {
     etClaimDescription = findViewById(R.id.et_description);
 
     btnClose.setOnClickListener(v -> {
-      if (!chekFields()) {
+      if (checkFields()) {
         UtilMessages.DissmisFields(this);
       } else {
         finish();
@@ -81,7 +81,6 @@ public class AddNewClaimActivity extends AppCompatActivity {
         setButtonAction();
       }
     });
-
   }
 
   @Override
@@ -90,18 +89,18 @@ public class AddNewClaimActivity extends AppCompatActivity {
     startActivity(intent);
   }
 
-  public boolean chekFields() {
-    return check.checkEditText(tilSubject, etClaimSubject)
-            || check.checkEditText(tilDescription, etClaimDescription);
+  public boolean checkFields() {
+    return !check.checkEditText(tilSubject, etClaimSubject)
+        && !check.checkEditText(tilDescription, etClaimDescription);
   }
 
   public void setButtonAction() {
-    if (!chekFields()) {
-      btnAction.setText(getString(R.string.save));
-      btnAction.setEnabled(true);
-    } else {
+    if (!checkFields()) {
       btnAction.setText(getString(R.string.action));
       btnAction.setEnabled(false);
+    } else {
+      btnAction.setText(getString(R.string.save));
+      btnAction.setEnabled(true);
     }
   }
 }
