@@ -120,6 +120,7 @@ public class EventsCalendarFragment extends Fragment {
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcEvents.getContext(),
             layoutManager.getOrientation());
     rcEvents.addItemDecoration(dividerItemDecoration);
+    setRecyclerViewAdapter(new ArrayList<>());
     mCalendarView.setOnDayClickListener(this::previewEvent);
     return view;
   }
@@ -159,8 +160,7 @@ public class EventsCalendarFragment extends Fragment {
         if (response.body() != null && response.body().size() > 0 && !response.body().get(0).getTitulo().isEmpty()) {
           eventList = response.body();
           eventList.forEach(e -> d("RESPONSE", "Response ListEventsCompanyByDate: " + e.toString()));
-          adapter = new RecyclerViewEventsAdapter(context, eventList);
-          rcEvents.setAdapter(adapter);
+          setRecyclerViewAdapter(eventList);
           adapter.setClickListener((view, position) -> {
             Event event = eventList.get(position);
             Toast.makeText(context, "You click in: " + adapter.getItem(position), Toast.LENGTH_LONG).show();
@@ -174,16 +174,21 @@ public class EventsCalendarFragment extends Fragment {
           });
         } else {
           d("RESPONSE", "Response getEvents []" + response.message());
+          setRecyclerViewAdapter(new ArrayList<>());
         }
       }
 
       @Override
       public void onFailure(Call<List<Event>> call, Throwable t) {
         d("RESPONSE", "Error getEvents: " + t.getCause());
-        adapter = new RecyclerViewEventsAdapter(context, new ArrayList<>());
-        rcEvents.setAdapter(adapter);
+        setRecyclerViewAdapter(new ArrayList<>());
       }
     });
 
+  }
+
+  private void setRecyclerViewAdapter(List<Event> eventList) {
+    adapter = new RecyclerViewEventsAdapter(context, eventList);
+    rcEvents.setAdapter(adapter);
   }
 }
