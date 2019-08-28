@@ -2,11 +2,11 @@ package com.example.dotlinked_proyecto.bean;
 
 public class Users extends Person {
 
-    int id;
-    String nombre;
-    String apellido;
-    String movil;
-    String email;
+  private int id;
+  private String nombre;
+  private String apellido;
+  private String movil;
+  private String email;
 
     public Users() {
     }
@@ -27,7 +27,7 @@ public class Users extends Person {
         return nombre;
     }
 
-    public String getApellido() {
+  public String getLastName() {
         return apellido;
     }
 
@@ -47,8 +47,8 @@ public class Users extends Person {
         this.nombre = nombre;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+  public void setLastName(String lastName) {
+    this.apellido = lastName;
     }
 
     public void setMovil(String movil) {

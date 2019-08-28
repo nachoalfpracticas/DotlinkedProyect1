@@ -137,4 +137,6 @@
     <string name="action">Acción</string>
     <string name="dismiss">Descartar</string>
     <string name="dismiss_fields">Al cerrar esta ventana, todos los cambios serán ignorados Estas seguro?</string>
+    <string name="mobile">Móvil</string>
+    <string name="email">Email</string>
 </resources>

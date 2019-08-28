@@ -21,7 +21,8 @@ import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.login.AccessActivity;
 import com.example.dotlinked_proyecto.claims.ClaimsFragment;
-import com.example.dotlinked_proyecto.classEvent.EventsCalendarFragment;
+import com.example.dotlinked_proyecto.events.EventsCalendarFragment;
+import com.example.dotlinked_proyecto.personal.PersonalFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -105,7 +106,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, AccessActivity.class);
         intent.putExtra("needAuth", false);
         startActivity(intent);
-      } else if (currentFragment instanceof ClaimsFragment) {
+      } else if (currentFragment instanceof ClaimsFragment ||
+              currentFragment instanceof PersonalFragment) {
         finish();
         startActivity(getIntent());
       }
@@ -128,17 +130,15 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
       case R.id.claim:
         title = R.string.claim;
         fragment = ClaimsFragment.newInstance(token);
-        ;
         fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
-        break;
-      case R.id.health:
-        title = R.string.health;
         break;
       case R.id.date:
         title = R.string.dates;
         break;
       case R.id.personal:
         title = R.string.personal;
+        fragment = PersonalFragment.newInstance(token, companyId);
+        fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
         break;
       default:
         throw new IllegalArgumentException("menu option not implemented!!");

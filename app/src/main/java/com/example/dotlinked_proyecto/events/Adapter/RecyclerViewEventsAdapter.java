@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.classEvent.Adapter;
+package com.example.dotlinked_proyecto.events.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -29,13 +29,13 @@ public class RecyclerViewEventsAdapter extends RecyclerView.Adapter<RecyclerView
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
+    View view = mInflater.inflate(R.layout.recycler_events_row, parent, false);
     return new ViewHolder(view);
   }
 
   // binds the data to the TextView in each row
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Event event = eventsData.get(position);
     holder.tvEventTitle.setText(event.getTitulo());
   }

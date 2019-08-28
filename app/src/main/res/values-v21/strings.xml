@@ -124,4 +124,6 @@
   <string name="action">Action</string>
     <string name="dismiss">Dismiss</string>
     <string name="dismiss_fields">By closing this window, all changes will be ignored. Are you sure?</string>
+    <string name="mobile">Mobile</string>
+    <string name="email">Email</string>
 </resources>

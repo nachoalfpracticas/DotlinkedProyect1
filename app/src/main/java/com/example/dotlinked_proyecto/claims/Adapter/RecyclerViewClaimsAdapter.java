@@ -29,7 +29,7 @@ public class RecyclerViewClaimsAdapter extends RecyclerView.Adapter<RecyclerView
   @NonNull
   @Override
   public RecyclerViewClaimsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
+    View view = mInflater.inflate(R.layout.recycler_events_row, parent, false);
     return new RecyclerViewClaimsAdapter.ViewHolder(view);
   }
 

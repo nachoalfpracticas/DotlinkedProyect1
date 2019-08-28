@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.classEvent;
+package com.example.dotlinked_proyecto.events;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +24,7 @@ import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.bean.Event;
 import com.example.dotlinked_proyecto.bean.MyEventDay;
-import com.example.dotlinked_proyecto.classEvent.Adapter.RecyclerViewEventsAdapter;
+import com.example.dotlinked_proyecto.events.Adapter.RecyclerViewEventsAdapter;
 import com.example.dotlinked_proyecto.services.ListEventsByCompanyService;
 
 import java.text.SimpleDateFormat;

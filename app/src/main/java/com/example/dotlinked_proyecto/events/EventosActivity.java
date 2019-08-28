@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.classEvent;
+package com.example.dotlinked_proyecto.events;
 
 import android.os.Bundle;
 

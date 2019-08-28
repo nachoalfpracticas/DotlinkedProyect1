@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.classEvent;
+package com.example.dotlinked_proyecto.events;
 
 import android.app.Activity;
 import android.content.Intent;

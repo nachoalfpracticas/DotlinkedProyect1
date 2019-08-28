@@ -16,10 +16,10 @@
         <activity android:name=".claims.ClaimDetailActivity">
 
         </activity>
-        <activity android:name=".classEvent.EventDetailActivity">
+        <activity android:name=".events.EventDetailActivity">
 
         </activity>
-        <activity android:name=".classEvent.AddNoteActivity">
+        <activity android:name=".events.AddNoteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -30,7 +30,7 @@
             android:name=".activities.login.AccessActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".classEvent.EventosActivity" />
+        <activity android:name=".events.EventosActivity" />
         <activity
             android:name=".activities.login.LoginActivity"
             android:configChanges="orientation"

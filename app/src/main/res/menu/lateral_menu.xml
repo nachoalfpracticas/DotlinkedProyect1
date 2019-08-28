@@ -17,10 +17,6 @@
           android:icon="@drawable/claim_icon"
           android:title="@string/claim" />
         <item
-            android:id="@+id/health"
-          android:icon="@drawable/ic_medical_health_care"
-          android:title="@string/health" />
-        <item
             android:id="@+id/date"
           android:icon="@drawable/ic_dates_icon"
           android:title="@string/dates" />

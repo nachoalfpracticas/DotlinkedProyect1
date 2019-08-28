@@ -1,28 +1,59 @@
 package com.example.dotlinked_proyecto.bean;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Person {
-  private int personaId;
+  @SerializedName("personId")
+  @Expose
+  private int personId;
+  @SerializedName("nombre")
+  @Expose
   private String nombre;
-  private String apellido;
-  private String dn;
+  @SerializedName("apellido")
+  @Expose
+  private String lastName;
+  @SerializedName("nombreApellido")
+  @Expose
+  private String fullName;
+
+
+  @SerializedName("dni")
+  @Expose
+  private String dni;
+  @SerializedName("direccion")
+  @Expose
   private String direccion;
-  private String telefonoFijo;
+  @SerializedName("telefonoFijo")
+  @Expose
+  private String landline;
+  @SerializedName("movil")
+  @Expose
   private String movil;
+  @SerializedName("email")
+  @Expose
   private String email;
-  private int codigoPostal;
+  @SerializedName("nameRolesPersonaId")
+  @Expose
+  private String rol;
+
+  private int postalCode;
   private String fechaNacimiento;
   private String activo;
   private String fechaDesactivada;
 
+
   Person() {
     }
 
-    public int getPersonaId() {
-        return personaId;
+  public int getPersonId() {
+    return personId;
     }
 
-    public void setPersonaId(int personaId) {
-        this.personaId = personaId;
+  public void setPersonId(int personId) {
+    this.personId = personId;
     }
 
     public String getNombre() {
@@ -33,20 +64,28 @@ public class Person {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getFullName() {
+    return this.fullName;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+  public void setFullName(String name, String lastName) {
+    this.fullName = lastName + "," + name;
     }
 
-    public String getDn() {
-        return dn;
+  public String getDni() {
+    return dni;
     }
 
-    public void setDn(String dn) {
-        this.dn = dn;
+  public void setDni(String dni) {
+    this.dni = dni;
     }
 
     public String getDireccion() {
@@ -57,12 +96,12 @@ public class Person {
         this.direccion = direccion;
     }
 
-    public String getTelefonoFijo() {
-        return telefonoFijo;
+  public String getLandline() {
+    return landline;
     }
 
-    public void setTelefonoFijo(String telefonoFijo) {
-        this.telefonoFijo = telefonoFijo;
+  public void setLandline(String landline) {
+    this.landline = landline;
     }
 
     public String getMovil() {
@@ -81,12 +120,12 @@ public class Person {
         this.email = email;
     }
 
-    public int getCodigoPostal() {
-        return codigoPostal;
+  public int getPostalCode() {
+    return postalCode;
     }
 
-    public void setCodigoPostal(int codigoPostal) {
-        this.codigoPostal = codigoPostal;
+  public void setPostalCode(int postalCode) {
+    this.postalCode = postalCode;
     }
 
     public String getFechaNacimiento() {
@@ -112,4 +151,33 @@ public class Person {
     public void setFechaDesactivada(String fechaDesactivada) {
         this.fechaDesactivada = fechaDesactivada;
     }
+
+  public String getRol() {
+    return rol;
+  }
+
+  public void setRol(String rol) {
+    this.rol = rol;
+  }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return "Person{" +
+            "personId=" + personId +
+            ", nombre='" + nombre + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", fullName='" + fullName + '\'' +
+            ", dni='" + dni + '\'' +
+            ", direccion='" + direccion + '\'' +
+            ", landline='" + landline + '\'' +
+            ", movil='" + movil + '\'' +
+            ", email='" + email + '\'' +
+            ", rol='" + rol + '\'' +
+            ", postalCode=" + postalCode +
+            ", fechaNacimiento='" + fechaNacimiento + '\'' +
+            ", activo='" + activo + '\'' +
+            ", fechaDesactivada='" + fechaDesactivada + '\'' +
+            '}';
+  }
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/tv_person_lastName"
+    android:columnCount="2"
+    android:rowCount="5">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_person_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
+        android:text="Alfonso José"
+        android:textSize="24sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_person_lastName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
+        android:text="González Delgado"
+        android:textSize="24sp" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_marginStart="30dp"
+        android:text="@string/mobile"
+        android:textSize="24sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_person_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_marginStart="150dp"
+        android:inputType="phone"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/margin_16"
+        android:text="695485170"
+        android:textAlignment="textEnd"
+        android:textSize="20sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_marginStart="30dp"
+        android:paddingTop="5dp"
+        android:text="@string/email"
+        android:textSize="24sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_person_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_marginStart="120dp"
+        android:autoSizeTextType="uniform"
+        android:inputType="textEmailAddress"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/margin_16"
+        android:text="alfonso8969@gmail.com"
+        android:textAlignment="textEnd"
+        android:textColor="@color/hyperLink"
+        android:textSize="20sp"
+        tools:targetApi="o" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_marginStart="30dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:text="@string/rol"
+        android:textSize="24sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_person_rol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_marginStart="100dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/margin_16"
+        android:paddingBottom="10dp"
+        android:text="Inquilino, Contacto, Medico"
+        android:textAlignment="textEnd"
+        android:textSize="20sp" />
+
+
+</GridLayout>
