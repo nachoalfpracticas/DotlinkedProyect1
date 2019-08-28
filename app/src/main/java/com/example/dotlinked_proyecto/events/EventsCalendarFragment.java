@@ -30,7 +30,6 @@ import com.example.dotlinked_proyecto.services.ListEventsByCompanyService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -67,7 +66,7 @@ public class EventsCalendarFragment extends Fragment {
   private RecyclerView rcEvents;
 
   private RecyclerViewEventsAdapter adapter;
-  private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY);
+  private SimpleDateFormat df;
   public EventsCalendarFragment() {
     // Required empty public constructor
   }
@@ -87,6 +86,8 @@ public class EventsCalendarFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    context = getContext();
+    df = new SimpleDateFormat(Objects.requireNonNull(context).getString(R.string.date_format), Locale.getDefault());
     if (getArguments() != null) {
       rol = getArguments().getString(ARG_ROL);
       companyId = getArguments().getString(ARG_COMPANY_ID);
@@ -148,6 +149,7 @@ public class EventsCalendarFragment extends Fragment {
   private void previewEvent(EventDay eventDay) {
 
     String date = df.format(eventDay.getCalendar().getTime());
+    d("RESPONSE", "eventDay date: " + date);
     tvEventDay.setText(date);
     Call<List<Event>> call = companyService.getEventsByCompany(companyId, date, access_token);
     call.enqueue(new Callback<List<Event>>() {
@@ -161,23 +163,25 @@ public class EventsCalendarFragment extends Fragment {
           rcEvents.setAdapter(adapter);
           adapter.setClickListener((view, position) -> {
             Event event = eventList.get(position);
-            Date date = eventDay.getCalendar().getTime();
-            event.setFechaDesde(date);
-            d("RESPONSE", "Event: " + event.toString());
             Toast.makeText(context, "You click in: " + adapter.getItem(position), Toast.LENGTH_LONG).show();
+            d("RESPONSE", "Event: " + event.toString());
+            d("RESPONSE", "Event date: " + event.getCalendar().toString());
+
+            event.setFechaDesde(eventDay.getCalendar().getTime());
             Intent intent = new Intent(context, EventDetailActivity.class);
             intent.putExtra(EVENT, event);
             startActivity(intent);
           });
         } else {
           d("RESPONSE", "Response getEvents []" + response.message());
-
         }
       }
 
       @Override
       public void onFailure(Call<List<Event>> call, Throwable t) {
         d("RESPONSE", "Error getEvents: " + t.getCause());
+        adapter = new RecyclerViewEventsAdapter(context, new ArrayList<>());
+        rcEvents.setAdapter(adapter);
       }
     });
 

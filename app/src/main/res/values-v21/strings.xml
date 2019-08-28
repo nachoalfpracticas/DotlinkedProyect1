@@ -126,4 +126,5 @@
     <string name="dismiss_fields">By closing this window, all changes will be ignored. Are you sure?</string>
     <string name="mobile">Mobile</string>
     <string name="email">Email</string>
+  <string name="date_format">yyyy-MM-dd</string>
 </resources>
