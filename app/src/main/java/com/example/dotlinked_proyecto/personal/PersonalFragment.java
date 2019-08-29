@@ -4,6 +4,7 @@ package com.example.dotlinked_proyecto.personal;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.bean.Person;
+import com.example.dotlinked_proyecto.personal.Adapter.ClickListener;
 import com.example.dotlinked_proyecto.personal.Adapter.RecyclerViewPersonalAdapter;
 import com.example.dotlinked_proyecto.services.ListEmployeesByCompanyIdService;
 
@@ -81,10 +83,26 @@ public class PersonalFragment extends Fragment {
       public void onResponse(Call<List<Person>> call, Response<List<Person>> response) {
         if (response.body() != null && response.body().size() > 0 && !response.body().get(0).getFullName().isEmpty()) {
           personList = response.body();
-          adapter = new RecyclerViewPersonalAdapter(context, personList);
-          adapter.setClickListener((view, position) -> {
-            Toast.makeText(context, "Hola tocaste el rc", Toast.LENGTH_SHORT).show();
+          adapter = new RecyclerViewPersonalAdapter(context, personList, new ClickListener() {
+            @Override
+            public void onPositionClicked(View view, int position) {
+/*
+              if (view.getId() == ) {
+                Toast.makeText(view.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+              } else {
+                Toast.makeText(view.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+              }*/
+            }
+
+            @Override
+            public void onLongClicked(View view, int position) {
+
+            }
+
           });
+          // adapter.setClickListener((view, position) -> {
+          //  Toast.makeText(context, "Hola tocaste el rc", Toast.LENGTH_SHORT).show();
+          //});
           rvPersons.setAdapter(adapter);
 
 

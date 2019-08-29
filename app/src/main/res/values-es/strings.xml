@@ -139,5 +139,6 @@
     <string name="dismiss_fields">Al cerrar esta ventana, todos los cambios serán ignorados Estas seguro?</string>
     <string name="mobile">Móvil</string>
     <string name="email">Email</string>
-  <string name="date_format">dd-MM-yyyy</string>
+    <string name="date_format">dd-MM-yyyy</string>
+  <string name="dateformat">dd-MM-yyyy</string>
 </resources>

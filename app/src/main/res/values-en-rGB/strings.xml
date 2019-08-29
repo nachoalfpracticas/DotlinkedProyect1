@@ -142,5 +142,6 @@
     <string name="mobile">Mobile</string>
     <string name="email">Email</string>
   <string name="date_format">yyyy-MM-dd</string>
+  <string name="dateformat">yyyy-MM-dd</string>
 
 </resources>

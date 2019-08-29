@@ -11,6 +11,12 @@ import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.bean.Claim;
 import com.google.gson.Gson;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class ClaimDetailActivity extends AppCompatActivity {
 
   Claim claim;
@@ -43,7 +49,19 @@ public class ClaimDetailActivity extends AppCompatActivity {
 
       tvUserName.setText(session.getSessionUser());
       tvClaimSubject.setText(claim.getSubject());
-      tvClaimDate.setText(claim.getBroadcastDate());
+
+      DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+      Date date = null;
+      try {
+        date = formatter.parse(claim.getBroadcastDate());
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
+      String fechapatron = getString(R.string.date_format);
+      DateFormat df = new SimpleDateFormat(fechapatron,Locale.getDefault());
+      String sdate = df.format(date);
+      tvClaimDate.setText(String.valueOf(sdate));
+
       tvClaimStatus.setText(claim.getDescription());
       setTitle(String.format(getString(R.string.claim_Id), " : " + claim.getClaimId()));
 

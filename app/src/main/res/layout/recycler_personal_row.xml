@@ -60,6 +60,7 @@
         android:layout_marginStart="30dp"
         android:paddingTop="5dp"
         android:text="@string/email"
+
         android:textSize="24sp" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -77,6 +78,7 @@
         android:textAlignment="textEnd"
         android:textColor="@color/hyperLink"
         android:textSize="20sp"
+
         tools:targetApi="o" />
 
     <com.google.android.material.textview.MaterialTextView
