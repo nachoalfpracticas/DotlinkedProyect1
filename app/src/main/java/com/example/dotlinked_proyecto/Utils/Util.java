@@ -34,6 +34,19 @@ public class Util {
     return translatedRoles;
   }
 
+  public static String unTranslateRoles(Activity activity, String rol) {
+    if (rol.toLowerCase().equals(activity.getString(R.string.rol_tenant).toLowerCase())) {
+      rol = "Inquilino";
+    } else if (rol.toLowerCase().equals(activity.getString(R.string.rol_provider).toLowerCase())) {
+      rol = "Proveedor";
+    } else if (rol.toLowerCase().equals(activity.getString(R.string.rol_contact).toLowerCase())) {
+      rol = "Contacto";
+    } else if (rol.toLowerCase().equals(activity.getString(R.string.rol_doctor).toLowerCase())) {
+      rol = "Medico";
+    }
+    return rol;
+  }
+
   @RequiresApi(api = Build.VERSION_CODES.N)
   public static void navigationTo(Activity activity, boolean needAuth, String rol, String userName, String companyName) {
     Intent intent;
@@ -52,21 +65,22 @@ public class Util {
                 Toast.LENGTH_SHORT).show();
       }*/
     else {
-      if ("Inquilino".equals(rol) || "Contacto".equals(rol)) {
+      if (activity.getString(R.string.rol_tenant).equals(rol) ||
+          activity.getString(R.string.rol_contact).equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);
         activity.startActivity(intent);
-      } else if ("Proveedor".equals(rol)) {
+      } else if (activity.getString(R.string.rol_provider).equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);
         activity.startActivity(intent);
-      } else if ("Medico".equals(rol)) {
+      } else if (activity.getString(R.string.rol_doctor).equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);
         activity.startActivity(intent);
-      } else if ("Superadministrador".equals(rol)) {
+      } else if (activity.getString(R.string.rol_super_admin).equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);
         activity.startActivity(intent);
       } else {
         Toast.makeText(activity, "ERROR: " + String.format(activity.getString(R.string.select_item), rol),
-                Toast.LENGTH_SHORT).show();
+            Toast.LENGTH_SHORT).show();
       }
     }
   }

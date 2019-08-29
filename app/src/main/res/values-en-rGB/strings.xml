@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <array name="material_calendar_months_array">
+    <item>January</item>
+    <item>February</item>
+    <item>March</item>
+    <item>April</item>
+    <item>May</item>
+    <item>June</item>
+    <item>July</item>
+    <item>August</item>
+    <item>September</item>
+    <item>October</item>
+    <item>November</item>
+    <item>December</item>
+  </array>
+  <array name="layers_array">
+    <item>Events</item>
+    <item>Notifications</item>
+    <item>Complaints</item>
+    <item>MedicalMonitoring</item>
+    <item>Res.Appointments</item>
+    <item>List.Staff</item>
+  </array>
   <string name="name">DOTLINKED</string>
   <string name="twitter_img">twitter</string>
   <string name="instagram_img">instagram</string>
@@ -9,16 +31,6 @@
   <string name="access">Access</string>
   <string name="finger_print">Use fingerprint</string>
   <string name="spinner_prompt">Choose an item</string>
-  <string-array name="roles_array">    
-    <item>Tenant</item>    
-    <item>Provider</item>    
-    <item>Contact</item>   
-    <item>Doctor</item>  
-    <item>Manager</item>    
-    <item>Assistant Manager</item>    
-    <item>Administrator</item>    
-      <item>Super Assistant Manager</item>  
-  </string-array>
   <string name="wrong_credentials">Wrong credentials</string>
   <string name="required_fields">Required fields</string>
   <string name="email_validation"><![CDATA[\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b]]></string>
@@ -42,22 +54,8 @@
   <string name="material_calendar_thursday">Thu</string>
   <string name="material_calendar_friday">Fri</string>
   <string name="material_calendar_saturday">Sat</string>
-  <string name="material_calendar_sunday">Sun</string>
 
-  <array name="material_calendar_months_array">
-    <item>January</item>
-    <item>February</item>
-    <item>March</item>
-    <item>April</item>
-    <item>May</item>
-    <item>June</item>
-    <item>July</item>
-    <item>August</item>
-    <item>September</item>
-    <item>October</item>
-    <item>November</item>
-    <item>December</item>
-  </array>
+  <string name="material_calendar_sunday">Sun</string>
 
   <string name="material_calendar_today_button">Today</string>
   <string name="material_calendar_positive_button">OK</string>
@@ -105,14 +103,6 @@
   <string name="input_access_company">Company %1$s</string>
   <string name="rol">Rol</string>
   <string name="company">Company</string>
-  <array name="layers_array">
-    <item>Events</item>
-    <item>Notifications</item>
-    <item>Complaints</item>
-    <item>MedicalMonitoring</item>
-    <item>Res.Appointments</item>
-    <item>List.Staff</item>
-  </array>
   <string name="menu_eventos">Eventos</string>
   <string name="navigation_drawer_open">Open</string>
   <string name="navigation_drawer_close">Close</string>
@@ -123,26 +113,36 @@
   <string name="health">Health monitoring</string>
   <string name="dates">Dates</string>
   <string name="personal">Personal</string>
-    <string name="title">Title</string>
-    <string name="description">Description</string>
-    <string name="location">Location</string>
-    <string name="initTime">From hour</string>
-    <string name="endTime">To hour</string>
-    <string name="cost">Cost</string>
-    <string name="list_claims">Claims list</string>
-    <string name="status">Status</string>
-    <string name="subject">Subject</string>
-    <string name="claimDate">Broadcast date</string>
-    <string name="claim_Id">Claim ident. %1$s</string>
+  <string name="title">Title</string>
+  <string name="description">Description</string>
+  <string name="location">Location</string>
+  <string name="initTime">From hour</string>
+  <string name="endTime">To hour</string>
+  <string name="cost">Cost</string>
+  <string name="list_claims">Claims list</string>
+  <string name="status">Status</string>
+  <string name="subject">Subject</string>
+  <string name="claimDate">Broadcast date</string>
+  <string name="claim_Id">Claim ident. %1$s</string>
   <string name="img_close_button">Close button</string>
   <string name="add_new_claim">Add new Claim</string>
   <string name="action">Action</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="dismiss_fields">By closing this window, all changes will be ignored. Are you sure?</string>
-    <string name="mobile">Mobile</string>
-    <string name="email">Email</string>
+  <string name="dismiss">Dismiss</string>
+  <string name="dismiss_fields">By closing this window, all changes will be ignored. Are you sure?</string>
+  <string name="mobile">Mobile</string>
+  <string name="email">Email</string>
   <string name="date_format">yyyy-MM-dd</string>
-    <string name="load_events_data">Loading events</string>
-    <string name="no_events_data">Without events</string>
+  <string name="load_events_data">Loading events</string>
+  <string name="no_events_data">Without events</string>
+  <string-array name="roles_array">    
+    <item>Tenant</item>    
+    <item>Provider</item>    
+    <item>Contact</item>   
+    <item>Doctor</item>  
+    <item>Manager</item>    
+    <item>Assistant Manager</item>    
+    <item>Administrator</item>    
+    <item>Super Assistant Manager</item>  
+  </string-array>
 
 </resources>

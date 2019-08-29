@@ -37,7 +37,7 @@ public class RecyclerViewEventsAdapter extends RecyclerView.Adapter<RecyclerView
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Event event = eventsData.get(position);
-    holder.tvEventTitle.setText(event.getTitulo());
+    holder.tvEventTitle.setText(event.getTitle());
   }
 
   // total number of rows

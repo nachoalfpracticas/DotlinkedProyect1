@@ -17,7 +17,7 @@
     <item>Manager</item>    
     <item>Assistant Manager</item>    
     <item>Administrator</item>    
-      <item>Super Assistant Manager</item>  
+    <item>Super Assistant Manager</item>  
   </string-array>
   <string name="wrong_credentials">Wrong credentials</string>
   <string name="required_fields">Required fields</string>

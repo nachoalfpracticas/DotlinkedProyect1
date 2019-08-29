@@ -121,6 +121,7 @@ public class AccessActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         rol = adapterView.getItemAtPosition(i).toString();
+        rol = Util.unTranslateRoles(AccessActivity.this, rol);
         Token token = session.getToken();
         ListCompaniesUserByRol(token.getAccess_token(), rol);
         Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), rol),
@@ -153,7 +154,7 @@ public class AccessActivity extends AppCompatActivity {
   @RequiresApi(api = Build.VERSION_CODES.N)
   @SuppressWarnings("NullableProblems")
   private void ListCompaniesUserByRol(String access_token, String rol) {
-
+    rol = Util.unTranslateRoles(this, rol);
     Call<List<Company>> call = companyByRolService.getCompanyByRol(rol, "bearer " + access_token);
     call.enqueue(new Callback<List<Company>>() {
       @Override

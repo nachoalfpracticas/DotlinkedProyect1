@@ -23,6 +23,7 @@ import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.bean.Day;
 import com.example.dotlinked_proyecto.bean.Event;
 import com.example.dotlinked_proyecto.bean.MyEventDay;
 import com.example.dotlinked_proyecto.events.Adapter.RecyclerViewEventsAdapter;
@@ -110,6 +111,8 @@ public class EventsCalendarFragment extends Fragment {
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_events_calendar, container, false);
     Calendar cal = Calendar.getInstance();
+    allEventsByCompanyList = new ArrayList<>();
+    Day day = new Day();
 
     mCalendarView = view.findViewById(R.id.calendarView);
     mCalendarView.isInEditMode();
@@ -127,44 +130,51 @@ public class EventsCalendarFragment extends Fragment {
     rcEvents.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
     mCalendarView.setOnDayClickListener(this::previewEvent);
-    getAllEventsByCompany();
+    try {
+      progressDialog = new ProgressDialog(context);
+      progressDialog.setTitle(getString(R.string.load_data));
+      progressDialog.setMessage(getString(R.string.load_events_data));
+      progressDialog.setCancelable(true);
+      progressDialog.setIndeterminate(true);
+      progressDialog.show();
+      Thread.sleep(2000);
+      getAllEventsByCompany();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     return view;
   }
 
   @RequiresApi(api = Build.VERSION_CODES.N)
   @SuppressWarnings("NullableProblems")
   private void getAllEventsByCompany() {
-    progressDialog = new ProgressDialog(context);
-    progressDialog.setTitle(getString(R.string.load_data));
-    progressDialog.setMessage(getString(R.string.load_events_data));
-    progressDialog.setCancelable(true);
-    progressDialog.setIndeterminate(true);
-    progressDialog.show();
+    if (allEventsByCompanyList.size() == 0) {
+      new Thread(() -> {
+        Call<List<Event>> call = companyService.getEventsByCompany(companyId, access_token);
+        call.enqueue(new Callback<List<Event>>() {
+          @Override
+          public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+            if (response.body() != null && response.body().size() > 0) {
+              allEventsByCompanyList = response.body();
+              allEventsByCompanyList.forEach(e -> d("RESPONSE", "Response getAllEventsByCompany: " + e.toString()));
+            }
+          }
 
-    new Thread(() -> {
-      Call<List<Event>> call = companyService.getEventsByCompany(companyId, access_token);
-      call.enqueue(new Callback<List<Event>>() {
-        @Override
-        public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-          if (response.body() != null && response.body().size() > 0) {
-            allEventsByCompanyList = response.body();
+          @Override
+          public void onFailure(Call<List<Event>> call, Throwable t) {
 
           }
-        }
-
-        @Override
-        public void onFailure(Call<List<Event>> call, Throwable t) {
-
-        }
-      });
-
-      Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
-        progressDialog.dismiss();
-        if (allEventsByCompanyList.size() == 0) {
-          Toast.makeText(context, getString(R.string.no_events_data), Toast.LENGTH_LONG).show();
-        }
-      });
-    }).start();
+        });
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+          progressDialog.dismiss();
+          if (allEventsByCompanyList.size() == 0) {
+            Toast.makeText(context, getString(R.string.no_events_data), Toast.LENGTH_LONG).show();
+          }
+        });
+      }).start();
+    } else {
+      progressDialog.dismiss();
+    }
 
 
   }
@@ -204,7 +214,7 @@ public class EventsCalendarFragment extends Fragment {
       @RequiresApi(api = Build.VERSION_CODES.N)
       @Override
       public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-        if (response.body() != null && response.body().size() > 0 && !response.body().get(0).getTitulo().isEmpty()) {
+        if (response.body() != null && response.body().size() > 0 && !response.body().get(0).getTitle().isEmpty()) {
           eventList = response.body();
           eventList.forEach(e -> d("RESPONSE", "Response ListEventsCompanyByDate: " + e.toString()));
           setRecyclerViewAdapter(eventList);
@@ -214,7 +224,7 @@ public class EventsCalendarFragment extends Fragment {
             d("RESPONSE", "Event: " + event.toString());
             d("RESPONSE", "Event date: " + eventDay.getCalendar().toString());
 
-            event.setFechaDesde(df.format(eventDay.getCalendar().getTime()));
+            event.setDateInit(df.format(eventDay.getCalendar().getTime()));
             Intent intent = new Intent(context, EventDetailActivity.class);
             intent.putExtra(EVENT, event);
             startActivity(intent);
