@@ -1,5 +1,6 @@
 package com.example.dotlinked_proyecto.events;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -59,6 +60,8 @@ public class EventsCalendarFragment extends Fragment {
   private ListEventsByCompanyService companyService;
   private List<EventDay> mEventDays = new ArrayList<>();
   private List<Event> eventList;
+  private List<Event> allEventsByCompanyList;
+  private ProgressDialog progressDialog;
   private Context context;
 
   private CalendarView mCalendarView;
@@ -100,6 +103,7 @@ public class EventsCalendarFragment extends Fragment {
 
   }
 
+  @RequiresApi(api = Build.VERSION_CODES.N)
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -119,10 +123,50 @@ public class EventsCalendarFragment extends Fragment {
     rcEvents.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcEvents.getContext(),
             layoutManager.getOrientation());
+    dividerItemDecoration.setDrawable(context.getResources().getDrawable(R.drawable.divider_recycler));
     rcEvents.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
     mCalendarView.setOnDayClickListener(this::previewEvent);
+    getAllEventsByCompany();
     return view;
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.N)
+  @SuppressWarnings("NullableProblems")
+  private void getAllEventsByCompany() {
+    progressDialog = new ProgressDialog(context);
+    progressDialog.setTitle(getString(R.string.load_data));
+    progressDialog.setMessage(getString(R.string.load_events_data));
+    progressDialog.setCancelable(true);
+    progressDialog.setIndeterminate(true);
+    progressDialog.show();
+
+    new Thread(() -> {
+      Call<List<Event>> call = companyService.getEventsByCompany(companyId, access_token);
+      call.enqueue(new Callback<List<Event>>() {
+        @Override
+        public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+          if (response.body() != null && response.body().size() > 0) {
+            allEventsByCompanyList = response.body();
+
+          }
+        }
+
+        @Override
+        public void onFailure(Call<List<Event>> call, Throwable t) {
+
+        }
+      });
+
+      Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+        progressDialog.dismiss();
+        if (allEventsByCompanyList.size() == 0) {
+          Toast.makeText(context, getString(R.string.no_events_data), Toast.LENGTH_LONG).show();
+        }
+      });
+    }).start();
+
+
   }
 
 
@@ -155,7 +199,7 @@ public class EventsCalendarFragment extends Fragment {
     tvEventDay.setText(date);
     String dateInit = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(eventDay.getCalendar().getTime());
 
-    Call<List<Event>> call = companyService.getEventsByCompany(companyId, dateInit, access_token);
+    Call<List<Event>> call = companyService.getEventsByCompanyStarDay(companyId, dateInit, access_token);
     call.enqueue(new Callback<List<Event>>() {
       @RequiresApi(api = Build.VERSION_CODES.N)
       @Override

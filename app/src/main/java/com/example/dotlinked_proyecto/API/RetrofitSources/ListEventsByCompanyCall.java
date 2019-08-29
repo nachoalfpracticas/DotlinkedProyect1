@@ -11,8 +11,12 @@ import retrofit2.http.Query;
 
 public interface ListEventsByCompanyCall {
   @GET("/GetEventos")
+  Call<List<Event>> getEventsByCompanyStartDay(@Query("empresa") String IdCompany,
+                                               @Query("fechaInicio") String dateInit,
+                                               @Header("Authorization") String token);
+
+  @GET("/GetEventosEmpresa")
   Call<List<Event>> getEventsByCompany(@Query("empresa") String IdCompany,
-                                       @Query("fechaInicio") String dateInit,
                                        @Header("Authorization") String token);
 }
 

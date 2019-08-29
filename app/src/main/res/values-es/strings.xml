@@ -140,4 +140,6 @@
     <string name="mobile">Móvil</string>
     <string name="email">Email</string>
   <string name="date_format">dd-MM-yyyy</string>
+    <string name="load_events_data">Cargando eventos</string>
+    <string name="no_events_data">Sin eventos</string>
 </resources>
