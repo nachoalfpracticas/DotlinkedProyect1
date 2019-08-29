@@ -126,6 +126,7 @@ public class EventsCalendarFragment extends Fragment {
   }
 
 
+  // TODO Añadir "Cita"
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -146,13 +147,15 @@ public class EventsCalendarFragment extends Fragment {
     startActivityForResult(intent, ADD_NOTE);
   }
 
+  @RequiresApi(api = Build.VERSION_CODES.O)
   @SuppressWarnings("NullableProblems")
   private void previewEvent(EventDay eventDay) {
 
     String date = df.format(eventDay.getCalendar().getTime());
-    d("RESPONSE", "eventDay date: " + date);
     tvEventDay.setText(date);
-    Call<List<Event>> call = companyService.getEventsByCompany(companyId, date, access_token);
+    String dateInit = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(eventDay.getCalendar().getTime());
+
+    Call<List<Event>> call = companyService.getEventsByCompany(companyId, dateInit, access_token);
     call.enqueue(new Callback<List<Event>>() {
       @RequiresApi(api = Build.VERSION_CODES.N)
       @Override
@@ -165,15 +168,15 @@ public class EventsCalendarFragment extends Fragment {
             Event event = eventList.get(position);
             Toast.makeText(context, "You click in: " + adapter.getItem(position), Toast.LENGTH_LONG).show();
             d("RESPONSE", "Event: " + event.toString());
-            d("RESPONSE", "Event date: " + event.getCalendar().toString());
+            d("RESPONSE", "Event date: " + eventDay.getCalendar().toString());
 
-            event.setFechaDesde(eventDay.getCalendar().getTime());
+            event.setFechaDesde(df.format(eventDay.getCalendar().getTime()));
             Intent intent = new Intent(context, EventDetailActivity.class);
             intent.putExtra(EVENT, event);
             startActivity(intent);
           });
         } else {
-          d("RESPONSE", "Response getEvents []" + response.message());
+          d("RESPONSE", "Response getEvents [] " + response.message());
           setRecyclerViewAdapter(new ArrayList<>());
         }
       }

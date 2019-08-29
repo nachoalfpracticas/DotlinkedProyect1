@@ -9,7 +9,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class Event extends EventDay implements Parcelable {
   @SerializedName("eventId")
@@ -26,17 +25,17 @@ public class Event extends EventDay implements Parcelable {
   public String ubicacion;
   @SerializedName("fechaDesde")
   @Expose
-  public Date fechaDesde;
+  public String fechaDesde;
   @SerializedName("fechaHasta")
   @Expose
-  public Date fechaHasta;
+  public String fechaHasta;
   @SerializedName("horaDesde")
   @Expose
   public int horaDesde;
   @SerializedName("horaHasta")
   @Expose
   public int horaHasta;
-  @SerializedName("diasId")
+  @SerializedName("dia")
   @Expose
   public String diasId;
   @SerializedName("costo")
@@ -66,7 +65,7 @@ public class Event extends EventDay implements Parcelable {
     this.titulo = titulo;
     this.descripcion = descripcion;
     this.ubicacion = ubicacion;
-    this.fechaDesde = getCalendar().getTime();
+    this.fechaDesde = getCalendar().getTime().toString();
     this.horaDesde = horaDesde;
     this.horaHasta = horaHasta;
     this.costo = costo;
@@ -77,7 +76,7 @@ public class Event extends EventDay implements Parcelable {
     titulo = in.readString();
     descripcion = in.readString();
     ubicacion = in.readString();
-    fechaDesde = (Date) in.readSerializable();
+    fechaDesde = (String) in.readSerializable();
     horaDesde = in.readInt();
     horaHasta = in.readInt();
     costo = in.readFloat();
@@ -158,19 +157,19 @@ public class Event extends EventDay implements Parcelable {
     this.ubicacion = ubicacion;
   }
 
-  public Date getFechaDesde() {
+  public String getFechaDesde() {
     return fechaDesde;
   }
 
-  public void setFechaDesde(Date fechaDesde) {
+  public void setFechaDesde(String fechaDesde) {
     this.fechaDesde = fechaDesde;
   }
 
-  public Date getFechaHasta() {
+  public String getFechaHasta() {
     return fechaHasta;
   }
 
-  public void setFechaHasta(Date fechaHasta) {
+  public void setFechaHasta(String fechaHasta) {
     this.fechaHasta = fechaHasta;
   }
 

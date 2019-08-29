@@ -20,8 +20,8 @@ import java.util.Locale;
 
 public class EventDetailActivity extends AppCompatActivity {
 
-  public static String getFormattedDate(Date date) {
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+  public String getFormattedDate(Date date) {
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(this.getString(R.string.date_format), Locale.getDefault());
     return simpleDateFormat.format(date);
   }
 
@@ -49,7 +49,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
       if (event instanceof Event) {
         Event myEventDay = (Event) event;
-        String eventDay = getFormattedDate(myEventDay.getFechaDesde());
+        String eventDay = myEventDay.getFechaDesde();
         setTitle(eventDay);
         evTitle.setText(myEventDay.getTitulo());
         evDes.setText(myEventDay.getDescripcion());
