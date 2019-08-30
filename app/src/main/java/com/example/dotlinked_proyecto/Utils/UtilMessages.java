@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
-import com.example.dotlinked_proyecto.services.LoginService;
+import com.example.dotlinked_proyecto.appServices.LoginService;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;

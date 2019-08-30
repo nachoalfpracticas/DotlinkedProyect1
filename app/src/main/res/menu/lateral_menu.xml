@@ -17,7 +17,7 @@
           android:icon="@drawable/claim_icon"
           android:title="@string/claim" />
         <item
-            android:id="@+id/date"
+            android:id="@+id/services"
           android:icon="@drawable/ic_dates_icon"
           android:title="@string/dates" />
         <item

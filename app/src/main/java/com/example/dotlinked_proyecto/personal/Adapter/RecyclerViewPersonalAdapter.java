@@ -1,7 +1,6 @@
 package com.example.dotlinked_proyecto.personal.Adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +74,6 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
     TextView tvPersonMobile;
     TextView tvPersonEmail;
     TextView tvPersonRol;
-    private TextView iconTextView;
     private WeakReference<ClickListener> listenerRef;
 
     ViewHolder(View itemView, ClickListener listener) {
@@ -86,20 +84,20 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
       tvPersonMobile = itemView.findViewById(R.id.tv_person_mobile);
       tvPersonEmail = itemView.findViewById(R.id.tv_person_email);
       tvPersonRol = itemView.findViewById(R.id.tv_person_rol);
-      iconTextView = itemView.findViewById(R.id.tv_person_email);
+
       itemView.setOnClickListener(this);
-      iconTextView.setOnClickListener(this);
-      iconTextView.setOnLongClickListener(this);
+      tvPersonEmail.setOnClickListener(this);
+      tvPersonEmail.setOnLongClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
 
-      if (view.getId() == iconTextView.getId()) {
-        Toast.makeText(view.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+      if (view.getId() == tvPersonEmail.getId()) {
+        Toast.makeText(view.getContext(), "ITEM PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
       } else {
-        Toast.makeText(view.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), "ROW PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
       }
 
       int pos = getAdapterPosition();
@@ -111,12 +109,9 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
 
       final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
       builder.setTitle("Hello Dialog")
-              .setMessage("LONG CLICK DIALOG WINDOW FOR ICON " + String.valueOf(getAdapterPosition()))
-              .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+              .setMessage("LONG CLICK DIALOG WINDOW FOR ICON " + getAdapterPosition())
+              .setPositiveButton("OK", (dialog, which) -> {
 
-                }
               });
 
       builder.create().show();

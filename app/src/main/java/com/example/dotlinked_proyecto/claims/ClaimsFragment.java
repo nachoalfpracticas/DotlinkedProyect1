@@ -18,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.appServices.ListClaimsPersonService;
 import com.example.dotlinked_proyecto.bean.Claim;
 import com.example.dotlinked_proyecto.claims.Adapter.RecyclerViewClaimsAdapter;
-import com.example.dotlinked_proyecto.services.ListClaimsPersonService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 

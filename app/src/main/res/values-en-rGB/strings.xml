@@ -134,7 +134,8 @@
   <string name="date_format">yyyy-MM-dd</string>
   <string name="load_events_data">Loading events</string>
   <string name="no_events_data">Without events</string>
-  <string-array name="roles_array">    
+    <string name="services">Services</string>
+    <string-array name="roles_array">    
     <item>Tenant</item>    
     <item>Provider</item>    
     <item>Contact</item>   

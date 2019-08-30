@@ -132,6 +132,7 @@
   <string name="date_format">dd-MM-yyyy</string>
   <string name="load_events_data">Cargando eventos</string>
   <string name="no_events_data">Sin eventos</string>
+    <string name="services">Servicios</string>
   <string-array name="roles_array">
     <item>Inquilino</item>
     <item>Proveedor</item>

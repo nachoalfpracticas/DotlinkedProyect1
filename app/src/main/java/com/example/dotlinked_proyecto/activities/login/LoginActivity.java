@@ -20,8 +20,8 @@ import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Check;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
-import com.example.dotlinked_proyecto.services.LoginService;
-import com.example.dotlinked_proyecto.services.RolService;
+import com.example.dotlinked_proyecto.appServices.LoginService;
+import com.example.dotlinked_proyecto.appServices.RolService;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 

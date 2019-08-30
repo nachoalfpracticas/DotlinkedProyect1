@@ -4,11 +4,9 @@ package com.example.dotlinked_proyecto.personal;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -19,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.appServices.ListEmployeesByCompanyIdService;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.personal.Adapter.ClickListener;
 import com.example.dotlinked_proyecto.personal.Adapter.RecyclerViewPersonalAdapter;
-import com.example.dotlinked_proyecto.services.ListEmployeesByCompanyIdService;
 
 import java.util.List;
 

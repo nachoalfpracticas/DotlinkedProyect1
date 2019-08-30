@@ -23,6 +23,7 @@ import com.example.dotlinked_proyecto.activities.login.AccessActivity;
 import com.example.dotlinked_proyecto.claims.ClaimsFragment;
 import com.example.dotlinked_proyecto.events.EventsCalendarFragment;
 import com.example.dotlinked_proyecto.personal.PersonalFragment;
+import com.example.dotlinked_proyecto.services.ServicesFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -132,8 +133,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         fragment = ClaimsFragment.newInstance(token);
         fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
         break;
-      case R.id.date:
-        title = R.string.dates;
+      case R.id.services:
+        title = R.string.services;
+        fragment = ServicesFragment.newInstance(token, rol, companyId);
+        fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
         break;
       case R.id.personal:
         title = R.string.personal;

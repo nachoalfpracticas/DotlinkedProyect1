@@ -30,8 +30,8 @@ import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Check;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.appServices.CompanyByRolService;
 import com.example.dotlinked_proyecto.bean.Company;
-import com.example.dotlinked_proyecto.services.CompanyByRolService;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -121,9 +121,9 @@ public class AccessActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         rol = adapterView.getItemAtPosition(i).toString();
-        rol = Util.unTranslateRoles(AccessActivity.this, rol);
+        String rolTrans = Util.unTranslateRoles(AccessActivity.this, rol);
         Token token = session.getToken();
-        ListCompaniesUserByRol(token.getAccess_token(), rol);
+        ListCompaniesUserByRol(token.getAccess_token(), rolTrans);
         Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), rol),
                 Toast.LENGTH_SHORT).show();
       }

@@ -23,11 +23,11 @@ import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.appServices.ListEventsByCompanyService;
 import com.example.dotlinked_proyecto.bean.Day;
 import com.example.dotlinked_proyecto.bean.Event;
 import com.example.dotlinked_proyecto.bean.MyEventDay;
 import com.example.dotlinked_proyecto.events.Adapter.RecyclerViewEventsAdapter;
-import com.example.dotlinked_proyecto.services.ListEventsByCompanyService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
