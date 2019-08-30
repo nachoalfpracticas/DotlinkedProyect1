@@ -18,6 +18,7 @@ import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Check;
+import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.services.LoginService;
 import com.example.dotlinked_proyecto.services.RolService;
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     rolService = new RolService();
     roles = new String[2];
 
-    // Si guardado en session el  recuerdame y además el username,
+    // Si guardado en session el  recuérdame y además el username,
     // se pasará directamente a la AccessActivity.
     // Esto es cuando venimos de restaurar la App.
     // En esa actividad deberá escribir de nuevo la password, param needAuth = true.
@@ -153,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
       public void onResponse(Call<String[]> call, Response<String[]> response) {
         if (response.body() != null) {
           roles = response.body();
-          // roles = Util.translateRoles(LoginActivity.this, Arrays.asList(roles)).toArray(new String[0]);
+          roles = Util.translateRoles(LoginActivity.this, Arrays.asList(roles)).toArray(new String[0]);
           if (!Arrays.toString(roles).isEmpty()) {
             // roles = new String[]{"Inquilino", "Proveedor"};
             session.setUserRoles(new Gson().toJson(roles));

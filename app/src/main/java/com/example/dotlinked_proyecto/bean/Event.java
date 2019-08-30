@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import com.applandeo.materialcalendarview.EventDay;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,36 +13,36 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Calendar;
 
 public class Event extends EventDay implements Parcelable {
-  @SerializedName("eventId")
-  @Expose
-  public int eventId;
+  //  @SerializedName("eventoId")
+//  @Expose
+//  private int eventId;
   @SerializedName("titulo")
   @Expose
-  public String titulo;
+  private String title;
   @SerializedName("descripcion")
   @Expose
-  public String descripcion;
+  private String description;
   @SerializedName("ubicacion")
   @Expose
-  public String ubicacion;
-  @SerializedName("fechaDesde")
-  @Expose
-  public String fechaDesde;
-  @SerializedName("fechaHasta")
-  @Expose
-  public String fechaHasta;
+  private String location;
   @SerializedName("horaDesde")
   @Expose
-  public int horaDesde;
+  private int timeFrom;
   @SerializedName("horaHasta")
   @Expose
-  public int horaHasta;
-  @SerializedName("dia")
-  @Expose
-  public String diasId;
+  private int timeTo;
   @SerializedName("costo")
   @Expose
-  public float costo = 0;
+  private float cost = 0;
+  @SerializedName("dia")
+  @Expose
+  private String diasId;
+  @SerializedName("fechaDesde")
+  @Expose
+  private String dateInit;
+  @SerializedName("fechaHasta")
+  @Expose
+  private String dateEnd;
 
   public static final Creator<Event> CREATOR = new Creator<Event>() {
     @Override
@@ -55,31 +57,31 @@ public class Event extends EventDay implements Parcelable {
   };
 
   public Event(Calendar day,
-               String titulo,
-               String descripcion,
-               String ubicacion,
-               int horaDesde,
-               int horaHasta,
-               float costo) {
+               String title,
+               String description,
+               String location,
+               int timeFrom,
+               int timeTo,
+               float cost) {
     super(day);
-    this.titulo = titulo;
-    this.descripcion = descripcion;
-    this.ubicacion = ubicacion;
-    this.fechaDesde = getCalendar().getTime().toString();
-    this.horaDesde = horaDesde;
-    this.horaHasta = horaHasta;
-    this.costo = costo;
+    this.title = title;
+    this.description = description;
+    this.location = location;
+    this.dateInit = getCalendar().getTime().toString();
+    this.timeFrom = timeFrom;
+    this.timeTo = timeTo;
+    this.cost = cost;
   }
 
   private Event(Parcel in) {
     super((Calendar) in.readSerializable());
-    titulo = in.readString();
-    descripcion = in.readString();
-    ubicacion = in.readString();
-    fechaDesde = (String) in.readSerializable();
-    horaDesde = in.readInt();
-    horaHasta = in.readInt();
-    costo = in.readFloat();
+    title = in.readString();
+    description = in.readString();
+    location = in.readString();
+    dateInit = (String) in.readSerializable();
+    timeFrom = in.readInt();
+    timeTo = in.readInt();
+    cost = in.readFloat();
 
 
   }
@@ -106,13 +108,13 @@ public class Event extends EventDay implements Parcelable {
   @Override
   public void writeToParcel(Parcel parcel, int i) {
     parcel.writeSerializable(getCalendar());
-    parcel.writeString(getTitulo());
-    parcel.writeString(getDescripcion());
-    parcel.writeString(getUbicacion());
-    parcel.writeSerializable(getFechaDesde());
-    parcel.writeInt(getHoraDesde());
-    parcel.writeInt(getHoraHasta());
-    parcel.writeFloat(getCosto());
+    parcel.writeString(getTitle());
+    parcel.writeString(getDescription());
+    parcel.writeString(getLocation());
+    parcel.writeSerializable(getDateInit());
+    parcel.writeInt(getTimeFrom());
+    parcel.writeInt(getTimeTo());
+    parcel.writeFloat(getCost());
 
   }
 
@@ -125,68 +127,68 @@ public class Event extends EventDay implements Parcelable {
   public int estatusId;
   public Estatus estatusEvento;*/
 
-  public int getEventId() {
+ /* public int getEventId() {
     return eventId;
   }
 
   public void setEventId(int eventId) {
     this.eventId = eventId;
+  }*/
+
+  public String getTitle() {
+    return title;
   }
 
-  public String getTitulo() {
-    return titulo;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
-  public void setTitulo(String titulo) {
-    this.titulo = titulo;
+  public String getDescription() {
+    return description;
   }
 
-  public String getDescripcion() {
-    return descripcion;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
-  public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
+  public String getLocation() {
+    return location;
   }
 
-  public String getUbicacion() {
-    return ubicacion;
+  public void setLocation(String location) {
+    this.location = location;
   }
 
-  public void setUbicacion(String ubicacion) {
-    this.ubicacion = ubicacion;
+  public String getDateInit() {
+    return dateInit;
   }
 
-  public String getFechaDesde() {
-    return fechaDesde;
+  public void setDateInit(String dateInit) {
+    this.dateInit = dateInit;
   }
 
-  public void setFechaDesde(String fechaDesde) {
-    this.fechaDesde = fechaDesde;
+  public String getDateEnd() {
+    return dateEnd;
   }
 
-  public String getFechaHasta() {
-    return fechaHasta;
+  public void setDateEnd(String dateEnd) {
+    this.dateEnd = dateEnd;
   }
 
-  public void setFechaHasta(String fechaHasta) {
-    this.fechaHasta = fechaHasta;
+  public int getTimeFrom() {
+    return timeFrom;
   }
 
-  public int getHoraDesde() {
-    return horaDesde;
+  public void setTimeFrom(int timeFrom) {
+    this.timeFrom = timeFrom;
   }
 
-  public void setHoraDesde(int horaDesde) {
-    this.horaDesde = horaDesde;
+  public int getTimeTo() {
+    return timeTo;
   }
 
-  public int getHoraHasta() {
-    return horaHasta;
-  }
-
-  public void setHoraHasta(int horaHasta) {
-    this.horaHasta = horaHasta;
+  public void setTimeTo(int timeTo) {
+    this.timeTo = timeTo;
   }
 
   public String getDiasId() {
@@ -197,27 +199,28 @@ public class Event extends EventDay implements Parcelable {
     this.diasId = diasId;
   }
 
-  public float getCosto() {
-    return costo;
+  public float getCost() {
+    return cost;
   }
 
-  public void setCosto(float costo) {
-    this.costo = costo;
+  public void setCost(float cost) {
+    this.cost = cost;
   }
 
+  @NonNull
   @Override
   public String toString() {
     return "Event{" +
-        "eventId=" + eventId +
-        ", título='" + titulo + '\'' +
-        ", descripción='" + descripcion + '\'' +
-        ", ubicación='" + ubicacion + '\'' +
-        ", fechaDesde=" + fechaDesde +
-        ", fechaHasta=" + fechaHasta +
-        ", horaDesde=" + horaDesde +
-        ", horaHasta=" + horaHasta +
+        //"eventId=" + eventId +
+        "title='" + title + '\'' +
+        ", description='" + description + '\'' +
+        ", location='" + location + '\'' +
+        ", timeFrom=" + timeFrom +
+        ", timeTo=" + timeTo +
+        ", cost=" + cost +
         ", diasId='" + diasId + '\'' +
-        ", costo=" + costo +
+        ", dateInit=" + dateInit +
+        ", dateEnd=" + dateEnd +
         '}';
   }
 }

@@ -49,14 +49,14 @@ public class EventDetailActivity extends AppCompatActivity {
 
       if (event instanceof Event) {
         Event myEventDay = (Event) event;
-        String eventDay = myEventDay.getFechaDesde();
+        String eventDay = myEventDay.getDateInit();
         setTitle(eventDay);
-        evTitle.setText(myEventDay.getTitulo());
-        evDes.setText(myEventDay.getDescripcion());
-        evLocation.setText(myEventDay.getUbicacion());
-        evInitTime.setText(String.valueOf(myEventDay.getHoraDesde()));
-        evEndTime.setText(String.valueOf(myEventDay.getHoraHasta()));
-        evCost.setText(String.valueOf(myEventDay.getCosto()));
+        evTitle.setText(myEventDay.getTitle());
+        evDes.setText(myEventDay.getDescription());
+        evLocation.setText(myEventDay.getLocation());
+        evInitTime.setText(String.valueOf(myEventDay.getTimeFrom()));
+        evEndTime.setText(String.valueOf(myEventDay.getTimeTo()));
+        evCost.setText(String.valueOf(myEventDay.getCost()));
 
         return;
       }

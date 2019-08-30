@@ -122,6 +122,7 @@ public class ClaimsFragment extends Fragment {
     rvClaimsList.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvClaimsList.getContext(),
             layoutManager.getOrientation());
+    dividerItemDecoration.setDrawable(context.getResources().getDrawable(R.drawable.divider_recycler));
     rvClaimsList.addItemDecoration(dividerItemDecoration);
 
     addClaim.setOnClickListener(view1 -> addNewClaim());
