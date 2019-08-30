@@ -31,7 +31,7 @@
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
         android:textSize="24sp"
-        app:layout_constraintHorizontal_bias="1,5"
+        app:layout_constraintHorizontal_bias="1.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_company_name" />

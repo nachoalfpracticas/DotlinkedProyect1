@@ -98,7 +98,6 @@ public class EventsCalendarFragment extends Fragment {
       access_token = getArguments().getString(ARG_TOKEN);
 
     }
-    context = getContext();
     companyService = new ListEventsByCompanyService();
 
 
@@ -114,7 +113,7 @@ public class EventsCalendarFragment extends Fragment {
     allEventsByCompanyList = new ArrayList<>();
     Day day = new Day();
 
-    mCalendarView = view.findViewById(R.id.calendarView);
+    mCalendarView = view.findViewById(R.id.servicesCalendarView);
     mCalendarView.isInEditMode();
     tvEventDay = view.findViewById(R.id.tv_select_day);
     tvEventDay.setText(df.format(cal.getTime()));

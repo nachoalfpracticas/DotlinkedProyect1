@@ -108,7 +108,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         intent.putExtra("needAuth", false);
         startActivity(intent);
       } else if (currentFragment instanceof ClaimsFragment ||
-              currentFragment instanceof PersonalFragment) {
+              currentFragment instanceof PersonalFragment ||
+              currentFragment instanceof ServicesFragment) {
         finish();
         startActivity(getIntent());
       }

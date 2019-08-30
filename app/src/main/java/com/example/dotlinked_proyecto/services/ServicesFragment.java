@@ -1,7 +1,6 @@
 package com.example.dotlinked_proyecto.services;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +15,14 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.events.Adapter.RecyclerViewEventsAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ServicesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ServicesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ServicesFragment extends Fragment {
   private static final String ARG_ROL = "rol";
   private static final String ARG_COMPANY_ID = "companyId";
@@ -36,14 +32,14 @@ public class ServicesFragment extends Fragment {
   private String companyId;
   private String access_token;
 
-  private OnFragmentInteractionListener mListener;
-
   private CalendarView mCalendarView;
   private AppCompatTextView tvDateDay;
   private RecyclerView rcDates;
+    Context context;
 
   private RecyclerViewEventsAdapter adapter;
   private SimpleDateFormat df;
+    private FloatingActionButton floatingActionButton;
 
   public ServicesFragment() {
     // Required empty public constructor
@@ -62,6 +58,8 @@ public class ServicesFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+      context = getContext();
+      df = new SimpleDateFormat(Objects.requireNonNull(context).getString(R.string.date_format), Locale.getDefault());
     if (getArguments() != null) {
       access_token = getArguments().getString(ARG_TOKEN);
       rol = getArguments().getString(ARG_ROL);
@@ -74,50 +72,16 @@ public class ServicesFragment extends Fragment {
                            Bundle savedInstanceState) {
 
     View view = inflater.inflate(R.layout.fragment_services, container, false);
-    mCalendarView = view.findViewById(R.id.calendarView);
+      mCalendarView = view.findViewById(R.id.servicesCalendarView);
+      mCalendarView.isInEditMode();
+      mCalendarView.setFocusableInTouchMode(true);
     tvDateDay = view.findViewById(R.id.tv_select_day);
+      tvDateDay.setText(df.format(new Date()));
     rcDates = view.findViewById(R.id.rv_dates_calendar);
+      floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
 
     return view;
   }
 
-  // TODO: Rename method, update argument and hook method into UI event
-  public void onButtonPressed(Uri uri) {
-    if (mListener != null) {
-      mListener.onFragmentInteraction(uri);
-    }
-  }
-
-  @Override
-  public void onAttach(Context context) {
-    super.onAttach(context);
-    if (context instanceof OnFragmentInteractionListener) {
-      mListener = (OnFragmentInteractionListener) context;
-    } else {
-      throw new RuntimeException(context.toString()
-              + " must implement OnFragmentInteractionListener");
-    }
-  }
-
-  @Override
-  public void onDetach() {
-    super.onDetach();
-    mListener = null;
-  }
-
-  /**
-   * This interface must be implemented by activities that contain this
-   * fragment to allow an interaction in this fragment to be communicated
-   * to the activity and potentially other fragments contained in that
-   * activity.
-   * <p>
-   * See the Android Training lesson <a href=
-   * "http://developer.android.com/training/basics/fragments/communicating.html"
-   * >Communicating with Other Fragments</a> for more information.
-   */
-  public interface OnFragmentInteractionListener {
-    // TODO: Update argument type and name
-    void onFragmentInteraction(Uri uri);
-  }
 }
