@@ -35,11 +35,11 @@ public class ServicesFragment extends Fragment {
   private CalendarView mCalendarView;
   private AppCompatTextView tvDateDay;
   private RecyclerView rcDates;
-    Context context;
+  Context context;
 
   private RecyclerViewEventsAdapter adapter;
   private SimpleDateFormat df;
-    private FloatingActionButton floatingActionButton;
+  private FloatingActionButton floatingActionButton;
 
   public ServicesFragment() {
     // Required empty public constructor
@@ -58,13 +58,14 @@ public class ServicesFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-      context = getContext();
-      df = new SimpleDateFormat(Objects.requireNonNull(context).getString(R.string.date_format), Locale.getDefault());
+    context = getContext();
+    df = new SimpleDateFormat(Objects.requireNonNull(context).getString(R.string.date_format), Locale.getDefault());
     if (getArguments() != null) {
       access_token = getArguments().getString(ARG_TOKEN);
       rol = getArguments().getString(ARG_ROL);
       companyId = getArguments().getString(ARG_COMPANY_ID);
     }
+
   }
 
   @Override
@@ -72,13 +73,13 @@ public class ServicesFragment extends Fragment {
                            Bundle savedInstanceState) {
 
     View view = inflater.inflate(R.layout.fragment_services, container, false);
-      mCalendarView = view.findViewById(R.id.servicesCalendarView);
-      mCalendarView.isInEditMode();
-      mCalendarView.setFocusableInTouchMode(true);
+    mCalendarView = view.findViewById(R.id.servicesCalendarView);
+    mCalendarView.isInEditMode();
+    mCalendarView.setFocusableInTouchMode(true);
     tvDateDay = view.findViewById(R.id.tv_select_day);
-      tvDateDay.setText(df.format(new Date()));
+    tvDateDay.setText(df.format(new Date()));
     rcDates = view.findViewById(R.id.rv_dates_calendar);
-      floatingActionButton = view.findViewById(R.id.floatingActionButton);
+    floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
 
     return view;

@@ -129,18 +129,8 @@ public class EventsCalendarFragment extends Fragment {
     rcEvents.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
     mCalendarView.setOnDayClickListener(this::previewEvent);
-    try {
-      progressDialog = new ProgressDialog(context);
-      progressDialog.setTitle(getString(R.string.load_data));
-      progressDialog.setMessage(getString(R.string.load_events_data));
-      progressDialog.setCancelable(true);
-      progressDialog.setIndeterminate(true);
-      progressDialog.show();
-      Thread.sleep(2000);
-      getAllEventsByCompany();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    getAllEventsByCompany();
+
     return view;
   }
 
@@ -150,6 +140,12 @@ public class EventsCalendarFragment extends Fragment {
     if (allEventsByCompanyList.size() == 0) {
       new Thread(() -> {
         Call<List<Event>> call = companyService.getEventsByCompany(companyId, access_token);
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle(getString(R.string.load_data));
+        progressDialog.setMessage(getString(R.string.load_events_data));
+        progressDialog.setCancelable(true);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
         call.enqueue(new Callback<List<Event>>() {
           @Override
           public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
