@@ -115,17 +115,23 @@ public class AccessActivity extends AppCompatActivity {
       Log.d("APP", "Checked stop remember me: " + isChecked);
     });
 
-
     spn_roles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @RequiresApi(api = Build.VERSION_CODES.N)
       @Override
-      public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        rol = adapterView.getItemAtPosition(i).toString();
+      public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+        rol = adapterView.getItemAtPosition(pos).toString();
         String rolTrans = Util.unTranslateRoles(AccessActivity.this, rol);
+        session.setRolUserSelected(rolTrans);
         Token token = session.getToken();
-        ListCompaniesUserByRol(token.getAccess_token(), rolTrans);
-        Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), rol),
-                Toast.LENGTH_SHORT).show();
+        if (token != null) {
+          ListCompaniesUserByRol(token.getAccess_token(), rolTrans);
+          Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), rol),
+              Toast.LENGTH_SHORT).show();
+        } else {
+          session.deleteAllSessionUser();
+          Intent intent = new Intent(AccessActivity.this, LoginActivity.class);
+          startActivity(intent);
+        }
       }
 
       @Override
@@ -134,7 +140,6 @@ public class AccessActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
       }
     });
-
 
     registeredUser.setOnClickListener(this::unRegisterUser);
 
@@ -172,23 +177,21 @@ public class AccessActivity extends AppCompatActivity {
               companiesName);
           adapterCom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
           spnCompanies.setAdapter(adapterCom);
-
           spnCompanies.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
               companyName = companiesName.get(pos);
               for (Company comp : companyList) {
                 if (comp.getCompanyName().equals(companyName)) {
                   session.setCompanyIdUser(String.valueOf(comp.getCompanyId()));
+                  Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), companiesName),
+                      Toast.LENGTH_SHORT).show();
                   return;
                 }
               }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
           });
         } else {
@@ -196,16 +199,14 @@ public class AccessActivity extends AppCompatActivity {
           Log.d("RESPONSE", "Error response ListCompaniesUserByRol " + response.message());
         }
       }
-
       @Override
       public void onFailure(Call<List<Company>> call, Throwable t) {
-        UtilMessages.showLoadDataError(AccessActivity.this, getString(R.string.load_data_err) + ":" + t.getCause());
+        UtilMessages.showLoadDataError(AccessActivity.this, getString(R.string.load_data_err));
         Log.d("RESPONSE", "Error ListCompaniesUserByRol: " + t.getCause());
 
       }
     });
   }
-
 
   @RequiresApi(api = Build.VERSION_CODES.M)
   private void generateKey() {

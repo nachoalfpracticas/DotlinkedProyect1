@@ -1,6 +1,5 @@
 package com.example.dotlinked_proyecto.claims;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,7 +14,6 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Check;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
-import com.example.dotlinked_proyecto.activities.BaseActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class AddNewClaimActivity extends AppCompatActivity {
@@ -46,7 +44,7 @@ public class AddNewClaimActivity extends AppCompatActivity {
 
     btnClose.setOnClickListener(v -> {
       if (checkFields()) {
-        UtilMessages.DissmisFields(this);
+        UtilMessages.DismissFields(this);
       } else {
         finish();
       }
@@ -85,13 +83,12 @@ public class AddNewClaimActivity extends AppCompatActivity {
 
   @Override
   public void onBackPressed() {
-    Intent intent = new Intent(this, BaseActivity.class);
-    startActivity(intent);
+    finish();
   }
 
   public boolean checkFields() {
-    return !check.checkEditText(tilSubject, etClaimSubject)
-        && !check.checkEditText(tilDescription, etClaimDescription);
+    return check.checkEditText(tilSubject, etClaimSubject)
+        && check.checkEditText(tilDescription, etClaimDescription);
   }
 
   public void setButtonAction() {

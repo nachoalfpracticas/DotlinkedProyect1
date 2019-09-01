@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     rolService = new RolService();
     roles = new String[2];
 
+
     // Si guardado en session el  recuérdame y además el username,
     // se pasará directamente a la AccessActivity.
     // Esto es cuando venimos de restaurar la App.
@@ -107,6 +108,11 @@ public class LoginActivity extends AppCompatActivity {
     });
 
     btnSend.setOnClickListener(v1 -> {
+
+      if (!check.checkInternetConnection(this)) {
+        UtilMessages.withoutInternet(this);
+        return;
+      }
       String username = edtUserName.getText().toString();
       String password = edtPassword.getText().toString();
 

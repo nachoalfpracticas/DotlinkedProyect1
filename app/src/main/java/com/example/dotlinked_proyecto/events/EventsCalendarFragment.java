@@ -71,6 +71,7 @@ public class EventsCalendarFragment extends Fragment {
 
   private RecyclerViewEventsAdapter adapter;
   private SimpleDateFormat df;
+
   public EventsCalendarFragment() {
     // Required empty public constructor
   }
@@ -124,7 +125,7 @@ public class EventsCalendarFragment extends Fragment {
     LinearLayoutManager layoutManager = new LinearLayoutManager(context);
     rcEvents.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcEvents.getContext(),
-            layoutManager.getOrientation());
+        layoutManager.getOrientation());
     dividerItemDecoration.setDrawable(context.getResources().getDrawable(R.drawable.divider_recycler));
     rcEvents.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
@@ -138,40 +139,42 @@ public class EventsCalendarFragment extends Fragment {
   @SuppressWarnings("NullableProblems")
   private void getAllEventsByCompany() {
     if (allEventsByCompanyList.size() == 0) {
-      new Thread(() -> {
-        Call<List<Event>> call = companyService.getEventsByCompany(companyId, access_token);
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle(getString(R.string.load_data));
-        progressDialog.setMessage(getString(R.string.load_events_data));
-        progressDialog.setCancelable(true);
-        progressDialog.setIndeterminate(true);
-        progressDialog.show();
-        call.enqueue(new Callback<List<Event>>() {
-          @Override
-          public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-            if (response.body() != null && response.body().size() > 0) {
-              allEventsByCompanyList = response.body();
-              allEventsByCompanyList.forEach(e -> d("RESPONSE", "Response getAllEventsByCompany: " + e.toString()));
+      progressDialog = new ProgressDialog(context);
+      progressDialog.setTitle(getString(R.string.load_data));
+      progressDialog.setMessage(getString(R.string.load_events_data));
+      progressDialog.setCancelable(true);
+      progressDialog.setIndeterminate(true);
+      progressDialog.show();
+      Call<List<Event>> call = companyService.getEventsByCompany(companyId, access_token);
+      call.enqueue(new Callback<List<Event>>() {
+        @Override
+        public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+          try {
+            Thread.sleep(2000);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+          if (response.body() != null && response.body().size() > 0) {
+            allEventsByCompanyList = response.body();
+            allEventsByCompanyList.forEach(e -> d("RESPONSE", "Response getAllEventsByCompany: " + e.toString()));
+          } else {
+            if (allEventsByCompanyList.size() == 0) {
+              Toast.makeText(context, getString(R.string.no_events_data), Toast.LENGTH_LONG).show();
             }
           }
-
-          @Override
-          public void onFailure(Call<List<Event>> call, Throwable t) {
-
-          }
-        });
-        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
           progressDialog.dismiss();
-          if (allEventsByCompanyList.size() == 0) {
-            Toast.makeText(context, getString(R.string.no_events_data), Toast.LENGTH_LONG).show();
-          }
-        });
-      }).start();
+        }
+
+        @Override
+        public void onFailure(Call<List<Event>> call, Throwable t) {
+          progressDialog.dismiss();
+          d("RESPONSE", "Error getPersonClaims: " + t.getCause());
+
+        }
+      });
     } else {
       progressDialog.dismiss();
     }
-
-
   }
 
 

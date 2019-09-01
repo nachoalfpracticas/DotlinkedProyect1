@@ -48,6 +48,14 @@ public class Session {
     prefs.edit().remove("userRoles").apply();
   }
 
+  private String getRolUserSelected() {
+    return prefs.getString("rolUserSelected", "");
+  }
+
+  public void setRolUserSelected(String rolUserSelected) {
+    prefs.edit().putString("rolUserSelected", rolUserSelected).apply();
+  }
+
   public void setRememberMeUser(Boolean remember) {
     prefs.edit().putBoolean("userRemember", remember).apply();
   }
@@ -98,5 +106,7 @@ public class Session {
   public void deleteAllSessionUser() {
     prefs.edit().clear().apply();
   }
+
+
 }
 

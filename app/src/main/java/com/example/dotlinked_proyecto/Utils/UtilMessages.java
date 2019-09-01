@@ -1,8 +1,11 @@
 package com.example.dotlinked_proyecto.Utils;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.service.autofill.FieldClassification;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -36,8 +39,8 @@ public class UtilMessages {
             .withEffect(Effectstype.RotateBottom)
             .isCancelableOnTouchOutside(false)
             .setButton1Click(v -> {
-              exitDialog.dismiss();
               activity.finish();
+              exitDialog.dismiss();
             }).setButton2Click(v -> exitDialog.dismiss())
             .show();
   }
@@ -83,6 +86,7 @@ public class UtilMessages {
   }
 
   @RequiresApi(api = Build.VERSION_CODES.N)
+  @SuppressWarnings("NullableProblems")
   static void showLoginView(Activity activity, String userName, String rol, String companyName) {
     Session session = new Session(activity);
     Check check = new Check(activity);
@@ -136,9 +140,7 @@ public class UtilMessages {
                 dialogBuilder.dismiss();
               }
             })
-            .setButton2Click(v1 -> {
-              dialogBuilder.dismiss();
-            })
+        .setButton2Click(v1 -> dialogBuilder.dismiss())
             .setCustomView(view, activity)
             .show();
   }
@@ -155,9 +157,7 @@ public class UtilMessages {
             .withDuration(700)
             .withEffect(Effectstype.Slidetop)
             .isCancelableOnTouchOutside(false)
-            .setButton1Click(v1 -> {
-              dialogBuilder.dismiss();
-            })
+        .setButton1Click(v1 -> dialogBuilder.dismiss())
             .show();
   }
 
@@ -173,7 +173,7 @@ public class UtilMessages {
     return dialogBuilder;
   }
 
-  public static void DissmisFields(Activity activity) {
+  public static void DismissFields(Activity activity) {
     final NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
     dialogBuilder
             .withTitle(activity.getString(R.string.dismiss))
@@ -192,6 +192,30 @@ public class UtilMessages {
             })
             .setButton2Click(v1 -> dialogBuilder.dismiss())
             .show();
+  }
+
+  public static void withoutInternet(Activity activity) {
+    String str = activity.getString(R.string.without_connection);
+    SpannableString spa = new SpannableString(str);
+    int i = str.indexOf("@");
+    Drawable d = activity.getResources().getDrawable(R.drawable.claim_icon);
+    d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+    spa.setSpan(new ImageSpan(d), i, i + 1, ImageSpan.ALIGN_BOTTOM);
+
+    final NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
+    dialogBuilder
+        .withTitle(activity.getString(R.string.internet))
+        .withIcon(R.drawable.internet64)
+        .withDividerColor(R.color.daysLabelColor)
+        .withMessage(spa)
+        .withMessageColor("#FAD201")
+        .withDialogColor(R.color.blueDotlinked)
+        .withDuration(700)
+        .withButton1Text(activity.getString(R.string.OK))
+        .withEffect(Effectstype.RotateBottom)
+        .isCancelableOnTouchOutside(false)
+        .setButton1Click(v -> dialogBuilder.dismiss())
+        .show();
   }
 }
 

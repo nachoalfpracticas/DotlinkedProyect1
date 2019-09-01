@@ -49,7 +49,7 @@ public class PersonalFragment extends Fragment {
     // Required empty public constructor
   }
 
-  public static PersonalFragment newInstance(Token token, String companyId) {
+  public static PersonalFragment newInstance(String companyId, Token token) {
     PersonalFragment fragment = new PersonalFragment();
     Bundle args = new Bundle();
     args.putString(ARG_TOKEN, token.getAccess_token());

@@ -1,6 +1,7 @@
 package com.example.dotlinked_proyecto.services;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,7 @@ public class ServicesFragment extends Fragment {
   private CalendarView mCalendarView;
   private AppCompatTextView tvDateDay;
   private RecyclerView rcDates;
-  Context context;
+  private Context context;
 
   private RecyclerViewEventsAdapter adapter;
   private SimpleDateFormat df;
@@ -45,7 +46,7 @@ public class ServicesFragment extends Fragment {
     // Required empty public constructor
   }
 
-  public static ServicesFragment newInstance(Token token, String rol, String companyId) {
+  public static ServicesFragment newInstance(String rol, String companyId, Token token) {
     ServicesFragment fragment = new ServicesFragment();
     Bundle args = new Bundle();
     args.putString(ARG_TOKEN, token.getAccess_token());
@@ -81,8 +82,17 @@ public class ServicesFragment extends Fragment {
     rcDates = view.findViewById(R.id.rv_dates_calendar);
     floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
+    getReservedServicesOfUser();
+    floatingActionButton.setOnClickListener(view1 -> {
+      Intent intent = new Intent(getActivity(), ServiceOrderActivity.class);
+      startActivity(intent);
+    });
 
     return view;
+  }
+
+  private void getReservedServicesOfUser() {
+
   }
 
 }

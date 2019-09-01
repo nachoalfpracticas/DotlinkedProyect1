@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.applandeo.materialcalendarview.EventDay;
 import com.example.dotlinked_proyecto.R;
-import com.example.dotlinked_proyecto.activities.BaseActivity;
 import com.example.dotlinked_proyecto.bean.Event;
 
 import java.text.SimpleDateFormat;
@@ -70,8 +69,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
   @Override
   public void onBackPressed() {
-    Intent intent = new Intent(this, BaseActivity.class);
-    startActivity(intent);
+    finish();
   }
 }
 

@@ -1,7 +1,10 @@
 package com.example.dotlinked_proyecto.Utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -84,6 +87,17 @@ public class Check {
     if (editText.getText() == null || editText.getText().toString().trim().isEmpty()) {
       inputLayout.setErrorEnabled(true);
     }
-    return inputLayout.isErrorEnabled();
+    return !inputLayout.isErrorEnabled();
+  }
+
+  public boolean checkInternetConnection(Context context) {
+    boolean con = false;
+    ConnectivityManager con_manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo ni = Objects.requireNonNull(con_manager).getActiveNetworkInfo();
+
+    if (ni != null) {
+      con = ni.isAvailable() && ni.isConnected();
+    }
+    return con;
   }
 }

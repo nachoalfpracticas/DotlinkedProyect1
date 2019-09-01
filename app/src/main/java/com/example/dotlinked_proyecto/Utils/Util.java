@@ -60,11 +60,9 @@ public class Util {
       } else if (activity.getString(R.string.rol_provider).equals(rol)) {
         intent = new Intent(activity, .class);
         activity.startActivity(intent);
-      } else {
-        Toast.makeText(activity, "ERROR: " + String.format(activity.getString(R.string.select_item), rol),
-                Toast.LENGTH_SHORT).show();
-      }*/
+      } */
     else {
+      activity.finish();
       if (activity.getString(R.string.rol_tenant).equals(rol) ||
           activity.getString(R.string.rol_contact).equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);

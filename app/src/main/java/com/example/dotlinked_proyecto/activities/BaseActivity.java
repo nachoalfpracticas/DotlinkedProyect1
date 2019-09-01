@@ -22,18 +22,20 @@ import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.login.AccessActivity;
 import com.example.dotlinked_proyecto.claims.ClaimsFragment;
 import com.example.dotlinked_proyecto.events.EventsCalendarFragment;
+import com.example.dotlinked_proyecto.notify.NotifyFragment;
 import com.example.dotlinked_proyecto.personal.PersonalFragment;
 import com.example.dotlinked_proyecto.services.ServicesFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        DrawerLayout.DrawerListener {
+    DrawerLayout.DrawerListener {
 
-  private final static String TAG_EVENT_FRAGMENT = "event_fragment";
-  private final static String TAG_CLAIM_FRAGMENT = "claim_fragment";
+  private final static String TAG_FRAGMENT = "fragment";
+  private final static String TAG_AUTH = "needAuth";
   public ListView drawerList;
   protected DrawerLayout drawerLayout;
   public String[] layers;
@@ -61,7 +63,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     drawerLayout = findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
     drawerLayout.addDrawerListener(toggle);
     toggle.syncState();
 
@@ -71,28 +73,50 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     rol = session.getUserRoles();
     token = session.getToken();
     companyId = session.getCompanyIdUser();
-    setMenuSelectedItem();
 
     drawerLayout.addDrawerListener(this);
 
     View header = navigationView.getHeaderView(0);
-    header.findViewById(R.id.header_list).setOnClickListener(view -> Toast.makeText(BaseActivity.this, String.format(getString(R.string.title_click), navigationView.getTag()),
+    header.findViewById(R.id.header_list).setOnClickListener(
+        view -> Toast.makeText(BaseActivity.this, String.format(getString(R.string.title_click), navigationView.getTag()),
             Toast.LENGTH_SHORT).show());
 
-    selectDefaultView(rol, companyId, token);
-    setTitle(R.string.events);
+    String fragmentName = getString(R.string.events);
+    Bundle bundle = getIntent().getExtras();
+    if (bundle != null) {
+      fragmentName = bundle.getString(TAG_FRAGMENT, getString(R.string.events));
+    }
+    selectFragment(rol, companyId, token, fragmentName);
   }
 
-  private void setMenuSelectedItem() {
-    MenuItem menuItem = navigationView.getMenu().getItem(0);
-    //onNavigationItemSelected(menuItem);
+  private void setMenuSelectedItem(int pos) {
+    MenuItem menuItem = navigationView.getMenu().getItem(pos);
     menuItem.setChecked(true);
   }
 
-  private void selectDefaultView(String rol, String companyId, Token token) {
-    fragment = EventsCalendarFragment.newInstance(rol, companyId, token);
+  private void selectFragment(String rol, String companyId, Token token, String fragmentName) {
+    if (fragmentName.equals(getString(R.string.events))) {
+      fragment = EventsCalendarFragment.newInstance(rol, companyId, token);
+      setTitle(R.string.events);
+      setMenuSelectedItem(0);
+    } else if (fragmentName.equals(getString(R.string.notify))) {
+      fragment = NotifyFragment.newInstance("", "");
+      setTitle(R.string.notify);
+      setMenuSelectedItem(1);
+    } else if (fragmentName.equals(getString(R.string.claim))) {
+      fragment = ClaimsFragment.newInstance(token);
+      setTitle(R.string.claim);
+      setMenuSelectedItem(2);
+    } else if (fragmentName.equals(getString(R.string.services))) {
+      fragment = ServicesFragment.newInstance(rol, companyId, token);
+      setTitle(R.string.services);
+      setMenuSelectedItem(3);
+    } else if (fragmentName.equals(getString(R.string.personal))) {
+      fragment = PersonalFragment.newInstance(companyId, token);
+      setTitle(R.string.personal);
+      setMenuSelectedItem(4);
+    }
     fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
-    setMenuSelectedItem();
   }
 
   @Override
@@ -101,58 +125,56 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
       drawerLayout.closeDrawer(GravityCompat.START);
     } else {
       List<Fragment> fragments = getSupportFragmentManager().getFragments();
-
       Fragment currentFragment = fragments.get(0);
       if (currentFragment instanceof EventsCalendarFragment) {
-        Intent intent = new Intent(this, AccessActivity.class);
-        intent.putExtra("needAuth", false);
+        Intent intent = new Intent(this, AccessActivity.class)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra(TAG_AUTH, false);
         startActivity(intent);
       } else if (currentFragment instanceof ClaimsFragment ||
-              currentFragment instanceof PersonalFragment ||
-              currentFragment instanceof ServicesFragment) {
-        finish();
-        startActivity(getIntent());
+          currentFragment instanceof PersonalFragment ||
+          currentFragment instanceof ServicesFragment) {
+        startActivityFragment(getString(R.string.events));
       }
-
+      dismissCurrentFragment(currentFragment);
     }
+  }
+
+  private void dismissCurrentFragment(Fragment currentFragment) {
+    Objects.requireNonNull(currentFragment.getActivity()).finish();
+  }
+
+  private void startActivityFragment(String extras) {
+    Intent intent = new Intent(this, BaseActivity.class);
+    intent.putExtra(TAG_FRAGMENT, extras);
+    startActivity(intent);
   }
 
   @Override
   public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-    int title;
+    List<Fragment> fragments = getSupportFragmentManager().getFragments();
+    Fragment currentFragment = fragments.get(0);
+    dismissCurrentFragment(currentFragment);
     switch (menuItem.getItemId()) {
       case R.id.events:
-        title = R.string.events;
-        finish();
-        startActivity(getIntent());
+        startActivityFragment(getString(R.string.events));
         break;
       case R.id.notify:
-        title = R.string.notify;
+        startActivityFragment(getString(R.string.notify));
         break;
       case R.id.claim:
-        title = R.string.claim;
-        fragment = ClaimsFragment.newInstance(token);
-        fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
+        startActivityFragment(getString(R.string.claim));
         break;
       case R.id.services:
-        title = R.string.services;
-        fragment = ServicesFragment.newInstance(token, rol, companyId);
-        fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
+        startActivityFragment(getString(R.string.services));
         break;
       case R.id.personal:
-        title = R.string.personal;
-        fragment = PersonalFragment.newInstance(token, companyId);
-        fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
+        startActivityFragment(getString(R.string.personal));
         break;
       default:
-        throw new IllegalArgumentException("menu option not implemented!!");
+        throw new IllegalArgumentException(getString(R.string.load_data_err));
     }
-
-
-    setTitle(getString(title));
-
     drawerLayout.closeDrawer(GravityCompat.START);
-
     return true;
   }
 
@@ -170,7 +192,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
   public void onDrawerOpened(@NonNull View view) {
     //el drawer se ha abierto completamente
     Toast.makeText(this, getString(R.string.navigation_drawer_open),
-            Toast.LENGTH_SHORT).show();
+        Toast.LENGTH_SHORT).show();
   }
 
   @Override
