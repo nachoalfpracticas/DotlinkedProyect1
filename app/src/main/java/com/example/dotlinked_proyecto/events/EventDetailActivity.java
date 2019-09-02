@@ -16,6 +16,7 @@ import com.example.dotlinked_proyecto.bean.Event;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class EventDetailActivity extends AppCompatActivity {
 
@@ -33,6 +34,9 @@ public class EventDetailActivity extends AppCompatActivity {
     Intent intent = getIntent();
 
     Toolbar toolbar = findViewById(R.id.toolbar_event_detail);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
     TextView evTitle = findViewById(R.id.event_title);
     TextView evDes = findViewById(R.id.event_description);
     TextView evLocation = findViewById(R.id.event_location);
