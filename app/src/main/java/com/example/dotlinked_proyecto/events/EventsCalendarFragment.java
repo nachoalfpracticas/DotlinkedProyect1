@@ -32,9 +32,11 @@ import com.example.dotlinked_proyecto.events.Adapter.RecyclerViewEventsAdapter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,8 +53,6 @@ public class EventsCalendarFragment extends Fragment {
   private static final String ARG_ROL = "rol";
   private static final String ARG_COMPANY_ID = "companyId";
   private static final String ARG_TOKEN = "token";
-
-
   private static final int ADD_NOTE = 44;
 
   private String rol;
@@ -71,6 +71,7 @@ public class EventsCalendarFragment extends Fragment {
 
   private RecyclerViewEventsAdapter adapter;
   private SimpleDateFormat df;
+  private Calendar cal;
 
   public EventsCalendarFragment() {
     // Required empty public constructor
@@ -91,17 +92,16 @@ public class EventsCalendarFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    context = getContext();
-    df = new SimpleDateFormat(Objects.requireNonNull(context).getString(R.string.date_format), Locale.getDefault());
     if (getArguments() != null) {
       rol = getArguments().getString(ARG_ROL);
       companyId = getArguments().getString(ARG_COMPANY_ID);
       access_token = getArguments().getString(ARG_TOKEN);
 
     }
+    context = getContext();
+    cal = Calendar.getInstance();
+    df = new SimpleDateFormat(Objects.requireNonNull(context).getString(R.string.date_format), Locale.getDefault());
     companyService = new ListEventsByCompanyService();
-
-
   }
 
   @RequiresApi(api = Build.VERSION_CODES.N)
@@ -110,14 +110,14 @@ public class EventsCalendarFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_events_calendar, container, false);
-    Calendar cal = Calendar.getInstance();
+    AtomicReference<Calendar> cal = new AtomicReference<>(Calendar.getInstance());
     allEventsByCompanyList = new ArrayList<>();
     Day day = new Day();
 
     mCalendarView = view.findViewById(R.id.servicesCalendarView);
     mCalendarView.isInEditMode();
     tvEventDay = view.findViewById(R.id.tv_select_day);
-    tvEventDay.setText(df.format(cal.getTime()));
+    tvEventDay.setText(df.format(cal.get().getTime()));
 
     /*FloatingActionButton floatingActionButton = view.findViewById(R.id.floatingActionButton);
     floatingActionButton.setOnClickListener(v -> addNote());*/
@@ -130,7 +130,20 @@ public class EventsCalendarFragment extends Fragment {
     rcEvents.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
     mCalendarView.setOnDayClickListener(this::previewEvent);
+
     getAllEventsByCompany();
+
+    mCalendarView.setOnPreviousPageChangeListener(() -> {
+      cal.set(mCalendarView.getCurrentPageDate());
+      Date d = cal.get().getTime();
+      String strd = df.format(d);
+    });
+
+    mCalendarView.setOnForwardPageChangeListener(() -> {
+      cal.set(mCalendarView.getCurrentPageDate());
+      Date d = cal.get().getTime();
+      String strd = df.format(d);
+    });
 
     return view;
   }

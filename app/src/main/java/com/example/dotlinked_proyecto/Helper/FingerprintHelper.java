@@ -13,7 +13,7 @@ import com.example.dotlinked_proyecto.activities.BaseActivity;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 
-@RequiresApi(api = Build.VERSION_CODES.P)
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class FingerprintHelper extends FingerprintManager.AuthenticationCallback {
 
   private Context mContext;

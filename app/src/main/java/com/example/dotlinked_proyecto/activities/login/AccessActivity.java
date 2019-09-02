@@ -153,6 +153,7 @@ public class AccessActivity extends AppCompatActivity {
 
     // Si el dispositivo dispone de sistema de huellas, se verá el botón para usarlo.
     if (Check.checkFingerprint(this)) {
+
       if (session.getUserUseFingerprint()) {
         btnFingerPrint.setVisibility(View.VISIBLE);
       }
