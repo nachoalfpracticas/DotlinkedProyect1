@@ -107,6 +107,16 @@ public class Session {
     prefs.edit().clear().apply();
   }
 
+  public boolean getUserUseFingerprint() {
+    return prefs.getBoolean("userFingerprint", false);
+  }
 
+  public void setUserUseFingerprint(boolean use) {
+    prefs.edit().putBoolean("userFingerprint", use).apply();
+  }
+
+  public void deleteUseFingerprint() {
+    prefs.edit().remove("userFingerprint").apply();
+  }
 }
 

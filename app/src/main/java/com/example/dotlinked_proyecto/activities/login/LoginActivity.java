@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
     // Si es visible (el checkbox), se podrá optar por la opción de uasr la huella.
     checkFingerPrint.setOnCheckedChangeListener((buttonView, isChecked) -> {
       // TODO implementar en session el useFingerprint
+      session.setUserUseFingerprint(isChecked);
       Log.d("APP", "Checked useFingerprint: " + isChecked);
     });
 
@@ -153,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   private void ListRolesByToken(String access_token, String userName) {
-    Call<String[]> call = rolService.getRol("bearer " + access_token);
+    Call<String[]> call = rolService.getRoles("bearer " + access_token);
     call.enqueue(new Callback<String[]>() {
       @RequiresApi(api = Build.VERSION_CODES.N)
       @Override

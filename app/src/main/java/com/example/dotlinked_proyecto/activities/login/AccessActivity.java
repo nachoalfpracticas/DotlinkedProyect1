@@ -71,6 +71,8 @@ public class AccessActivity extends AppCompatActivity {
   private CompanyByRolService companyByRolService;
   private String companyName;
   private AppCompatSpinner spnCompanies;
+  private CardView btnAccess;
+  private Bundle bundle;
 
   @TargetApi(Build.VERSION_CODES.N)
   @RequiresApi(api = Build.VERSION_CODES.M)
@@ -81,7 +83,7 @@ public class AccessActivity extends AppCompatActivity {
     session = new Session(this);
     companyByRolService = new CompanyByRolService();
 
-    Bundle bundle = getIntent().getExtras();
+    bundle = getIntent().getExtras();
     if (bundle != null) {
       needAuth = bundle.getBoolean("needAuth", true);
     }
@@ -90,16 +92,20 @@ public class AccessActivity extends AppCompatActivity {
     userName = session.getSessionUser();
 
     CardView btnFingerPrint = findViewById(R.id.cv_fingerprint);
+    btnFingerPrint.setEnabled(false);
 
     TextView registeredUser = findViewById(R.id.tv_backToLogin);
     registeredUser.setTextColor(Color.BLUE);
     registeredUser.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     CheckBox checkNotRemember = findViewById(R.id.checkNotRememberMe);
+
     if (!session.gerUserRememberMe()) {
       checkNotRemember.setVisibility(View.GONE);
     }
+
     TextView tatWelcome = findViewById(R.id.tv_welcomeUser);
-    CardView btnAccess = findViewById(R.id.cv_access);
+    btnAccess = findViewById(R.id.cv_access);
+    btnAccess.setEnabled(false);
     AppCompatSpinner spn_roles = findViewById(R.id.sp_roles);
     spnCompanies = findViewById(R.id.spn_companiesByRol);
 
@@ -120,11 +126,11 @@ public class AccessActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
         rol = adapterView.getItemAtPosition(pos).toString();
-        String rolTrans = Util.unTranslateRoles(AccessActivity.this, rol);
-        session.setRolUserSelected(rolTrans);
+        String rolUnTrans = Util.unTranslateRoles(AccessActivity.this, rol);
+        session.setRolUserSelected(rolUnTrans);
         Token token = session.getToken();
         if (token != null) {
-          ListCompaniesUserByRol(token.getAccess_token(), rolTrans);
+          ListCompaniesUserByRol(token.getAccess_token(), rolUnTrans);
           Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), rol),
               Toast.LENGTH_SHORT).show();
         } else {
@@ -147,7 +153,9 @@ public class AccessActivity extends AppCompatActivity {
 
     // Si el dispositivo dispone de sistema de huellas, se verá el botón para usarlo.
     if (Check.checkFingerprint(this)) {
-      btnFingerPrint.setVisibility(View.VISIBLE);
+      if (session.getUserUseFingerprint()) {
+        btnFingerPrint.setVisibility(View.VISIBLE);
+      }
     } else {
       btnAccess.setVisibility(View.GONE);
     }
@@ -160,12 +168,18 @@ public class AccessActivity extends AppCompatActivity {
   @SuppressWarnings("NullableProblems")
   private void ListCompaniesUserByRol(String access_token, String rol) {
     rol = Util.unTranslateRoles(this, rol);
-    Call<List<Company>> call = companyByRolService.getCompanyByRol(rol, "bearer " + access_token);
+    Call<List<Company>> call = companyByRolService.getCompanies(rol, "bearer " + access_token);
     call.enqueue(new Callback<List<Company>>() {
       @Override
       public void onResponse(Call<List<Company>> call, Response<List<Company>> response) {
         if (response.body() != null) {
           companyList = response.body();
+          if (companyList.size() > 0 && !session.getUserUseFingerprint()) {
+            btnAccess.setEnabled(true);
+          }
+          if (companyList.size() == 1 && roles.length == 1 && needAuth) {
+            Util.navigationTo(AccessActivity.this, true, roles[0], userName, companyName);
+          }
           // companyList.add(new Company(5, "MyCompany"));
           session.setCompaniesUserByRol(companyList);
           companyList.forEach(c -> Log.d("RESPONSE", "Response ListCompaniesUserByRol: " + c.toString()));

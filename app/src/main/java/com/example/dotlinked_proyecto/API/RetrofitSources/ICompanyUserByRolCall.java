@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
-public interface CompanyUserByRolCall {
+public interface ICompanyUserByRolCall {
   @GET("/ListarEmpresasDeUsuarioRol")
   Call<List<Company>> getCompanies(@Query("name") String rol, @Header("Authorization") String token);
 }

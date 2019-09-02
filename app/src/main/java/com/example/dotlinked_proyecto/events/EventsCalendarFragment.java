@@ -145,7 +145,7 @@ public class EventsCalendarFragment extends Fragment {
       progressDialog.setCancelable(true);
       progressDialog.setIndeterminate(true);
       progressDialog.show();
-      Call<List<Event>> call = companyService.getEventsByCompany(companyId, access_token);
+      Call<List<Event>> call = companyService.getEventsByCompany(companyId, "bearer " + access_token);
       call.enqueue(new Callback<List<Event>>() {
         @Override
         public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
@@ -207,7 +207,7 @@ public class EventsCalendarFragment extends Fragment {
     tvEventDay.setText(date);
     String dateInit = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(eventDay.getCalendar().getTime());
 
-    Call<List<Event>> call = companyService.getEventsByCompanyStarDay(companyId, dateInit, access_token);
+    Call<List<Event>> call = companyService.getEventsByCompanyStartDay(companyId, dateInit, "bearer " + access_token);
     call.enqueue(new Callback<List<Event>>() {
       @RequiresApi(api = Build.VERSION_CODES.N)
       @Override

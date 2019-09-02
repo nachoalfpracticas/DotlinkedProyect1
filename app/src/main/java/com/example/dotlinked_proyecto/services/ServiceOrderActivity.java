@@ -66,7 +66,8 @@ public class ServiceOrderActivity extends AppCompatActivity {
   @SuppressWarnings("NullableProblems")
   private void getServicesByCompany() {
     List<String> servicesName = new ArrayList<>();
-    Call<List<Service>> call = companyService.getServicesByCompanyId(session.getCompanyIdUser(), session.getToken().getAccess_token());
+    Call<List<Service>> call = companyService.getServicesByCompanyId(session.getCompanyIdUser(),
+            "bearer " + session.getToken().getAccess_token());
     call.enqueue(new Callback<List<Service>>() {
       @Override
       public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
@@ -95,7 +96,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
         } else {
           UtilMessages.showLoadDataError(ServiceOrderActivity.this, response.message());
-          Log.d("RESPONSE", "Error response ListCompaniesUserByRol " + response.message());
+          Log.d("RESPONSE", "Error response getServicesByCompany " + response.message());
         }
       }
 

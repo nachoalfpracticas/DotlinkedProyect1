@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
-public interface ServicesApiCalls {
+public interface IServicesApiCalls {
   @GET("ListarServicios")
   Call<List<Service>> getServicesByCompanyId(@Query("empresaId") String companyId,
                                              @Header("Authorization") String token);

@@ -1,20 +1,20 @@
 package com.example.dotlinked_proyecto.appServices;
 
 import com.example.dotlinked_proyecto.API.Connection.Connection;
-import com.example.dotlinked_proyecto.API.RetrofitSources.CompanyUserByRolCall;
+import com.example.dotlinked_proyecto.API.RetrofitSources.ICompanyUserByRolCall;
 import com.example.dotlinked_proyecto.bean.Company;
-import com.example.dotlinked_proyecto.interfaces.ICompanyByRolService;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
-public class CompanyByRolService implements ICompanyByRolService {
+public class CompanyByRolService implements ICompanyUserByRolCall {
+
   @Override
-  public Call<List<Company>> getCompanyByRol(String rol, String token) {
+  public Call<List<Company>> getCompanies(String rol, String token) {
     Retrofit retrofit = Connection.getRetrofitClient();
-    CompanyUserByRolCall companyUserByRolCall = retrofit.create(CompanyUserByRolCall.class);
+    ICompanyUserByRolCall companyUserByRolCall = retrofit.create(ICompanyUserByRolCall.class);
 
     return companyUserByRolCall.getCompanies(rol, token);
   }

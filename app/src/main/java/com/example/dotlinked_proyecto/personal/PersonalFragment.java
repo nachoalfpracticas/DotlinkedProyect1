@@ -74,7 +74,7 @@ public class PersonalFragment extends Fragment {
 
   @SuppressWarnings("NullableProblems")
   private void getPersonsList() {
-    Call<List<Person>> call = employeesByCompanyIdService.getPersonByCompany(companyId, "bearer " + access_token);
+    Call<List<Person>> call = employeesByCompanyIdService.listEmployeesByCompany(companyId, "bearer " + access_token);
     call.enqueue(new Callback<List<Person>>() {
       @RequiresApi(api = Build.VERSION_CODES.N)
       @Override

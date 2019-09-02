@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group
-        android:id="@+id/menulateral"
+        android:id="@+id/lateral_menu"
         android:checkableBehavior="single">
         <item
             android:id="@+id/events"
@@ -24,5 +24,10 @@
             android:id="@+id/personal"
           android:icon="@drawable/ic_icon_personal"
           android:title="@string/personal" />
+
+        <item
+            android:id="@+id/exit"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/exit" />
     </group>
 </menu>

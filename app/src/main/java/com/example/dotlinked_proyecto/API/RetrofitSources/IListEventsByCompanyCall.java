@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
-public interface ListEventsByCompanyCall {
+public interface IListEventsByCompanyCall {
   @GET("/GetEventos")
   Call<List<Event>> getEventsByCompanyStartDay(@Query("empresa") String IdCompany,
                                                @Query("fechaInicio") String dateInit,

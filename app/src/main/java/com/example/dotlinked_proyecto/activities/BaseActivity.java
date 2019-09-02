@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.activities.login.AccessActivity;
 import com.example.dotlinked_proyecto.claims.ClaimsFragment;
 import com.example.dotlinked_proyecto.events.EventsCalendarFragment;
@@ -114,6 +115,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     } else if (fragmentName.equals(getString(R.string.personal))) {
       fragment = PersonalFragment.newInstance(companyId, token);
       setTitle(R.string.personal);
+
       setMenuSelectedItem(4);
     }
     fragmentManager.beginTransaction().replace(R.id.home_content, fragment).commit();
@@ -129,6 +131,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
       if (currentFragment instanceof EventsCalendarFragment) {
         Intent intent = new Intent(this, AccessActivity.class)
             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        // TODO comprobar expiración de token
         intent.putExtra(TAG_AUTH, false);
         startActivity(intent);
       } else if (currentFragment instanceof ClaimsFragment ||
@@ -154,7 +157,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
   public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
     List<Fragment> fragments = getSupportFragmentManager().getFragments();
     Fragment currentFragment = fragments.get(0);
-    dismissCurrentFragment(currentFragment);
+    if (menuItem.getItemId() != R.id.exit)
+      dismissCurrentFragment(currentFragment);
     switch (menuItem.getItemId()) {
       case R.id.events:
         startActivityFragment(getString(R.string.events));
@@ -170,6 +174,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         break;
       case R.id.personal:
         startActivityFragment(getString(R.string.personal));
+        break;
+      case R.id.exit:
+        UtilMessages.showExitMessage(this);
         break;
       default:
         throw new IllegalArgumentException(getString(R.string.load_data_err));
