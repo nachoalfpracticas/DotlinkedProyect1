@@ -2,6 +2,7 @@ package com.example.dotlinked_proyecto.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -59,6 +60,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     session = new Session(this);
 
     Toolbar toolbar = findViewById(R.id.toolbar);
+
     setSupportActionBar(findViewById(R.id.toolbar));
 
     drawerLayout = findViewById(R.id.drawer_layout);
@@ -88,7 +90,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
     selectFragment(rol, companyId, token, fragmentName);
   }
-
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    return true;
+  }
   private void setMenuSelectedItem(int pos) {
     MenuItem menuItem = navigationView.getMenu().getItem(pos);
     menuItem.setChecked(true);
@@ -148,6 +155,19 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     Intent intent = new Intent(this, BaseActivity.class);
     intent.putExtra(TAG_FRAGMENT, extras);
     startActivity(intent);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    if (item.getItemId() == R.id.home) {
+      Intent intent = new Intent(this, AccessActivity.class)
+              .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+      intent.putExtra(TAG_AUTH, false);
+      startActivity(intent);
+    }
+
+    return super.onOptionsItemSelected(item);
+
   }
 
   @Override
