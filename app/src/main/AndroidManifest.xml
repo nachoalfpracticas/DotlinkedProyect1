@@ -15,16 +15,26 @@
     <activity android:name=".services.ServiceOrderActivity">
 
     </activity>
+
     <activity android:name=".claims.ClaimDetailActivity">
 
     </activity>
-    <activity android:name=".events.EventDetailActivity">
+
+    <activity
+        android:name=".events.EventDetailActivity"
+        android:parentActivityName=".activities.BaseActivity"
+        >
+      <meta-data
+          android:name="android.support.PARENT_ACTIVITY"
+          android:value=".activities.BaseActivity" />
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
 
         <category android:name="android.intent.category.DEFAULT" />
+
       </intent-filter>
     </activity>
+
     <activity
       android:name=".activities.login.AccessActivity"
       android:configChanges="orientation"
