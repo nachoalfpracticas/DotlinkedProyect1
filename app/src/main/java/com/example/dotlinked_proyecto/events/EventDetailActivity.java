@@ -72,7 +72,8 @@ public class EventDetailActivity extends AppCompatActivity {
   }
 
   @Override
-  public void onBackPressed() {
+  public void onBackPressed()
+  {
     finish();
   }
 }

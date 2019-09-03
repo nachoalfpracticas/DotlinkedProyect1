@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.bean.Person;
 
 import java.lang.ref.WeakReference;
@@ -24,6 +25,7 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
   private List<Person> personData;
   private LayoutInflater mInflater;
   private ClickListener mClickListener;
+  private Context context;
 
 
   public RecyclerViewPersonalAdapter(Context context, List<Person> personData, ClickListener listener) {
@@ -48,7 +50,6 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
     holder.tvPersonMobile.setText(person.getMovil());
     holder.tvPersonEmail.setText(person.getEmail());
     holder.tvPersonRol.setText(person.getRol());
-    holder.tvPersonMobile.setOnClickListener(view -> Log.d("RESPONSE", "Click in " + view.getId()));
 
   }
 
@@ -87,6 +88,7 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
 
       itemView.setOnClickListener(this);
       tvPersonEmail.setOnClickListener(this);
+      tvPersonMobile.setOnClickListener(this);
       tvPersonEmail.setOnLongClickListener(this);
 
     }
@@ -96,6 +98,10 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
 
       if (view.getId() == tvPersonEmail.getId()) {
         Toast.makeText(view.getContext(), "ITEM PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+      Util.enviarEmail(view.getContext(),tvPersonEmail.getText().toString());
+      } else if (view.getId() == tvPersonMobile.getId()) {
+        Toast.makeText(view.getContext(), "ITEM PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+        Util.marcarTelefono(view.getContext(),tvPersonMobile.getText().toString());
       } else {
         Toast.makeText(view.getContext(), "ROW PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
       }
