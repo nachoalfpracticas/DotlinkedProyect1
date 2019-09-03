@@ -43,7 +43,6 @@
     <string name="material_calendar_friday">Fri</string>
     <string name="material_calendar_saturday">Sat</string>
     <string name="material_calendar_sunday">Sun</string>
-
     <array name="material_calendar_months_array">
         <item>January</item>
         <item>February</item>
@@ -58,7 +57,6 @@
         <item>November</item>
         <item>December</item>
     </array>
-
     <string name="material_calendar_today_button">Today</string>
     <string name="material_calendar_positive_button">OK</string>
     <string name="material_calendar_negative_button">Cancel</string>
@@ -98,7 +96,7 @@
     <string name="not_fingerprint_hasEnrolledFingerprints">You must have at least one record of a fingerprint on the device</string>
     <string name="inform_request">Inform and request</string>
     <string name="need_permissions">You need to enable permissions to use fingerprint</string>
-    <string name="dont_have_permissions">You don´t have permissions to use fingerprint</string>
+    <string name="no_have_permissions">You don´t have permissions to use fingerprint</string>
     <string name="use_fingerprint">Use fingerprint</string>
     <string name="select_company">Select company</string>
     <string name="input_password_access_rol">Rol selected %1$s</string>
@@ -145,5 +143,5 @@
     <string name="priceServiceEuro">1%$d €</string>
     <string name="select_service">Select service</string>
     <string name="exit">Exit</string>
-    <string name="no_tenenst_for_contact">Without tenents for this contact</string>
+    <string name="no_tenants_for_contact">Without tenants for this contact</string>
 </resources>

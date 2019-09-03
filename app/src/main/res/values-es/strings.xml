@@ -14,14 +14,6 @@
     <item>Noviembre</item>
     <item>Diciembre</item>
   </array>
-  <array name="layers_array">
-    <item>Eventos</item>
-    <item>Notificaciones</item>
-    <item>Quejas</item>
-    <item>Seguimiento Médico</item>
-    <item>Res. Citas</item>
-    <item>List. Personal</item>
-  </array>
   <string name="app_name">DotLinked_proyecto</string>
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="fragment1">fragment1</string>
@@ -53,7 +45,7 @@
   <string name="password_invalid">Contraseña requiere una may y un número 6–25 caracts</string>
   <string name="load_data">Cargar datos</string>
   <string name="exitApp">Salir App</string>
-    <string name="exitYes">Pulse si para salir</string>
+  <string name="exitYes">Pulse si para salir</string>
   <string name="Yes">Si</string>
   <string name="No">No</string>
   <string name="load_data_err">Error gargando datos</string>
@@ -94,7 +86,7 @@
   <string name="not_fingerprint_hasEnrolledFingerprints">Debe tener al menos un registro de una huella dactilar en el dispositivo</string>
   <string name="inform_request">Informar y solicitar</string>
   <string name="need_permissions">Necesitas habilitar permisos para usar la huella dactilar</string>
-  <string name="dont_have_permissions">No tienes permisos para usar la huella dactilar</string>
+  <string name="no_have_permissions">No tienes permisos para usar la huella dactilar</string>
   <string name="use_fingerprint">Use la huella dactilar</string>
   <string name="select_company">Seleccione empresa</string>
   <string name="input_password_access_rol">Rol seleccionado %1$s</string>
@@ -140,10 +132,9 @@
   <string name="igCost">20.50 €</string>
   <string name="priceServiceEuro">1%$d €</string>
   <string name="select_service">seleccione servicio</string>
-    <string name="exit">Salir</string>
-    <string name="no_tenenst_for_contact">Sin inquilinos para este contacto</string>
-
-    <string-array name="roles_array">
+  <string name="exit">Salir</string>
+  <string name="no_tenants_for_contact">Sin inquilinos para este contacto</string>
+  <string-array name="roles_array">
     <item>Inquilino</item>
     <item>Proveedor</item>
     <item>Contacto</item>

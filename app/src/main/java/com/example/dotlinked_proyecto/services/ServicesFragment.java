@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.applandeo.materialcalendarview.CalendarView;
+import com.applandeo.materialcalendarview.EventDay;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
@@ -82,7 +83,7 @@ public class ServicesFragment extends Fragment {
       companyId = getArguments().getString(ARG_COMPANY_ID);
     }
     context = getContext();
-    df = new SimpleDateFormat(getActivity().getString(R.string.date_format), Locale.getDefault());
+    df = new SimpleDateFormat(Objects.requireNonNull(getActivity()).getString(R.string.date_format), Locale.getDefault());
     session = new Session(context);
     personList = new ArrayList<>();
     companyService = new ServicesCompanyService();
@@ -117,7 +118,7 @@ public class ServicesFragment extends Fragment {
               Intent intent = new Intent(getActivity(), ServiceOrderActivity.class);
               startActivity(intent);
             } else
-              Toast.makeText(context, getString(R.string.no_tenenst_for_contact), Toast.LENGTH_LONG).show();
+              Toast.makeText(context, getString(R.string.no_tenants_for_contact), Toast.LENGTH_LONG).show();
           }
 
           @Override
@@ -130,11 +131,16 @@ public class ServicesFragment extends Fragment {
         session.setListTenantsForContact(new ArrayList<>());
       }
     });
+    mCalendarView.setOnDayClickListener(this::previewEvent);
 
     return view;
   }
 
   private void getReservedServicesOfUser() {
+
+  }
+
+  private void previewEvent(EventDay eventDay) {
 
   }
 
