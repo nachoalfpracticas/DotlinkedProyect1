@@ -141,6 +141,7 @@
   <string name="priceServiceEuro">1%$d €</string>
   <string name="select_service">seleccione servicio</string>
     <string name="exit">Salir</string>
+    <string name="no_tenenst_for_contact">Sin inquilinos para este contacto</string>
 
     <string-array name="roles_array">
     <item>Inquilino</item>

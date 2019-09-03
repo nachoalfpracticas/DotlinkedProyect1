@@ -6,12 +6,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Person {
-  @SerializedName("personId")
+  @SerializedName("personaId")
   @Expose
   private int personId;
   @SerializedName("nombre")
   @Expose
-  private String nombre;
+  private String name;
   @SerializedName("apellido")
   @Expose
   private String lastName;
@@ -25,13 +25,13 @@ public class Person {
   private String dni;
   @SerializedName("direccion")
   @Expose
-  private String direccion;
+  private String address;
   @SerializedName("telefonoFijo")
   @Expose
-  private String landline;
+  private String landLine;
   @SerializedName("movil")
   @Expose
-  private String movil;
+  private String mobile;
   @SerializedName("email")
   @Expose
   private String email;
@@ -46,23 +46,23 @@ public class Person {
 
 
   Person() {
-    }
+  }
 
   public int getPersonId() {
     return personId;
-    }
+  }
 
   public void setPersonId(int personId) {
     this.personId = personId;
-    }
+  }
 
-    public String getNombre() {
-        return nombre;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public String getLastName() {
     return lastName;
@@ -74,83 +74,83 @@ public class Person {
 
   public String getFullName() {
     return this.fullName;
-    }
+  }
 
   public void setFullName(String name, String lastName) {
     this.fullName = lastName + "," + name;
-    }
+  }
 
   public String getDni() {
     return dni;
-    }
+  }
 
   public void setDni(String dni) {
     this.dni = dni;
-    }
+  }
 
-    public String getDireccion() {
-        return direccion;
-    }
+  public String getAddress() {
+    return address;
+  }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-  public String getLandline() {
-    return landline;
-    }
+  public String getLandLine() {
+    return landLine;
+  }
 
-  public void setLandline(String landline) {
-    this.landline = landline;
-    }
+  public void setLandLine(String landLine) {
+    this.landLine = landLine;
+  }
 
-    public String getMovil() {
-        return movil;
-    }
+  public String getMobile() {
+    return mobile;
+  }
 
-    public void setMovil(String movil) {
-        this.movil = movil;
-    }
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
   public int getPostalCode() {
     return postalCode;
-    }
+  }
 
   public void setPostalCode(int postalCode) {
     this.postalCode = postalCode;
-    }
+  }
 
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
+  public String getFechaNacimiento() {
+    return fechaNacimiento;
+  }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
+  public void setFechaNacimiento(String fechaNacimiento) {
+    this.fechaNacimiento = fechaNacimiento;
+  }
 
-    public String getActivo() {
-        return activo;
-    }
+  public String getActivo() {
+    return activo;
+  }
 
-    public void setActivo(String activo) {
-        this.activo = activo;
-    }
+  public void setActivo(String activo) {
+    this.activo = activo;
+  }
 
-    public String getFechaDesactivada() {
-        return fechaDesactivada;
-    }
+  public String getFechaDesactivada() {
+    return fechaDesactivada;
+  }
 
-    public void setFechaDesactivada(String fechaDesactivada) {
-        this.fechaDesactivada = fechaDesactivada;
-    }
+  public void setFechaDesactivada(String fechaDesactivada) {
+    this.fechaDesactivada = fechaDesactivada;
+  }
 
   public String getRol() {
     return rol;
@@ -165,13 +165,13 @@ public class Person {
   public String toString() {
     return "Person{" +
             "personId=" + personId +
-            ", nombre='" + nombre + '\'' +
+            ", name='" + name + '\'' +
             ", lastName='" + lastName + '\'' +
             ", fullName='" + fullName + '\'' +
             ", dni='" + dni + '\'' +
-            ", direccion='" + direccion + '\'' +
-            ", landline='" + landline + '\'' +
-            ", movil='" + movil + '\'' +
+            ", address='" + address + '\'' +
+            ", landLine='" + landLine + '\'' +
+            ", mobile='" + mobile + '\'' +
             ", email='" + email + '\'' +
             ", rol='" + rol + '\'' +
             ", postalCode=" + postalCode +

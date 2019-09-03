@@ -126,8 +126,8 @@ public class AccessActivity extends AppCompatActivity {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
         rol = adapterView.getItemAtPosition(pos).toString();
+        session.setRolUserSelected(rol);
         String rolUnTrans = Util.unTranslateRoles(AccessActivity.this, rol);
-        session.setRolUserSelected(rolUnTrans);
         Token token = session.getToken();
         if (token != null) {
           ListCompaniesUserByRol(token.getAccess_token(), rolUnTrans);

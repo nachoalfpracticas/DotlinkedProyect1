@@ -73,7 +73,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     navigationView = findViewById(R.id.navigation_view);
     navigationView.setNavigationItemSelectedListener(this);
 
-    rol = session.getUserRoles();
+    rol = session.getRolUserSelected();
     token = session.getToken();
     companyId = session.getCompanyIdUser();
 

@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.bean.Company;
+import com.example.dotlinked_proyecto.bean.Person;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -48,7 +49,7 @@ public class Session {
     prefs.edit().remove("userRoles").apply();
   }
 
-  private String getRolUserSelected() {
+  public String getRolUserSelected() {
     return prefs.getString("rolUserSelected", "");
   }
 
@@ -117,6 +118,25 @@ public class Session {
 
   public void deleteUseFingerprint() {
     prefs.edit().remove("userFingerprint").apply();
+  }
+
+  public void setListTenantsForContact(List<Person> personList) {
+    prefs.edit().putString("listTenants", new Gson().toJson(personList)).apply();
+  }
+
+  public List<Person> getTenantsForContact() {
+    Gson gson = new Gson();
+    Type listTenantsType = new TypeToken<List<Person>>() {
+    }.getType();
+    return gson.fromJson(prefs.getString("listTenants", ""), listTenantsType);
+  }
+
+  public void setTenantSelect(Person person) {
+    prefs.edit().putString("tenantSelect", new Gson().toJson(person)).apply();
+  }
+
+  public Person getTenentSelect() {
+    return new Gson().fromJson(prefs.getString("tenantSelect", ""), Person.class);
   }
 }
 

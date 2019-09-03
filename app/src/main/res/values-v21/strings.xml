@@ -137,4 +137,5 @@
   <string name="igCost">20.50 €</string>
   <string name="select_service">Select service</string>
     <string name="exit">Exit</string>
+    <string name="no_tenenst_for_contact">Without tenents for this contact</string>
 </resources>

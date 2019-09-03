@@ -45,7 +45,7 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
     Person person = personData.get(position);
     holder.tvPersonName.setText(person.getFullName().split(",")[0]);
     holder.tvPersonLastName.setText(person.getFullName().split(",")[1]);
-    holder.tvPersonMobile.setText(person.getMovil());
+    holder.tvPersonMobile.setText(person.getMobile());
     holder.tvPersonEmail.setText(person.getEmail());
     holder.tvPersonRol.setText(person.getRol());
     holder.tvPersonMobile.setOnClickListener(view -> Log.d("RESPONSE", "Click in " + view.getId()));

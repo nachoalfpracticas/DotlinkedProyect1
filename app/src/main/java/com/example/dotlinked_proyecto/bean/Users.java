@@ -23,7 +23,7 @@ public class Users extends Person {
         return id;
     }
 
-    public String getNombre() {
+  public String getName() {
         return nombre;
     }
 
@@ -31,8 +31,8 @@ public class Users extends Person {
         return apellido;
     }
 
-    public String getMovil() {
-        return movil;
+  public void setName(String name) {
+    this.nombre = name;
     }
 
     public String getEmail() {
@@ -43,16 +43,16 @@ public class Users extends Person {
         this.id = id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+  public String getMobile() {
+    return movil;
     }
 
   public void setLastName(String lastName) {
     this.apellido = lastName;
     }
 
-    public void setMovil(String movil) {
-        this.movil = movil;
+  public void setMobile(String mobile) {
+    this.movil = mobile;
     }
 
     public void setEmail(String email) {

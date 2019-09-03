@@ -143,6 +143,7 @@
   <string name="priceServiceEuro">1%$d €</string>
   <string name="select_service">Select service</string>
     <string name="exit">Exit</string>
+    <string name="no_tenenst_for_contact">Without tenents for this contact</string>
     <string-array name="roles_array">    
     <item>Tenant</item>    
     <item>Provider</item>    

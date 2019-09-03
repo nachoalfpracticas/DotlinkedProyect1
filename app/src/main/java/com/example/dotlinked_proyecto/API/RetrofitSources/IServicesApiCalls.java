@@ -1,5 +1,6 @@
 package com.example.dotlinked_proyecto.API.RetrofitSources;
 
+import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface IServicesApiCalls {
                                                @Query("fechaInicio") String dateInit,
                                                @Query("fechaFin") String dateEnd,
                                                @Header("Authorization") String token);
+
+  @GET("ListarInquilinosPorContacto")
+  Call<List<Person>> listTenantByContact(@Query("empresaId") String companyId,
+                                         @Header("Authorization") String token);
 }
