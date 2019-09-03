@@ -33,6 +33,8 @@ public class ClaimDetailActivity extends AppCompatActivity {
     session = new Session(this);
     Toolbar toolbar = findViewById(R.id.toolbar_claim_detail);
     setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
@@ -69,7 +71,12 @@ public class ClaimDetailActivity extends AppCompatActivity {
 
 
   }
-
+  // https://es.stackoverflow.com/questions/8387/bóton-de-atrás-en-el-título-de-la-activity
+  @Override
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return false;
+  }
   @Override
   public void onBackPressed() {
     finish();

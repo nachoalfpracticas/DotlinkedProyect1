@@ -12,11 +12,16 @@
     android:roundIcon="@drawable/logo"
     android:supportsRtl="true"
     android:theme="@style/Theme.Design.NoActionBar">
-    <activity android:name=".services.ServiceOrderActivity">
+
+    <activity android:name=".services.ServiceOrderActivity"
+
+        >
 
     </activity>
 
-    <activity android:name=".claims.ClaimDetailActivity">
+    <activity android:name=".claims.ClaimDetailActivity"
+
+        >
 
     </activity>
 
