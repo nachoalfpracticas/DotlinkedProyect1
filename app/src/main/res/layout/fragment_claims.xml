@@ -99,7 +99,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblListClaims" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.example.dotlinked_proyecto.Utils.MovableFloatingActionButton
         android:id="@+id/btnAddClaims"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
