@@ -35,7 +35,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
     Toolbar toolbar = findViewById(R.id.toolbar_event_detail);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     TextView evTitle = findViewById(R.id.event_title);
     TextView evDes = findViewById(R.id.event_description);
@@ -53,7 +53,7 @@ public class EventDetailActivity extends AppCompatActivity {
       if (event instanceof Event) {
         Event myEventDay = (Event) event;
         String eventDay = myEventDay.getDateInit();
-        setTitle(eventDay);
+        toolbar.setTitle(eventDay);
         evTitle.setText(myEventDay.getTitle());
         evDes.setText(myEventDay.getDescription());
         evLocation.setText(myEventDay.getLocation());

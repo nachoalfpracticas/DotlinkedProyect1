@@ -33,7 +33,7 @@
       android:id="@+id/servicesCalendarView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginBottom="220dp"
+    android:layout_marginBottom="270dp"
       app:eventsEnabled="true"
       app:forwardButtonSrc="@drawable/ic_chevron_right_black_24dp"
       app:headerColor="@android:color/holo_blue_bright"

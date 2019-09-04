@@ -8,4 +8,5 @@
   <dimen name="little_text">10sp</dimen>
   <dimen name="margin_16">16dp</dimen>
   <dimen name="margin_8">8dp</dimen>
+  <dimen name="company_margin">320dp</dimen>
 </resources>
