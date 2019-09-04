@@ -46,13 +46,15 @@
         app:previousButtonSrc="@drawable/ic_chevron_left_black_24dp"
         app:type="one_day_picker" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.example.dotlinked_proyecto.Utils.MovableFloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_16"
         android:layout_marginBottom="@dimen/margin_16"
+        android:alpha="0.5"
         android:src="@drawable/ic_add_white_24dp"
+        app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
