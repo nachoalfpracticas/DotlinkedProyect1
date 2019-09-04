@@ -5,7 +5,7 @@
   android:layout_height="wrap_content"
   android:layout_below="@+id/tv_person_lastName"
   android:columnCount="2"
-  android:rowCount="5">
+    android:rowCount="2">
 
 
   <com.google.android.material.textview.MaterialTextView
@@ -22,28 +22,7 @@
 
 
   <com.google.android.material.textview.MaterialTextView
-    android:layout_row="2"
-    android:layout_column="0"
-    android:layout_marginStart="30dp"
-    android:text="@string/dateInit"
-    android:textSize="24sp" />
-
-  <com.google.android.material.textview.MaterialTextView
-    android:id="@+id/tv_service_dateInit"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_row="2"
-    android:layout_column="0"
-    android:layout_marginStart="150dp"
-    android:inputType="phone"
-    android:paddingStart="0dp"
-    android:paddingEnd="@dimen/margin_16"
-    android:text="@string/date_format"
-    android:textAlignment="textEnd"
-    android:textSize="20sp" />
-
-  <com.google.android.material.textview.MaterialTextView
-    android:layout_row="3"
+      android:layout_row="1"
     android:layout_column="0"
     android:layout_marginStart="30dp"
     android:paddingTop="5dp"
@@ -55,7 +34,7 @@
     android:id="@+id/tv_service_location"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_row="3"
+      android:layout_row="1"
     android:layout_column="0"
     android:layout_marginStart="120dp"
     android:autoSizeTextType="uniform"
@@ -65,31 +44,8 @@
     android:text="@string/location"
     android:textAlignment="textEnd"
     android:textSize="20sp"
-
     tools:targetApi="o" />
 
-  <com.google.android.material.textview.MaterialTextView
-    android:layout_row="4"
-    android:layout_column="0"
-    android:layout_marginStart="30dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="10dp"
-    android:text="@string/cost"
-    android:textSize="24sp" />
-
-  <com.google.android.material.textview.MaterialTextView
-    android:id="@+id/tv_person_rol"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_row="4"
-    android:layout_column="0"
-    android:layout_marginStart="100dp"
-    android:paddingStart="0dp"
-    android:paddingEnd="@dimen/margin_16"
-    android:paddingBottom="10dp"
-    android:text="@string/igCost"
-    android:textAlignment="textEnd"
-    android:textSize="20sp" />
 
 
 </GridLayout>

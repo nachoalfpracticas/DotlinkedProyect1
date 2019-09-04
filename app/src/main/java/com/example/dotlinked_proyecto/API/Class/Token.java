@@ -1,58 +1,61 @@
 package com.example.dotlinked_proyecto.API.Class;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Token {
-    @SerializedName("access_token")
-    @Expose
-    private String access_token;
+  @SerializedName("access_token")
+  @Expose
+  private String access_token;
 
-    @SerializedName("token_type")
-    @Expose
-    private String token_type;
+  @SerializedName("token_type")
+  @Expose
+  private String token_type;
 
-    @SerializedName("userName")
-    @Expose
-    private String userName;
+  @SerializedName("userName")
+  @Expose
+  private String userName;
 
-    @SerializedName(".issues")
-    @Expose
-    private String issues;
+  @SerializedName(".issues")
+  @Expose
+  private String issues;
 
-    @SerializedName(".expires")
-    @Expose
-    private String xpires;
+  @SerializedName(".expires")
+  @Expose
+  private String expires;
 
-    public String getAccess_token() {
-        return access_token;
-    }
+  public String getAccess_token() {
+    return access_token;
+  }
 
-    public String getToken_type() {
-        return token_type;
-    }
+  private String getToken_type() {
+    return token_type;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public String getUserName() {
+    return userName;
+  }
 
-    public String getIssues() {
-        return issues;
-    }
+  private String getIssues() {
+    return issues;
+  }
 
-    public String getXpires() {
-        return xpires;
-    }
+  private String getExpires() {
+    return expires;
+  }
 
-    @Override
-    public String toString() {
-        return "Token{" +
+  @NonNull
+  @Override
+  public String toString() {
+    return "Token{" +
             "access_token='" + getAccess_token() + '\'' +
             ", token_type='" + getToken_type() + '\'' +
-            ", expires='" + getXpires() + '\'' +
+            ", expires='" + getExpires() + '\'' +
             ", userName='" + getUserName() + '\'' +
             ", issues='" + getIssues() + '\'' +
-            ", xpires='" + getXpires() + '\'' +
+            ", expires='" + getExpires() + '\'' +
             '}';
-    }
+  }
 }

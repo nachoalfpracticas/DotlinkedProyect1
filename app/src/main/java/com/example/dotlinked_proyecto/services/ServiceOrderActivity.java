@@ -20,6 +20,7 @@ import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Company;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
+import com.example.dotlinked_proyecto.services.Adapter.SpinnerTenantsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

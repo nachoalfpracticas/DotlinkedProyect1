@@ -140,8 +140,10 @@
     <string name="serviceName">Service</string>
     <string name="dateInit">Date service</string>
     <string name="igCost">20.50 €</string>
-    <string name="priceServiceEuro">1%$d €</string>
+    <string name="priceServiceEuro">%1$s €</string>
     <string name="select_service">Select service</string>
     <string name="exit">Exit</string>
     <string name="no_tenants_for_contact">Without tenants for this contact</string>
+    <string name="no_services_data">Without services</string>
+    <string name="service_Id">Service ident. %1$s</string>
 </resources>

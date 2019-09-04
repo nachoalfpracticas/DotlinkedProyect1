@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context=".services.ServiceDetailActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/service_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:hint="@string/no_note"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/service_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:hint="@string/no_note"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblDateInit" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/service_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:hint="@string/no_note"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbLocation" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/service_initTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:hint="@string/no_note"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblInitTime" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/service_endTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:hint="@string/no_note"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblEndTime" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/service_cost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:hint="@string/no_note"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblCost" />
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_service_detail"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/blueDotlinked"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lblTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:text="@string/title"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_service_detail" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lblDateInit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:text="@string/dateInit"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_title" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:text="@string/location"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_date" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lblInitTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:text="@string/initTime"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_location" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lblEndTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:text="@string/endTime"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_initTime" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lblCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:text="@string/cost"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_endTime" />
+
+    <!-- <androidx.appcompat.widget.AppCompatImageView
+       android:id="@+id/img_event"
+       android:layout_width="200dp"
+       android:layout_height="200dp"
+       android:layout_marginTop="200dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintStart_toStartOf="@id/note"
+       app:layout_constraintTop_toBottomOf="@+id/note"
+       app:srcCompat="@drawable/key" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

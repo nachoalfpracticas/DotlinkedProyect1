@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ClaimDetailActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class ClaimDetailActivity extends AppCompatActivity {
     session = new Session(this);
     Toolbar toolbar = findViewById(R.id.toolbar_claim_detail);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     Bundle bundle = getIntent().getExtras();
@@ -59,10 +60,11 @@ public class ClaimDetailActivity extends AppCompatActivity {
       } catch (ParseException e) {
         e.printStackTrace();
       }
-      String fechapatron = getString(R.string.date_format);
-      DateFormat df = new SimpleDateFormat(fechapatron,Locale.getDefault());
-      String sdate = df.format(date);
-      tvClaimDate.setText(String.valueOf(sdate));
+      String patternFormat = getString(R.string.date_format);
+      DateFormat df = new SimpleDateFormat(patternFormat, Locale.getDefault());
+      assert date != null;
+      String startDate = df.format(date);
+      tvClaimDate.setText(startDate);
 
       tvClaimStatus.setText(claim.getDescription());
       setTitle(String.format(getString(R.string.claim_Id), " : " + claim.getClaimId()));

@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.services;
+package com.example.dotlinked_proyecto.services.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;

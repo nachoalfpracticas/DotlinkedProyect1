@@ -130,10 +130,12 @@
   <string name="serviceName">Servicio</string>
   <string name="dateInit">Fecha servicio</string>
   <string name="igCost">20.50 €</string>
-  <string name="priceServiceEuro">1%$d €</string>
+  <string name="priceServiceEuro">%1$s €</string>
   <string name="select_service">seleccione servicio</string>
   <string name="exit">Salir</string>
   <string name="no_tenants_for_contact">Sin inquilinos para este contacto</string>
+  <string name="no_services_data">Sin servicios</string>
+  <string name="service_Id">Servicio ident. %1$s</string>
   <string-array name="roles_array">
     <item>Inquilino</item>
     <item>Proveedor</item>

@@ -2,6 +2,7 @@ package com.example.dotlinked_proyecto.services;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.applandeo.materialcalendarview.CalendarView;
@@ -20,15 +24,20 @@ import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Person;
-import com.example.dotlinked_proyecto.events.Adapter.RecyclerViewEventsAdapter;
+import com.example.dotlinked_proyecto.bean.Service;
+import com.example.dotlinked_proyecto.services.Adapter.RecyclerViewServicesAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,16 +57,19 @@ public class ServicesFragment extends Fragment {
 
   private CalendarView mCalendarView;
   private AppCompatTextView tvDateDay;
-  private RecyclerView rcDates;
+  private RecyclerView rvServices;
   private Context context;
 
-  private RecyclerViewEventsAdapter adapter;
   private SimpleDateFormat df;
   private FloatingActionButton floatingActionButton;
   private ServicesCompanyService companyService;
 
   private Session session;
   private List<Person> personList;
+  private List<Service> serviceList;
+  private SimpleDateFormat dateFormat;
+  private Calendar cal;
+  private RecyclerViewServicesAdapter adapter;
 
 
   public ServicesFragment() {
@@ -84,9 +96,12 @@ public class ServicesFragment extends Fragment {
     }
     context = getContext();
     df = new SimpleDateFormat(Objects.requireNonNull(getActivity()).getString(R.string.date_format), Locale.getDefault());
+    dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     session = new Session(context);
     personList = new ArrayList<>();
+    serviceList = new ArrayList<>();
     companyService = new ServicesCompanyService();
+    cal = Calendar.getInstance();
 
   }
 
@@ -95,16 +110,27 @@ public class ServicesFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
+
     View view = inflater.inflate(R.layout.fragment_services, container, false);
     mCalendarView = view.findViewById(R.id.servicesCalendarView);
     mCalendarView.isInEditMode();
     mCalendarView.setFocusableInTouchMode(true);
     tvDateDay = view.findViewById(R.id.tv_select_day);
     tvDateDay.setText(df.format(new Date()));
-    rcDates = view.findViewById(R.id.rv_dates_calendar);
+    rvServices = view.findViewById(R.id.rv_services_calendar);
+    LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+    rvServices.setLayoutManager(layoutManager);
+    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvServices.getContext(),
+            layoutManager.getOrientation());
+    dividerItemDecoration.setDrawable(context.getResources().getDrawable(R.drawable.divider_recycler));
+    rvServices.addItemDecoration(dividerItemDecoration);
+    setRecyclerViewAdapter(new ArrayList<>());
     floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
-    getReservedServicesOfUser();
+    cal = mCalendarView.getCurrentPageDate();
+    Date currentDay = cal.getTime();
+    String strDate = dateFormat.format(currentDay);
+    getReservedServicesOfUser(strDate);
 
     floatingActionButton.setOnClickListener(view1 -> {
       if (rol.equals(Objects.requireNonNull(getActivity()).getString(R.string.rol_contact))) {
@@ -131,17 +157,78 @@ public class ServicesFragment extends Fragment {
         session.setListTenantsForContact(new ArrayList<>());
       }
     });
-    mCalendarView.setOnDayClickListener(this::previewEvent);
+
+
+    mCalendarView.setOnPreviousPageChangeListener(() -> {
+      cal = mCalendarView.getCurrentPageDate();
+      Date d = cal.getTime();
+      String strd = dateFormat.format(d);
+      getReservedServicesOfUser(strd);
+      setRecyclerViewAdapter(new ArrayList<>());
+    });
+
+    mCalendarView.setOnForwardPageChangeListener(() -> {
+      cal = mCalendarView.getCurrentPageDate();
+      Date d = cal.getTime();
+      String strd = dateFormat.format(d);
+      getReservedServicesOfUser(strd);
+      setRecyclerViewAdapter(new ArrayList<>());
+    });
+
+
+    mCalendarView.setOnDayClickListener(this::previewService);
 
     return view;
   }
 
-  private void getReservedServicesOfUser() {
-
+  private void setRecyclerViewAdapter(List<Service> services) {
+    adapter = new RecyclerViewServicesAdapter(context, services);
+    rvServices.setAdapter(adapter);
   }
 
-  private void previewEvent(EventDay eventDay) {
+  @SuppressWarnings("NullableProblems")
+  private void getReservedServicesOfUser(String dateInit) {
+    try {
+      cal.setTime(Objects.requireNonNull(dateFormat.parse(dateInit)));
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    cal.add(Calendar.MONTH, 1);
+    Date d = cal.getTime();
+    String dateEnd = dateFormat.format(d);
+    Call<List<Service>> call = companyService.getReservedServiceOfUser(rol, companyId, dateInit, dateEnd, "bearer " + access_token);
+    call.enqueue(new Callback<List<Service>>() {
+      @Override
+      public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
+        if (response.body() != null && response.body().size() > 0) {
+          serviceList = response.body();
+        } else {
+          Toast.makeText(context, getString(R.string.no_services_data), Toast.LENGTH_LONG).show();
+        }
+      }
 
+      @Override
+      public void onFailure(Call<List<Service>> call, Throwable t) {
+        d("RESPONSE", "Error getReservedServicesOfUser: " + t.getCause());
+      }
+    });
   }
 
+  @RequiresApi(api = Build.VERSION_CODES.N)
+  private void previewService(EventDay eventDay) {
+    String date = df.format(eventDay.getCalendar().getTime());
+    tvDateDay.setText(date);
+    String datePet = dateFormat.format(eventDay.getCalendar().getTime());
+    List<Service> tmpServiceList;
+    tmpServiceList = serviceList.stream()
+            .filter(s -> s.getDateInit().contains(datePet))
+            .collect(Collectors.toList());
+    setRecyclerViewAdapter(tmpServiceList);
+    adapter.setClickListener((view, position) -> {
+      Service ser = tmpServiceList.get(position);
+      Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+      intent.putExtra("service", new Gson().toJson(ser));
+      Objects.requireNonNull(getActivity()).startActivity(intent);
+    });
+  }
 }

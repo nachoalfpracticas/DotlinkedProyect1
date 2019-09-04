@@ -8,11 +8,11 @@ import com.google.gson.annotations.SerializedName;
 public class Service {
   @SerializedName("servicioId")
   @Expose
-  private Integer serviceId;
+  private String serviceId;
 
   @SerializedName("persona")
   @Expose
-  private Person person;
+  private String person;
 
   @SerializedName("servicio")
   @Expose
@@ -28,7 +28,7 @@ public class Service {
 
   @SerializedName("coste")
   @Expose
-  private Float cost;
+  private float cost;
 
   @SerializedName("duracion")
   @Expose
@@ -38,7 +38,7 @@ public class Service {
   @Expose
   private String location;
 
-  public Service(Integer serviceId, Person person, String serviceName, String dateInit, String dateEnd, Float cost, Integer duration, String location) {
+  public Service(String serviceId, String person, String serviceName, String dateInit, String dateEnd, float cost, Integer duration, String location) {
     this.serviceId = serviceId;
     this.person = person;
     this.serviceName = serviceName;
@@ -49,19 +49,19 @@ public class Service {
     this.location = location;
   }
 
-  public Integer getServiceId() {
+  public String getServiceId() {
     return serviceId;
   }
 
-  public void setServiceId(Integer serviceId) {
+  public void setServiceId(String serviceId) {
     this.serviceId = serviceId;
   }
 
-  public Person getPerson() {
+  public String getPerson() {
     return person;
   }
 
-  public void setPerson(Person person) {
+  public void setPerson(String person) {
     this.person = person;
   }
 
@@ -73,7 +73,7 @@ public class Service {
     this.serviceName = serviceName;
   }
 
-  public Object getDateInit() {
+  public String getDateInit() {
     return dateInit;
   }
 
@@ -81,7 +81,7 @@ public class Service {
     this.dateInit = dateInit;
   }
 
-  public Object getDateEnd() {
+  public String getDateEnd() {
     return dateEnd;
   }
 
@@ -89,7 +89,7 @@ public class Service {
     this.dateEnd = dateEnd;
   }
 
-  public Float getCost() {
+  public float getCost() {
     return cost;
   }
 

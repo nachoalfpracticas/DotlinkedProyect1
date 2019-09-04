@@ -25,7 +25,7 @@ public class ServicesCompanyService implements IServicesApiCalls {
 
   @Override
   public Call<List<Service>> getReservedServiceOfUser(String rol, String companyId, String dateInit, String dateEnd, String token) {
-    return null;
+    return servicesApiCalls.getReservedServiceOfUser(rol, companyId, dateInit, dateEnd, token);
   }
 
   @Override
