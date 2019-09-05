@@ -133,7 +133,7 @@ public class ServicesFragment extends Fragment {
     getReservedServicesOfUser(strDate);
 
     floatingActionButton.setOnClickListener(view1 -> {
-      Intent intent = new Intent(getActivity(), ServiceOrderActivity.class);
+      Intent intent = new Intent(getActivity(), ServicePreviewOrderActivity.class);
       if (rol.equals(Objects.requireNonNull(getActivity()).getString(R.string.rol_contact))) {
         Call<List<Person>> call = companyService.listTenantByContact(companyId, "bearer " + access_token);
         call.enqueue(new Callback<List<Person>>() {

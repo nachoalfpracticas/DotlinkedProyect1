@@ -135,7 +135,7 @@ public class Session {
     prefs.edit().putString("tenantSelect", new Gson().toJson(person)).apply();
   }
 
-  public Person getTenentSelect() {
+  public Person getTenantSelect() {
     return new Gson().fromJson(prefs.getString("tenantSelect", ""), Person.class);
   }
 }

@@ -73,6 +73,7 @@ public class Person {
   }
 
   public String getFullName() {
+    this.fullName = this.getName() + " " + this.getLastName();
     return this.fullName;
   }
 

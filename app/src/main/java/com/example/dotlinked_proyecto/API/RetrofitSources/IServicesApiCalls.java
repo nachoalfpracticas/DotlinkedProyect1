@@ -2,6 +2,7 @@ package com.example.dotlinked_proyecto.API.RetrofitSources;
 
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
+import com.example.dotlinked_proyecto.bean.ServiceInfo;
 
 import java.util.List;
 
@@ -25,4 +26,11 @@ public interface IServicesApiCalls {
   @GET("ListarInquilinosPorContacto")
   Call<List<Person>> listTenantByContact(@Query("empresaId") String companyId,
                                          @Header("Authorization") String token);
+
+  @GET("Horarios")
+  Call<List<ServiceInfo>> listScheduleService(@Query("empresaId") String companyId,
+                                              @Query("servicio") String serviceId,
+                                              @Query("fecha") String date,
+                                              @Query("personaid") String personId,
+                                              @Header("Authorization") String token);
 }

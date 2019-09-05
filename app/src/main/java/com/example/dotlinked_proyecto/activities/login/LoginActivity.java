@@ -27,6 +27,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -157,18 +158,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
   private void setPersonInfo(String token) {
-    Call<Person> call = loginService.getPersonInfo(token);
-    call.enqueue(new Callback<Person>() {
+    Call<List<Person>> call = loginService.getPersonInfo("bearer " + token);
+    call.enqueue(new Callback<List<Person>>() {
       @Override
-      public void onResponse(Call<Person> call, Response<Person> response) {
+      public void onResponse(Call<List<Person>> call, Response<List<Person>> response) {
         if (response.body() != null) {
-          Person person = response.body();
+          Person person = response.body().get(0);
           session.setTenantSelect(person);
         }
       }
 
       @Override
-      public void onFailure(Call<Person> call, Throwable t) {
+      public void onFailure(Call<List<Person>> call, Throwable t) {
         Log.d("RESPONSE", "Error setPersonInfo: " + t.getCause());
       }
     });

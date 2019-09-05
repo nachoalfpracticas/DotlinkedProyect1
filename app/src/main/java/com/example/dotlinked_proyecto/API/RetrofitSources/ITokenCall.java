@@ -3,6 +3,8 @@ package com.example.dotlinked_proyecto.API.RetrofitSources;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.bean.Person;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -18,5 +20,5 @@ public interface ITokenCall {
                            @Field(value="password", encoded=true) String password);
 
   @GET("UserInfo")
-  Call<Person> getPersonInfo(@Header("Authorization") String token);
+  Call<List<Person>> getPersonInfo(@Header("Authorization") String token);
 }

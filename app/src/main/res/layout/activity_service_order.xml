@@ -6,86 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".services.ServiceOrderActivity">
 
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lbl_company_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:text="@string/company"
-        android:textAlignment="center"
-        android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_company_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/company"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="24sp"
-        app:layout_constraintHorizontal_bias="1.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_company_name" />
-
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lbl_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/services"
-        android:textAlignment="center"
-        android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spn_services"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:isScrollContainer="true"
-        android:scrollbars="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_spinner" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lbl_spinner_tenants"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/rol_tenant"
-        android:textAlignment="center"
-        android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_services" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spn_tenants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:isScrollContainer="true"
-        android:scrollbars="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_spinner_tenants" />
-
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_select_service"
         android:layout_width="wrap_content"
@@ -93,10 +13,74 @@
         android:layout_marginTop="50dp"
         android:background="@color/blueDotlinked"
         android:padding="4dp"
-        android:text="@string/select_service"
+        android:text="@string/select"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_tenants" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_services_schedules" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_services_schedules"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/user_name"
+        android:textAlignment="center"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_service" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:isScrollContainer="true"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:text="@string/service"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_user_name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/service"
+        android:textAlignment="center"
+        android:textColor="@color/blueDotlinked"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_service"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:isScrollContainer="true"
+        android:padding="5dp"
+        android:text="@string/service"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_service" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

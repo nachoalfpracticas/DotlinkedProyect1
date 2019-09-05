@@ -131,4 +131,6 @@
   <string name="no_services_data">Without services</string>
   <string name="service_Id">Service ident. %1$s</string>
   <string name="priceServiceEuro">%1$s €</string>
+    <string name="service">Service</string>
+    <string name="select">Select</string>
 </resources>

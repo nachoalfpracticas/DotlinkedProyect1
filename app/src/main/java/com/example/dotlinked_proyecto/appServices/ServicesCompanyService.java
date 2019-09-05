@@ -4,6 +4,7 @@ import com.example.dotlinked_proyecto.API.Connection.Connection;
 import com.example.dotlinked_proyecto.API.RetrofitSources.IServicesApiCalls;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
+import com.example.dotlinked_proyecto.bean.ServiceInfo;
 
 import java.util.List;
 
@@ -31,5 +32,10 @@ public class ServicesCompanyService implements IServicesApiCalls {
   @Override
   public Call<List<Person>> listTenantByContact(String companyId, String token) {
     return servicesApiCalls.listTenantByContact(companyId, token);
+  }
+
+  @Override
+  public Call<List<ServiceInfo>> listScheduleService(String companyId, String serviceId, String date, String personId, String token) {
+    return servicesApiCalls.listScheduleService(companyId, serviceId, date, personId, token);
   }
 }

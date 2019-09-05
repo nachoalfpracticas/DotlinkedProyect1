@@ -7,6 +7,8 @@ import com.example.dotlinked_proyecto.API.RetrofitSources.TokenFieldsCall;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.interfaces.ILoginService;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -26,7 +28,7 @@ public class LoginService implements ILoginService {
     }
 
   @Override
-  public Call<Person> getPersonInfo(String token) {
+  public Call<List<Person>> getPersonInfo(String token) {
     return tokenCall.getPersonInfo(token);
   }
 

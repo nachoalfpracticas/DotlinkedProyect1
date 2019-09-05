@@ -32,6 +32,7 @@ import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.CompanyByRolService;
 import com.example.dotlinked_proyecto.bean.Company;
+import com.example.dotlinked_proyecto.bean.Person;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -89,13 +90,14 @@ public class AccessActivity extends AppCompatActivity {
     }
 
     roles = new Gson().fromJson(session.getUserRoles(), String[].class);
+    Person person = session.getTenantSelect();
     userName = session.getSessionUser();
 
     CardView btnFingerPrint = findViewById(R.id.cv_fingerprint);
     btnFingerPrint.setEnabled(false);
 
     TextView registeredUser = findViewById(R.id.tv_backToLogin);
-    registeredUser.setTextColor(Color.BLUE);
+    registeredUser.setTextColor(Color.GREEN);
     registeredUser.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     CheckBox checkNotRemember = findViewById(R.id.checkNotRememberMe);
 
@@ -109,8 +111,8 @@ public class AccessActivity extends AppCompatActivity {
     AppCompatSpinner spn_roles = findViewById(R.id.sp_roles);
     spnCompanies = findViewById(R.id.spn_companiesByRol);
 
-    registeredUser.setText(String.format(getString(R.string.not_user), userName));
-    tatWelcome.setText(String.format(getResources().getString(R.string.well_come_user), userName));
+    registeredUser.setText(String.format(getString(R.string.not_user), person.getFullName()));
+    tatWelcome.setText(String.format(getResources().getString(R.string.well_come_user), person.getFullName()));
 
     ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, roles);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
