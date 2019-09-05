@@ -45,7 +45,6 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
 
   private Service serviceSelected;
   private AppCompatButton btnSelectService;
-  private List<Person> personList;
   private Person person;
 
   @Override
@@ -54,7 +53,7 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
     setContentView(R.layout.activity_service_preview_order);
     session = new Session(this);
     companyService = new ServicesCompanyService();
-    personList = session.getTenantsForContact();
+    List<Person> personList = session.getTenantsForContact();
 
     btnSelectService = findViewById(R.id.btn_select_service);
     btnSelectService.setEnabled(false);

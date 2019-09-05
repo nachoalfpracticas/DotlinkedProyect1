@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.BaseActivity;
@@ -53,14 +53,11 @@ public class Util {
     return rol;
   }
 
-  public static void enviarEmail (Context context, String email){
+  public static void sendEmail(Context context, String email) {
     String[] TO = {email}; //Direcciones email  a enviar.
     String[] CC = {""}; //Direcciones email con copia.
-
     Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-    emailIntent.setData(Uri.parse("mailto:"));
-    emailIntent.setType("text/plain");
+    emailIntent.setDataAndType(Uri.parse("mailto:"), "text/plain");
     emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
     emailIntent.putExtra(Intent.EXTRA_CC, CC);
     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
@@ -73,16 +70,22 @@ public class Util {
     catch (android.content.ActivityNotFoundException e) {
       makeText(context, "NO existe ningún cliente de email instalado!.", Toast.LENGTH_SHORT).show();
     }
-
   }
-  public static void marcarTelefono (Context context, String tlf){
+
+  public static void phoneCall(Context context, String tlf) {
     context.startActivity(new Intent(Intent.ACTION_DIAL).setData(Uri.parse("tel:" + tlf)));
   }
+
   @RequiresApi(api = Build.VERSION_CODES.N)
-  public static void navigationTo(Activity activity, boolean needAuth, String rol, String userName, String companyName) {
+  public static void navigationTo(Activity activity,
+                                  boolean needAuth,
+                                  String rol,
+                                  String userName,
+                                  String companyName,
+                                  CardView button) {
     Intent intent;
     if (needAuth) {
-      UtilMessages.showLoginView(activity, userName, rol, companyName);
+      UtilMessages.showLoginView(activity, userName, rol, companyName, button);
     }
     /*else {
       if (activity.getString(R.string.rol_tenant).equals(rol)) {

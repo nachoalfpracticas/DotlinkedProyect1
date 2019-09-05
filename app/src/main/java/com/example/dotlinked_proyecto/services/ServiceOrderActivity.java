@@ -34,7 +34,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
   private TextView tvService;
   private TextView tvUserName;
-  private RecyclerView rcShcedules;
+  private RecyclerView rcSchedules;
   private Session session;
   private Service service;
   private List<ServiceInfo> serviceInfoList;
@@ -51,6 +51,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
     companyService = new ServicesCompanyService();
     dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
+
     Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
       service = new Gson().fromJson(bundle.getString("serviceSelected"), Service.class);
@@ -58,13 +59,13 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
     tvUserName = findViewById(R.id.tv_user_name);
     tvService = findViewById(R.id.tv_service);
-    rcShcedules = findViewById(R.id.rv_services_schedules);
+    rcSchedules = findViewById(R.id.rv_services_schedules);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-    rcShcedules.setLayoutManager(layoutManager);
-    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcShcedules.getContext(),
+    rcSchedules.setLayoutManager(layoutManager);
+    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcSchedules.getContext(),
             layoutManager.getOrientation());
     dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider_recycler));
-    rcShcedules.addItemDecoration(dividerItemDecoration);
+    rcSchedules.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
 
     tvService.setText(service.getServiceName());
@@ -105,6 +106,6 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
   private void setRecyclerViewAdapter(List<ServiceInfo> serviceInfoList) {
     RecyclerViewShceduleServiceAdapter adapter = new RecyclerViewShceduleServiceAdapter(this, serviceInfoList);
-    rcShcedules.setAdapter(adapter);
+    rcSchedules.setAdapter(adapter);
   }
 }

@@ -73,7 +73,8 @@ public class Person {
   }
 
   public String getFullName() {
-    this.fullName = this.getName() + " " + this.getLastName();
+    if (this.fullName == null || this.fullName.isEmpty())
+      this.fullName = this.getLastName() + "," + this.getName();
     return this.fullName;
   }
 

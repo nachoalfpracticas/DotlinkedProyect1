@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +29,6 @@ import com.example.dotlinked_proyecto.services.ServicesFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
@@ -38,19 +36,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
   private final static String TAG_FRAGMENT = "fragment";
   private final static String TAG_AUTH = "needAuth";
-  public ListView drawerList;
   protected DrawerLayout drawerLayout;
-  public String[] layers;
-  protected ActionBarDrawerToggle drawerToggle;
-  private Map map;
-  private Toolbar appbar;
-  private NavigationView navView;
-  private Session session;
   FragmentManager fragmentManager = getSupportFragmentManager();
   private Fragment fragment;
-  private String rol;
-  private String companyId;
-  private Token token;
   private NavigationView navigationView;
 
 
@@ -58,7 +46,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_base);
-    session = new Session(this);
+    Session session = new Session(this);
 
     Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -73,9 +61,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     navigationView = findViewById(R.id.navigation_view);
     navigationView.setNavigationItemSelectedListener(this);
 
-    rol = session.getRolUserSelected();
-    token = session.getToken();
-    companyId = session.getCompanyIdUser();
+    String rol = session.getRolUserSelected();
+    Token token = session.getToken();
+    String companyId = session.getCompanyIdUser();
 
     drawerLayout.addDrawerListener(this);
 
@@ -91,6 +79,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
     selectFragment(rol, companyId, token, fragmentName);
   }
+
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
@@ -168,9 +157,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
       intent.putExtra(TAG_AUTH, false);
       startActivity(intent);
     }
-
     return super.onOptionsItemSelected(item);
-
   }
 
   @Override

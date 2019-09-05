@@ -22,6 +22,7 @@ import com.applandeo.materialcalendarview.EventDay;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
@@ -135,7 +136,8 @@ public class ServicesFragment extends Fragment {
     floatingActionButton.setOnClickListener(view1 -> {
       Intent intent = new Intent(getActivity(), ServicePreviewOrderActivity.class);
       if (rol.equals(Objects.requireNonNull(getActivity()).getString(R.string.rol_contact))) {
-        Call<List<Person>> call = companyService.listTenantByContact(companyId, "bearer " + access_token);
+        rol = Util.unTranslateRoles(getActivity(), rol);
+        Call<List<Person>> call = companyService.listTenantByContact(companyId, rol, "bearer " + access_token);
         call.enqueue(new Callback<List<Person>>() {
           @Override
           public void onResponse(Call<List<Person>> call, Response<List<Person>> response) {
@@ -203,6 +205,7 @@ public class ServicesFragment extends Fragment {
       public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
         if (response.body() != null && response.body().size() > 0) {
           serviceList = response.body();
+          response.body().clear();
         } else {
           Toast.makeText(context, getString(R.string.no_services_data), Toast.LENGTH_LONG).show();
         }

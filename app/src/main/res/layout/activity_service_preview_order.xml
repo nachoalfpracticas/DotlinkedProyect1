@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".services.ServicePreviewOrderActivity">
 
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar_service_preview_order"
+      android:layout_width="0dp"
+      android:layout_height="56dp"
+      android:background="@color/blueDotlinked"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarTheme"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_select_service"
@@ -46,14 +57,14 @@
         android:id="@+id/lbl_company_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+      android:layout_marginTop="45dp"
         android:text="@string/company"
         android:textAlignment="center"
         android:textColor="@color/blueDotlinked"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar_service_preview_order"
 
         />
 

@@ -73,7 +73,6 @@ public class AccessActivity extends AppCompatActivity {
   private String companyName;
   private AppCompatSpinner spnCompanies;
   private CardView btnAccess;
-  private Bundle bundle;
 
   @TargetApi(Build.VERSION_CODES.N)
   @RequiresApi(api = Build.VERSION_CODES.M)
@@ -84,7 +83,7 @@ public class AccessActivity extends AppCompatActivity {
     session = new Session(this);
     companyByRolService = new CompanyByRolService();
 
-    bundle = getIntent().getExtras();
+    Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
       needAuth = bundle.getBoolean("needAuth", true);
     }
@@ -94,7 +93,7 @@ public class AccessActivity extends AppCompatActivity {
     userName = session.getSessionUser();
 
     CardView btnFingerPrint = findViewById(R.id.cv_fingerprint);
-    btnFingerPrint.setEnabled(false);
+    //btnFingerPrint.setEnabled(false);
 
     TextView registeredUser = findViewById(R.id.tv_backToLogin);
     registeredUser.setTextColor(Color.GREEN);
@@ -107,7 +106,7 @@ public class AccessActivity extends AppCompatActivity {
 
     TextView tatWelcome = findViewById(R.id.tv_welcomeUser);
     btnAccess = findViewById(R.id.cv_access);
-    btnAccess.setEnabled(false);
+    //btnAccess.setEnabled(false);
     AppCompatSpinner spn_roles = findViewById(R.id.sp_roles);
     spnCompanies = findViewById(R.id.spn_companiesByRol);
 
@@ -151,7 +150,13 @@ public class AccessActivity extends AppCompatActivity {
 
     registeredUser.setOnClickListener(this::unRegisterUser);
 
-    btnAccess.setOnClickListener(view -> Util.navigationTo(this, needAuth, rol, userName, companyName));
+    btnAccess.setOnClickListener(view -> {
+      if (!companyName.isEmpty()) {
+
+        Util.navigationTo(this, needAuth, rol, userName, companyName, btnAccess);
+        btnAccess.setEnabled(false);
+      }
+    });
 
     // Si el dispositivo dispone de sistema de huellas, se verá el botón para usarlo.
     if (Check.checkFingerprint(this)) {
@@ -177,12 +182,6 @@ public class AccessActivity extends AppCompatActivity {
       public void onResponse(Call<List<Company>> call, Response<List<Company>> response) {
         if (response.body() != null) {
           companyList = response.body();
-          if (companyList.size() > 0 && !session.getUserUseFingerprint()) {
-            btnAccess.setEnabled(true);
-          }
-          if (companyList.size() == 1 && roles.length == 1 && needAuth) {
-            Util.navigationTo(AccessActivity.this, true, roles[0], userName, companyName);
-          }
           // companyList.add(new Company(5, "MyCompany"));
           session.setCompaniesUserByRol(companyList);
           companyList.forEach(c -> Log.d("RESPONSE", "Response ListCompaniesUserByRol: " + c.toString()));
@@ -203,6 +202,12 @@ public class AccessActivity extends AppCompatActivity {
                   session.setCompanyIdUser(String.valueOf(comp.getCompanyId()));
                   Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), companiesName),
                       Toast.LENGTH_SHORT).show();
+                  if (companyList.size() == 1 && roles.length == 1 && needAuth) {
+                    Util.navigationTo(AccessActivity.this, true, roles[0], userName, companyName, btnAccess);
+                  }
+                  //if (companyList.size() > 0 && !session.getUserUseFingerprint()) {
+                  //btnAccess.setEnabled(true);
+                  //}
                   return;
                 }
               }
@@ -220,7 +225,6 @@ public class AccessActivity extends AppCompatActivity {
       public void onFailure(Call<List<Company>> call, Throwable t) {
         UtilMessages.showLoadDataError(AccessActivity.this, getString(R.string.load_data_err));
         Log.d("RESPONSE", "Error ListCompaniesUserByRol: " + t.getCause());
-
       }
     });
   }
@@ -278,8 +282,8 @@ public class AccessActivity extends AppCompatActivity {
   }
 
   private void unRegisterUser(View view) {
-    Intent intent = new Intent(this, LoginActivity.class);
     session.deleteAllSessionUser();
+    Intent intent = new Intent(this, LoginActivity.class);
     startActivity(intent);
     finish();
   }

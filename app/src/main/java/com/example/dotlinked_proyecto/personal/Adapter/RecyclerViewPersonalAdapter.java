@@ -1,7 +1,6 @@
 package com.example.dotlinked_proyecto.personal.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,7 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
   public RecyclerViewPersonalAdapter(Context context, List<Person> personData, ClickListener listener) {
     this.mInflater = LayoutInflater.from(context);
     this.personData = personData;
+    this.context = context;
     this.mClickListener = listener;
 
   }
@@ -98,10 +98,10 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
 
       if (view.getId() == tvPersonEmail.getId()) {
         Toast.makeText(view.getContext(), "ITEM PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-      Util.enviarEmail(view.getContext(),tvPersonEmail.getText().toString());
+        Util.sendEmail(view.getContext(), tvPersonEmail.getText().toString());
       } else if (view.getId() == tvPersonMobile.getId()) {
         Toast.makeText(view.getContext(), "ITEM PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-        Util.marcarTelefono(view.getContext(),tvPersonMobile.getText().toString());
+        Util.phoneCall(view.getContext(), tvPersonMobile.getText().toString());
       } else {
         Toast.makeText(view.getContext(), "ROW PRESSED = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
       }

@@ -119,9 +119,9 @@ public class LoginActivity extends AppCompatActivity {
       String username = edtUserName.getText().toString();
       String password = edtPassword.getText().toString();
 
-      // Se obtiene la llamada Http de loginservice.
+      // Se obtiene la llamada Http de loginService.
       Call<Token> call = loginService.login(username, password);
-      // Se comprueban los campos, se estan vacios o cumplen con las reglas (Regex).
+      // Se comprueban los campos, si están vacíos o no cumplen con las reglas (Regex).
       if (checkFields()) {
         // Se inicia la llamada Http.
         call.enqueue(new Callback<Token>() {
@@ -144,7 +144,6 @@ public class LoginActivity extends AppCompatActivity {
               userForgotPassword.setVisibility(View.VISIBLE);
             }
           }
-
           // Se ha producido algún error en la conexión ???
           @Override
           public void onFailure(Call call, Throwable t) {

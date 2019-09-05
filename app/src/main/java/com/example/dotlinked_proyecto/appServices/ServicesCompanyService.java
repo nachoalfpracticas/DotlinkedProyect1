@@ -30,8 +30,8 @@ public class ServicesCompanyService implements IServicesApiCalls {
   }
 
   @Override
-  public Call<List<Person>> listTenantByContact(String companyId, String token) {
-    return servicesApiCalls.listTenantByContact(companyId, token);
+  public Call<List<Person>> listTenantByContact(String companyId, String rol, String token) {
+    return servicesApiCalls.listTenantByContact(companyId, rol, token);
   }
 
   @Override

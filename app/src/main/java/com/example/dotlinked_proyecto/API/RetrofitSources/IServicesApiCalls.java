@@ -25,6 +25,7 @@ public interface IServicesApiCalls {
 
   @GET("ListarInquilinosPorContacto")
   Call<List<Person>> listTenantByContact(@Query("empresaId") String companyId,
+                                         @Query("rol") String rol,
                                          @Header("Authorization") String token);
 
   @GET("Horarios")

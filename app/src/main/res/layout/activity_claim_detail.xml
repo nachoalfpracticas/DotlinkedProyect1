@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBlack"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/colorBlack"
   tools:context=".claims.ClaimDetailActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_claim_detail"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-      android:background="@color/blueDotlinked"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/claim_user"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:hint="@string/user_name"
+    android:textSize="20sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lblUserName" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lblUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:text="@string/user_name"
-      android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_claim_detail" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/claim_subject"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:hint="@string/subject"
+    android:textSize="20sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/claim_user"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:hint="@string/user_name"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblUserName" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/claim_broadcast_date"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:hint="@string/claimDate"
+    android:textSize="20sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lblClaimDate" />
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lblSubject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:text="@string/subject"
-      android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/claim_user" />
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/claim_status"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:hint="@string/status"
+    android:textSize="20sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lblStatus" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/claim_subject"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:hint="@string/subject"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar_claim_detail"
+    android:layout_width="0dp"
+    android:layout_height="56dp"
+    android:background="@color/blueDotlinked"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lblClaimDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:text="@string/claimDate"
-      android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/claim_subject" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/lblClaimDate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:text="@string/claimDate"
+    android:textColor="@color/blueDotlinked"
+    android:textSize="24sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/claim_subject" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/claim_broadcast_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:hint="@string/claimDate"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblClaimDate" />
-
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lblStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:text="@string/status"
-      android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/claim_broadcast_date" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/lblSubject"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:text="@string/subject"
+    android:textColor="@color/blueDotlinked"
+    android:textSize="24sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/claim_user" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/claim_status"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
-        android:hint="@string/status"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblStatus" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/lblStatus"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:text="@string/status"
+    android:textColor="@color/blueDotlinked"
+    android:textSize="24sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/claim_broadcast_date" />
+
+
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/lblUserName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_16"
+    android:text="@string/user_name"
+    android:textColor="@color/blueDotlinked"
+    android:textSize="24sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar_claim_detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
