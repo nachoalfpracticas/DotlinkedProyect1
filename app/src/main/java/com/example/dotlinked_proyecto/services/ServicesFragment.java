@@ -133,6 +133,7 @@ public class ServicesFragment extends Fragment {
     getReservedServicesOfUser(strDate);
 
     floatingActionButton.setOnClickListener(view1 -> {
+      Intent intent = new Intent(getActivity(), ServiceOrderActivity.class);
       if (rol.equals(Objects.requireNonNull(getActivity()).getString(R.string.rol_contact))) {
         Call<List<Person>> call = companyService.listTenantByContact(companyId, "bearer " + access_token);
         call.enqueue(new Callback<List<Person>>() {
@@ -141,7 +142,6 @@ public class ServicesFragment extends Fragment {
             if (response.body() != null && response.body().size() > 0) {
               personList = response.body();
               session.setListTenantsForContact(personList);
-              Intent intent = new Intent(getActivity(), ServiceOrderActivity.class);
               startActivity(intent);
             } else
               Toast.makeText(context, getString(R.string.no_tenants_for_contact), Toast.LENGTH_LONG).show();
@@ -155,6 +155,7 @@ public class ServicesFragment extends Fragment {
 
       } else {
         session.setListTenantsForContact(new ArrayList<>());
+        startActivity(intent);
       }
     });
 

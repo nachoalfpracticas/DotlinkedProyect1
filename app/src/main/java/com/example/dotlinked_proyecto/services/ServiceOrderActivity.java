@@ -41,10 +41,10 @@ public class ServiceOrderActivity extends AppCompatActivity {
   private Spinner spnTenants;
   private TextView tvTenants;
 
-  private String serviceSelectedName;
-  private String serviceSelectedId;
+  private Service serviceSelected;
   private AppCompatButton btnSelectService;
   private List<Person> personList;
+  private Person person;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +77,11 @@ public class ServiceOrderActivity extends AppCompatActivity {
         public void onItemSelected(AdapterView<?> adapterView, View view,
                                    int position, long id) {
           // Here you get the current item (a User object) that is selected by its position
-          Person user = adapter.getItem(position);
+          person = adapter.getItem(position);
+          session.setTenantSelect(person);
           // Here you can do the action you want to...
           Toast.makeText(ServiceOrderActivity.this,
-                  "ID: " + Objects.requireNonNull(user).getPersonId() + "\nName: " + user.getName(),
+                  "ID: " + Objects.requireNonNull(person).getPersonId() + "\nName: " + person.getName(),
                   Toast.LENGTH_SHORT).show();
         }
 
@@ -93,6 +94,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
     } else {
       spnTenants.setVisibility(View.GONE);
       tvTenants.setVisibility(View.GONE);
+      person = session.getTenentSelect();
     }
 
     getServicesByCompany();
@@ -121,9 +123,8 @@ public class ServiceOrderActivity extends AppCompatActivity {
           spnServices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-              serviceSelectedName = serviceList.get(pos).getServiceName();
-              serviceSelectedId = String.valueOf(serviceList.get(pos).getServiceId());
-              Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), serviceSelectedName),
+              serviceSelected = serviceList.get(pos);
+              Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), serviceSelected.getServiceName()),
                   Toast.LENGTH_SHORT).show();
             }
 

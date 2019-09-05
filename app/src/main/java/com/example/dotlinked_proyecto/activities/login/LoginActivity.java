@@ -22,6 +22,7 @@ import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.LoginService;
 import com.example.dotlinked_proyecto.appServices.RolService;
+import com.example.dotlinked_proyecto.bean.Person;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
@@ -129,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
               Token token = response.body();
               if (getToken(token)) {
                 Log.d("RESPONSE", "Response getToken " + token.toString());
+                setPersonInfo(token.getAccess_token());
                 //Ha ido bien y se hace la llamada Http para conseguir el/los rol/es
                 ListRolesByToken(token.getAccess_token(), token.getUserName());
                 session.setSessionUser(token.getUserName());
@@ -149,6 +151,25 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, getString(R.string.error_connection), Toast.LENGTH_LONG).show();
           }
         });
+      }
+    });
+  }
+
+
+  private void setPersonInfo(String token) {
+    Call<Person> call = loginService.getPersonInfo(token);
+    call.enqueue(new Callback<Person>() {
+      @Override
+      public void onResponse(Call<Person> call, Response<Person> response) {
+        if (response.body() != null) {
+          Person person = response.body();
+          session.setTenantSelect(person);
+        }
+      }
+
+      @Override
+      public void onFailure(Call<Person> call, Throwable t) {
+        Log.d("RESPONSE", "Error setPersonInfo: " + t.getCause());
       }
     });
   }
