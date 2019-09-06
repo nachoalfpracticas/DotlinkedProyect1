@@ -14,8 +14,13 @@ import androidx.cardview.widget.CardView;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.BaseActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static android.widget.Toast.makeText;
 
@@ -116,4 +121,19 @@ public class Util {
       }
     }
   }
+
+    public static boolean dateCompare(String dateToCompare) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Calendar cal = Calendar.getInstance();
+        Date date = new Date();
+        Date dateNow = cal.getTime();
+        try {
+            date = df.parse(dateToCompare);
+            assert date != null;
+            cal.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateNow.after(date);
+    }
 }

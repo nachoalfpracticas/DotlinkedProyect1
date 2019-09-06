@@ -205,7 +205,6 @@ public class ServicesFragment extends Fragment {
       public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
         if (response.body() != null && response.body().size() > 0) {
           serviceList = response.body();
-          response.body().clear();
         } else {
           Toast.makeText(context, getString(R.string.no_services_data), Toast.LENGTH_LONG).show();
         }

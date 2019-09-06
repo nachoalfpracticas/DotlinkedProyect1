@@ -72,6 +72,12 @@ public class EventDetailActivity extends AppCompatActivity {
     }
   }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
   @Override
   public void onBackPressed()
   {

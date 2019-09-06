@@ -138,6 +138,9 @@
     <string name="service_Id">Servicio ident. %1$s</string>
     <string name="service">Servicio</string>
     <string name="select">Selecione</string>
+  <string name="serviceStatus">estado del servicio</string>
+  <string name="service_status_passed">pasado</string>
+  <string name="service_status_pending">pendiente</string>
     <string-array name="roles_array">
         <item>Inquilino</item>
         <item>Proveedor</item>

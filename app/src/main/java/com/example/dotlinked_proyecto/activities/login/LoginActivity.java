@@ -83,13 +83,13 @@ public class LoginActivity extends AppCompatActivity {
     edtPassword = findViewById(R.id.et_password);
     CardView btnSend = findViewById(R.id.cv_access);
 
-    // Si el dispositivo dispone de sistema de huellas, se verá el checbox para usarlo.
+      // Si el dispositivo dispone de sistema de huellas, se verá el checkbox para usarlo.
     if (Check.checkFingerprint(this)) {
       checkFingerPrint.setVisibility(View.VISIBLE);
     } else {
       checkFingerPrint.setVisibility(View.GONE);
     }
-    // Si es visible (el checkbox), se podrá optar por la opción de uasr la huella.
+      // Si es visible (el checkbox), se podrá optar por la opción de usar la huella.
     checkFingerPrint.setOnCheckedChangeListener((buttonView, isChecked) -> {
       // TODO implementar en session el useFingerprint
       session.setUserUseFingerprint(isChecked);

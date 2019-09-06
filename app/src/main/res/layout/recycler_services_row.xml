@@ -5,7 +5,7 @@
   android:layout_height="wrap_content"
   android:layout_below="@+id/tv_person_lastName"
   android:columnCount="2"
-    android:rowCount="2">
+  android:rowCount="2">
 
 
   <com.google.android.material.textview.MaterialTextView
@@ -20,32 +20,44 @@
     android:text="@string/serviceName"
     android:textSize="24sp" />
 
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tv_service_status"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_row="0"
+    android:layout_column="0"
+    android:layout_gravity="end"
+    android:layout_marginEnd="10dp"
+    android:gravity="end"
+    android:paddingStart="0dp"
+    android:paddingEnd="5dp"
+    android:text="@string/serviceStatus"
+    android:textSize="12sp" />
 
   <com.google.android.material.textview.MaterialTextView
-      android:layout_row="1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_row="1"
     android:layout_column="0"
     android:layout_marginStart="30dp"
     android:paddingTop="5dp"
     android:text="@string/location"
-
     android:textSize="24sp" />
 
   <com.google.android.material.textview.MaterialTextView
     android:id="@+id/tv_service_location"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-      android:layout_row="1"
+    android:layout_row="1"
     android:layout_column="0"
-    android:layout_marginStart="120dp"
     android:autoSizeTextType="uniform"
-    android:inputType="textEmailAddress"
-    android:paddingStart="0dp"
-    android:paddingEnd="@dimen/margin_16"
+    android:layout_gravity="end"
+    android:layout_marginEnd="10dp"
+    android:gravity="end"
     android:text="@string/location"
     android:textAlignment="textEnd"
     android:textSize="20sp"
     tools:targetApi="o" />
-
 
 
 </GridLayout>

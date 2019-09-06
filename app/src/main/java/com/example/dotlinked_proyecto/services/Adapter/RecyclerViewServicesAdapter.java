@@ -1,6 +1,7 @@
 package com.example.dotlinked_proyecto.services.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.bean.Service;
 
 import java.util.List;
@@ -37,7 +39,15 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
   // binds the data to the TextView in each row
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    Service service = servicesData.get(position);
+      Service service = getItem(position);
+      String date = service.getDateInit();
+      if (Util.dateCompare(date)) {
+          holder.tvServiceStatus.setText(R.string.service_status_passed);
+          holder.tvServiceStatus.setTextColor(Color.RED);
+      } else {
+          holder.tvServiceStatus.setText(R.string.service_status_pending);
+          holder.tvServiceStatus.setTextColor(Color.GREEN);
+      }
     holder.tvServiceName.setText(service.getServiceName());
     holder.tvServiceLocation.setText(service.getLocation());
   }
@@ -49,7 +59,7 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
   }
 
   // convenience method for getting data at click position
-  public Service getItem(int id) {
+  private Service getItem(int id) {
     return servicesData.get(id);
   }
 
@@ -67,11 +77,13 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     TextView tvServiceName;
     TextView tvServiceLocation;
+      TextView tvServiceStatus;
 
     ViewHolder(View itemView) {
       super(itemView);
       tvServiceName = itemView.findViewById(R.id.tv_service_name);
       tvServiceLocation = itemView.findViewById(R.id.tv_service_location);
+        tvServiceStatus = itemView.findViewById(R.id.tv_service_status);
 
       itemView.setOnClickListener(this);
     }

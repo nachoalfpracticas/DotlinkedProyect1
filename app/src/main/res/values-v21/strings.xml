@@ -133,4 +133,7 @@
   <string name="priceServiceEuro">%1$s €</string>
     <string name="service">Service</string>
     <string name="select">Select</string>
+  <string name="serviceStatus">service status</string>
+  <string name="service_status_passed">passed</string>
+  <string name="service_status_pending">pending</string>
 </resources>
