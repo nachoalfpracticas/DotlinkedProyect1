@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,11 +53,17 @@ public class ServiceOrderActivity extends AppCompatActivity {
     companyService = new ServicesCompanyService();
     dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
+    Toolbar toolbar = findViewById(R.id.toolbar_service_order);
+    setSupportActionBar(toolbar);
+    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
     Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
       service = new Gson().fromJson(bundle.getString("serviceSelected"), Service.class);
     }
+    setTitle(String.format(getString(R.string.service_Id), " : " + service.getServiceId()));
 
     tvUserName = findViewById(R.id.tv_user_name);
     tvService = findViewById(R.id.tv_service);
@@ -107,5 +115,16 @@ public class ServiceOrderActivity extends AppCompatActivity {
   private void setRecyclerViewAdapter(List<ServiceInfo> serviceInfoList) {
     RecyclerViewShceduleServiceAdapter adapter = new RecyclerViewShceduleServiceAdapter(this, serviceInfoList);
     rcSchedules.setAdapter(adapter);
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return false;
+  }
+
+  @Override
+  public void onBackPressed() {
+    finish();
   }
 }

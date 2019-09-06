@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
@@ -54,6 +55,12 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
     session = new Session(this);
     companyService = new ServicesCompanyService();
     List<Person> personList = session.getTenantsForContact();
+
+    Toolbar toolbar = findViewById(R.id.toolbar_service_preview_order);
+    setSupportActionBar(toolbar);
+    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
+    setTitle(getString(R.string.select_service));
 
     btnSelectService = findViewById(R.id.btn_select_service);
     btnSelectService.setEnabled(false);
@@ -149,6 +156,12 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
         d("RESPONSE", "Error getServicesByCompany: " + t.getCause());
       }
     });
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return false;
   }
 
   @Override

@@ -37,6 +37,7 @@ public class EventDetailActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     TextView evTitle = findViewById(R.id.event_title);
     TextView evDes = findViewById(R.id.event_description);
     TextView evLocation = findViewById(R.id.event_location);
@@ -45,7 +46,7 @@ public class EventDetailActivity extends AppCompatActivity {
     TextView evCost = findViewById(R.id.event_cost);
 
     //AppCompatImageView imgView = findViewById(R.id.img_event);
-    setSupportActionBar(toolbar);
+
 
     if (intent != null) {
       Object event = intent.getParcelableExtra(EventsCalendarFragment.EVENT);
@@ -60,13 +61,13 @@ public class EventDetailActivity extends AppCompatActivity {
         evInitTime.setText(String.valueOf(myEventDay.getTimeFrom()));
         evEndTime.setText(String.valueOf(myEventDay.getTimeTo()));
         evCost.setText(String.valueOf(myEventDay.getCost()));
-
+        setTitle(eventDay);
         return;
       }
 
       if (event instanceof EventDay) {
         EventDay eventDay = (EventDay) event;
-        toolbar.setTitle(getFormattedDate(eventDay.getCalendar().getTime()));
+        setTitle(getFormattedDate(eventDay.getCalendar().getTime()));
       }
     }
   }
