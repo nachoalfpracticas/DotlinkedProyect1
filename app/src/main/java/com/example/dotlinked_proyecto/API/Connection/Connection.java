@@ -2,8 +2,6 @@ package com.example.dotlinked_proyecto.API.Connection;
 
 import android.util.Log;
 
-import com.example.dotlinked_proyecto.activities.login.LoginActivity;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
@@ -38,7 +36,7 @@ public class Connection {
     //If condition to ensure we don't create multiple retrofit instances in a single application
     if (retrofit == null) {
       retrofit = new Retrofit.Builder()
-          .baseUrl(Environment.isEmulator(LoginActivity.context) ? /*"https://apinewgezzone.conveyor.cloud/"*/ "https://6694d6cb.ngrok.io" : SERVER_URL)
+          .baseUrl(SERVER_URL)
           .addConverterFactory(GsonConverterFactory.create())
           .client(client)
           .build();
