@@ -12,18 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
-import com.example.dotlinked_proyecto.bean.Service;
+import com.example.dotlinked_proyecto.bean.Appointment;
 
 import java.util.List;
 
 public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerViewServicesAdapter.ViewHolder> {
 
-  private List<Service> servicesData;
+  private List<Appointment> servicesData;
   private LayoutInflater mInflater;
   private ItemClickListener mClickListener;
 
   // data is passed into the constructor
-  public RecyclerViewServicesAdapter(Context context, List<Service> data) {
+  public RecyclerViewServicesAdapter(Context context, List<Appointment> data) {
     this.mInflater = LayoutInflater.from(context);
     this.servicesData = data;
   }
@@ -39,8 +39,8 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
   // binds the data to the TextView in each row
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-      Service service = getItem(position);
-      String date = service.getDateInit();
+    Appointment service = getItem(position);
+    String date = service.getDateFrom();
       if (Util.dateCompare(date)) {
           holder.tvServiceStatus.setText(R.string.service_status_passed);
           holder.tvServiceStatus.setTextColor(Color.RED);
@@ -48,7 +48,7 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
           holder.tvServiceStatus.setText(R.string.service_status_pending);
           holder.tvServiceStatus.setTextColor(Color.GREEN);
       }
-    holder.tvServiceName.setText(service.getServiceName());
+    holder.tvServiceName.setText(service.getService());
     holder.tvServiceLocation.setText(service.getLocation());
   }
 
@@ -59,7 +59,7 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
   }
 
   // convenience method for getting data at click position
-  private Service getItem(int id) {
+  private Appointment getItem(int id) {
     return servicesData.get(id);
   }
 

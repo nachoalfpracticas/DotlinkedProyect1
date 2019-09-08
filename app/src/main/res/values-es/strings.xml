@@ -76,7 +76,7 @@
     <string name="rol_coordinator">Coordinador</string>
     <string name="rol_employee">Empleado</string>
     <string name="input_password_access_rol_company">Rol seleccionado %1$s \n\nEmpresa %2$s </string>
-    <string name="no_note">Sin evento</string>
+  <string name="no_event">Sin evento</string>
     <string name="write_note">Título evento</string>
     <string name="save">guardar</string>
     <string name="arrow_right">Flecha derecha</string>
@@ -141,6 +141,8 @@
   <string name="serviceStatus">estado del servicio</string>
   <string name="service_status_passed">pasado</string>
   <string name="service_status_pending">pendiente</string>
+  <string name="igDate">04–09–2019</string>
+  <string name="igHour">14:30</string>
     <string-array name="roles_array">
         <item>Inquilino</item>
         <item>Proveedor</item>

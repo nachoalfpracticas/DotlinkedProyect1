@@ -1,5 +1,7 @@
 package com.example.dotlinked_proyecto.activities.login;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
   private String[] roles;
   private Session session;
   private boolean rememberMe;
+  @SuppressLint("StaticFieldLeak")
+  public static Context context;
 
   @RequiresApi(api = Build.VERSION_CODES.M)
   @Override
@@ -58,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     setContentView(R.layout.activity_login);
     check = new Check(this);
     session = new Session(LoginActivity.this);
+    context = getApplicationContext();
     loginService = new LoginService();
     rolService = new RolService();
     roles = new String[2];
@@ -154,7 +159,6 @@ public class LoginActivity extends AppCompatActivity {
       }
     });
   }
-
 
   private void setPersonInfo(String token) {
     Call<List<Person>> call = loginService.getPersonInfo("bearer " + token);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:layout_below="@+id/tv_person_lastName"
@@ -10,7 +9,7 @@
 
   <com.google.android.material.textview.MaterialTextView
     android:id="@+id/tv_service_name"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="50dp"
     android:layout_row="0"
     android:layout_column="0"
@@ -25,12 +24,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_row="0"
-    android:layout_column="0"
+    android:layout_column="1"
     android:layout_gravity="end"
     android:layout_marginEnd="10dp"
     android:gravity="end"
     android:paddingStart="0dp"
-    android:paddingEnd="5dp"
+    android:paddingEnd="25dp"
     android:text="@string/serviceStatus"
     android:textSize="12sp" />
 
@@ -39,7 +38,7 @@
     android:layout_height="wrap_content"
     android:layout_row="1"
     android:layout_column="0"
-    android:layout_marginStart="30dp"
+    android:layout_marginStart="20dp"
     android:paddingTop="5dp"
     android:text="@string/location"
     android:textSize="24sp" />
@@ -49,15 +48,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_row="1"
-    android:layout_column="0"
-    android:autoSizeTextType="uniform"
+    android:layout_column="1"
     android:layout_gravity="end"
-    android:layout_marginEnd="10dp"
+    android:layout_marginEnd="40dp"
     android:gravity="end"
     android:text="@string/location"
     android:textAlignment="textEnd"
-    android:textSize="20sp"
-    tools:targetApi="o" />
+    android:textSize="20sp" />
 
 
 </GridLayout>

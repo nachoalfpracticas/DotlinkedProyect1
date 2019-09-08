@@ -71,7 +71,7 @@
     <string name="rol_coordinator">Coordinator</string>
     <string name="rol_employee">Employee</string>  
     <string name="input_password_access_rol_company">Rol selected %1$s \n\nCompany %2$s</string>
-    <string name="no_note">No note</string>
+  <string name="no_event">No note</string>
     <string name="write_note">Write note</string>
     <string name="save">Save</string>
     <string name="arrow_right">arrow right</string>
@@ -151,4 +151,6 @@
   <string name="serviceStatus">service status</string>
   <string name="service_status_passed">passed</string>
   <string name="service_status_pending">pending</string>
+  <string name="igDate">04–09–2019</string>
+  <string name="igHour">14:30</string>
 </resources>

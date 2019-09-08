@@ -31,6 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.util.Log.d;
+
 public class ServiceOrderActivity extends AppCompatActivity {
 
 
@@ -87,7 +89,6 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
   @SuppressWarnings("NullableProblems")
   private void getAvailableSchedulesToServices(String date) {
-    // String companyId, String serviceId, String date, String personId, String token) {
     String companyId = session.getCompanyIdUser();
     String serviceId = service.getServiceId();
     Person person = session.getTenantSelect();
@@ -101,13 +102,17 @@ public class ServiceOrderActivity extends AppCompatActivity {
         if (response.body() != null && response.body().size() > 0) {
           serviceInfoList = response.body();
           serviceInfoList.forEach(ser -> ser.setDateInit(date));
+          // TODO filtrar la lista sólo con los horas mayores a la fecha actual ( ej. si estamos a las 14:30 mostrar las siguientes ).
+          // Si la lista esta vacía mostrar mensaje ( citas no disponibles para hoy ).
+          // Cambiar botón para seleccionar otro día.
+          // Implementar el calendario para seleccionar otro día.
           setRecyclerViewAdapter(serviceInfoList);
         }
       }
 
       @Override
       public void onFailure(Call<List<ServiceInfo>> call, Throwable t) {
-
+        d("RESPONSE", "Error getAvailableSchedulesToServices: " + t.getCause());
       }
     });
   }

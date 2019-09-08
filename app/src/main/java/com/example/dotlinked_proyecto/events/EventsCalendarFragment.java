@@ -134,12 +134,14 @@ public class EventsCalendarFragment extends Fragment {
     getAllEventsByCompany();
 
     mCalendarView.setOnPreviousPageChangeListener(() -> {
+      setRecyclerViewAdapter(new ArrayList<>());
       cal.set(mCalendarView.getCurrentPageDate());
       Date d = cal.get().getTime();
       String strd = df.format(d);
     });
 
     mCalendarView.setOnForwardPageChangeListener(() -> {
+      setRecyclerViewAdapter(new ArrayList<>());
       cal.set(mCalendarView.getCurrentPageDate());
       Date d = cal.get().getTime();
       String strd = df.format(d);
@@ -172,6 +174,7 @@ public class EventsCalendarFragment extends Fragment {
             allEventsByCompanyList.forEach(e -> d("RESPONSE", "Response getAllEventsByCompany: " + e.toString()));
           } else {
             if (allEventsByCompanyList.size() == 0) {
+              setRecyclerViewAdapter(new ArrayList<>());
               Toast.makeText(context, getString(R.string.no_events_data), Toast.LENGTH_LONG).show();
             }
           }
@@ -218,7 +221,7 @@ public class EventsCalendarFragment extends Fragment {
 
     String date = df.format(eventDay.getCalendar().getTime());
     tvEventDay.setText(date);
-    String dateInit = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(eventDay.getCalendar().getTime());
+    String dateInit = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(eventDay.getCalendar().getTime());
 
     Call<List<Event>> call = companyService.getEventsByCompanyStartDay(companyId, dateInit, "bearer " + access_token);
     call.enqueue(new Callback<List<Event>>() {

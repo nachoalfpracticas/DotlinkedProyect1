@@ -24,8 +24,8 @@ import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
+import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
-import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.services.Adapter.RecyclerViewServicesAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -67,7 +67,7 @@ public class ServicesFragment extends Fragment {
 
   private Session session;
   private List<Person> personList;
-  private List<Service> serviceList;
+  private List<Appointment> appointmentList;
   private SimpleDateFormat dateFormat;
   private Calendar cal;
   private RecyclerViewServicesAdapter adapter;
@@ -100,7 +100,7 @@ public class ServicesFragment extends Fragment {
     dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     session = new Session(context);
     personList = new ArrayList<>();
-    serviceList = new ArrayList<>();
+    appointmentList = new ArrayList<>();
     companyService = new ServicesCompanyService();
     cal = Calendar.getInstance();
 
@@ -136,8 +136,8 @@ public class ServicesFragment extends Fragment {
     floatingActionButton.setOnClickListener(view1 -> {
       Intent intent = new Intent(getActivity(), ServicePreviewOrderActivity.class);
       if (rol.equals(Objects.requireNonNull(getActivity()).getString(R.string.rol_contact))) {
-        rol = Util.unTranslateRoles(getActivity(), rol);
-        Call<List<Person>> call = companyService.listTenantByContact(companyId, rol, "bearer " + access_token);
+        String rolUnTranslate = Util.unTranslateRoles(getActivity(), rol);
+        Call<List<Person>> call = companyService.listTenantByContact(companyId, rolUnTranslate, "bearer " + access_token);
         call.enqueue(new Callback<List<Person>>() {
           @Override
           public void onResponse(Call<List<Person>> call, Response<List<Person>> response) {
@@ -154,13 +154,11 @@ public class ServicesFragment extends Fragment {
             d("RESPONSE", "Error getPersonClaims: " + t.getCause());
           }
         });
-
       } else {
         session.setListTenantsForContact(new ArrayList<>());
         startActivity(intent);
       }
     });
-
 
     mCalendarView.setOnPreviousPageChangeListener(() -> {
       cal = mCalendarView.getCurrentPageDate();
@@ -177,15 +175,12 @@ public class ServicesFragment extends Fragment {
       getReservedServicesOfUser(strd);
       setRecyclerViewAdapter(new ArrayList<>());
     });
-
-
     mCalendarView.setOnDayClickListener(this::previewService);
-
     return view;
   }
 
-  private void setRecyclerViewAdapter(List<Service> services) {
-    adapter = new RecyclerViewServicesAdapter(context, services);
+  private void setRecyclerViewAdapter(List<Appointment> appointments) {
+    adapter = new RecyclerViewServicesAdapter(context, appointments);
     rvServices.setAdapter(adapter);
   }
 
@@ -199,19 +194,19 @@ public class ServicesFragment extends Fragment {
     cal.add(Calendar.MONTH, 1);
     Date d = cal.getTime();
     String dateEnd = dateFormat.format(d);
-    Call<List<Service>> call = companyService.getReservedServiceOfUser(rol, companyId, dateInit, dateEnd, "bearer " + access_token);
-    call.enqueue(new Callback<List<Service>>() {
+    Call<List<Appointment>> call = companyService.getReservedServiceOfUser(rol, companyId, dateInit, dateEnd, "bearer " + access_token);
+    call.enqueue(new Callback<List<Appointment>>() {
       @Override
-      public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
+      public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
         if (response.body() != null && response.body().size() > 0) {
-          serviceList = response.body();
+          appointmentList = response.body();
         } else {
           Toast.makeText(context, getString(R.string.no_services_data), Toast.LENGTH_LONG).show();
         }
       }
 
       @Override
-      public void onFailure(Call<List<Service>> call, Throwable t) {
+      public void onFailure(Call<List<Appointment>> call, Throwable t) {
         d("RESPONSE", "Error getReservedServicesOfUser: " + t.getCause());
       }
     });
@@ -222,13 +217,13 @@ public class ServicesFragment extends Fragment {
     String date = df.format(eventDay.getCalendar().getTime());
     tvDateDay.setText(date);
     String datePet = dateFormat.format(eventDay.getCalendar().getTime());
-    List<Service> tmpServiceList;
-    tmpServiceList = serviceList.stream()
-            .filter(s -> s.getDateInit().contains(datePet))
+    List<Appointment> tmpServiceList;
+    tmpServiceList = appointmentList.stream()
+        .filter(s -> s.getDateFrom().contains(datePet))
             .collect(Collectors.toList());
     setRecyclerViewAdapter(tmpServiceList);
     adapter.setClickListener((view, position) -> {
-      Service ser = tmpServiceList.get(position);
+      Appointment ser = tmpServiceList.get(position);
       Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
       intent.putExtra("service", new Gson().toJson(ser));
       Objects.requireNonNull(getActivity()).startActivity(intent);

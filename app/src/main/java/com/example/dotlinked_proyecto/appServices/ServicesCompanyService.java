@@ -2,6 +2,7 @@ package com.example.dotlinked_proyecto.appServices;
 
 import com.example.dotlinked_proyecto.API.Connection.Connection;
 import com.example.dotlinked_proyecto.API.RetrofitSources.IServicesApiCalls;
+import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
@@ -25,7 +26,7 @@ public class ServicesCompanyService implements IServicesApiCalls {
   }
 
   @Override
-  public Call<List<Service>> getReservedServiceOfUser(String rol, String companyId, String dateInit, String dateEnd, String token) {
+  public Call<List<Appointment>> getReservedServiceOfUser(String rol, String companyId, String dateInit, String dateEnd, String token) {
     return servicesApiCalls.getReservedServiceOfUser(rol, companyId, dateInit, dateEnd, token);
   }
 

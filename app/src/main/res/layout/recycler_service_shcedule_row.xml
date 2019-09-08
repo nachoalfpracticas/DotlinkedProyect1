@@ -11,22 +11,35 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="04-09-2019"
+      android:background="@color/blueDotlinked"
         android:textAlignment="center"
-        android:textColor="@color/blueDotlinked"
-        android:textSize="20sp" />
+      android:text="@string/igDate"
+      android:textColor="@color/colorWhite"
+      android:textSize="20sp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_service_hour_available"
-        android:layout_width="254dp"
+      android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_gravity="center"
-        android:layout_marginEnd="0dp"
+      android:layout_marginEnd="100dp"
         android:gravity="center"
-        android:text="14:30"
+      android:text="@string/igHour"
         android:textAlignment="center"
         android:textColor="@android:color/holo_green_light"
         android:textSize="20sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+      android:layout_width="20dp"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_gravity="center"
+      android:layout_marginEnd="20dp"
+      android:background="@drawable/background_transparent"
+      android:drawableEnd="@drawable/ic_forward_white_24dp"
+      android:gravity="center"
+      android:textAlignment="center"
+      android:textSize="20sp" />
 
 </RelativeLayout>

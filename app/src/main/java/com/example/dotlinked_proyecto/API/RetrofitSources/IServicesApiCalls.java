@@ -1,5 +1,6 @@
 package com.example.dotlinked_proyecto.API.RetrofitSources;
 
+import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
@@ -17,11 +18,11 @@ public interface IServicesApiCalls {
                                              @Header("Authorization") String token);
 
   @GET("GetCitas")
-  Call<List<Service>> getReservedServiceOfUser(@Query("rol") String rol,
-                                               @Query("empresa") String companyId,
-                                               @Query("fechaInicio") String dateInit,
-                                               @Query("fechaFin") String dateEnd,
-                                               @Header("Authorization") String token);
+  Call<List<Appointment>> getReservedServiceOfUser(@Query("rol") String rol,
+                                                   @Query("empresa") String companyId,
+                                                   @Query("fechaInicio") String dateInit,
+                                                   @Query("fechaFin") String dateEnd,
+                                                   @Header("Authorization") String token);
 
   @GET("ListarInquilinosPorContacto")
   Call<List<Person>> listTenantByContact(@Query("empresaId") String companyId,

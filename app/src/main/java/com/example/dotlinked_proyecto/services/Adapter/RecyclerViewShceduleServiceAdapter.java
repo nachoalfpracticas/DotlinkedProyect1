@@ -38,7 +38,7 @@ public class RecyclerViewShceduleServiceAdapter extends RecyclerView.Adapter<Rec
   // binds the data to the TextView in each row
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    ServiceInfo service = servicesData.get(position);
+    ServiceInfo service = (ServiceInfo) getItem(position);
     holder.tvServiceDate.setText(service.getDateInit());
     holder.tvServiceHour.setText(service.getHour().split(" ")[0]);
   }
@@ -50,7 +50,7 @@ public class RecyclerViewShceduleServiceAdapter extends RecyclerView.Adapter<Rec
   }
 
   // convenience method for getting data at click position
-  public Service getItem(int id) {
+  private Service getItem(int id) {
     return servicesData.get(id);
   }
 
