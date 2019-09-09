@@ -33,7 +33,7 @@ public class Claim {
 
   @SerializedName("fechaactualizacion")
   @Expose
-  private Date updateDate;
+  private String updateDate;
 
   @SerializedName("resuelta")
   @Expose
@@ -51,7 +51,7 @@ public class Claim {
   // private ICollection<QuejaPersona> quejaPersona { get; set; }
 
 
-  public Claim(int claimId, String subject, String description, String broadcastDate, Date updateDate, int resolve, int estatusId, int personaId, Person claimPerson) {
+  public Claim(int claimId, String subject, String description, String broadcastDate, String updateDate, int resolve, int estatusId, int personaId, Person claimPerson) {
     this.claimId = claimId;
     this.subject = subject;
     this.description = description;
@@ -97,11 +97,11 @@ public class Claim {
     this.broadcastDate = df.format(broadcastDate);
   }
 
-  public Date getUpdateDate() {
+  public String getUpdateDate() {
     return updateDate;
   }
 
-  public void setUpdateDate(Date updateDate) {
+  public void setUpdateDate(String updateDate) {
     this.updateDate = updateDate;
   }
 

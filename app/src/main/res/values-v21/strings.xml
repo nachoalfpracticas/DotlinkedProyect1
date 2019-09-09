@@ -138,4 +138,5 @@
   <string name="service_status_pending">pending</string>
   <string name="igDate">04–09–2019</string>
   <string name="igHour">14:30</string>
+    <string name="updateDate">Update date</string>
 </resources>

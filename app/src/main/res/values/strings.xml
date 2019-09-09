@@ -143,7 +143,8 @@
   <string name="service_status_pending">pending</string>
   <string name="igDate">04–09–2019</string>
   <string name="igHour">14:30</string>
-  <string-array name="roles_array">    
+    <string name="updateDate">Update date</string>
+    <string-array name="roles_array">    
     <item>Tenant</item>    
     <item>Provider</item>    
     <item>Contact</item>   

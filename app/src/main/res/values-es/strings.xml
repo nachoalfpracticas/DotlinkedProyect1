@@ -143,6 +143,7 @@
   <string name="service_status_pending">pendiente</string>
   <string name="igDate">04–09–2019</string>
   <string name="igHour">14:30</string>
+    <string name="updateDate">Fecha actualización</string>
     <string-array name="roles_array">
         <item>Inquilino</item>
         <item>Proveedor</item>
