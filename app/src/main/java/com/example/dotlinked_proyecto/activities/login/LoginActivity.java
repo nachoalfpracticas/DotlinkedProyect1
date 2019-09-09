@@ -167,12 +167,16 @@ public class LoginActivity extends AppCompatActivity {
       public void onResponse(Call<List<Person>> call, Response<List<Person>> response) {
         if (response.body() != null) {
           Person person = response.body().get(0);
-          session.setTenantSelect(person);
+          if (person != null)
+            session.setTenantSelect(person);
+          else
+            UtilMessages.showLoadDataError(LoginActivity.this, response.message());
         }
       }
 
       @Override
       public void onFailure(Call<List<Person>> call, Throwable t) {
+        UtilMessages.showLoadDataError(LoginActivity.this, t.getMessage());
         Log.d("RESPONSE", "Error setPersonInfo: " + t.getCause());
       }
     });

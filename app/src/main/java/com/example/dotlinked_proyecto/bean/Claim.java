@@ -19,9 +19,13 @@ public class Claim {
   @Expose
   private String subject;
 
-  @SerializedName("descripcionStatus")
+  @SerializedName("descripcion")
   @Expose
   private String description;
+
+  @SerializedName("descripcionStatus")
+  @Expose
+  private String descriptionStatus;
 
   @SerializedName("fechaEmision")
   @Expose
@@ -147,5 +151,13 @@ public class Claim {
         ", personaId=" + personaId +
             ", claimPerson=" + claimPerson +
         '}';
+  }
+
+  public String getDescriptionStatus() {
+    return descriptionStatus;
+  }
+
+  public void setDescriptionStatus(String descriptionStatus) {
+    this.descriptionStatus = descriptionStatus;
   }
 }

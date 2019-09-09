@@ -110,6 +110,7 @@ public class AccessActivity extends AppCompatActivity {
     AppCompatSpinner spn_roles = findViewById(R.id.sp_roles);
     spnCompanies = findViewById(R.id.spn_companiesByRol);
 
+
     registeredUser.setText(String.format(getString(R.string.not_user), person.getFullName()));
     tatWelcome.setText(String.format(getResources().getString(R.string.well_come_user), person.getFullName()));
 

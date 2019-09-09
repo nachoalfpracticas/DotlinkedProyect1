@@ -83,7 +83,7 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
       super(itemView);
       tvServiceName = itemView.findViewById(R.id.tv_service_name);
       tvServiceLocation = itemView.findViewById(R.id.tv_service_location);
-        tvServiceStatus = itemView.findViewById(R.id.tv_service_status);
+      tvServiceStatus = itemView.findViewById(R.id.tv_service_status);
 
       itemView.setOnClickListener(this);
     }

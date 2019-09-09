@@ -102,7 +102,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
         if (response.body() != null && response.body().size() > 0) {
           serviceInfoList = response.body();
           serviceInfoList.forEach(ser -> ser.setDateInit(date));
-          // TODO filtrar la lista sólo con los horas mayores a la fecha actual ( ej. si estamos a las 14:30 mostrar las siguientes ).
+          // TODO
           // Si la lista esta vacía mostrar mensaje ( citas no disponibles para hoy ).
           // Cambiar botón para seleccionar otro día.
           // Implementar el calendario para seleccionar otro día.

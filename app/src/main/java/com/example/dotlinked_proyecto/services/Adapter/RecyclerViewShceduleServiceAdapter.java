@@ -40,7 +40,7 @@ public class RecyclerViewShceduleServiceAdapter extends RecyclerView.Adapter<Rec
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     ServiceInfo service = (ServiceInfo) getItem(position);
     holder.tvServiceDate.setText(service.getDateInit());
-    holder.tvServiceHour.setText(service.getHour().split(" ")[0]);
+    holder.tvServiceHour.setText(service.getHour());
   }
 
   // total number of rows

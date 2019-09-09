@@ -66,7 +66,7 @@ public class ClaimDetailActivity extends AppCompatActivity {
       String startDate = df.format(date);
       tvClaimDate.setText(startDate);
 
-      tvClaimStatus.setText(claim.getDescription());
+      tvClaimStatus.setText(claim.getDescriptionStatus());
       setTitle(String.format(getString(R.string.claim_Id), " : " + claim.getClaimId()));
 
     }
