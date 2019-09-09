@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/blueDotlinked"
         android:gravity="center"
-        android:text="@string/status"
+      android:text="@string/description"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
         android:textSize="24sp"

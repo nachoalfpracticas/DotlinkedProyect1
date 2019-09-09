@@ -2,10 +2,12 @@ package com.example.dotlinked_proyecto.services;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
-import com.example.dotlinked_proyecto.Utils.Util;
-import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
@@ -29,7 +29,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,15 +39,16 @@ import static android.util.Log.d;
 public class ServiceOrderActivity extends AppCompatActivity {
 
 
-  private TextView tvService;
+  private TextView tvServiceLocation;
   private TextView tvUserName;
+  private AppCompatButton btnSelectDate;
   private RecyclerView rcSchedules;
   private Session session;
   private Service service;
+  private Appointment appointment;
   private List<ServiceInfo> serviceInfoList;
   private ServicesCompanyService companyService;
   private SimpleDateFormat dateFormat;
-  private List<Appointment> appointmentList;
 
 
 
@@ -69,21 +69,24 @@ public class ServiceOrderActivity extends AppCompatActivity {
     Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
       service = new Gson().fromJson(bundle.getString("serviceSelected"), Service.class);
+      appointment = new Gson().fromJson(bundle.getString("appointment"), Appointment.class);
     }
-    setTitle(String.format(getString(R.string.service_Id), " : " + service.getServiceId()));
+    setTitle(String.format(getString(R.string.service_name), " : " + service.getServiceName()));
 
+    btnSelectDate = findViewById(R.id.btn_select_service_other_day);
+    btnSelectDate.setVisibility(View.GONE);
     tvUserName = findViewById(R.id.tv_user_name);
-    tvService = findViewById(R.id.tv_service);
+    tvServiceLocation = findViewById(R.id.tv_service_location);
     rcSchedules = findViewById(R.id.rv_services_schedules);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     rcSchedules.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcSchedules.getContext(),
-            layoutManager.getOrientation());
+        layoutManager.getOrientation());
     dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider_recycler));
     rcSchedules.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
 
-    tvService.setText(service.getServiceName());
+    tvServiceLocation.setText(service.getLocation());
     tvUserName.setText(session.getTenantSelect().getFullName());
 
     Calendar cal = Calendar.getInstance();
@@ -107,24 +110,13 @@ public class ServiceOrderActivity extends AppCompatActivity {
         if (response.body() != null && response.body().size() > 0) {
           serviceInfoList = response.body();
           serviceInfoList.forEach(ser -> ser.setDateInit(date));
-          appointmentList = session.getAppointmentsOfUser();
-          if (appointmentList != null) {
-            List<Appointment> appointmentListTemp = appointmentList.stream()
-                    .filter(a -> a.getServiceId().equals(Integer.valueOf(serviceId))
-                            && Util.converDate(a.getDateFrom()).after(Util.converDate(date)))
-                    .collect(Collectors.toList());
-            if (appointmentListTemp.size() > 0) {
-              UtilMessages.showAppointmentInfo(ServiceOrderActivity.this,
-                      appointmentListTemp.get(0).getService(), appointmentListTemp.get(0).getDateFrom());
-            }
-          }
           // TODO
           // Si la lista esta vacía mostrar mensaje ( citas no disponibles para hoy ).
           // Cambiar botón para seleccionar otro día.
           // Implementar el calendario para seleccionar otro día.
           setRecyclerViewAdapter(serviceInfoList);
         } else {
-
+          btnSelectDate.setVisibility(View.VISIBLE);
         }
       }
 

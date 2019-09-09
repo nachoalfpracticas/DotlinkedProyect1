@@ -1,6 +1,7 @@
 package com.example.dotlinked_proyecto.Utils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.service.autofill.FieldClassification;
@@ -18,9 +19,20 @@ import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.appServices.LoginService;
+import com.example.dotlinked_proyecto.bean.Appointment;
+import com.example.dotlinked_proyecto.bean.Service;
+import com.example.dotlinked_proyecto.services.ServiceOrderActivity;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -200,6 +212,10 @@ public class UtilMessages {
   }
 
   public static void withoutInternet(Activity activity) {
+    // You can use our utils method to create Drawable with text
+    // CalendarUtils.getDrawableText(Context context, String text, Typeface typeface, int color, int size);
+    // CalendarUtils.getDrawableText(activity, str, Typeface.SERIF, Color.WHITE, 10);
+
     String str = activity.getString(R.string.without_connection);
     SpannableString spa = new SpannableString(str);
     int i = str.indexOf("@");
@@ -223,23 +239,77 @@ public class UtilMessages {
         .show();
   }
 
-  public static void showAppointmentInfo(Activity activity, String serviceName, String date) {
+  public static void showAppointmentInfo(Activity activity,
+                                         Service serviceSelected,
+                                         Appointment appointment,
+                                         String serviceName,
+                                         String date,
+                                         String time) {
+    DateFormat formatter = new SimpleDateFormat(activity.getString(R.string.date_format), Locale.getDefault());
+    Date dateTransform = null;
+    try {
+      dateTransform = formatter.parse(date);
+    } catch (ParseException e) {
+      Log.d("RESPONSE", Objects.requireNonNull(e.getMessage()));
+    }
+
     NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
     dialogBuilder
-            .withTitle(activity.getString(R.string.appointment_info))
-            .withMessage(String.format(activity.getString(R.string.appointment_msg), serviceName, date))
-            .withDialogColor("#ED0D17")
-            .withButton1Text(activity.getString(R.string.OK))
-            .withDuration(400)
-            .withEffect(Effectstype.Slidetop)
-            .isCancelableOnTouchOutside(false)
-            .setButton1Click(v2 -> {
-              dialogBuilder.dismiss();
-
-            })
-            .show();
+        .withTitle("    " + activity.getString(R.string.appointment_info))
+        .withIcon(R.drawable.ic_dates_icon_white)
+        .withDividerColor(R.color.daysLabelColor)
+        .withMessage(String.format(activity.getString(R.string.appointment_msg), serviceName, dateTransform, time))
+        .withMessageColor("#FAD201")
+        .withDialogColor(R.color.blueDotlinked)
+        .withButton1Text(activity.getString(R.string.Yes))
+        .withButton2Text(activity.getString(R.string.cancel))
+        .withDuration(700)
+        .withEffect(Effectstype.RotateBottom)
+        .isCancelableOnTouchOutside(false)
+        .setButton1Click(v2 -> {
+          Intent intent = new Intent(activity, ServiceOrderActivity.class);
+          intent.putExtra("appointment", new Gson().toJson(appointment));
+          intent.putExtra("serviceSelected", new Gson().toJson(serviceSelected));
+          intent.putExtra("change", true);
+          activity.startActivity(intent);
+          activity.finish();
+          dialogBuilder.dismiss();
+        })
+        .setButton2Click(v3 -> {
+          activity.finish();
+          dialogBuilder.dismiss();
+        })
+        .show();
   }
 
+  public static void showAppointmentInfoDateNotAvalible(Activity activity,
+                                                        String serviceName,
+                                                        String date,
+                                                        String time) {
+    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
+    dialogBuilder
+        .withTitle("    " + activity.getString(R.string.appointment_info))
+        .withIcon(R.drawable.ic_dates_icon_white)
+        .withDividerColor(R.color.daysLabelColor)
+        .withMessage(String.format(activity.getString(R.string.appointment_msg), serviceName, date, time))
+        .withMessageColor("#FAD201")
+        .withDialogColor(R.color.blueDotlinked)
+        .withButton1Text(activity.getString(R.string.Yes))
+        .withButton2Text(activity.getString(R.string.cancel))
+        .withDuration(700)
+        .withEffect(Effectstype.RotateBottom)
+        .isCancelableOnTouchOutside(false)
+        .setButton1Click(v2 -> {
+
+          activity.finish();
+          dialogBuilder.dismiss();
+        })
+        .setButton2Click(v3 -> {
+          activity.finish();
+          dialogBuilder.dismiss();
+        })
+        .show();
+  }
 }
 
 

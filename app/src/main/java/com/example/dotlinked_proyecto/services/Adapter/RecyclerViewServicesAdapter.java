@@ -48,7 +48,7 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
           holder.tvServiceStatus.setText(R.string.service_status_pending);
           holder.tvServiceStatus.setTextColor(Color.GREEN);
       }
-    holder.tvServiceName.setText(service.getService());
+    holder.tvServiceName.setText(service.getServiceName());
     holder.tvServiceLocation.setText(service.getLocation());
   }
 

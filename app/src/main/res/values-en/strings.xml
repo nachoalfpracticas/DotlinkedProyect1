@@ -154,5 +154,9 @@
   <string name="igDate">04–09–2019</string>
   <string name="igHour">14:30</string>
     <string name="appointment_info">Appointment information</string>
-    <string name="appointment_msg">You already have an appointment reserved for the service %1$ s the day %2$s</string>
+  <string name="appointment_msg">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change the appointment?</string>
+  <string name="updateDate">Update date</string>
+  <string name="service_name">Service name %1$s</string>
+  <string name="select_day">Select other day</string>
+  <string name="other_day">Other day</string>
 </resources>

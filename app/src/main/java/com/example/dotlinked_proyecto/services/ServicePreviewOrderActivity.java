@@ -1,6 +1,7 @@
 package com.example.dotlinked_proyecto.services;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -17,8 +19,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
+import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Company;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
@@ -26,8 +30,10 @@ import com.example.dotlinked_proyecto.services.Adapter.SpinnerTenantsAdapter;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +53,9 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
   private Service serviceSelected;
   private AppCompatButton btnSelectService;
   private Person person;
+  private List<Appointment> appointmentList;
 
+  @RequiresApi(api = Build.VERSION_CODES.N)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -62,7 +70,7 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     setTitle(getString(R.string.select_service));
 
-    btnSelectService = findViewById(R.id.btn_select_service);
+    btnSelectService = findViewById(R.id.btn_select_service_other_day);
     btnSelectService.setEnabled(false);
     AppCompatTextView tvCompanyName = findViewById(R.id.tv_company_name);
     spnServices = findViewById(R.id.spn_services);
@@ -89,8 +97,8 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
           session.setTenantSelect(person);
           // Here you can do the action you want to...
           Toast.makeText(ServicePreviewOrderActivity.this,
-                  "ID: " + Objects.requireNonNull(person).getPersonId() + "\nName: " + person.getName(),
-                  Toast.LENGTH_SHORT).show();
+              "ID: " + Objects.requireNonNull(person).getPersonId() + "\nName: " + person.getName(),
+              Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -108,6 +116,22 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
     getServicesByCompany();
 
     btnSelectService.setOnClickListener(view -> {
+      appointmentList = session.getAppointmentsOfUser();
+      if (appointmentList != null) {
+        List<Appointment> appointmentListTemp = appointmentList.stream()
+            .filter(a -> a.getServiceId().equals(Integer.valueOf(serviceSelected.getServiceId()))
+                && Util.converDate(a.getDateFrom()).after(new Date()))
+            .collect(Collectors.toList());
+        if (appointmentListTemp.size() > 0) {
+          UtilMessages.showAppointmentInfo(ServicePreviewOrderActivity.this,
+              serviceSelected,
+              appointmentListTemp.get(0),
+              appointmentListTemp.get(0).getServiceName(),
+              appointmentListTemp.get(0).getDateFrom().split("T")[0],
+              appointmentListTemp.get(0).getDateFrom().split("T")[1]);
+          return;
+        }
+      }
       Intent intent = new Intent(this, ServiceOrderActivity.class);
       intent.putExtra("serviceSelected", new Gson().toJson(serviceSelected));
       startActivity(intent);

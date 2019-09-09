@@ -57,12 +57,7 @@ public class ClaimDetailActivity extends AppCompatActivity {
       tvUserName.setText(session.getSessionUser());
       tvClaimSubject.setText(claim.getSubject());
       tvClaimDescription.setText(claim.getDescription());
-
-      if (claim.getUpdateDate() != null && !claim.getUpdateDate().isEmpty()) {
-
-        tvClaimUpdateDate.setText(claim.getUpdateDate().split("T")[0]);
-
-      }
+      tvClaimStatus.setText(claim.getDescriptionStatus());
 
       DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
       Date date = null;
@@ -77,7 +72,16 @@ public class ClaimDetailActivity extends AppCompatActivity {
       String startDate = df.format(date);
       tvClaimDate.setText(startDate);
 
-      tvClaimStatus.setText(claim.getDescriptionStatus());
+      if (claim.getUpdateDate() != null && !claim.getUpdateDate().isEmpty()) {
+        try {
+          date = formatter.parse(claim.getUpdateDate().split("T")[0]);
+          assert date != null;
+          startDate = df.format(date);
+          tvClaimUpdateDate.setText(startDate);
+        } catch (ParseException e) {
+          e.printStackTrace();
+        }
+      }
       setTitle(String.format(getString(R.string.claim_Id), " : " + claim.getClaimId()));
 
     }

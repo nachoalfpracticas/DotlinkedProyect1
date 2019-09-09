@@ -6,17 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".services.ServiceOrderActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_select_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-      android:layout_marginTop="5dp"
-        android:background="@color/blueDotlinked"
-        android:padding="4dp"
-        android:text="@string/select"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_services_schedules" />
+  <androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btn_select_service_other_day"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:background="@color/blueDotlinked"
+    android:padding="4dp"
+    android:text="@string/other_day"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/rv_services_schedules" />
 
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar_service_order"
@@ -24,80 +24,83 @@
     android:layout_height="56dp"
     android:background="@color/blueDotlinked"
     android:minHeight="?attr/actionBarSize"
+    android:textAlignment="textEnd"
     android:theme="?attr/actionBarTheme"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="1.0"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintTop_toTopOf="parent"
+    app:title="Medico" />
 
   <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_services_schedules"
-        android:layout_width="match_parent"
+    android:id="@+id/rv_services_schedules"
+    android:layout_width="match_parent"
     android:layout_height="250dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+    android:layout_marginLeft="24dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginRight="24dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lbl_user_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/user_name"
-        android:textAlignment="center"
-        android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_service" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/lbl_user_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="@string/user_name"
+    android:textAlignment="center"
+    android:textColor="@color/blueDotlinked"
+    android:textSize="24sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tv_service_location" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_user_name"
-        android:layout_width="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="50dp"
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tv_user_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:isScrollContainer="true"
+    android:padding="5dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:text="@string/user_name"
+    android:textAlignment="center"
+    android:textSize="20sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lbl_user_name" />
 
-        android:popupTheme="@style/SpinnerPopUpTheme"
-
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:isScrollContainer="true"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:text="@string/service"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_user_name" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lbl_service"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/service"
-        android:textAlignment="center"
-        android:textColor="@color/blueDotlinked"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_service"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar_service_order" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/lbl_service"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="@string/location"
+    android:textAlignment="center"
+    android:textColor="@color/blueDotlinked"
+    android:textSize="24sp"
+    app:layout_constraintBottom_toTopOf="@+id/tv_service_location"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar_service_order" />
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:isScrollContainer="true"
-        android:padding="5dp"
-        android:text="@string/service"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_service" />
+  <com.google.android.material.textview.MaterialTextView
+    android:id="@+id/tv_service_location"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:isScrollContainer="true"
+    android:padding="5dp"
+    android:text="@string/location"
+    android:textAlignment="center"
+    android:textSize="20sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/lbl_service" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

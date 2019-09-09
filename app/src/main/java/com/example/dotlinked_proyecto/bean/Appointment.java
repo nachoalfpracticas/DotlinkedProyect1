@@ -16,7 +16,7 @@ public class Appointment {
   private Integer personId;
   @SerializedName("servicio")
   @Expose
-  private String service;
+  private String serviceName;
   @SerializedName("fechaDesde")
   @Expose
   private String dateFrom;
@@ -60,12 +60,12 @@ public class Appointment {
     this.personId = personId;
   }
 
-  public String getService() {
-    return service;
+  public String getServiceName() {
+    return serviceName;
   }
 
   public void setServicio(String service) {
-    this.service = service;
+    this.serviceName = service;
   }
 
   public String getDateFrom() {
