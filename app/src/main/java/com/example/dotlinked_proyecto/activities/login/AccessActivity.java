@@ -203,9 +203,9 @@ public class AccessActivity extends AppCompatActivity {
                   session.setCompanyIdUser(String.valueOf(comp.getCompanyId()));
                   Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), companiesName),
                       Toast.LENGTH_SHORT).show();
-                  if (companyList.size() == 1 && roles.length == 1 && needAuth) {
-                    Util.navigationTo(AccessActivity.this, true, roles[0], userName, companyName, btnAccess);
-                  }
+//                  if (companyList.size() == 1 && roles.length == 1 && !needAuth) {
+//                    Util.navigationTo(AccessActivity.this, false, roles[0], userName, companyName, btnAccess);
+//                  }
                   //if (companyList.size() > 0 && !session.getUserUseFingerprint()) {
                   //btnAccess.setEnabled(true);
                   //}

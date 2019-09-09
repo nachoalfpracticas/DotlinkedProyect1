@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import androidx.preference.PreferenceManager;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
+import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Company;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.google.gson.Gson;
@@ -82,6 +83,21 @@ public class Session {
 
   public void setCompaniesUserByRol(List<Company> companyList) {
     prefs.edit().putString("listCompanies", new Gson().toJson(companyList)).apply();
+  }
+
+  public List<Appointment> getAppointmentsOfUser() {
+    Gson gson = new Gson();
+    Type appointmentsOfUser = new TypeToken<List<Appointment>>() {
+    }.getType();
+    return gson.fromJson(prefs.getString("appointmentsOfUser", ""), appointmentsOfUser);
+  }
+
+  public void setAppointmentsOfUser(List<Appointment> appointmentsOfUser) {
+    prefs.edit().putString("appointmentsOfUser", new Gson().toJson(appointmentsOfUser)).apply();
+  }
+
+  public void deleteAppointmentsOfUser() {
+    prefs.edit().remove("appointmentsOfUser").apply();
   }
 
   public String getCompanyIdUser() {

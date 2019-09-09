@@ -136,4 +136,16 @@ public class Util {
         }
         return dateNow.after(date);
     }
+
+  public static Date converDate(String dateToConvert) {
+    Date date = null;
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    try {
+      date = formatter.parse(dateToConvert);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+
+    return date;
+  }
 }

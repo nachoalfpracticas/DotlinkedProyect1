@@ -125,11 +125,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
       List<Fragment> fragments = getSupportFragmentManager().getFragments();
       Fragment currentFragment = fragments.get(0);
       if (currentFragment instanceof EventsCalendarFragment) {
-        Intent intent = new Intent(this, AccessActivity.class)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         // TODO comprobar expiración de token
-        intent.putExtra(TAG_AUTH, false);
-        startActivity(intent);
+        navigateToAccessActivity();
       } else if (currentFragment instanceof ClaimsFragment ||
           currentFragment instanceof PersonalFragment ||
           currentFragment instanceof ServicesFragment) {
@@ -152,12 +149,16 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.home) {
-      Intent intent = new Intent(this, AccessActivity.class)
-              .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-      intent.putExtra(TAG_AUTH, false);
-      startActivity(intent);
+      navigateToAccessActivity();
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void navigateToAccessActivity() {
+    Intent intent = new Intent(this, AccessActivity.class)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    intent.putExtra(TAG_AUTH, false);
+    startActivity(intent);
   }
 
   @Override

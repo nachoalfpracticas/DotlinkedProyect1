@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.Util;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
+import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
@@ -26,6 +29,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +48,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
   private List<ServiceInfo> serviceInfoList;
   private ServicesCompanyService companyService;
   private SimpleDateFormat dateFormat;
+  private List<Appointment> appointmentList;
 
 
 
@@ -102,11 +107,24 @@ public class ServiceOrderActivity extends AppCompatActivity {
         if (response.body() != null && response.body().size() > 0) {
           serviceInfoList = response.body();
           serviceInfoList.forEach(ser -> ser.setDateInit(date));
+          appointmentList = session.getAppointmentsOfUser();
+          if (appointmentList != null) {
+            List<Appointment> appointmentListTemp = appointmentList.stream()
+                    .filter(a -> a.getServiceId().equals(Integer.valueOf(serviceId))
+                            && Util.converDate(a.getDateFrom()).after(Util.converDate(date)))
+                    .collect(Collectors.toList());
+            if (appointmentListTemp.size() > 0) {
+              UtilMessages.showAppointmentInfo(ServiceOrderActivity.this,
+                      appointmentListTemp.get(0).getService(), appointmentListTemp.get(0).getDateFrom());
+            }
+          }
           // TODO
           // Si la lista esta vacía mostrar mensaje ( citas no disponibles para hoy ).
           // Cambiar botón para seleccionar otro día.
           // Implementar el calendario para seleccionar otro día.
           setRecyclerViewAdapter(serviceInfoList);
+        } else {
+
         }
       }
 

@@ -222,6 +222,24 @@ public class UtilMessages {
         .setButton1Click(v -> dialogBuilder.dismiss())
         .show();
   }
+
+  public static void showAppointmentInfo(Activity activity, String serviceName, String date) {
+    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
+    dialogBuilder
+            .withTitle(activity.getString(R.string.appointment_info))
+            .withMessage(String.format(activity.getString(R.string.appointment_msg), serviceName, date))
+            .withDialogColor("#ED0D17")
+            .withButton1Text(activity.getString(R.string.OK))
+            .withDuration(400)
+            .withEffect(Effectstype.Slidetop)
+            .isCancelableOnTouchOutside(false)
+            .setButton1Click(v2 -> {
+              dialogBuilder.dismiss();
+
+            })
+            .show();
+  }
+
 }
 
 

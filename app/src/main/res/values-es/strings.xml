@@ -143,6 +143,8 @@
   <string name="service_status_pending">pendiente</string>
   <string name="igDate">04–09–2019</string>
   <string name="igHour">14:30</string>
+    <string name="appointment_info">Información Citas</string>
+    <string name="appointment_msg">Ya tiene una cita reservada para el servicio %1$s el día %2$s</string>
     <string-array name="roles_array">
         <item>Inquilino</item>
         <item>Proveedor</item>

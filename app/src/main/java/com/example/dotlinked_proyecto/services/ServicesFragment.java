@@ -99,6 +99,7 @@ public class ServicesFragment extends Fragment {
     df = new SimpleDateFormat(Objects.requireNonNull(getActivity()).getString(R.string.date_format), Locale.getDefault());
     dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     session = new Session(context);
+    session.deleteAppointmentsOfUser();
     personList = new ArrayList<>();
     appointmentList = new ArrayList<>();
     companyService = new ServicesCompanyService();
@@ -200,6 +201,7 @@ public class ServicesFragment extends Fragment {
       public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
         if (response.body() != null && response.body().size() > 0) {
           appointmentList = response.body();
+          session.setAppointmentsOfUser(appointmentList);
         } else {
           Toast.makeText(context, getString(R.string.no_services_data), Toast.LENGTH_LONG).show();
         }
