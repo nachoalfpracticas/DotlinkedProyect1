@@ -55,6 +55,11 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="50dp"
+
+        android:popupTheme="@style/SpinnerPopUpTheme"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:isScrollContainer="true"

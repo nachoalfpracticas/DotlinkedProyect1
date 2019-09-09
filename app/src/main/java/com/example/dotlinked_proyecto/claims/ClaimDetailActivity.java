@@ -26,6 +26,8 @@ public class ClaimDetailActivity extends AppCompatActivity {
   private AppCompatTextView tvClaimDate;
   private AppCompatTextView tvClaimStatus;
   private AppCompatTextView tvUserName;
+  private AppCompatTextView tvClaimDescription;
+  private AppCompatTextView tvClaimUpdateDate;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,20 @@ public class ClaimDetailActivity extends AppCompatActivity {
     tvClaimSubject = findViewById(R.id.claim_subject);
     tvClaimDate = findViewById(R.id.claim_broadcast_date);
     tvClaimStatus = findViewById(R.id.claim_status);
+    tvClaimDescription = findViewById(R.id.claim_description);
+    tvClaimUpdateDate = findViewById(R.id.claim_updateDate);
 
     if (claim != null) {
 
       tvUserName.setText(session.getSessionUser());
       tvClaimSubject.setText(claim.getSubject());
+      tvClaimDescription.setText(claim.getDescription());
+
+      if (claim.getUpdateDate() != null && !claim.getUpdateDate().isEmpty()) {
+
+        tvClaimUpdateDate.setText(claim.getUpdateDate().split("T")[0]);
+
+      }
 
       DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
       Date date = null;
