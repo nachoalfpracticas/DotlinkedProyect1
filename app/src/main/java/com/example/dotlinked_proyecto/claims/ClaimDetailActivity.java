@@ -50,7 +50,7 @@ public class ClaimDetailActivity extends AppCompatActivity {
 
     if (claim != null) {
 
-      tvUserName.setText(session.getSessionUser());
+      tvUserName.setText(session.getTenantSelect().getFullName());
       tvClaimSubject.setText(claim.getSubject());
       tvClaimDescription.setText(claim.getDescription());
       tvClaimStatus.setText(claim.getDescriptionStatus());

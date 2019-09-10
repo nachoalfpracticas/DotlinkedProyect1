@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -118,10 +117,18 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
     btnSelectService.setOnClickListener(view -> {
       appointmentList = session.getAppointmentsOfUser();
       if (appointmentList != null) {
-        List<Appointment> appointmentListTemp = appointmentList.stream()
-            .filter(a -> a.getServiceId().equals(Integer.valueOf(serviceSelected.getServiceId()))
-                    && Util.convertDate(a.getDateFrom()).after(new Date()))
-            .collect(Collectors.toList());
+
+        List<Appointment> appointmentListTemp = new ArrayList<>();
+        for (Appointment a : appointmentList) {
+          int id = a.getServiceId();
+          String dteFrom = a.getDateFrom();
+          Date date = Util.convertDate(dteFrom);
+          if (id == Integer.valueOf(serviceSelected.getServiceId())) {
+            if (date.after(new Date())) {
+              appointmentListTemp.add(a);
+            }
+          }
+        }
         if (appointmentListTemp.size() > 0) {
           UtilMessages.showAppointmentInfoNewOrChange(ServicePreviewOrderActivity.this,
               serviceSelected,

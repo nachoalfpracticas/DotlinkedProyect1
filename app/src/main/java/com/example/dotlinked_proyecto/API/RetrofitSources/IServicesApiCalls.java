@@ -5,11 +5,15 @@ import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface IServicesApiCalls {
@@ -35,4 +39,7 @@ public interface IServicesApiCalls {
                                               @Query("fecha") String date,
                                               @Query("personaid") String personId,
                                               @Header("Authorization") String token);
+
+  @POST("CrearModificarCita")
+  Call<JSONObject> createUpdateAppointment(@Body Appointment appointment, @Header("Authorization") String token);
 }

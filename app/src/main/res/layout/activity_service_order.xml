@@ -19,20 +19,20 @@
     app:layout_constraintTop_toBottomOf="@+id/rv_services_schedules" />
 
   <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar_service_order"
-      android:layout_width="0dp"
-      android:layout_height="56dp"
-      android:background="@color/blueDotlinked"
-      android:minHeight="?attr/actionBarSize"
-      android:textAlignment="textStart"
-      android:theme="?attr/actionBarTheme"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:title="@string/change_appointment"
-      app:titleMargin="0dp"
-      app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium" />
+    android:id="@+id/toolbar_service_order"
+    android:layout_width="0dp"
+    android:layout_height="56dp"
+    android:background="@color/blueDotlinked"
+    android:minHeight="?attr/actionBarSize"
+    android:textAlignment="textStart"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:title="@string/change_appointment"
+    app:titleMargin="0dp"
+    app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium" />
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rv_services_schedules"

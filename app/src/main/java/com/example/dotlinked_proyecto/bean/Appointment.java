@@ -36,6 +36,12 @@ public class Appointment {
   @Expose
   private Integer appointmentId;
 
+  public Appointment(Integer serviceId, Integer personId, String dateFrom) {
+    this.serviceId = serviceId;
+    this.personId = personId;
+    this.dateFrom = dateFrom;
+  }
+
   public Integer getServiceId() {
     return serviceId;
   }

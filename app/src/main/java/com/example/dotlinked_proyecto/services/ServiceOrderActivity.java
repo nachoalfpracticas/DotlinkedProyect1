@@ -1,8 +1,12 @@
 package com.example.dotlinked_proyecto.services;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -19,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
-import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
@@ -29,6 +32,8 @@ import com.example.dotlinked_proyecto.services.Adapter.RecyclerViewShceduleServi
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,6 +57,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
   private RecyclerView rcSchedules;
   private Session session;
   private Service service;
+  private ServiceInfo serviceInfo;
   private Appointment appointment;
   private List<ServiceInfo> serviceInfoList;
   private ServicesCompanyService companyService;
@@ -81,7 +87,8 @@ public class ServiceOrderActivity extends AppCompatActivity {
     if (appointment == null)
       toolbar.setTitle(String.format(getString(R.string.service_name), ": " + service.getServiceName()));
     else {
-      toolbar.setTitle(String.format(getString(R.string.change_appointment), Util.formatDateToLocale(this, appointment.getDateFrom())));
+      toolbar.setTitleTextAppearance(this, R.style.TextAppearance_AppCompat_Small);
+      toolbar.setTitle(String.format(getString(R.string.change_appointment), service.getServiceName(), Util.formatDateToLocale(this, appointment.getDateFrom())));
     }
 
     btnSelectDate = findViewById(R.id.btn_select_service_other_day);
@@ -105,6 +112,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
     String date = dateFormat.format(cal.getTime());
     getAvailableSchedulesToServices(date);
 
+    btnSelectDate.setOnClickListener(v -> showCalendarSelectAppointmentDay());
   }
 
   @SuppressWarnings("NullableProblems")
@@ -123,10 +131,63 @@ public class ServiceOrderActivity extends AppCompatActivity {
           serviceInfoList = response.body();
           serviceInfoList.forEach(ser -> ser.setDateInit(date));
           setRecyclerViewAdapter(serviceInfoList);
+          adapter.setClickListener((view, position) -> {
+            serviceInfo = serviceInfoList.get(position);
+            String dateFrom = Util.formatToDate(serviceInfo.getDateInit()) + " " + serviceInfo.getHour() + ":00";
+            if (appointment != null) {
+              appointment.setDateFrom(dateFrom);
+            } else {
+              // new Appointment(Integer serviceId, Integer personId, String dateFrom)
+              appointment = new Appointment(Integer.valueOf(serviceId), person.getPersonId(), dateFrom);
+            }
+
+            Call<JSONObject> callApp = companyService.createUpdateAppointment(appointment, "bearer " + session.getToken().getAccess_token());
+            callApp.enqueue(new Callback<JSONObject>() {
+              @Override
+              public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                if (response.body() != null) {
+                  Log.d("RESPONSE", response.body().toString());
+                } else {
+                  Log.d("RESPONSE", getString(R.string.save_data_err));
+                }
+              }
+
+              @Override
+              public void onFailure(Call<JSONObject> call, Throwable t) {
+                d("RESPONSE", "Error createUpdateAppointment: " + t.getCause());
+              }
+            });
+          });
         } else {
-          UtilMessages.showMessageDontHoursAvailable(ServiceOrderActivity.this, date);
-          showCalendarSelectAppointmentDay();
-          btnSelectDate.setVisibility(View.VISIBLE);
+          String str = String.format(getString(R.string.without_dates_for_day_selected), Util.formatDateToLocale(ServiceOrderActivity.this, date));
+          SpannableString spa = new SpannableString(str);
+          int i = str.indexOf("@");
+          Drawable d = getResources().getDrawable(R.drawable.claim_icon);
+          d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+          spa.setSpan(new ImageSpan(d), i, i + 1, ImageSpan.ALIGN_BOTTOM);
+
+          NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(ServiceOrderActivity.this);
+          dialogBuilder
+              .withTitle("   " + getString(R.string.appointment_info))
+              .withIcon(R.drawable.ic_dates_icon_white)
+              .withDividerColor(R.color.daysLabelColor)
+              .withMessage(spa)
+              .withMessageColor("#FAD201")
+              .withDialogColor(R.color.blueDotlinked)
+              .withDuration(700)
+              .withButton1Text(getString(R.string.OK))
+              .withButton2Text(getString(R.string.cancel))
+              .withEffect(Effectstype.RotateBottom)
+              .isCancelableOnTouchOutside(false)
+              .setButton1Click(v -> {
+                btnSelectDate.setVisibility(View.VISIBLE);
+                dialogBuilder.dismiss();
+              })
+              .setButton2Click(view -> {
+                finish();
+                dialogBuilder.dismiss();
+              })
+              .show();
         }
       }
 

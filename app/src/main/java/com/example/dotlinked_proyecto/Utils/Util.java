@@ -139,9 +139,8 @@ public class Util {
 
   public static Date convertDate(String dateToConvert) {
     Date date = null;
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     try {
-      date = formatter.parse(dateToConvert);
+      date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateToConvert);
     } catch (ParseException e) {
       e.printStackTrace();
     }
@@ -163,5 +162,17 @@ public class Util {
     return df.format(date);
   }
 
+  public static String formatToDate(String dateToTransform) {
+    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    Date date = null;
+    try {
+      date = formatter.parse(dateToTransform);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    assert date != null;
+    return df.format(date);
+  }
 
 }

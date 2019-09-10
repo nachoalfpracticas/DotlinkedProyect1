@@ -336,34 +336,8 @@ public class UtilMessages {
             .show();
   }
 
-  public static void showMessageDontHoursAvailable(Activity activity, String date) {
+  public static void showMessageNotHoursAvailable(Activity activity, String date) {
 
-    String str = String.format(activity.getString(R.string.without_dates_for_day_selected), date);
-    SpannableString spa = new SpannableString(str);
-    int i = str.indexOf("@");
-    Drawable d = activity.getResources().getDrawable(R.drawable.claim_icon);
-    d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
-    spa.setSpan(new ImageSpan(d), i, i + 1, ImageSpan.ALIGN_BOTTOM);
-
-    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
-    dialogBuilder
-            .withTitle(activity.getString(R.string.appointment_info))
-            .withIcon(R.drawable.ic_dates_icon_white)
-            .withDividerColor(R.color.daysLabelColor)
-            .withMessage(spa)
-            .withMessageColor("#FAD201")
-            .withDialogColor(R.color.blueDotlinked)
-            .withDuration(700)
-            .withButton1Text(activity.getString(R.string.OK))
-            .withButton2Text(activity.getString(R.string.cancel))
-            .withEffect(Effectstype.RotateBottom)
-            .isCancelableOnTouchOutside(false)
-            .setButton1Click(v -> dialogBuilder.dismiss())
-            .setButton2Click(view -> {
-              activity.finish();
-              dialogBuilder.dismiss();
-            })
-            .show();
 
   }
 }

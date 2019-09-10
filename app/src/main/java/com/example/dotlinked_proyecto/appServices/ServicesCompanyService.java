@@ -7,6 +7,8 @@ import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,5 +40,10 @@ public class ServicesCompanyService implements IServicesApiCalls {
   @Override
   public Call<List<ServiceInfo>> listScheduleService(String companyId, String serviceId, String date, String personId, String token) {
     return servicesApiCalls.listScheduleService(companyId, serviceId, date, personId, token);
+  }
+
+  @Override
+  public Call<JSONObject> createUpdateAppointment(Appointment appointment, String token) {
+    return servicesApiCalls.createUpdateAppointment(appointment, token);
   }
 }
