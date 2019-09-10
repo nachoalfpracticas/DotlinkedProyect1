@@ -1,6 +1,9 @@
 package com.example.dotlinked_proyecto.personal.Adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +50,13 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
     Person person = personData.get(position);
     holder.tvPersonName.setText(person.getFullName().split(",")[0]);
     holder.tvPersonLastName.setText(person.getFullName().split(",")[1]);
-    holder.tvPersonMobile.setText(person.getMobile());
+
+    SpannableString spa = new SpannableString("  " + person.getMobile());
+    Drawable d = context.getResources().getDrawable(R.drawable.ic_phone_green_24dp);
+    d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+    spa.setSpan(new ImageSpan(d), 0, 1, ImageSpan.ALIGN_BOTTOM);
+
+    holder.tvPersonMobile.setText(spa);
     holder.tvPersonEmail.setText(person.getEmail());
     holder.tvPersonRol.setText(person.getRol());
 
