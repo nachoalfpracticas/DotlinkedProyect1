@@ -120,10 +120,10 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
       if (appointmentList != null) {
         List<Appointment> appointmentListTemp = appointmentList.stream()
             .filter(a -> a.getServiceId().equals(Integer.valueOf(serviceSelected.getServiceId()))
-                && Util.converDate(a.getDateFrom()).after(new Date()))
+                    && Util.convertDate(a.getDateFrom()).after(new Date()))
             .collect(Collectors.toList());
         if (appointmentListTemp.size() > 0) {
-          UtilMessages.showAppointmentInfo(ServicePreviewOrderActivity.this,
+          UtilMessages.showAppointmentInfoNewOrChange(ServicePreviewOrderActivity.this,
               serviceSelected,
               appointmentListTemp.get(0),
               appointmentListTemp.get(0).getServiceName(),

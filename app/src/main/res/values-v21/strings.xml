@@ -141,4 +141,9 @@
     <string name="appointment_info">Appointment information</string>
   <string name="appointment_msg">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change the appointment?</string>
   <string name="updateDate">Update date</string>
+  <string name="change">Change</string>
+  <string name="newAppointment">New</string>
+  <string name="change_appointment">Update appointment day %1$s</string>
+  <string name="appointment_msg_new_or_change">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change it or order a new one?</string>
+
 </resources>

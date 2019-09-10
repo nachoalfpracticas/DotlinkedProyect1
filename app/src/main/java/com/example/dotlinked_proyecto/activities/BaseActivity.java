@@ -36,6 +36,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
   private final static String TAG_FRAGMENT = "fragment";
   private final static String TAG_AUTH = "needAuth";
+
   protected DrawerLayout drawerLayout;
   FragmentManager fragmentManager = getSupportFragmentManager();
   private Fragment fragment;
@@ -158,6 +159,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     Intent intent = new Intent(this, AccessActivity.class)
             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
     intent.putExtra(TAG_AUTH, false);
+    intent.putExtra(TAG_FRAGMENT, true);
     startActivity(intent);
   }
 

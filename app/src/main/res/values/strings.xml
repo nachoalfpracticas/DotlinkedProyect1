@@ -143,7 +143,7 @@
   <string name="service_status_pending">pending</string>
   <string name="igDate">04–09–2019</string>
   <string name="igHour">14:30</string>
-    <string name="appointment_info">Appointment information</string>
+  <string name="appointment_info">Appointment information</string>
   <string name="appointment_msg">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change the appointment?</string>
   <string name="updateDate">Update date</string>
   <string name="service_name">Service name %1$s</string>
@@ -159,5 +159,10 @@
     <item>Administrator</item>    
     <item>Super Assistant Manager</item>  
   </string-array>
+  <string name="appointment_msg_new_or_change">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change it or order a new one?</string>
+  <string name="change">Change</string>
+  <string name="newAppointment">New</string>
+  <string name="change_appointment">Update appointment day %1$s</string>
+  <string name="without_dates_for_day_selected">\@ No hours available for day %1$s \\nIf you want select another day press anotherday button</string>
 
 </resources>

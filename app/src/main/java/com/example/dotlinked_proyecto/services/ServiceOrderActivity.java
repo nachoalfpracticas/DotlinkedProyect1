@@ -1,9 +1,12 @@
 package com.example.dotlinked_proyecto.services;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.Util;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
 import com.example.dotlinked_proyecto.services.Adapter.RecyclerViewShceduleServiceAdapter;
+import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -49,7 +56,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
   private List<ServiceInfo> serviceInfoList;
   private ServicesCompanyService companyService;
   private SimpleDateFormat dateFormat;
-
+  private RecyclerViewShceduleServiceAdapter adapter;
 
 
   @Override
@@ -71,23 +78,28 @@ public class ServiceOrderActivity extends AppCompatActivity {
       service = new Gson().fromJson(bundle.getString("serviceSelected"), Service.class);
       appointment = new Gson().fromJson(bundle.getString("appointment"), Appointment.class);
     }
-    setTitle(String.format(getString(R.string.service_name), " : " + service.getServiceName()));
+    if (appointment == null)
+      toolbar.setTitle(String.format(getString(R.string.service_name), ": " + service.getServiceName()));
+    else {
+      toolbar.setTitle(String.format(getString(R.string.change_appointment), Util.formatDateToLocale(this, appointment.getDateFrom())));
+    }
 
     btnSelectDate = findViewById(R.id.btn_select_service_other_day);
     btnSelectDate.setVisibility(View.GONE);
     tvUserName = findViewById(R.id.tv_user_name);
     tvServiceLocation = findViewById(R.id.tv_service_location);
+
+    tvServiceLocation.setText(service.getLocation());
+    tvUserName.setText(session.getTenantSelect().getFullName());
+
     rcSchedules = findViewById(R.id.rv_services_schedules);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     rcSchedules.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcSchedules.getContext(),
-        layoutManager.getOrientation());
+            layoutManager.getOrientation());
     dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider_recycler));
     rcSchedules.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
-
-    tvServiceLocation.setText(service.getLocation());
-    tvUserName.setText(session.getTenantSelect().getFullName());
 
     Calendar cal = Calendar.getInstance();
     String date = dateFormat.format(cal.getTime());
@@ -110,12 +122,10 @@ public class ServiceOrderActivity extends AppCompatActivity {
         if (response.body() != null && response.body().size() > 0) {
           serviceInfoList = response.body();
           serviceInfoList.forEach(ser -> ser.setDateInit(date));
-          // TODO
-          // Si la lista esta vacía mostrar mensaje ( citas no disponibles para hoy ).
-          // Cambiar botón para seleccionar otro día.
-          // Implementar el calendario para seleccionar otro día.
           setRecyclerViewAdapter(serviceInfoList);
         } else {
+          UtilMessages.showMessageDontHoursAvailable(ServiceOrderActivity.this, date);
+          showCalendarSelectAppointmentDay();
           btnSelectDate.setVisibility(View.VISIBLE);
         }
       }
@@ -127,8 +137,37 @@ public class ServiceOrderActivity extends AppCompatActivity {
     });
   }
 
+  @SuppressLint("NewApi")
+  private void showCalendarSelectAppointmentDay() {
+    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(ServiceOrderActivity.this);
+    View view = getLayoutInflater().inflate(getResources().getLayout(R.layout.calendar_select_appointment), null);
+    DatePicker dpSelectDay = view.findViewById(R.id.calendar_select_day);
+
+    dpSelectDay.setOnDateChangedListener((datePicker, i, i1, i2) -> {
+      int day = datePicker.getDayOfMonth();
+      int month = datePicker.getMonth();
+      int year = datePicker.getYear();
+      String date = year + "-" + (month + 1) + "-" + day;
+      String dateFormat = Util.formatDateToLocale(ServiceOrderActivity.this, date);
+
+      Toast.makeText(ServiceOrderActivity.this, "touch in day: " + dateFormat, Toast.LENGTH_LONG).show();
+      getAvailableSchedulesToServices(date);
+      dialogBuilder.dismiss();
+    });
+
+    dialogBuilder.withEffect(Effectstype.Fadein)
+            .withDuration(700)
+            .withMessageColor("#FAD201")
+            .withDialogColor(R.color.blueDotlinked)
+            .withDividerColor(R.color.daysLabelColor)
+            .isCancelable(false)
+            .isCancelableOnTouchOutside(false)
+            .setCustomView(view, ServiceOrderActivity.this)
+            .show();
+  }
+
   private void setRecyclerViewAdapter(List<ServiceInfo> serviceInfoList) {
-    RecyclerViewShceduleServiceAdapter adapter = new RecyclerViewShceduleServiceAdapter(this, serviceInfoList);
+    adapter = new RecyclerViewShceduleServiceAdapter(this, serviceInfoList);
     rcSchedules.setAdapter(adapter);
   }
 

@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.BaseActivity;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,10 +70,9 @@ public class Util {
     emailIntent.putExtra(Intent.EXTRA_TEXT, ""); // * configurar email aquí!
 
     try {
-      context.startActivity(Intent.createChooser(emailIntent,"Enviar email"));
+      context.startActivity(Intent.createChooser(emailIntent, "Enviar email"));
       Log.i("EMAIL", "Enviando email...");
-    }
-    catch (android.content.ActivityNotFoundException e) {
+    } catch (android.content.ActivityNotFoundException e) {
       makeText(context, "NO existe ningún cliente de email instalado!.", Toast.LENGTH_SHORT).show();
     }
   }
@@ -103,7 +103,7 @@ public class Util {
     else {
       activity.finish();
       if (activity.getString(R.string.rol_tenant).equals(rol) ||
-          activity.getString(R.string.rol_contact).equals(rol)) {
+              activity.getString(R.string.rol_contact).equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);
         activity.startActivity(intent);
       } else if (activity.getString(R.string.rol_provider).equals(rol)) {
@@ -117,27 +117,27 @@ public class Util {
         activity.startActivity(intent);
       } else {
         makeText(activity, "ERROR: " + String.format(activity.getString(R.string.select_item), rol),
-            Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();
       }
     }
   }
 
-    public static boolean dateCompare(String dateToCompare) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Calendar cal = Calendar.getInstance();
-        Date date = new Date();
-        Date dateNow = cal.getTime();
-        try {
-            date = df.parse(dateToCompare);
-            assert date != null;
-            cal.setTime(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return dateNow.after(date);
+  public static boolean dateCompare(String dateToCompare) {
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    Calendar cal = Calendar.getInstance();
+    Date date = new Date();
+    Date dateNow = cal.getTime();
+    try {
+      date = df.parse(dateToCompare);
+      assert date != null;
+      cal.setTime(date);
+    } catch (ParseException e) {
+      e.printStackTrace();
     }
+    return dateNow.after(date);
+  }
 
-  public static Date converDate(String dateToConvert) {
+  public static Date convertDate(String dateToConvert) {
     Date date = null;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     try {
@@ -148,4 +148,20 @@ public class Util {
 
     return date;
   }
+
+  public static String formatDateToLocale(Activity activity, String dateToTransform) {
+    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    Date date = null;
+    try {
+      date = formatter.parse(dateToTransform);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    String patternFormat = activity.getString(R.string.date_format);
+    DateFormat df = new SimpleDateFormat(patternFormat, Locale.getDefault());
+    assert date != null;
+    return df.format(date);
+  }
+
+
 }

@@ -59,9 +59,11 @@ import retrofit2.Response;
 public class AccessActivity extends AppCompatActivity {
 
   private static final String KEY_NAME = "FingerPrintPoC";
+  private static final String TAG_FRAGMENT = "fragment";
   private String[] roles;
   private String userName;
   private boolean needAuth;
+  private boolean fragment;
   private String rol;
   private Session session;
   private FingerprintManager fingerprintManager;
@@ -86,6 +88,7 @@ public class AccessActivity extends AppCompatActivity {
     Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
       needAuth = bundle.getBoolean("needAuth", true);
+      fragment = bundle.getBoolean(TAG_FRAGMENT, false);
     }
 
     roles = new Gson().fromJson(session.getUserRoles(), String[].class);
@@ -203,9 +206,9 @@ public class AccessActivity extends AppCompatActivity {
                   session.setCompanyIdUser(String.valueOf(comp.getCompanyId()));
                   Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), companiesName),
                       Toast.LENGTH_SHORT).show();
-//                  if (companyList.size() == 1 && roles.length == 1 && !needAuth) {
-//                    Util.navigationTo(AccessActivity.this, false, roles[0], userName, companyName, btnAccess);
-//                  }
+                  if (companyList.size() == 1 && roles.length == 1 && !needAuth && !fragment) {
+                    Util.navigationTo(AccessActivity.this, false, roles[0], userName, companyName, btnAccess);
+                  }
                   //if (companyList.size() > 0 && !session.getUserUseFingerprint()) {
                   //btnAccess.setEnabled(true);
                   //}

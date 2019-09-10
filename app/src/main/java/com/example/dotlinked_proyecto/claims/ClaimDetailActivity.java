@@ -8,14 +8,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.bean.Claim;
 import com.google.gson.Gson;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Objects;
 
 public class ClaimDetailActivity extends AppCompatActivity {
@@ -59,28 +55,10 @@ public class ClaimDetailActivity extends AppCompatActivity {
       tvClaimDescription.setText(claim.getDescription());
       tvClaimStatus.setText(claim.getDescriptionStatus());
 
-      DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-      Date date = null;
-      try {
-        date = formatter.parse(claim.getBroadcastDate());
-      } catch (ParseException e) {
-        e.printStackTrace();
-      }
-      String patternFormat = getString(R.string.date_format);
-      DateFormat df = new SimpleDateFormat(patternFormat, Locale.getDefault());
-      assert date != null;
-      String startDate = df.format(date);
-      tvClaimDate.setText(startDate);
+      tvClaimDate.setText(Util.formatDateToLocale(this, claim.getBroadcastDate()));
 
       if (claim.getUpdateDate() != null && !claim.getUpdateDate().isEmpty()) {
-        try {
-          date = formatter.parse(claim.getUpdateDate().split("T")[0]);
-          assert date != null;
-          startDate = df.format(date);
-          tvClaimUpdateDate.setText(startDate);
-        } catch (ParseException e) {
-          e.printStackTrace();
-        }
+        tvClaimUpdateDate.setText(Util.unTranslateRoles(this, claim.getUpdateDate().split("T")[0]));
       }
       setTitle(String.format(getString(R.string.claim_Id), " : " + claim.getClaimId()));
 
