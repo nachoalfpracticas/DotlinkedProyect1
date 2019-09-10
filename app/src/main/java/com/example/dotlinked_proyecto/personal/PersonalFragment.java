@@ -127,10 +127,6 @@ public class PersonalFragment extends Fragment {
     rvPersons = view.findViewById(R.id.rv_personal);
     LinearLayoutManager layoutManager = new LinearLayoutManager(context);
     rvPersons.setLayoutManager(layoutManager);
-    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvPersons.getContext(),
-            LinearLayoutManager.VERTICAL);
-    dividerItemDecoration.setDrawable(context.getResources().getDrawable(R.drawable.divider_recycler));
-    rvPersons.addItemDecoration(dividerItemDecoration);
 
     return view;
   }

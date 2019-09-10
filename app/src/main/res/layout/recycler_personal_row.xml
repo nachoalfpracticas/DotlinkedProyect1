@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="24dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="24dp"
+    android:foregroundGravity="center"
+    android:alpha="0.8"
+    android:theme="@style/Base.CardView"
+    android:background="@color/card_view_background"
+    app:cardCornerRadius="30dp">
+
+<GridLayout
+    android:background="@color/card_view_background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/tv_person_lastName"
@@ -76,7 +94,7 @@
         android:paddingEnd="@dimen/margin_16"
         android:text="alfonso8969@gmail.com"
         android:textAlignment="textEnd"
-        android:textColor="@color/hyperLink"
+        android:textColor="@color/blueDotlinked"
         android:textSize="20sp"
 
         tools:targetApi="o" />
@@ -106,3 +124,4 @@
 
 
 </GridLayout>
+</androidx.cardview.widget.CardView>
