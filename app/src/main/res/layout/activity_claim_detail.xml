@@ -40,7 +40,7 @@
             android:id="@+id/card_view_layout"
             android:layout_width="match_parent"
             android:layout_height="557dp"
-            android:background="@color/card_view_backgroud">
+            android:background="@color/card_view_background">
 
 
             <androidx.appcompat.widget.AppCompatTextView

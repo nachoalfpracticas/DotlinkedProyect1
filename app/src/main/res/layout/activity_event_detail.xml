@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@drawable/fondo"
+    android:background="@drawable/fondo"
   tools:context=".events.EventDetailActivity">
 
   <androidx.appcompat.widget.Toolbar
@@ -40,7 +40,7 @@
       android:id="@+id/card_view_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/card_view_backgroud">
+      android:background="@color/card_view_background">
 
 
       <com.google.android.material.textview.MaterialTextView
