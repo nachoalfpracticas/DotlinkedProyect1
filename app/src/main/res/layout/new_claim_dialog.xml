@@ -10,7 +10,18 @@
   tools:context=".claims.AddNewClaimActivity">
 
 
-  <androidx.appcompat.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/primary"
+        android:text="@string/description"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
       android:id="@+id/tv_subject"
       android:layout_width="match_parent"
       android:layout_height="50dp"
@@ -21,23 +32,60 @@
       android:textColor="@color/colorWhite"
       tools:ignore="NotSibling" />
 
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/colToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary">
 
-  <androidx.appcompat.widget.AppCompatEditText
-      android:id="@+id/tv_description"
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_marginTop="50dp"
-      android:background="@color/primary"
-      android:text="@string/description"
-      android:textAlignment="center"
-      android:textColor="@color/colorWhite" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-  <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/til_subject"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:hint="@string/subject"
-      app:boxCornerRadiusBottomEnd="5sp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_action"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_save_white_24dp"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/action"
+                android:textColor="@android:color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/button_close"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/img_close_button"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/ic_close" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawablePadding="2dp"
+                android:gravity="center_vertical"
+                android:text="@string/add_new_claim"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/subject"
+        app:boxCornerRadiusBottomEnd="5sp">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_subject"
@@ -52,54 +100,6 @@
         android:textSize="20sp"
         tools:text="@string/subject" />
   </com.google.android.material.textfield.TextInputLayout>
-
-
-  <com.google.android.material.appbar.CollapsingToolbarLayout
-    android:id="@+id/colToolbar"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="@color/primary">
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="horizontal">
-
-
-      <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/button_close"
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/img_close_button"
-        android:tint="@android:color/white"
-        app:srcCompat="@drawable/ic_close" />
-
-      <androidx.appcompat.widget.AppCompatTextView
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          android:drawablePadding="2dp"
-          android:gravity="center_vertical"
-          android:text="@string/add_new_claim"
-          android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-          android:textColor="@android:color/white" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_action"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:drawableStart="@drawable/ic_save_white_24dp"
-            android:drawablePadding="5dp"
-            android:gravity="center"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="@string/action"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
-  </com.google.android.material.appbar.CollapsingToolbarLayout>
 
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/til_description"
