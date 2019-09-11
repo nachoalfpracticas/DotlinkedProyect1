@@ -23,8 +23,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
+import com.example.dotlinked_proyecto.bean.AppointmentNewOrUpdate;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
@@ -33,11 +35,10 @@ import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -92,7 +93,6 @@ public class ServiceOrderActivity extends AppCompatActivity {
     }
 
     btnSelectDate = findViewById(R.id.btn_select_service_other_day);
-    btnSelectDate.setVisibility(View.GONE);
     tvUserName = findViewById(R.id.tv_user_name);
     tvServiceLocation = findViewById(R.id.tv_service_location);
 
@@ -121,6 +121,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
     String serviceId = service.getServiceId();
     Person person = session.getTenantSelect();
     String token = session.getToken().getAccess_token();
+    boolean isNew = appointment != null;
 
     Call<List<ServiceInfo>> call = companyService.listScheduleService(companyId, serviceId, date, String.valueOf(person.getPersonId()), "bearer " + token);
     call.enqueue(new Callback<List<ServiceInfo>>() {
@@ -133,27 +134,45 @@ public class ServiceOrderActivity extends AppCompatActivity {
           setRecyclerViewAdapter(serviceInfoList);
           adapter.setClickListener((view, position) -> {
             serviceInfo = serviceInfoList.get(position);
-            String dateFrom = Util.formatToDate(serviceInfo.getDateInit()) + " " + serviceInfo.getHour() + ":00";
-            if (appointment != null) {
-              appointment.setDateFrom(dateFrom);
-            } else {
-              // new Appointment(Integer serviceId, Integer personId, String dateFrom)
-              appointment = new Appointment(Integer.valueOf(serviceId), person.getPersonId(), dateFrom);
-            }
+            String dateFrom = Util.formatToDate(serviceInfo.getDateInit());
+            String dateTimeFrom = dateFrom + "T" + serviceInfo.getHour() + ":00";
+            AppointmentNewOrUpdate newOrUpdate =
+                    new AppointmentNewOrUpdate(null,
+                            Integer.valueOf(serviceId), person.getPersonId(), dateTimeFrom);
+            if (isNew) newOrUpdate.setAppointmentId(appointment.getAppointmentId());
 
-            Call<JSONObject> callApp = companyService.createUpdateAppointment(appointment, "bearer " + session.getToken().getAccess_token());
-            callApp.enqueue(new Callback<JSONObject>() {
+            Call<String> callApp = companyService.createUpdateAppointment(
+                    newOrUpdate.getAppointmentId(),
+                    newOrUpdate.getServiceId(),
+                    newOrUpdate.getPersonId(),
+                    newOrUpdate.getDateFrom(),
+                    "bearer " + session.getToken().getAccess_token());
+
+            callApp.enqueue(new Callback<String>() {
               @Override
-              public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+              public void onResponse(Call<String> call, Response<String> response) {
                 if (response.body() != null) {
-                  Log.d("RESPONSE", response.body().toString());
+                  String res = response.body();
+                  Log.d("RESPONSE", response.body());
+                  UtilMessages.showResponseToCreateUpdateAppointment(ServiceOrderActivity.this, isNew, res);
+                  if (res.toLowerCase().equals(getString(R.string.OK).toLowerCase())) {
+                    Calendar c = Calendar.getInstance();
+                    Date dateInit = Util.convertDate(date);
+                    c.setTime(dateInit);
+                    c.set(Calendar.DAY_OF_MONTH, 1);
+                    Date d = c.getTime();
+                    String dateInit2 = Util.formatDateToLocale(ServiceOrderActivity.this, d.toString());
+                    Util.getReservedServicesOfUser(ServiceOrderActivity.this, dateInit2);
+                  }
                 } else {
+                  UtilMessages.showLoadDataError(ServiceOrderActivity.this);
                   Log.d("RESPONSE", getString(R.string.save_data_err));
                 }
               }
 
               @Override
-              public void onFailure(Call<JSONObject> call, Throwable t) {
+              public void onFailure(Call<String> call, Throwable t) {
+                UtilMessages.showLoadDataError(ServiceOrderActivity.this);
                 d("RESPONSE", "Error createUpdateAppointment: " + t.getCause());
               }
             });
@@ -179,10 +198,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
               .withButton2Text(getString(R.string.cancel))
               .withEffect(Effectstype.RotateBottom)
               .isCancelableOnTouchOutside(false)
-              .setButton1Click(v -> {
-                btnSelectDate.setVisibility(View.VISIBLE);
-                dialogBuilder.dismiss();
-              })
+                  .setButton1Click(v -> dialogBuilder.dismiss())
               .setButton2Click(view -> {
                 finish();
                 dialogBuilder.dismiss();

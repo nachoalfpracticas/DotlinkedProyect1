@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.service.autofill.FieldClassification;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.Log;
@@ -69,7 +68,7 @@ public class UtilMessages {
         .show();
   }
 
-  public static void showLoadDataError(Activity activity, FieldClassification.Match matchSelected) {
+  public static void showLoadDataError(Activity activity) {
     NiftyDialogBuilder loadMatchErr = NiftyDialogBuilder.getInstance(activity);
     loadMatchErr
         .withTitle(activity.getResources().getString(R.string.load_data))
@@ -336,8 +335,28 @@ public class UtilMessages {
             .show();
   }
 
-  public static void showMessageNotHoursAvailable(Activity activity, String date) {
+  public static void showResponseToCreateUpdateAppointment(Activity activity, boolean isNew, String response) {
+    String msg = "";
+    String color = null;
+    String title = "";
+    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
+    dialogBuilder
+            .withTitle("    " + title)
+            .withIcon(R.drawable.ic_dates_icon_white)
+            .withDividerColor(R.color.daysLabelColor)
+            .withMessage(msg)
+            .withMessageColor(color)
+            .withDialogColor(R.color.blueDotlinked)
+            .withButton1Text(activity.getString(R.string.OK))
+            .withDuration(700)
+            .withEffect(Effectstype.RotateBottom)
+            .isCancelableOnTouchOutside(false)
+            .setButton1Click(v2 -> {
 
+              activity.finish();
+              dialogBuilder.dismiss();
+            })
+            .show();
 
   }
 }

@@ -30,6 +30,7 @@ import com.example.dotlinked_proyecto.services.Adapter.SpinnerTenantsAdapter;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -117,14 +118,19 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
     btnSelectService.setOnClickListener(view -> {
       appointmentList = session.getAppointmentsOfUser();
       if (appointmentList != null) {
+        Calendar calNow = Calendar.getInstance();
+        Calendar calDate = Calendar.getInstance();
 
         List<Appointment> appointmentListTemp = new ArrayList<>();
         for (Appointment a : appointmentList) {
           int id = a.getServiceId();
           String dteFrom = a.getDateFrom();
           Date date = Util.convertDate(dteFrom);
+          calDate.setTime(date);
+          boolean sameDay = calDate.get(Calendar.DAY_OF_YEAR) == calNow.get(Calendar.DAY_OF_YEAR);
+
           if (id == Integer.valueOf(serviceSelected.getServiceId())) {
-            if (date.after(new Date())) {
+            if (date.after(new Date()) || sameDay) {
               appointmentListTemp.add(a);
             }
           }

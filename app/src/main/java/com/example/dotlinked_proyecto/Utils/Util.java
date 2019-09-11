@@ -11,8 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 
+import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.BaseActivity;
+import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
+import com.example.dotlinked_proyecto.bean.Appointment;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,11 +25,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.util.Log.d;
 import static android.widget.Toast.makeText;
 
 public class Util {
 
+  private static List<Appointment> appointmentList;
 
   public static List<String> translateRoles(Activity activity, List<String> roles) {
     List<String> translatedRoles = new ArrayList<>();
@@ -140,7 +150,7 @@ public class Util {
   public static Date convertDate(String dateToConvert) {
     Date date = null;
     try {
-      date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateToConvert);
+      date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(dateToConvert);
     } catch (ParseException e) {
       e.printStackTrace();
     }
@@ -173,6 +183,44 @@ public class Util {
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     assert date != null;
     return df.format(date);
+  }
+
+
+  @SuppressWarnings("NullableProblems")
+  public static void getReservedServicesOfUser(Activity activity, String dateInit) {
+    ServicesCompanyService companyService = new ServicesCompanyService();
+    Session session = new Session(activity);
+    String access_token = session.getToken().getAccess_token();
+    String rol = session.getRolUserSelected();
+    String companyId = session.getCompanyIdUser();
+    appointmentList = new ArrayList<>();
+    Calendar cal = Calendar.getInstance();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    try {
+      cal.setTime(Objects.requireNonNull(dateFormat.parse(dateInit)));
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    cal.add(Calendar.MONTH, 1);
+    Date d = cal.getTime();
+    String dateEnd = dateFormat.format(d);
+    Call<List<Appointment>> call = companyService.getReservedServiceOfUser(rol, companyId, dateInit, dateEnd, "bearer " + access_token);
+    call.enqueue(new Callback<List<Appointment>>() {
+      @Override
+      public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
+        if (response.body() != null && response.body().size() > 0) {
+          appointmentList = response.body();
+          session.setAppointmentsOfUser(appointmentList);
+        } else {
+          Toast.makeText(activity, activity.getString(R.string.no_services_data), Toast.LENGTH_LONG).show();
+        }
+      }
+
+      @Override
+      public void onFailure(Call<List<Appointment>> call, Throwable t) {
+        d("RESPONSE", "Error getReservedServicesOfUser: " + t.getCause());
+      }
+    });
   }
 
 }
