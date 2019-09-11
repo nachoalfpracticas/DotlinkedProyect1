@@ -216,6 +216,7 @@ public class ServicesFragment extends Fragment {
 
   @RequiresApi(api = Build.VERSION_CODES.N)
   private void previewService(EventDay eventDay) {
+    appointmentList = session.getAppointmentsOfUser();
     String date = df.format(eventDay.getCalendar().getTime());
     tvDateDay.setText(date);
     String datePet = dateFormat.format(eventDay.getCalendar().getTime());

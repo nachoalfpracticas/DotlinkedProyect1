@@ -1,9 +1,12 @@
 package com.example.dotlinked_proyecto.bean;
 
+import com.example.dotlinked_proyecto.Utils.Util;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Appointment {
+import java.util.Comparator;
+
+public class Appointment implements Comparator<Appointment> {
 
   @SerializedName("servicioId")
   @Expose
@@ -36,10 +39,15 @@ public class Appointment {
   @Expose
   private Integer appointmentId;
 
+
   public Appointment(Integer serviceId, Integer personId, String dateFrom) {
     this.serviceId = serviceId;
     this.personId = personId;
     this.dateFrom = dateFrom;
+  }
+
+  public Appointment() {
+
   }
 
   public Integer getServiceId() {
@@ -114,14 +122,16 @@ public class Appointment {
     this.location = location;
   }
 
-  public Integer getAppointmentId() {
-    return appointmentId;
-  }
+  public Integer getAppointmentId() { return appointmentId; }
 
   public void setAppointmentId(Integer appointmentId) {
     this.appointmentId = appointmentId;
   }
 
+  @Override
+  public int compare(Appointment a1, Appointment a2) {
+    return Util.convertDate(a1.dateFrom).compareTo(Util.convertDate(a2.dateFrom));
+  }
 }
 
 

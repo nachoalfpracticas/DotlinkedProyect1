@@ -31,9 +31,11 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -119,29 +121,35 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
       appointmentList = session.getAppointmentsOfUser();
       if (appointmentList != null) {
         Calendar calNow = Calendar.getInstance();
-        Calendar calDate = Calendar.getInstance();
+        calNow.setTimeZone(TimeZone.getDefault());
+        Calendar calDateFrom = Calendar.getInstance();
 
         List<Appointment> appointmentListTemp = new ArrayList<>();
         for (Appointment a : appointmentList) {
           int id = a.getServiceId();
           String dteFrom = a.getDateFrom();
           Date date = Util.convertDate(dteFrom);
-          calDate.setTime(date);
-          boolean sameDay = calDate.get(Calendar.DAY_OF_YEAR) == calNow.get(Calendar.DAY_OF_YEAR);
+          calDateFrom.setTime(date);
+          boolean sameDay = calDateFrom.get(Calendar.DAY_OF_YEAR) == calNow.get(Calendar.DAY_OF_YEAR);
 
           if (id == Integer.valueOf(serviceSelected.getServiceId())) {
-            if (date.after(new Date()) || sameDay) {
+            if (calDateFrom.getTimeInMillis() > calNow.getTimeInMillis() || (sameDay && calDateFrom.get(Calendar.HOUR_OF_DAY) > calNow.get(Calendar.HOUR_OF_DAY))) {
               appointmentListTemp.add(a);
             }
           }
         }
         if (appointmentListTemp.size() > 0) {
+          Appointment appointment;
+          if (appointmentListTemp.size() > 1) {
+            Collections.sort(appointmentListTemp, new Appointment());
+          }
+          appointment = appointmentListTemp.get(0);
           UtilMessages.showAppointmentInfoNewOrChange(ServicePreviewOrderActivity.this,
               serviceSelected,
-              appointmentListTemp.get(0),
-              appointmentListTemp.get(0).getServiceName(),
-              appointmentListTemp.get(0).getDateFrom().split("T")[0],
-              appointmentListTemp.get(0).getDateFrom().split("T")[1]);
+              appointment,
+              appointment.getServiceName(),
+              appointment.getDateFrom().split("T")[0],
+              appointment.getDateFrom().split("T")[1]);
           return;
         }
       }

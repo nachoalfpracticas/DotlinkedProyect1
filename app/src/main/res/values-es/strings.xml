@@ -147,7 +147,7 @@
   <string name="appointment_msg">Ya tiene una cita reservada para el servicio %1$s el día %2$s a las %3$s \n\n¿Quiere cambiar la cita?</string>
   <string name="updateDate">Fecha actualización</string>
   <string name="service_name">Nombre servicio %1$s</string>
-  <string name="select_day">Seleccione otro día</string>
+  <string name="select_other_day">Seleccione otro día</string>
   <string name="other_day">Otro día</string>
   <string-array name="roles_array">
     <item>Inquilino</item>
@@ -165,4 +165,10 @@
   <string name="change_appointment">Actualizar cita %1$s del día %2$s</string>
   <string name="without_dates_for_day_selected">\@ No hay horas disponibles para el día %1$s \\nSi quieres seleccionar otro día click en el botón otro día</string>
   <string name="save_data_err">Error guardando datos</string>
+  <string name="appointment_created_ok">Cita creada correctamente</string>
+  <string name="appointment_created_error">No se pudo crear la cita</string>
+  <string name="appointment_update_ok">Cita actualizada correctamente</string>
+  <string name="appointment_update_error">No se pudo actualizar la cita</string>
+  <string name="select_day">Día seleccionado: %1$s</string>
+  <string name="err">error</string>
 </resources>

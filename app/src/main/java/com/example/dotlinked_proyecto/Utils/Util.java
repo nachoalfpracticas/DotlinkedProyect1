@@ -187,7 +187,7 @@ public class Util {
 
 
   @SuppressWarnings("NullableProblems")
-  public static void getReservedServicesOfUser(Activity activity, String dateInit) {
+  public static void updateReservedServicesOfUser(Activity activity, String dateInit) {
     ServicesCompanyService companyService = new ServicesCompanyService();
     Session session = new Session(activity);
     String access_token = session.getToken().getAccess_token();
@@ -218,7 +218,7 @@ public class Util {
 
       @Override
       public void onFailure(Call<List<Appointment>> call, Throwable t) {
-        d("RESPONSE", "Error getReservedServicesOfUser: " + t.getCause());
+        d("RESPONSE", "Error updateReservedServicesOfUser: " + t.getCause());
       }
     });
   }

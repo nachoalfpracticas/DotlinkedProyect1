@@ -121,7 +121,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
     String serviceId = service.getServiceId();
     Person person = session.getTenantSelect();
     String token = session.getToken().getAccess_token();
-    boolean isNew = appointment != null;
+    boolean isNew = appointment == null;
 
     Call<List<ServiceInfo>> call = companyService.listScheduleService(companyId, serviceId, date, String.valueOf(person.getPersonId()), "bearer " + token);
     call.enqueue(new Callback<List<ServiceInfo>>() {
@@ -139,7 +139,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
             AppointmentNewOrUpdate newOrUpdate =
                     new AppointmentNewOrUpdate(null,
                             Integer.valueOf(serviceId), person.getPersonId(), dateTimeFrom);
-            if (isNew) newOrUpdate.setAppointmentId(appointment.getAppointmentId());
+            if (!isNew) newOrUpdate.setAppointmentId(appointment.getAppointmentId());
 
             Call<String> callApp = companyService.createUpdateAppointment(
                     newOrUpdate.getAppointmentId(),
@@ -161,8 +161,9 @@ public class ServiceOrderActivity extends AppCompatActivity {
                     c.setTime(dateInit);
                     c.set(Calendar.DAY_OF_MONTH, 1);
                     Date d = c.getTime();
-                    String dateInit2 = Util.formatDateToLocale(ServiceOrderActivity.this, d.toString());
-                    Util.getReservedServicesOfUser(ServiceOrderActivity.this, dateInit2);
+                    String strDateInit = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(d);
+                    String dateInit2 = Util.formatDateToLocale(ServiceOrderActivity.this, strDateInit);
+                    Util.updateReservedServicesOfUser(ServiceOrderActivity.this, dateInit2);
                   }
                 } else {
                   UtilMessages.showLoadDataError(ServiceOrderActivity.this);
@@ -226,8 +227,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
       int year = datePicker.getYear();
       String date = year + "-" + (month + 1) + "-" + day;
       String dateFormat = Util.formatDateToLocale(ServiceOrderActivity.this, date);
-
-      Toast.makeText(ServiceOrderActivity.this, "touch in day: " + dateFormat, Toast.LENGTH_LONG).show();
+      Toast.makeText(ServiceOrderActivity.this, String.format(getString(R.string.select_day), dateFormat), Toast.LENGTH_LONG).show();
       getAvailableSchedulesToServices(date);
       dialogBuilder.dismiss();
     });

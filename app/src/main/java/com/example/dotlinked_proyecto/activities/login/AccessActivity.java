@@ -156,7 +156,6 @@ public class AccessActivity extends AppCompatActivity {
 
     btnAccess.setOnClickListener(view -> {
       if (!companyName.isEmpty()) {
-
         Util.navigationTo(this, needAuth, rol, userName, companyName, btnAccess);
         btnAccess.setEnabled(false);
       }

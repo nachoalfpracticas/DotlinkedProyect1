@@ -2,6 +2,7 @@ package com.example.dotlinked_proyecto.Utils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.SpannableString;
@@ -17,6 +18,8 @@ import androidx.cardview.widget.CardView;
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.activities.BaseActivity;
+import com.example.dotlinked_proyecto.activities.login.LoginActivity;
 import com.example.dotlinked_proyecto.appServices.LoginService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Service;
@@ -31,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UtilMessages {
-
+  private final static String TAG_FRAGMENT = "fragment";
   public static void showExitMessage(final Activity activity) {
     final NiftyDialogBuilder exitDialog = NiftyDialogBuilder.getInstance(activity);
     exitDialog
@@ -51,8 +54,9 @@ public class UtilMessages {
   }
 
   public static void showLoadDataError(Activity activity, String message) {
-    NiftyDialogBuilder loadGamerErr = NiftyDialogBuilder.getInstance(activity);
-    loadGamerErr
+    Session session = new Session(activity);
+    NiftyDialogBuilder niftyDialogBuilder = NiftyDialogBuilder.getInstance(activity);
+    niftyDialogBuilder
         .withTitle(activity.getResources().getString(R.string.load_data))
         .withMessage(message)
         .withDialogColor("#ED0D17")
@@ -61,9 +65,11 @@ public class UtilMessages {
         .withEffect(Effectstype.Slidetop)
         .isCancelableOnTouchOutside(false)
         .setButton1Click(v2 -> {
+          session.deleteAllSessionUser();
+          Intent intent = new Intent(activity, LoginActivity.class);
+          activity.startActivity(intent);
           activity.finish();
-          activity.startActivity(activity.getIntent());
-          loadGamerErr.dismiss();
+          niftyDialogBuilder.dismiss();
         })
         .show();
   }
@@ -336,12 +342,25 @@ public class UtilMessages {
   }
 
   public static void showResponseToCreateUpdateAppointment(Activity activity, boolean isNew, String response) {
+    int color = 0;
     String msg = "";
-    String color = null;
-    String title = "";
+    if (isNew && response.toLowerCase().equals(activity.getString(R.string.OK).toLowerCase())) {
+      msg = activity.getString(R.string.appointment_created_ok);
+      color = Color.GREEN;
+    } else if (isNew && response.toLowerCase().contains(activity.getString(R.string.err).toLowerCase())) {
+      msg = activity.getString(R.string.appointment_created_error);
+      color = Color.RED;
+    } else if (!isNew && response.toLowerCase().equals(activity.getString(R.string.OK).toLowerCase())) {
+      msg = activity.getString(R.string.appointment_update_ok);
+      color = Color.GREEN;
+    } else if (!isNew && response.toLowerCase().contains(activity.getString(R.string.err).toLowerCase())) {
+      msg = activity.getString(R.string.appointment_update_error);
+      color = Color.RED;
+    }
+
     NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
     dialogBuilder
-            .withTitle("    " + title)
+            .withTitle("    " + activity.getString(R.string.appointment_info))
             .withIcon(R.drawable.ic_dates_icon_white)
             .withDividerColor(R.color.daysLabelColor)
             .withMessage(msg)
@@ -352,7 +371,9 @@ public class UtilMessages {
             .withEffect(Effectstype.RotateBottom)
             .isCancelableOnTouchOutside(false)
             .setButton1Click(v2 -> {
-
+              Intent intent = new Intent(activity, BaseActivity.class);
+              intent.putExtra(TAG_FRAGMENT, activity.getString(R.string.services));
+              activity.startActivity(intent);
               activity.finish();
               dialogBuilder.dismiss();
             })

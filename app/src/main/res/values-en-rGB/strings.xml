@@ -147,7 +147,7 @@
   <string name="appointment_msg">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change the appointment?</string>
   <string name="updateDate">Update date</string>
   <string name="service_name">Service name %1$s</string>
-  <string name="select_day">Select other day</string>
+  <string name="select_other_day">Select other day</string>
   <string name="other_day">Other day</string>
   <string-array name="roles_array">    
     <item>Tenant</item>    
@@ -165,4 +165,10 @@
   <string name="change_appointment">Update appointment %1$s day %2$s</string>
   <string name="without_dates_for_day_selected">\@ No hours available for day %1$s \nIf you want select another day press another day button</string>
   <string name="save_data_err">Save data err</string>
+  <string name="appointment_created_ok">Appointment created successfully</string>
+  <string name="appointment_created_error">Could not create appointment</string>
+  <string name="appointment_update_ok">Appointment updated correctly</string>
+  <string name="appointment_update_error">Could not update appointment</string>
+  <string name="select_day">Select in day: %1$s</string>
+  <string name="err">error</string>
 </resources>
