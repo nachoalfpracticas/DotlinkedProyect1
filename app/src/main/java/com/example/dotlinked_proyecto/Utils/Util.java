@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.BaseActivity;
+import com.example.dotlinked_proyecto.activities.ProviderActivity;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 
@@ -73,7 +74,8 @@ public class Util {
     String[] TO = {email}; //Direcciones email  a enviar.
     String[] CC = {""}; //Direcciones email con copia.
     Intent emailIntent = new Intent(Intent.ACTION_SEND);
-    emailIntent.setDataAndType(Uri.parse("mailto:"), "text/plain");
+    emailIntent.setData(Uri.parse("mailto:"));
+    emailIntent.setType("text/plain");
     emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
     emailIntent.putExtra(Intent.EXTRA_CC, CC);
     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
@@ -101,29 +103,14 @@ public class Util {
     Intent intent;
     if (needAuth) {
       UtilMessages.showLoginView(activity, userName, rol, companyName, button);
-    }
-    /*else {
-      if (activity.getString(R.string.rol_tenant).equals(rol)) {
-        intent = new Intent(activity, BaseActivity.class);
-        activity.startActivity(intent);
-      } else if (activity.getString(R.string.rol_provider).equals(rol)) {
-        intent = new Intent(activity, .class);
-        activity.startActivity(intent);
-      } */
-    else {
+    } else {
       activity.finish();
       if (activity.getString(R.string.rol_tenant).equals(rol) ||
               activity.getString(R.string.rol_contact).equals(rol)) {
         intent = new Intent(activity, BaseActivity.class);
         activity.startActivity(intent);
       } else if (activity.getString(R.string.rol_provider).equals(rol)) {
-        intent = new Intent(activity, BaseActivity.class);
-        activity.startActivity(intent);
-      } else if (activity.getString(R.string.rol_doctor).equals(rol)) {
-        intent = new Intent(activity, BaseActivity.class);
-        activity.startActivity(intent);
-      } else if (activity.getString(R.string.rol_super_admin).equals(rol)) {
-        intent = new Intent(activity, BaseActivity.class);
+        intent = new Intent(activity, ProviderActivity.class);
         activity.startActivity(intent);
       } else {
         makeText(activity, "ERROR: " + String.format(activity.getString(R.string.select_item), rol),
@@ -150,7 +137,7 @@ public class Util {
   public static Date convertDate(String dateToConvert) {
     Date date = null;
     try {
-      date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(dateToConvert);
+      date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(dateToConvert.replace("T", " "));
     } catch (ParseException e) {
       e.printStackTrace();
     }

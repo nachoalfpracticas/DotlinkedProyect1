@@ -26,7 +26,7 @@ import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
-import com.example.dotlinked_proyecto.bean.AppointmentNewOrUpdate;
+import com.example.dotlinked_proyecto.bean.AppointmentNewUpdateDelete;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
 import com.example.dotlinked_proyecto.bean.ServiceInfo;
@@ -136,8 +136,8 @@ public class ServiceOrderActivity extends AppCompatActivity {
             serviceInfo = serviceInfoList.get(position);
             String dateFrom = Util.formatToDate(serviceInfo.getDateInit());
             String dateTimeFrom = dateFrom + "T" + serviceInfo.getHour() + ":00";
-            AppointmentNewOrUpdate newOrUpdate =
-                    new AppointmentNewOrUpdate(null,
+            AppointmentNewUpdateDelete newOrUpdate =
+                    new AppointmentNewUpdateDelete(null,
                             Integer.valueOf(serviceId), person.getPersonId(), dateTimeFrom);
             if (!isNew) newOrUpdate.setAppointmentId(appointment.getAppointmentId());
 
@@ -156,6 +156,11 @@ public class ServiceOrderActivity extends AppCompatActivity {
                   Log.d("RESPONSE", response.body());
                   UtilMessages.showResponseToCreateUpdateAppointment(ServiceOrderActivity.this, isNew, res);
                   if (res.toLowerCase().equals(getString(R.string.OK).toLowerCase())) {
+                    // Para actualizar las citas del usuario (de este mes) le pasamos
+                    // nuestra fecha y calculamos el primer día del mes. ( TODO explicar esto )
+                    // En la  updateReservedServicesOfUser función a la que llamamos calcula el primer
+                    //día del mes siguiente para
+                    // establecer el periodo ej. 2019-09-01 a 2019-10-01
                     Calendar c = Calendar.getInstance();
                     Date dateInit = Util.convertDate(date);
                     c.setTime(dateInit);

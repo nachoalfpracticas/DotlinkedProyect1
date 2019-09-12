@@ -14,7 +14,10 @@ import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.bean.Appointment;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerViewServicesAdapter.ViewHolder> {
 
@@ -39,17 +42,30 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
   // binds the data to the TextView in each row
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    Appointment service = getItem(position);
-    String date = service.getDateFrom();
-      if (Util.dateCompare(date)) {
-          holder.tvServiceStatus.setText(R.string.service_status_passed);
-          holder.tvServiceStatus.setTextColor(Color.RED);
-      } else {
-          holder.tvServiceStatus.setText(R.string.service_status_pending);
-          holder.tvServiceStatus.setTextColor(Color.GREEN);
-      }
-    holder.tvServiceName.setText(service.getServiceName());
-    holder.tvServiceLocation.setText(service.getLocation());
+    Appointment appointment = getItem(position);
+
+    Calendar calNow = Calendar.getInstance();
+    calNow.setTimeZone(TimeZone.getDefault());
+    Calendar calDateFrom = Calendar.getInstance();
+    String date = appointment.getDateFrom();
+    Date dateFrom = Util.convertDate(date);
+    calDateFrom.setTime(dateFrom);
+    calDateFrom.setTimeZone(TimeZone.getDefault());
+
+    boolean sameDay = calDateFrom.get(Calendar.DAY_OF_YEAR) == calNow.get(Calendar.DAY_OF_YEAR);
+
+
+    if ((sameDay && calDateFrom.get(Calendar.HOUR_OF_DAY) > calNow.get(Calendar.HOUR_OF_DAY)) || calDateFrom.getTimeInMillis() > calNow.getTimeInMillis()) {
+      holder.tvServiceStatus.setText(R.string.service_status_pending);
+      holder.tvServiceStatus.setTextColor(Color.GREEN);
+      appointment.setPending(true);
+    } else {
+      holder.tvServiceStatus.setText(R.string.service_status_passed);
+      holder.tvServiceStatus.setTextColor(Color.RED);
+      appointment.setPending(false);
+    }
+    holder.tvServiceName.setText(appointment.getServiceName());
+    holder.tvServiceLocation.setText(appointment.getLocation());
   }
 
   // total number of rows
@@ -77,7 +93,7 @@ public class RecyclerViewServicesAdapter extends RecyclerView.Adapter<RecyclerVi
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     TextView tvServiceName;
     TextView tvServiceLocation;
-      TextView tvServiceStatus;
+    TextView tvServiceStatus;
 
     ViewHolder(View itemView) {
       super(itemView);

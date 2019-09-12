@@ -3,7 +3,7 @@ package com.example.dotlinked_proyecto.bean;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AppointmentNewOrUpdate {
+public class AppointmentNewUpdateDelete {
 
   @SerializedName("citaId")
   @Expose
@@ -22,7 +22,7 @@ public class AppointmentNewOrUpdate {
   private String dateFrom;
 
 
-  public AppointmentNewOrUpdate(Integer appointmentId, Integer serviceId, Integer personId, String dateFrom) {
+  public AppointmentNewUpdateDelete(Integer appointmentId, Integer serviceId, Integer personId, String dateFrom) {
 
     if (appointmentId != null) {
       this.appointmentId = appointmentId;

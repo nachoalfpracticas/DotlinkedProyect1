@@ -85,7 +85,7 @@ public class UtilMessages {
         .withEffect(Effectstype.Slidetop)
         .isCancelableOnTouchOutside(false)
         .setButton1Click(v2 -> {
-          activity.setResult(Activity.RESULT_OK);
+          // activity.setResult(Activity.RESULT_OK);
 //          Intent intent = new Intent(activity, MatchDetailActivity.class);
 //          intent.putExtra(MatchesActivity.EXTRA_MATCH_ID, matchSelected.getId());
 //          activity.startActivityForResult(intent, MatchesFragment.REQUEST_DETAIL_MATCH);
@@ -322,7 +322,7 @@ public class UtilMessages {
             .withButton2Text(activity.getString(R.string.newAppointment))
             .withDuration(700)
             .withEffect(Effectstype.RotateBottom)
-            .isCancelableOnTouchOutside(false)
+            .isCancelableOnTouchOutside(true)
             .setButton1Click(v2 -> {
               Intent intent = new Intent(activity, ServiceOrderActivity.class);
               intent.putExtra("appointment", new Gson().toJson(appointment));
@@ -355,6 +355,12 @@ public class UtilMessages {
       color = Color.GREEN;
     } else if (!isNew && response.toLowerCase().contains(activity.getString(R.string.err).toLowerCase())) {
       msg = activity.getString(R.string.appointment_update_error);
+      color = Color.RED;
+    } else if (!isNew && response.toLowerCase().equals((activity.getString(R.string.OK) + activity.getString(R.string.delete)).toLowerCase())) {
+      msg = activity.getString(R.string.appointment_delete_ok);
+      color = Color.GREEN;
+    } else if (!isNew && response.toLowerCase().equals((activity.getString(R.string.err) + activity.getString(R.string.delete)).toLowerCase())) {
+      msg = activity.getString(R.string.appointment_delete_error);
       color = Color.RED;
     }
 

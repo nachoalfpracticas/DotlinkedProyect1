@@ -49,5 +49,10 @@ public class ServicesCompanyService implements IServicesApiCalls {
     return servicesApiCalls.createUpdateAppointment(appointmentId, serviceId, personId, dateFrom, token);
   }
 
+  @Override
+  public Call<String> deleteAppointment(int appointmentId, int serviceId, int personId, String dateFrom, String token) {
+    return servicesApiCalls.deleteAppointment(appointmentId, serviceId, personId, dateFrom, token);
+  }
+
 
 }

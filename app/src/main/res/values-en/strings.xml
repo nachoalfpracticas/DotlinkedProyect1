@@ -159,7 +159,7 @@
   <string name="service_name">Service name %1$s</string>
   <string name="select_other_day">Select other day</string>
   <string name="other_day">Other day</string>
-    <string name="appointment_msg_new_or_change">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change it or order a new one?</string>
+    <string name="appointment_msg_new_or_change">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change it or order a new one?\n\nOtherwise touch outside this window</string>
     <string name="change">Change</string>
     <string name="newAppointment">New</string>
   <string name="change_appointment">Update appointment %1$s day %2$s</string>
@@ -171,4 +171,10 @@
   <string name="appointment_update_error">Could not update appointment</string>
   <string name="select_day">Select in day: %1$s</string>
   <string name="err">error</string>
+    <string name="annular">Cancel appointment</string>
+    <string name="igRoles">Tenant, Contact, Doctor</string>
+    <string name="delete">delete</string>
+    <string name="appointment_delete_ok">Appointment cancel successfully</string>
+    <string name="appointment_delete_error">Could not cancel the appointment</string>
+    <string name="update">Update appointment</string>
 </resources>

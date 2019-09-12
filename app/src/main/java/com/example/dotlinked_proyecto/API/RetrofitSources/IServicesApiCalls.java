@@ -46,4 +46,14 @@ public interface IServicesApiCalls {
                                        @Field(value = "personaId", encoded = true) int personId,
                                        @Field(value = "desde", encoded = true) String dateFrom,
                                        @Header("Authorization") String token);
+
+
+  @FormUrlEncoded
+  @POST("EliminarCita")
+  Call<String> deleteAppointment(@Field(value = "citaId", encoded = true) int appointmentId,
+                                 @Field(value = "servicioId", encoded = true) int serviceId,
+                                 @Field(value = "personaId", encoded = true) int personId,
+                                 @Field(value = "desde", encoded = true) String dateFrom,
+                                 @Header("Authorization") String token);
+
 }

@@ -39,6 +39,7 @@ public class Appointment implements Comparator<Appointment> {
   @Expose
   private Integer appointmentId;
 
+  private boolean isPending;
 
   public Appointment(Integer serviceId, Integer personId, String dateFrom) {
     this.serviceId = serviceId;
@@ -131,6 +132,14 @@ public class Appointment implements Comparator<Appointment> {
   @Override
   public int compare(Appointment a1, Appointment a2) {
     return Util.convertDate(a1.dateFrom).compareTo(Util.convertDate(a2.dateFrom));
+  }
+
+  public boolean isPending() {
+    return isPending;
+  }
+
+  public void setPending(boolean pending) {
+    isPending = pending;
   }
 }
 
