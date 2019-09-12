@@ -1,6 +1,5 @@
 package com.example.dotlinked_proyecto.services;
 
-import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,7 +65,9 @@ public class ServiceOrderActivity extends AppCompatActivity {
   private ServicesCompanyService companyService;
   private SimpleDateFormat dateFormat;
   private RecyclerViewShceduleServiceAdapter adapter;
-
+  private boolean detailActivity;
+  private String location;
+  private String serviceId;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -82,21 +85,26 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
     Bundle bundle = getIntent().getExtras();
     if (bundle != null) {
-      service = new Gson().fromJson(bundle.getString("serviceSelected"), Service.class);
-      appointment = new Gson().fromJson(bundle.getString("appointment"), Appointment.class);
+      service = new Gson().fromJson(bundle.getString(getString(R.string.service_selected)), Service.class);
+      appointment = new Gson().fromJson(bundle.getString(getString(R.string.appointment)), Appointment.class);
+      detailActivity = bundle.getBoolean(getString(R.string.detail), false);
     }
-    if (appointment == null)
+    if (appointment == null) {
       toolbar.setTitle(String.format(getString(R.string.service_name), ": " + service.getServiceName()));
-    else {
+      location = service.getLocation();
+      serviceId = service.getServiceId();
+    } else {
+      location = appointment.getLocation();
+      serviceId = String.valueOf(appointment.getServiceId());
       toolbar.setTitleTextAppearance(this, R.style.TextAppearance_AppCompat_Small);
-      toolbar.setTitle(String.format(getString(R.string.change_appointment), service.getServiceName(), Util.formatDateToLocale(this, appointment.getDateFrom())));
+      toolbar.setTitle(String.format(getString(R.string.change_appointment), appointment.getServiceName(), Util.formatDateToLocale(this, appointment.getDateFrom())));
     }
 
     btnSelectDate = findViewById(R.id.btn_select_service_other_day);
     tvUserName = findViewById(R.id.tv_user_name);
     tvServiceLocation = findViewById(R.id.tv_service_location);
 
-    tvServiceLocation.setText(service.getLocation());
+    tvServiceLocation.setText(location);
     tvUserName.setText(session.getTenantSelect().getFullName());
 
     rcSchedules = findViewById(R.id.rv_services_schedules);
@@ -104,7 +112,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
     rcSchedules.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcSchedules.getContext(),
             layoutManager.getOrientation());
-    dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider_recycler));
+    dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getApplicationContext(), R.drawable.divider_recycler)));
     rcSchedules.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
 
@@ -113,12 +121,15 @@ public class ServiceOrderActivity extends AppCompatActivity {
     getAvailableSchedulesToServices(date);
 
     btnSelectDate.setOnClickListener(v -> showCalendarSelectAppointmentDay());
+
+    if (detailActivity) {
+      showCalendarSelectAppointmentDay();
+    }
   }
 
   @SuppressWarnings("NullableProblems")
   private void getAvailableSchedulesToServices(String date) {
     String companyId = session.getCompanyIdUser();
-    String serviceId = service.getServiceId();
     Person person = session.getTenantSelect();
     String token = session.getToken().getAccess_token();
     boolean isNew = appointment == null;
@@ -187,7 +198,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
           String str = String.format(getString(R.string.without_dates_for_day_selected), Util.formatDateToLocale(ServiceOrderActivity.this, date));
           SpannableString spa = new SpannableString(str);
           int i = str.indexOf("@");
-          Drawable d = getResources().getDrawable(R.drawable.claim_icon);
+          Drawable d =Objects.requireNonNull(ContextCompat.getDrawable(getApplicationContext(), R.drawable.claim_icon));
           d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
           spa.setSpan(new ImageSpan(d), i, i + 1, ImageSpan.ALIGN_BOTTOM);
 
@@ -204,7 +215,10 @@ public class ServiceOrderActivity extends AppCompatActivity {
               .withButton2Text(getString(R.string.cancel))
               .withEffect(Effectstype.RotateBottom)
               .isCancelableOnTouchOutside(false)
-                  .setButton1Click(v -> dialogBuilder.dismiss())
+             .setButton1Click(v -> {
+               setRecyclerViewAdapter(new ArrayList<>());
+               dialogBuilder.dismiss();
+             })
               .setButton2Click(view -> {
                 finish();
                 dialogBuilder.dismiss();
@@ -220,22 +234,34 @@ public class ServiceOrderActivity extends AppCompatActivity {
     });
   }
 
-  @SuppressLint("NewApi")
+
   private void showCalendarSelectAppointmentDay() {
     NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(ServiceOrderActivity.this);
-    View view = getLayoutInflater().inflate(getResources().getLayout(R.layout.calendar_select_appointment), null);
+    View view = getLayoutInflater().inflate(getResources().getLayout(R.layout.calendar_select_appointment_day), null);
     DatePicker dpSelectDay = view.findViewById(R.id.calendar_select_day);
+    AppCompatButton btnSelectDay = view.findViewById(R.id.btn_select_day);
+    AtomicReference<String> date = new AtomicReference<>();
 
-    dpSelectDay.setOnDateChangedListener((datePicker, i, i1, i2) -> {
-      int day = datePicker.getDayOfMonth();
-      int month = datePicker.getMonth();
-      int year = datePicker.getYear();
-      String date = year + "-" + (month + 1) + "-" + day;
-      String dateFormat = Util.formatDateToLocale(ServiceOrderActivity.this, date);
-      Toast.makeText(ServiceOrderActivity.this, String.format(getString(R.string.select_day), dateFormat), Toast.LENGTH_LONG).show();
-      getAvailableSchedulesToServices(date);
-      dialogBuilder.dismiss();
-    });
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      dpSelectDay.setOnDateChangedListener((datePicker, i, i1, i2) -> {
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
+        date.set(year + "-" + (month + 1) + "-" + day);
+        getAvailableSchedulesToServicesFromCalendar(date.get());
+        dialogBuilder.dismiss();
+      });
+    } else {
+
+      btnSelectDay.setOnClickListener(view1 -> {
+        int d = dpSelectDay.getDayOfMonth();
+        int dM = dpSelectDay.getMonth();
+        int dY = dpSelectDay.getYear();
+        date.set(dY + "-" + (dM + 1) + "-" + d);
+        getAvailableSchedulesToServicesFromCalendar(date.get());
+        dialogBuilder.dismiss();
+      });
+    }
 
     dialogBuilder.withEffect(Effectstype.Fadein)
             .withDuration(700)
@@ -247,6 +273,13 @@ public class ServiceOrderActivity extends AppCompatActivity {
             .setCustomView(view, ServiceOrderActivity.this)
             .show();
   }
+
+  private void getAvailableSchedulesToServicesFromCalendar(String date) {
+    String dateFormat = Util.formatDateToLocale(ServiceOrderActivity.this, date);
+    Toast.makeText(ServiceOrderActivity.this, String.format(getString(R.string.select_day), dateFormat), Toast.LENGTH_LONG).show();
+    getAvailableSchedulesToServices(date);
+  }
+
 
   private void setRecyclerViewAdapter(List<ServiceInfo> serviceInfoList) {
     adapter = new RecyclerViewShceduleServiceAdapter(this, serviceInfoList);

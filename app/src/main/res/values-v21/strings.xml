@@ -158,4 +158,8 @@
   <string name="appointment_delete_ok">Appointment cancel successfully</string>
   <string name="appointment_delete_error">Could not cancel the appointment</string>
   <string name="update">Update appointment</string>
+  <string name="detail">detail</string>
+  <string name="appointment">appointment</string>
+  <string name="service_selected">serviceSelected</string>
+  <string name="msg_info_push_tv_select_day">In next calendar select day and push select day button</string>
 </resources>

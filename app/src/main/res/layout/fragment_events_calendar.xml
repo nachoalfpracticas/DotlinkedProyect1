@@ -7,7 +7,7 @@
     tools:context=".activities.BaseActivity">
 
   <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/tv_select_day"
+      android:id="@+id/btn_select_day"
       android:layout_width="match_parent"
       android:layout_height="40dp"
       android:background="@color/primary"
@@ -27,7 +27,7 @@
       android:layout_marginTop="5dp"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tv_select_day" />
+      app:layout_constraintTop_toBottomOf="@+id/btn_select_day" />
 
   <com.applandeo.materialcalendarview.CalendarView
       android:id="@+id/servicesCalendarView"
@@ -38,7 +38,7 @@
       app:forwardButtonSrc="@drawable/ic_chevron_right_black_24dp"
       app:headerColor="@android:color/holo_blue_bright"
       app:headerLabelColor="#000000"
-      app:layout_constraintBottom_toTopOf="@+id/tv_select_day"
+      app:layout_constraintBottom_toTopOf="@+id/btn_select_day"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:previousButtonSrc="@drawable/ic_chevron_left_black_24dp"

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -117,14 +118,14 @@ public class ServicesFragment extends Fragment {
     mCalendarView = view.findViewById(R.id.servicesCalendarView);
     mCalendarView.isInEditMode();
     mCalendarView.setFocusableInTouchMode(true);
-    tvDateDay = view.findViewById(R.id.tv_select_day);
+    tvDateDay = view.findViewById(R.id.btn_select_day);
     tvDateDay.setText(df.format(new Date()));
     rvServices = view.findViewById(R.id.rv_services_calendar);
     LinearLayoutManager layoutManager = new LinearLayoutManager(context);
     rvServices.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvServices.getContext(),
             layoutManager.getOrientation());
-    dividerItemDecoration.setDrawable(context.getResources().getDrawable(R.drawable.divider_recycler));
+    dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.divider_recycler)));
     rvServices.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
     floatingActionButton = view.findViewById(R.id.floatingActionButton);
@@ -185,6 +186,15 @@ public class ServicesFragment extends Fragment {
     rvServices.setAdapter(adapter);
   }
 
+  private List<Appointment> setRecyclerViewAdapterToDay(String date) {
+    List<Appointment> tmpServiceList;
+    tmpServiceList = appointmentList.stream()
+        .filter(s -> s.getDateFrom().contains(date))
+        .collect(Collectors.toList());
+    setRecyclerViewAdapter(tmpServiceList);
+    return tmpServiceList;
+  }
+
   @SuppressWarnings("NullableProblems")
   private void getReservedServicesOfUser(String dateInit) {
     try {
@@ -202,6 +212,9 @@ public class ServicesFragment extends Fragment {
         if (response.body() != null && response.body().size() > 0) {
           appointmentList = response.body();
           session.setAppointmentsOfUser(appointmentList);
+          Calendar cal = Calendar.getInstance();
+          String date = df.format(cal.getTime());
+          setRecyclerViewAdapterToDay(date);
         } else {
           Toast.makeText(context, getString(R.string.no_services_data), Toast.LENGTH_LONG).show();
         }
@@ -220,11 +233,7 @@ public class ServicesFragment extends Fragment {
     String date = df.format(eventDay.getCalendar().getTime());
     tvDateDay.setText(date);
     String datePet = dateFormat.format(eventDay.getCalendar().getTime());
-    List<Appointment> tmpServiceList;
-    tmpServiceList = appointmentList.stream()
-        .filter(s -> s.getDateFrom().contains(datePet))
-            .collect(Collectors.toList());
-    setRecyclerViewAdapter(tmpServiceList);
+    List<Appointment> tmpServiceList = setRecyclerViewAdapterToDay(datePet);
     adapter.setClickListener((view, position) -> {
       Appointment ser = tmpServiceList.get(position);
       Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);

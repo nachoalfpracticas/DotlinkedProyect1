@@ -157,7 +157,7 @@
   <string name="appointment_msg">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change the appointment?</string>
   <string name="updateDate">Update date</string>
   <string name="service_name">Service name %1$s</string>
-  <string name="select_other_day">Select other day</string>
+  <string name="select_other_day">Select  day</string>
   <string name="other_day">Other day</string>
     <string name="appointment_msg_new_or_change">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change it or order a new one?\n\nOtherwise touch outside this window</string>
     <string name="change">Change</string>
@@ -177,4 +177,8 @@
     <string name="appointment_delete_ok">Appointment cancel successfully</string>
     <string name="appointment_delete_error">Could not cancel the appointment</string>
     <string name="update">Update appointment</string>
+  <string name="detail">detail</string>
+  <string name="appointment">appointment</string>
+  <string name="service_selected">serviceSelected</string>
+  <string name="msg_info_push_tv_select_day">In next calendar select day and push select day button</string>
 </resources>

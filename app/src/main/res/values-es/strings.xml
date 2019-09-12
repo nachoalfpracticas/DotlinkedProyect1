@@ -1,180 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="material_calendar_months_array">
-        <item>Enero</item>
-        <item>Febrero</item>
-        <item>Marzo</item>
-        <item>Abril</item>
-        <item>Mayo</item>
-        <item>Junio</item>
-        <item>Julio</item>
-        <item>Agosto</item>
-        <item>Septiembre</item>
-        <item>Octubre</item>
-        <item>Noviembre</item>
-        <item>Diciembre</item>
-    </array>
-    <string name="app_name">DotLinked_proyecto</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="fragment1">fragment1</string>
-    <string name="input_password">Introduzca su contraseña</string>
-    <string name="bl_password_Upper">CONTRASEÑA</string>
-    <string name="btn_send_Upper">ENVIAR</string>
-    <string name="input_userName">Introduzca nombre usuario</string>
-    <string name="enterprise_name">DOTLINKED</string>
-    <string name="login">login</string>
-    <string name="logo_enterprise_des">Icono de empresa</string>
-    <string name="user_name">Nombre usuario</string>
-    <string name="remember_me">Recordarme</string>
-    <string name="forgot_pass">Olvido la contraseña</string>
-    <string name="password">Contraseña</string>
-    <string name="register_here">Registro aquí</string>
-    <string name="name">DOTLINKED</string>
-    <string name="twitter_img">twitter</string>
-    <string name="instagram_img">instagram</string>
-    <string name="facebook_img">facebook</string>
-    <string name="well_come_user">Bienvenido %1$s</string>
-    <string name="not_remember_me">Dejar de recordarme</string>
-    <string name="access">Acceder</string>
-    <string name="finger_print">Usar huella</string>
-    <string name="spinner_prompt">Seleccione opción</string>
-    <string name="wrong_credentials">Credenciales erroneas</string>
-    <string name="required_fields">Campos requeridos</string>
-    <string name="email_validation"><![CDATA[\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b]]></string>
-    <string name="email_invalid">Email inválido</string>
-    <string name="password_invalid">Contraseña requiere una may y un número 6–25 caracts</string>
-    <string name="load_data">Cargar datos</string>
-    <string name="exitApp">Salir App</string>
-    <string name="exitYes">Pulse si para salir</string>
-    <string name="Yes">Si</string>
-    <string name="No">No</string>
-    <string name="load_data_err">Error cargando datos</string>
-    <string name="OK">OK</string>
-    <string name="cancel">Cancelar</string>
-    <string name="field_search">Fill search field</string>
-    <string name="select_item">Seleccionado %1$s</string>
-    <string name="not_user">No soy %1$s</string>
-    <string name="error_connection">Error en la conexión</string>
-    <string name="material_calendar_monday">Lun</string>
-    <string name="material_calendar_tuesday">Mar</string>
-    <string name="material_calendar_wednesday">Mie</string>
-    <string name="material_calendar_thursday">Jue</string>
-    <string name="material_calendar_friday">Vie</string>
-    <string name="material_calendar_saturday">Sab</string>
-    <string name="material_calendar_sunday">Dom</string>
-    <string name="material_calendar_today_button">Hoy</string>
-    <string name="material_calendar_positive_button">OK</string>
-    <string name="material_calendar_negative_button">Cancelar</string>
-    <string name="rol_tenant">Inquilino</string>
-    <string name="rol_provider">Proveedor</string>    
-    <string name="rol_contact">Contacto</string>   
-    <string name="rol_doctor">Medico</string>  
-    <string name="rol_manager">Gerente</string>    
-    <string name="rol_manager_assistant">Subgerente</string>    
-    <string name="rol_administrator">Administrador</string>    
-    <string name="rol_super_admin">SuperAdmin</string>
-    <string name="rol_coordinator">Coordinador</string>
-    <string name="rol_employee">Empleado</string>
-    <string name="input_password_access_rol_company">Rol seleccionado %1$s \n\nEmpresa %2$s </string>
-    <string name="no_event">Sin evento</string>
-    <string name="write_note">Título evento</string>
-    <string name="save">guardar</string>
-    <string name="arrow_right">Flecha derecha</string>
-    <string name="arrow_left">flecah izquierda left</string>
-    <string name="event_calendar_title">Calendario eventos</string>
-    <string name="fingerprint">Huella dactilar</string>
-    <string name="not_fingerprint_hasEnrolledFingerprints">Debe tener al menos un registro de una huella dactilar en el dispositivo</string>
-    <string name="inform_request">Informar y solicitar</string>
-    <string name="need_permissions">Necesitas habilitar permisos para usar la huella dactilar</string>
-    <string name="no_have_permissions">No tienes permisos para usar la huella dactilar</string>
-    <string name="use_fingerprint">Use la huella dactilar</string>
-    <string name="select_company">Seleccione empresa</string>
-    <string name="input_password_access_rol">Rol seleccionado %1$s</string>
-    <string name="input_access_company">Empresa %1$s</string>
-    <string name="rol">Rol</string>
-    <string name="company">Empresa</string>
-    <string name="menu_eventos">Eventos</string>
-    <string name="navigation_drawer_open">Abierto</string>
-    <string name="navigation_drawer_close">Cerrado</string>
-    <string name="title_click">Título %1$s</string>
-    <string name="events">Eventos</string>
-    <string name="notify">Notificaciones</string>
-    <string name="claim">Reclamaciones</string>
-    <string name="health">Seguimiento médico</string>
-    <string name="dates">Citas</string>
-    <string name="personal">Personal</string>
-    <string name="title">Título</string>
-    <string name="description">Descripción</string>
-    <string name="location">Ubicación</string>
-    <string name="initTime">Hora desde</string>
-    <string name="endTime">Hota hasta</string>
-    <string name="cost">Costo</string>
-    <string name="list_claims">Lista de reclamaciones</string>
-    <string name="status">Estado</string>
-    <string name="subject">Asunto</string>
-    <string name="claimDate">Fecha emisión</string>
-    <string name="claim_Id">Reclamación ident. %1$s</string>
-    <string name="img_close_button">Boton cerrar</string>
-    <string name="add_new_claim">Añadir nueva reclamación</string>
-    <string name="action">Acción</string>
-    <string name="dismiss">Descartar</string>
-    <string name="dismiss_fields">Al cerrar esta ventana, todos los cambios serán ignorados Estas seguro?</string>
-    <string name="mobile">Móvil</string>
-    <string name="email">Email</string>
-    <string name="date_format">dd-MM-yyyy</string>
-    <string name="load_events_data">Cargando eventos</string>
-    <string name="no_events_data">Sin eventos</string>
-    <string name="services">Servicios</string>
-    <string name="internet">Conexión internet</string>
-    <string name="without_connection">\@ En este momento no dispones de conexión a internet</string>
-    <string name="serviceName">Servicio</string>
-    <string name="dateInit">Fecha servicio</string>
-    <string name="igCost">20.50 €</string>
-    <string name="priceServiceEuro">%1$s €</string>
-    <string name="select_service">seleccione servicio</string>
-    <string name="exit">Salir</string>
-    <string name="no_tenants_for_contact">Sin inquilinos para este contacto</string>
-    <string name="no_services_data">Sin servicios</string>
-    <string name="service_Id">Servicio ident. %1$s</string>
-    <string name="service">Servicio</string>
-    <string name="select">Selecione</string>
-    <string name="serviceStatus">estado del servicio</string>
-    <string name="service_status_passed">pasado</string>
-    <string name="service_status_pending">pendiente</string>
-    <string name="igDate">04–09–2019</string>
-    <string name="igHour">14:30</string>
-    <string name="appointment_info">Información Citas</string>
-    <string name="appointment_msg">Ya tiene una cita reservada para el servicio %1$s el día %2$s a las %3$s \n\n¿Quiere cambiar la cita?</string>
-    <string name="updateDate">Fecha actualización</string>
-    <string name="service_name">Nombre servicio %1$s</string>
-    <string name="select_other_day">Seleccione otro día</string>
-    <string name="other_day">Otro día</string>
-    <string name="appointment_msg_new_or_change">Ya tiene una cita reservada para el servicio %1$s el día %2$s a las %3$s \n\n¿Quieres cambiarla o pedir una nueva?\n\nSi nada de lo anterior, pulse fuera de esta ventana</string>
-    <string name="change">Cambiar</string>
-    <string name="newAppointment">Nueva</string>
-    <string name="change_appointment">Actualizar cita %1$s del día %2$s</string>
-    <string name="without_dates_for_day_selected">\@ No hay horas disponibles para el día %1$s \\nSi quieres seleccionar otro día click en el botón otro día</string>
-    <string name="save_data_err">Error guardando datos</string>
-    <string name="appointment_created_ok">Cita creada correctamente</string>
-    <string name="appointment_created_error">No se pudo crear la cita</string>
-    <string name="appointment_update_ok">Cita actualizada correctamente</string>
-    <string name="appointment_update_error">No se pudo actualizar la cita</string>
-    <string name="select_day">Día seleccionado: %1$s</string>
-    <string name="err">error</string>
-    <string name="annular">Anular cita</string>
-    <string name="igRoles">Inquilino, Contacto, Medico</string>
-    <string name="delete">delete</string>
-    <string name="appointment_delete_ok">Appointment cancel successly</string>
-    <string name="appointment_delete_error">No se pudo cancelar la cita</string>
-    <string name="update">Actualizar cita</string>
-    <string-array name="roles_array">
-        <item>Inquilino</item>
-        <item>Proveedor</item>
-        <item>Contacto</item>
-        <item>Médico</item>
-        <item>Gerente</item>
-        <item>Subgerente</item>
-        <item>Administrador</item>
-        <item>SuperAdministrador</item>
-    </string-array>
+  <array name="material_calendar_months_array">
+    <item>Enero</item>
+    <item>Febrero</item>
+    <item>Marzo</item>
+    <item>Abril</item>
+    <item>Mayo</item>
+    <item>Junio</item>
+    <item>Julio</item>
+    <item>Agosto</item>
+    <item>Septiembre</item>
+    <item>Octubre</item>
+    <item>Noviembre</item>
+    <item>Diciembre</item>
+  </array>
+  <string name="app_name">DotLinked_proyecto</string>
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="fragment1">fragment1</string>
+  <string name="input_password">Introduzca su contraseña</string>
+  <string name="bl_password_Upper">CONTRASEÑA</string>
+  <string name="btn_send_Upper">ENVIAR</string>
+  <string name="input_userName">Introduzca nombre usuario</string>
+  <string name="enterprise_name">DOTLINKED</string>
+  <string name="login">login</string>
+  <string name="logo_enterprise_des">Icono de empresa</string>
+  <string name="user_name">Nombre usuario</string>
+  <string name="remember_me">Recordarme</string>
+  <string name="forgot_pass">Olvido la contraseña</string>
+  <string name="password">Contraseña</string>
+  <string name="register_here">Registro aquí</string>
+  <string name="name">DOTLINKED</string>
+  <string name="twitter_img">twitter</string>
+  <string name="instagram_img">instagram</string>
+  <string name="facebook_img">facebook</string>
+  <string name="well_come_user">Bienvenido %1$s</string>
+  <string name="not_remember_me">Dejar de recordarme</string>
+  <string name="access">Acceder</string>
+  <string name="finger_print">Usar huella</string>
+  <string name="spinner_prompt">Seleccione opción</string>
+  <string name="wrong_credentials">Credenciales erroneas</string>
+  <string name="required_fields">Campos requeridos</string>
+  <string name="email_validation"><![CDATA[\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b]]></string>
+  <string name="email_invalid">Email inválido</string>
+  <string name="password_invalid">Contraseña requiere una may y un número 6–25 caracts</string>
+  <string name="load_data">Cargar datos</string>
+  <string name="exitApp">Salir App</string>
+  <string name="exitYes">Pulse si para salir</string>
+  <string name="Yes">Si</string>
+  <string name="No">No</string>
+  <string name="load_data_err">Error cargando datos</string>
+  <string name="OK">OK</string>
+  <string name="cancel">Cancelar</string>
+  <string name="field_search">Fill search field</string>
+  <string name="select_item">Seleccionado %1$s</string>
+  <string name="not_user">No soy %1$s</string>
+  <string name="error_connection">Error en la conexión</string>
+  <string name="material_calendar_monday">Lun</string>
+  <string name="material_calendar_tuesday">Mar</string>
+  <string name="material_calendar_wednesday">Mie</string>
+  <string name="material_calendar_thursday">Jue</string>
+  <string name="material_calendar_friday">Vie</string>
+  <string name="material_calendar_saturday">Sab</string>
+  <string name="material_calendar_sunday">Dom</string>
+  <string name="material_calendar_today_button">Hoy</string>
+  <string name="material_calendar_positive_button">OK</string>
+  <string name="material_calendar_negative_button">Cancelar</string>
+  <string name="rol_tenant">Inquilino</string>
+  <string name="rol_provider">Proveedor</string>    
+  <string name="rol_contact">Contacto</string>   
+  <string name="rol_doctor">Medico</string>  
+  <string name="rol_manager">Gerente</string>    
+  <string name="rol_manager_assistant">Subgerente</string>    
+  <string name="rol_administrator">Administrador</string>    
+  <string name="rol_super_admin">SuperAdmin</string>
+  <string name="rol_coordinator">Coordinador</string>
+  <string name="rol_employee">Empleado</string>
+  <string name="input_password_access_rol_company">Rol seleccionado %1$s \n\nEmpresa %2$s </string>
+  <string name="no_event">Sin evento</string>
+  <string name="write_note">Título evento</string>
+  <string name="save">guardar</string>
+  <string name="arrow_right">Flecha derecha</string>
+  <string name="arrow_left">flecah izquierda left</string>
+  <string name="event_calendar_title">Calendario eventos</string>
+  <string name="fingerprint">Huella dactilar</string>
+  <string name="not_fingerprint_hasEnrolledFingerprints">Debe tener al menos un registro de una huella dactilar en el dispositivo</string>
+  <string name="inform_request">Informar y solicitar</string>
+  <string name="need_permissions">Necesitas habilitar permisos para usar la huella dactilar</string>
+  <string name="no_have_permissions">No tienes permisos para usar la huella dactilar</string>
+  <string name="use_fingerprint">Use la huella dactilar</string>
+  <string name="select_company">Seleccione empresa</string>
+  <string name="input_password_access_rol">Rol seleccionado %1$s</string>
+  <string name="input_access_company">Empresa %1$s</string>
+  <string name="rol">Rol</string>
+  <string name="company">Empresa</string>
+  <string name="menu_eventos">Eventos</string>
+  <string name="navigation_drawer_open">Abierto</string>
+  <string name="navigation_drawer_close">Cerrado</string>
+  <string name="title_click">Título %1$s</string>
+  <string name="events">Eventos</string>
+  <string name="notify">Notificaciones</string>
+  <string name="claim">Reclamaciones</string>
+  <string name="health">Seguimiento médico</string>
+  <string name="dates">Citas</string>
+  <string name="personal">Personal</string>
+  <string name="title">Título</string>
+  <string name="description">Descripción</string>
+  <string name="location">Ubicación</string>
+  <string name="initTime">Hora desde</string>
+  <string name="endTime">Hota hasta</string>
+  <string name="cost">Costo</string>
+  <string name="list_claims">Lista de reclamaciones</string>
+  <string name="status">Estado</string>
+  <string name="subject">Asunto</string>
+  <string name="claimDate">Fecha emisión</string>
+  <string name="claim_Id">Reclamación ident. %1$s</string>
+  <string name="img_close_button">Boton cerrar</string>
+  <string name="add_new_claim">Añadir nueva reclamación</string>
+  <string name="action">Acción</string>
+  <string name="dismiss">Descartar</string>
+  <string name="dismiss_fields">Al cerrar esta ventana, todos los cambios serán ignorados Estas seguro?</string>
+  <string name="mobile">Móvil</string>
+  <string name="email">Email</string>
+  <string name="date_format">dd-MM-yyyy</string>
+  <string name="load_events_data">Cargando eventos</string>
+  <string name="no_events_data">Sin eventos</string>
+  <string name="services">Servicios</string>
+  <string name="internet">Conexión internet</string>
+  <string name="without_connection">\@ En este momento no dispones de conexión a internet</string>
+  <string name="serviceName">Servicio</string>
+  <string name="dateInit">Fecha servicio</string>
+  <string name="igCost">20.50 €</string>
+  <string name="priceServiceEuro">%1$s €</string>
+  <string name="select_service">seleccione servicio</string>
+  <string name="exit">Salir</string>
+  <string name="no_tenants_for_contact">Sin inquilinos para este contacto</string>
+  <string name="no_services_data">Sin servicios</string>
+  <string name="service_Id">Servicio ident. %1$s</string>
+  <string name="service">Servicio</string>
+  <string name="select">Selecione</string>
+  <string name="serviceStatus">estado del servicio</string>
+  <string name="service_status_passed">pasado</string>
+  <string name="service_status_pending">pendiente</string>
+  <string name="igDate">04–09–2019</string>
+  <string name="igHour">14:30</string>
+  <string name="appointment_info">Información Citas</string>
+  <string name="appointment_msg">Ya tiene una cita reservada para el servicio %1$s el día %2$s a las %3$s \n\n¿Quiere cambiar la cita?</string>
+  <string name="updateDate">Fecha actualización</string>
+  <string name="service_name">Nombre servicio %1$s</string>
+  <string name="select_other_day">Seleccione  día</string>
+  <string name="other_day">Otro día</string>
+  <string name="appointment_msg_new_or_change">Ya tiene una cita reservada para el servicio %1$s el día %2$s a las %3$s \n\n¿Quieres cambiarla o pedir una nueva?\n\nSi nada de lo anterior, pulse fuera de esta ventana</string>
+  <string name="change">Cambiar</string>
+  <string name="newAppointment">Nueva</string>
+  <string name="change_appointment">Actualizar cita %1$s del día %2$s</string>
+  <string name="without_dates_for_day_selected">\@ No hay horas disponibles para el día %1$s \\nSi quieres seleccionar otro día click en el botón otro día</string>
+  <string name="save_data_err">Error guardando datos</string>
+  <string name="appointment_created_ok">Cita creada correctamente</string>
+  <string name="appointment_created_error">No se pudo crear la cita</string>
+  <string name="appointment_update_ok">Cita actualizada correctamente</string>
+  <string name="appointment_update_error">No se pudo actualizar la cita</string>
+  <string name="select_day">Día seleccionado: %1$s</string>
+  <string name="err">error</string>
+  <string name="annular">Anular cita</string>
+  <string name="igRoles">Inquilino, Contacto, Medico</string>
+  <string name="delete">delete</string>
+  <string name="appointment_delete_ok">Appointment cancel successly</string>
+  <string name="appointment_delete_error">No se pudo cancelar la cita</string>
+  <string name="update">Actualizar cita</string>
+  <string name="detail">detail</string>
+  <string name="appointment">appointment</string>
+  <string name="service_selected">serviceSelected</string>
+  <string name="msg_info_push_tv_select_day">En el siguiente calendario seleccine el día y pulse el botón selecciobe día</string>
+  <string-array name="roles_array">
+    <item>Inquilino</item>
+    <item>Proveedor</item>
+    <item>Contacto</item>
+    <item>Médico</item>
+    <item>Gerente</item>
+    <item>Subgerente</item>
+    <item>Administrador</item>
+    <item>SuperAdministrador</item>
+  </string-array>
 </resources>

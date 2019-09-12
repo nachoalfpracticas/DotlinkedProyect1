@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -116,7 +117,7 @@ public class EventsCalendarFragment extends Fragment {
 
     mCalendarView = view.findViewById(R.id.servicesCalendarView);
     mCalendarView.isInEditMode();
-    tvEventDay = view.findViewById(R.id.tv_select_day);
+    tvEventDay = view.findViewById(R.id.btn_select_day);
     tvEventDay.setText(df.format(cal.get().getTime()));
 
     /*FloatingActionButton floatingActionButton = view.findViewById(R.id.floatingActionButton);
@@ -126,7 +127,7 @@ public class EventsCalendarFragment extends Fragment {
     rcEvents.setLayoutManager(layoutManager);
     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcEvents.getContext(),
         layoutManager.getOrientation());
-    dividerItemDecoration.setDrawable(context.getResources().getDrawable(R.drawable.divider_recycler));
+    dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.divider_recycler)));
     rcEvents.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
     mCalendarView.setOnDayClickListener(this::previewEvent);

@@ -1,5 +1,7 @@
 package com.example.dotlinked_proyecto.services;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,8 @@ import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
+import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -142,10 +146,41 @@ public class ServiceDetailActivity extends AppCompatActivity {
       });
     });
 
-
     btnUpdateAppointment.setOnClickListener(view -> {
-
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        setIntentToUpdate();
+      } else {
+        showDialogInfo();
+      }
     });
+  }
+
+  private void showDialogInfo() {
+    NiftyDialogBuilder infoMessage = NiftyDialogBuilder.getInstance(this);
+    infoMessage
+        .withTitle("   " + getString(R.string.appointment_info))
+        .withIcon(R.drawable.ic_dates_icon_white)
+        .withDividerColor(R.color.daysLabelColor)
+        .withMessage(getString(R.string.msg_info_push_tv_select_day))
+        .withMessageColor("#FAD201")
+        .withDialogColor(R.color.blueDotlinked)
+        .withDuration(700)
+        .withButton1Text(getString(R.string.OK))
+        .withEffect(Effectstype.RotateBottom)
+        .isCancelableOnTouchOutside(false)
+        .setButton1Click(v -> {
+         setIntentToUpdate();
+          infoMessage.dismiss();
+        })
+        .show();
+  }
+
+  private void setIntentToUpdate() {
+    Intent intent = new Intent(this, ServiceOrderActivity.class);
+    intent.putExtra(getString(R.string.detail), true);
+    intent.putExtra(getString(R.string.appointment), new Gson().toJson(appointment));
+    startActivity(intent);
+    finish();
   }
 
   @Override
