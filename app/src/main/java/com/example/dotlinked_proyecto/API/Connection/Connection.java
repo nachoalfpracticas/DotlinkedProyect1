@@ -2,6 +2,9 @@ package com.example.dotlinked_proyecto.API.Connection;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
@@ -33,11 +36,14 @@ public class Connection {
   }
 
   public static Retrofit getRetrofitClient() {
+      Gson gson = new GsonBuilder()
+              .setLenient()
+              .create();
     //If condition to ensure we don't create multiple retrofit instances in a single application
     if (retrofit == null) {
       retrofit = new Retrofit.Builder()
           .baseUrl(SERVER_URL)
-          .addConverterFactory(GsonConverterFactory.create())
+          .addConverterFactory(GsonConverterFactory.create(gson))
           .client(client)
           .build();
     }
