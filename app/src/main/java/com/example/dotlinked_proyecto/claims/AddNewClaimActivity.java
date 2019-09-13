@@ -124,17 +124,21 @@ public class AddNewClaimActivity extends AppCompatActivity {
           @Override
           public void onResponse(Call<String> call, Response<String> response) {
             if (response.body() != null) {
-              if (response.body().toLowerCase().equals(getString(R.string.OK).toLowerCase())) {
-                UtilMessages.showCreateClaim(AddNewClaimActivity.this, subject);
-              } else {
-                UtilMessages.showCreateClaim(AddNewClaimActivity.this, null);
-
+              if (response.body().toLowerCase().equals(getString(R.string.OK))) {
+                if (response.body().toLowerCase().equals(getString(R.string.OK).toLowerCase())) {
+                  UtilMessages.showCreateClaim(AddNewClaimActivity.this, subject);
+                } else {
+                  UtilMessages.showCreateClaim(AddNewClaimActivity.this, null);
+                }
               }
+            } else {
+              UtilMessages.showLoadDataError(AddNewClaimActivity.this, Objects.requireNonNull(response.errorBody()).toString());
             }
           }
 
           @Override
           public void onFailure(Call<String> call, Throwable t) {
+            UtilMessages.showLoadDataError(AddNewClaimActivity.this);
             d("RESPONSE", "Error createClaim: " + t.getCause());
           }
         });

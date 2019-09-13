@@ -59,15 +59,19 @@
 
 
   <androidx.appcompat.widget.AppCompatEditText
-      android:id="@+id/tv_subject"
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_marginTop="1dp"
-      android:background="@color/primary"
-      android:text="@string/subject"
-      android:textAlignment="center"
-      android:textColor="@color/colorWhite"
-      tools:ignore="NotSibling" />
+    android:id="@+id/tv_subject"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="1dp"
+    android:background="@color/primary"
+    android:clickable="false"
+    android:contextClickable="false"
+    android:focusable="auto"
+    android:focusableInTouchMode="false"
+    android:text="@string/subject"
+    android:textAlignment="center"
+    android:textColor="@color/colorWhite"
+    tools:ignore="NotSibling" />
 
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/til_subject"
@@ -92,14 +96,18 @@
 
 
   <androidx.appcompat.widget.AppCompatEditText
-      android:id="@+id/tv_description"
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_marginTop="50dp"
-      android:background="@color/primary"
-      android:text="@string/description"
-      android:textAlignment="center"
-      android:textColor="@color/colorWhite" />
+    android:id="@+id/tv_description"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="50dp"
+    android:background="@color/primary"
+    android:clickable="false"
+    android:contextClickable="false"
+    android:focusable="auto"
+    android:focusableInTouchMode="false"
+    android:text="@string/description"
+    android:textAlignment="center"
+    android:textColor="@color/colorWhite" />
 
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/til_description"
@@ -114,6 +122,10 @@
       android:drawableStart="@drawable/ic_add"
       android:drawablePadding="15dp"
       android:inputType="textMultiLine"
+      android:maxLines="10"
+      android:scrollIndicators="top|bottom"
+      android:scrollbarAlwaysDrawHorizontalTrack="false"
+      android:scrollbarAlwaysDrawVerticalTrack="true"
       android:textAlignment="textStart"
       android:textAppearance="@style/TextAppearance.AppCompat.Display1"
       android:textColor="@color/colorWhite"

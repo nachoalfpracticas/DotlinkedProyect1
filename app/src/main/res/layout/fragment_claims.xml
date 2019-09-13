@@ -7,73 +7,95 @@
     tools:context=".activities.BaseActivity">
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/claim_date"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/primary"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.AppCompatEditText
+      android:id="@+id/claim_date"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:background="@color/primary"
+      android:gravity="center"
+      android:enabled="false"
+      android:textAlignment="center"
+      android:textColor="@color/colorWhite"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+      android:id="@+id/lblSubject"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/blueDotlinked"
+      android:clickable="false"
+      android:contextClickable="false"
+      android:cursorVisible="false"
+      android:enabled="false"
+      android:focusableInTouchMode="false"
+      android:gravity="center"
+      android:inputType="none"
+      android:text="@string/subject"
+      android:textAlignment="center"
+      android:textColor="@color/colorWhite"
+      android:textSize="24sp"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/claim_date"
+      android:autofillHints="" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lblSubject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/blueDotlinked"
-        android:gravity="center"
-        android:text="@string/subject"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/claim_date" />
+      android:id="@+id/claim_subject"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_marginTop="20dp"
+      android:gravity="start"
+      android:paddingStart="5dp"
+      android:paddingEnd="5dp"
+      android:textAlignment="textStart"
+      android:textColor="@color/colorWhite"
+      android:textSize="20sp"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/claim_subject"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:gravity="start"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lblDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/blueDotlinked"
-        android:gravity="center"
+    <EditText
+      android:id="@+id/lblDescription"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:background="@color/blueDotlinked"
+      android:clickable="false"
+      android:contextClickable="false"
+      android:cursorVisible="false"
+      android:enabled="false"
+      android:focusableInTouchMode="false"
+      android:gravity="center"
+      android:inputType="none"
       android:text="@string/description"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/claim_subject" />
+      android:textAlignment="center"
+      android:textColor="@color/colorWhite"
+      android:textSize="24sp"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/claim_subject"
+       />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/claim_status"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:gravity="start"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
+      android:id="@+id/claim_status"
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:layout_marginTop="20dp"
+      android:gravity="start"
+      android:nestedScrollingEnabled="true"
+      android:paddingStart="5dp"
+      android:paddingEnd="5dp"
+      android:scrollIndicators="top|bottom"
+      android:textAlignment="textStart"
+      android:textColor="@color/colorWhite"
+      android:textSize="20sp"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lblListClaims"
@@ -91,13 +113,17 @@
         app:layout_constraintTop_toBottomOf="@+id/claim_status" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_claims"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblListClaims" />
+      android:id="@+id/rv_claims"
+      android:layout_width="413dp"
+      android:layout_height="0dp"
+      android:scrollIndicators="top|bottom"
+      android:scrollbarAlwaysDrawVerticalTrack="true"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/lblListClaims"
+      app:layout_constraintVertical_bias="0.0" />
 
     <com.example.dotlinked_proyecto.Utils.MovableFloatingActionButton
         android:id="@+id/btnAddClaims"
