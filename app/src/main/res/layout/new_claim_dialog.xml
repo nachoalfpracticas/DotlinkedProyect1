@@ -85,7 +85,7 @@
       android:inputType="textEmailAddress"
       android:textAlignment="textStart"
       android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-      android:textColor="@color/colorBlack"
+      android:textColor="@color/colorWhite"
       android:textSize="20sp"
       tools:text="@string/subject" />
   </com.google.android.material.textfield.TextInputLayout>
@@ -116,7 +116,7 @@
       android:inputType="textMultiLine"
       android:textAlignment="textStart"
       android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-      android:textColor="@color/colorBlack"
+      android:textColor="@color/colorWhite"
       android:textSize="20sp"
       tools:text="@string/description" />
   </com.google.android.material.textfield.TextInputLayout>

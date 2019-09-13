@@ -171,7 +171,9 @@
     <string name="appointment">appointment</string>
     <string name="service_selected">serviceSelected</string>
   <string name="msg_info_push_tv_select_day">In next calendar select day and push select day button</string>
-  <string-array name="roles_array">    
+    <string name="claim_created_ok">The claim about %1$s was created correctly</string>
+    <string name="claim_created_error">Could not create claim</string>
+    <string-array name="roles_array">    
         <item>Tenant</item>    
         <item>Provider</item>    
         <item>Contact</item>   
@@ -181,4 +183,5 @@
         <item>Administrator</item>    
         <item>Super Assistant Manager</item>  
     </string-array>
+    <string name="claim_info">Claim information</string>
 </resources>

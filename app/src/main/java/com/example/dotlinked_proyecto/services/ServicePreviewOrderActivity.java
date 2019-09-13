@@ -139,11 +139,10 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
           }
         }
         if (appointmentListTemp.size() > 0) {
-          Appointment appointment;
           if (appointmentListTemp.size() > 1) {
             Collections.sort(appointmentListTemp, new Appointment());
           }
-          appointment = appointmentListTemp.get(0);
+          Appointment appointment = appointmentListTemp.get(0);
           UtilMessages.showAppointmentInfoNewOrChange(ServicePreviewOrderActivity.this,
               serviceSelected,
               appointment,
@@ -170,6 +169,7 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
         if (response.body() != null && response.body().size() > 0) {
           serviceList = response.body();
           for (Service s : serviceList) {
+            d("RESPONSE", "Services by company: " + s.toString());
             servicesName.add(s.getServiceName());
           }
           ArrayAdapter adapter = new ArrayAdapter<>(ServicePreviewOrderActivity.this, android.R.layout.simple_spinner_item, servicesName);

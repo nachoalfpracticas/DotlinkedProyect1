@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
-import com.example.dotlinked_proyecto.appServices.ListClaimsPersonService;
+import com.example.dotlinked_proyecto.appServices.ClaimsPersonService;
 import com.example.dotlinked_proyecto.bean.Claim;
 import com.example.dotlinked_proyecto.claims.Adapter.RecyclerViewClaimsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -45,7 +45,7 @@ public class ClaimsFragment extends Fragment {
   private RecyclerView rvClaimsList;
 
   private RecyclerViewClaimsAdapter claimsAdapter;
-  private ListClaimsPersonService listClaimsService;
+  private ClaimsPersonService listClaimsService;
   private List<Claim> claimList;
   private AppCompatTextView tvClaimStatus;
   private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY);
@@ -69,7 +69,7 @@ public class ClaimsFragment extends Fragment {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     context = getContext();
-    listClaimsService = new ListClaimsPersonService();
+    listClaimsService = new ClaimsPersonService();
     if (getArguments() != null) {
       access_token = getArguments().getString(ARG_TOKEN);
     }

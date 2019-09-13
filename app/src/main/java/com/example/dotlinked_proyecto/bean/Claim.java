@@ -40,7 +40,7 @@ public class Claim {
   private int resolve; // 1 Resuelta , 0  Abierta
 
   // Una Queja tiene un Estatus
-  private int estatusId;
+  private int statusId;
   // private Estatus estatusQueja { get; set; }
 
   // Esta  Persona Genero la  Queja
@@ -51,14 +51,14 @@ public class Claim {
   // private ICollection<QuejaPersona> quejaPersona { get; set; }
 
 
-  public Claim(int claimId, String subject, String description, String broadcastDate, String updateDate, int resolve, int estatusId, int personaId, Person claimPerson) {
+  public Claim(int claimId, String subject, String description, String broadcastDate, String updateDate, int resolve, int statusId, int personaId, Person claimPerson) {
     this.claimId = claimId;
     this.subject = subject;
     this.description = description;
     this.broadcastDate = broadcastDate;
     this.updateDate = updateDate;
     this.resolve = resolve;
-    this.estatusId = estatusId;
+    this.statusId = statusId;
     this.personaId = personaId;
     this.claimPerson = claimPerson;
   }
@@ -113,12 +113,12 @@ public class Claim {
     this.resolve = resolve;
   }
 
-  public int getEstatusId() {
-    return estatusId;
+  public int getStatusId() {
+    return statusId;
   }
 
-  public void setEstatusId(int estatusId) {
-    this.estatusId = estatusId;
+  public void setStatusId(int statusId) {
+    this.statusId = statusId;
   }
 
   public int getPersonaId() {
@@ -147,7 +147,7 @@ public class Claim {
         ", broadcastDate=" + broadcastDate +
         ", updateDate=" + updateDate +
         ", resolve=" + resolve +
-        ", estatusId=" + estatusId +
+        ", statusId=" + statusId +
         ", personaId=" + personaId +
             ", claimPerson=" + claimPerson +
         '}';

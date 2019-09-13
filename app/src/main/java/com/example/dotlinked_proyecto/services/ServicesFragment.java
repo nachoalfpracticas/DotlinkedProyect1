@@ -192,6 +192,7 @@ public class ServicesFragment extends Fragment {
         .filter(s -> s.getDateFrom().contains(date))
         .collect(Collectors.toList());
     setRecyclerViewAdapter(tmpServiceList);
+    adapterSetOnClickListener(tmpServiceList);
     return tmpServiceList;
   }
 
@@ -212,6 +213,8 @@ public class ServicesFragment extends Fragment {
         if (response.body() != null && response.body().size() > 0) {
           appointmentList = response.body();
           session.setAppointmentsOfUser(appointmentList);
+          for(Appointment app: appointmentList)
+            d("RESPONSE", "Appointments user: " + app.toString());
           Calendar cal = Calendar.getInstance();
           String date = df.format(cal.getTime());
           setRecyclerViewAdapterToDay(date);
@@ -227,6 +230,15 @@ public class ServicesFragment extends Fragment {
     });
   }
 
+  private void adapterSetOnClickListener(List<Appointment> tmpServiceList) {
+    adapter.setClickListener((view, position) -> {
+      Appointment ser = tmpServiceList.get(position);
+      Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
+      intent.putExtra("service", new Gson().toJson(ser));
+      Objects.requireNonNull(getActivity()).startActivity(intent);
+    });
+  }
+
   @RequiresApi(api = Build.VERSION_CODES.N)
   private void previewService(EventDay eventDay) {
     appointmentList = session.getAppointmentsOfUser();
@@ -234,11 +246,7 @@ public class ServicesFragment extends Fragment {
     tvDateDay.setText(date);
     String datePet = dateFormat.format(eventDay.getCalendar().getTime());
     List<Appointment> tmpServiceList = setRecyclerViewAdapterToDay(datePet);
-    adapter.setClickListener((view, position) -> {
-      Appointment ser = tmpServiceList.get(position);
-      Intent intent = new Intent(getActivity(), ServiceDetailActivity.class);
-      intent.putExtra("service", new Gson().toJson(ser));
-      Objects.requireNonNull(getActivity()).startActivity(intent);
-    });
+    adapterSetOnClickListener(tmpServiceList);
+
   }
 }

@@ -162,4 +162,6 @@
   <string name="appointment">appointment</string>
   <string name="service_selected">serviceSelected</string>
   <string name="msg_info_push_tv_select_day">In next calendar select day and push select day button</string>
+    <string name="claim_created_ok">The claim about %1$s was created correctly</string>
+  <string name="claim_created_error">Could not create claim</string>
 </resources>

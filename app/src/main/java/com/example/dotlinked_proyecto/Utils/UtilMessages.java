@@ -386,6 +386,39 @@ public class UtilMessages {
             .show();
 
   }
+
+  public static void showCreateClaim(Activity activity, String subject) {
+    int color;
+    String msg;
+    if (subject != null) {
+      msg = String.format(activity.getString(R.string.claim_created_ok), subject);
+      color = Color.GREEN;
+    } else {
+      msg = activity.getString(R.string.claim_created_error);
+      color = Color.RED;
+    }
+
+    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
+    dialogBuilder
+            .withTitle("    " + activity.getString(R.string.claim_info))
+            .withIcon(R.drawable.ic_dates_icon_white)
+            .withDividerColor(R.color.daysLabelColor)
+            .withMessage(msg)
+            .withMessageColor(color)
+            .withDialogColor(R.color.blueDotlinked)
+            .withButton1Text(activity.getString(R.string.OK))
+            .withDuration(700)
+            .withEffect(Effectstype.RotateBottom)
+            .isCancelableOnTouchOutside(false)
+            .setButton1Click(v2 -> {
+              Intent intent = new Intent(activity, BaseActivity.class);
+              intent.putExtra(TAG_FRAGMENT, activity.getString(R.string.services));
+              activity.startActivity(intent);
+              activity.finish();
+              dialogBuilder.dismiss();
+            })
+            .show();
+  }
 }
 
 

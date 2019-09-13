@@ -173,7 +173,7 @@ public class ServiceOrderActivity extends AppCompatActivity {
                     //día del mes siguiente para
                     // establecer el periodo ej. 2019-09-01 a 2019-10-01
                     Calendar c = Calendar.getInstance();
-                    Date dateInit = Util.convertDate(date);
+                    Date dateInit = Util.convertDate(date+"T00:00:00");
                     c.setTime(dateInit);
                     c.set(Calendar.DAY_OF_MONTH, 1);
                     Date d = c.getTime();

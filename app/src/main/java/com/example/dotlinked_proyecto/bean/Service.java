@@ -38,6 +38,10 @@ public class Service {
   @Expose
   private String location;
 
+  @SerializedName(("maxvez"))
+  @Expose
+  private int recurrent;
+
   public Service(String serviceId, String person, String serviceName, String dateInit, String dateEnd, float cost, Integer duration, String location) {
     this.serviceId = serviceId;
     this.person = person;
@@ -113,19 +117,27 @@ public class Service {
     this.location = location;
   }
 
+  public int getRecurrent() {
+    return recurrent;
+  }
+
+  public void setRecurrent(int recurrent) {
+    this.recurrent = recurrent;
+  }
 
   @NonNull
   @Override
   public String toString() {
     return "Service{" +
-        "serviceId=" + serviceId +
-        ", person=" + person +
-        ", serviceName='" + serviceName + '\'' +
-        ", dateInit='" + dateInit + '\'' +
-        ", dateEnd='" + dateEnd + '\'' +
-        ", cost=" + cost +
-        ", duration=" + duration +
-        ", location='" + location + '\'' +
-        '}';
+            "serviceId=" + serviceId +
+            ", person=" + person +
+            ", serviceName='" + serviceName + '\'' +
+            ", dateInit='" + dateInit + '\'' +
+            ", dateEnd='" + dateEnd + '\'' +
+            ", cost=" + cost +
+            ", duration=" + duration +
+            ", location='" + location + '\'' +
+            '}';
   }
+
 }

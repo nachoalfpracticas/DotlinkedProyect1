@@ -141,6 +141,23 @@ public class Appointment implements Comparator<Appointment> {
   public void setPending(boolean pending) {
     isPending = pending;
   }
+
+  @Override
+  public String toString() {
+    return "Appointment{" +
+            "serviceId=" + serviceId +
+            ", userName='" + userName + '\'' +
+            ", personId=" + personId +
+            ", serviceName='" + serviceName + '\'' +
+            ", dateFrom='" + dateFrom + '\'' +
+            ", dateTo='" + dateTo + '\'' +
+            ", cost=" + cost +
+            ", duration=" + duration +
+            ", location='" + location + '\'' +
+            ", appointmentId=" + appointmentId +
+            ", isPending=" + isPending +
+            '}';
+  }
 }
 
 

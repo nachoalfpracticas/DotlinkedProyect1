@@ -164,13 +164,15 @@
   <string name="annular">Anular cita</string>
   <string name="igRoles">Inquilino, Contacto, Medico</string>
   <string name="delete">delete</string>
-  <string name="appointment_delete_ok">Appointment cancel successly</string>
+  <string name="appointment_delete_ok">Cita cancelada correctamente</string>
   <string name="appointment_delete_error">No se pudo cancelar la cita</string>
   <string name="update">Actualizar cita</string>
   <string name="detail">detail</string>
   <string name="appointment">appointment</string>
   <string name="service_selected">serviceSelected</string>
   <string name="msg_info_push_tv_select_day">En el siguiente calendario seleccine el día y pulse el botón selecciobe día</string>
+  <string name="claim_created_ok">La reclamación sobre %1$s se creo correctamente</string>
+  <string name="claim_created_error">No se pudo crear la reclamación</string>
   <string-array name="roles_array">
     <item>Inquilino</item>
     <item>Proveedor</item>
@@ -181,4 +183,5 @@
     <item>Administrador</item>
     <item>SuperAdministrador</item>
   </string-array>
+  <string name="claim_info">Información reclamaciones</string>
 </resources>
