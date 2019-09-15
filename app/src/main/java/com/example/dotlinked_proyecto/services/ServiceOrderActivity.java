@@ -24,6 +24,7 @@ import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.AppointmentNewUpdateDelete;
@@ -42,7 +43,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -189,8 +189,12 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<String> call, Throwable t) {
-                UtilMessages.showLoadDataError(ServiceOrderActivity.this);
-                d("RESPONSE", "Error createUpdateAppointment: " + t.getCause());
+                if(t instanceof NoConnectivityException) {
+                  UtilMessages.withoutInternet(ServiceOrderActivity.this);
+                } else {
+                  UtilMessages.showLoadDataError(ServiceOrderActivity.this);
+                }
+                d("RESPONSE", "Error createUpdateAppointment: " + t.getMessage());
               }
             });
           });
@@ -229,7 +233,10 @@ public class ServiceOrderActivity extends AppCompatActivity {
 
       @Override
       public void onFailure(Call<List<ServiceInfo>> call, Throwable t) {
-        d("RESPONSE", "Error getAvailableSchedulesToServices: " + t.getCause());
+        if(t instanceof NoConnectivityException) {
+          UtilMessages.withoutInternet(ServiceOrderActivity.this);
+        }
+        d("RESPONSE", "Error getAvailableSchedulesToServices: " + t.getMessage());
       }
     });
   }
@@ -240,25 +247,15 @@ public class ServiceOrderActivity extends AppCompatActivity {
     View view = getLayoutInflater().inflate(getResources().getLayout(R.layout.calendar_select_appointment_day), null);
     DatePicker dpSelectDay = view.findViewById(R.id.calendar_select_day);
     AppCompatButton btnSelectDay = view.findViewById(R.id.btn_select_day);
-    AtomicReference<String> date = new AtomicReference<>();
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       dpSelectDay.setOnDateChangedListener((datePicker, i, i1, i2) -> {
-        int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
-        int year = datePicker.getYear();
-        date.set(year + "-" + (month + 1) + "-" + day);
-        getAvailableSchedulesToServicesFromCalendar(date.get());
+        getSelectedDay(i, i1, i2);
         dialogBuilder.dismiss();
       });
     } else {
-
       btnSelectDay.setOnClickListener(view1 -> {
-        int d = dpSelectDay.getDayOfMonth();
-        int dM = dpSelectDay.getMonth();
-        int dY = dpSelectDay.getYear();
-        date.set(dY + "-" + (dM + 1) + "-" + d);
-        getAvailableSchedulesToServicesFromCalendar(date.get());
+        getSelectedDay(dpSelectDay.getYear(), dpSelectDay.getDayOfMonth(), dpSelectDay.getMonth());
         dialogBuilder.dismiss();
       });
     }
@@ -272,6 +269,11 @@ public class ServiceOrderActivity extends AppCompatActivity {
             .isCancelableOnTouchOutside(false)
             .setCustomView(view, ServiceOrderActivity.this)
             .show();
+  }
+
+  private void getSelectedDay(int year, int month, int day) {
+    String date = year + "-" + (month + 1) + "-" + day;
+    getAvailableSchedulesToServicesFromCalendar(date);
   }
 
   private void getAvailableSchedulesToServicesFromCalendar(String date) {

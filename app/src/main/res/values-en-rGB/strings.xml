@@ -30,7 +30,7 @@
     <string name="password_invalid">Password requires one upper and one number 6–25 chars</string>
     <string name="load_data">Load data</string>
     <string name="exitApp">Exit App</string>
-    <string name="exitYes">Click yes to exit</string>
+    <string name="exitYes">Are you sure you want to leave?</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="load_data_err">Load data error</string>
@@ -184,4 +184,5 @@
         <item>Super Assistant Manager</item>  
     </string-array>
     <string name="claim_info">Claim information</string>
+  <string name="internet_menu">Internet</string>
 </resources>

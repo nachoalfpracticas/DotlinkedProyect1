@@ -16,16 +16,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
 import com.example.dotlinked_proyecto.activities.login.AccessActivity;
+import com.example.dotlinked_proyecto.api.Class.Token;
 import com.example.dotlinked_proyecto.claims.ClaimsFragment;
 import com.example.dotlinked_proyecto.events.EventsCalendarFragment;
 import com.example.dotlinked_proyecto.notify.NotifyFragment;
 import com.example.dotlinked_proyecto.personal.PersonalFragment;
 import com.example.dotlinked_proyecto.services.ServicesFragment;
+import com.example.dotlinked_proyecto.webView.WebViewActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -187,6 +188,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         break;
       case R.id.exit:
         UtilMessages.showExitMessage(this);
+        break;
+      case R.id.webViewMenu:
+        Intent intent = new Intent(BaseActivity.this, WebViewActivity.class);
+        startActivity(intent);
         break;
       default:
         throw new IllegalArgumentException(getString(R.string.load_data_err));

@@ -24,12 +24,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.cardview.widget.CardView;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Check;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.Class.Token;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.CompanyByRolService;
 import com.example.dotlinked_proyecto.bean.Company;
 import com.example.dotlinked_proyecto.bean.Person;
@@ -132,17 +133,7 @@ public class AccessActivity extends AppCompatActivity {
       public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
         rol = adapterView.getItemAtPosition(pos).toString();
         session.setRolUserSelected(rol);
-        String rolUnTrans = Util.unTranslateRoles(AccessActivity.this, rol);
-        Token token = session.getToken();
-        if (token != null) {
-          ListCompaniesUserByRol(token.getAccess_token(), rolUnTrans);
-          Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), rol),
-              Toast.LENGTH_SHORT).show();
-        } else {
-          session.deleteAllSessionUser();
-          Intent intent = new Intent(AccessActivity.this, LoginActivity.class);
-          startActivity(intent);
-        }
+        previousStepToGetListCompaniesUserByRol();
       }
 
       @Override
@@ -155,24 +146,42 @@ public class AccessActivity extends AppCompatActivity {
     registeredUser.setOnClickListener(this::unRegisterUser);
 
     btnAccess.setOnClickListener(view -> {
-      if (!companyName.isEmpty()) {
+      if (companyName != null && !companyName.isEmpty()) {
         Util.navigationTo(this, needAuth, rol, userName, companyName, btnAccess);
         btnAccess.setEnabled(false);
+      } else {
+        if (Check.checkInternetConnection(this)) {
+          previousStepToGetListCompaniesUserByRol();
+        }
       }
     });
 
     // Si el dispositivo dispone de sistema de huellas, se verá el botón para usarlo.
     if (Check.checkFingerprint(this)) {
-
       if (session.getUserUseFingerprint()) {
         btnFingerPrint.setVisibility(View.VISIBLE);
       }
     } else {
       btnAccess.setVisibility(View.GONE);
     }
+
     btnFingerPrint.setOnClickListener(view -> {
 
     });
+  }
+
+  private void previousStepToGetListCompaniesUserByRol() {
+    String rolUnTrans = Util.unTranslateRoles(AccessActivity.this, rol);
+    Token token = session.getToken();
+    if (token != null) {
+      ListCompaniesUserByRol(token.getAccess_token(), rolUnTrans);
+      Toast.makeText(getApplicationContext(), String.format(getString(R.string.select_item), rol),
+          Toast.LENGTH_SHORT).show();
+    } else {
+      session.deleteAllSessionUser();
+      Intent intent = new Intent(AccessActivity.this, LoginActivity.class);
+      startActivity(intent);
+    }
   }
 
   @RequiresApi(api = Build.VERSION_CODES.N)
@@ -226,8 +235,12 @@ public class AccessActivity extends AppCompatActivity {
       }
       @Override
       public void onFailure(Call<List<Company>> call, Throwable t) {
-        UtilMessages.showLoadDataError(AccessActivity.this, getString(R.string.load_data_err));
-        Log.d("RESPONSE", "Error ListCompaniesUserByRol: " + t.getCause());
+        if(t instanceof NoConnectivityException) {
+          UtilMessages.withoutInternet(AccessActivity.this);
+        } else {
+          UtilMessages.showLoadDataError(AccessActivity.this, getString(R.string.load_data_err));
+        }
+        Log.d("RESPONSE", "Error ListCompaniesUserByRol: " + t.getMessage());
       }
     });
   }

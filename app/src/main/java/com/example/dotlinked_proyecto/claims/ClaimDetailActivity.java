@@ -1,6 +1,7 @@
 package com.example.dotlinked_proyecto.claims;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -24,6 +25,8 @@ public class ClaimDetailActivity extends AppCompatActivity {
   private AppCompatTextView tvUserName;
   private AppCompatTextView tvClaimDescription;
   private AppCompatTextView tvClaimUpdateDate;
+  private AppCompatTextView lblClaimUpdateDate;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class ClaimDetailActivity extends AppCompatActivity {
     tvClaimStatus = findViewById(R.id.claim_status);
     tvClaimDescription = findViewById(R.id.claim_description);
     tvClaimUpdateDate = findViewById(R.id.claim_updateDate);
+    lblClaimUpdateDate = findViewById(R.id.lblStatus);
 
     if (claim != null) {
 
@@ -58,6 +62,8 @@ public class ClaimDetailActivity extends AppCompatActivity {
       tvClaimDate.setText(Util.formatDateToLocale(this, claim.getBroadcastDate()));
 
       if (claim.getUpdateDate() != null && !claim.getUpdateDate().isEmpty()) {
+        lblClaimUpdateDate.setVisibility(View.VISIBLE);
+        tvClaimUpdateDate.setVisibility(View.VISIBLE);
         tvClaimUpdateDate.setText(Util.unTranslateRoles(this, claim.getUpdateDate().split("T")[0]));
       }
       setTitle(String.format(getString(R.string.claim_Id), " : " + claim.getClaimId()));

@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.API.Class;
+package com.example.dotlinked_proyecto.api.Class;
 
 import androidx.annotation.NonNull;
 

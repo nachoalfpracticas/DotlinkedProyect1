@@ -20,64 +20,63 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
-        android:alpha="0.8"
-        android:foregroundGravity="center"
-        android:theme="@style/Base.CardView"
-        app:cardCornerRadius="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_claim_detail">
+      android:id="@+id/card_view"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="24dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="24dp"
+      android:alpha="0.8"
+      android:theme="@style/Base.CardView"
+      app:cardCornerRadius="30dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_claim_detail">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/card_view_layout"
-            android:layout_width="match_parent"
-            android:layout_height="557dp"
-            android:background="@color/card_view_background">
+          android:id="@+id/card_view_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/card_view_background">
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/claim_user"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_16"
-                android:gravity="center"
-                android:hint="@string/user_name"
-                android:textSize="20sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblUserName" />
+              android:id="@+id/claim_user"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_16"
+              android:gravity="center"
+              android:hint="@string/user_name"
+              android:textSize="20sp"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/lblUserName" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/claim_subject"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_16"
-                android:gravity="center"
-                android:hint="@string/subject"
-                android:textSize="20sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
+              android:id="@+id/claim_subject"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_16"
+              android:gravity="center"
+              android:hint="@string/subject"
+              android:textSize="20sp"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/lblSubject" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/claim_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_16"
-                android:hint="@string/description"
-                android:maxLines="10"
-                android:textSize="20sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
+              android:id="@+id/claim_description"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_16"
+              android:hint="@string/description"
+              android:maxLines="10"
+              android:textSize="20sp"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
 
             <androidx.appcompat.widget.AppCompatTextView
               android:id="@+id/claim_status"
@@ -108,9 +107,8 @@
               android:id="@+id/claim_updateDate"
               android:layout_width="wrap_content"
               android:layout_height="32dp"
-
               android:layout_margin="@dimen/margin_16"
-              android:layout_marginTop="20dp"
+              android:layout_marginTop="24dp"
               android:gravity="end"
               android:hint="@string/updateDate"
               android:maxLines="10"
@@ -123,84 +121,84 @@
               app:layout_constraintTop_toBottomOf="@+id/claim_status" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="20dp" />
+              android:id="@+id/guideline"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              app:layout_constraintGuide_begin="-16dp" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/lblUserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_16"
-                android:layout_marginTop="16dp"
-                android:text="@string/user_name"
-                android:textColor="@color/blueDotlinked"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/card_view_layout" />
+              android:id="@+id/lblUserName"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_16"
+              android:layout_marginTop="16dp"
+              android:text="@string/user_name"
+              android:textColor="@color/blueDotlinked"
+              android:textSize="24sp"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="@+id/card_view_layout" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/lblSubject"
-                android:layout_width="91dp"
-                android:layout_height="31dp"
-                android:layout_margin="@dimen/margin_16"
-                android:text="@string/subject"
-                android:textColor="@color/blueDotlinked"
-                android:textSize="24sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/claim_user" />
+              android:id="@+id/lblSubject"
+              android:layout_width="91dp"
+              android:layout_height="31dp"
+              android:layout_margin="@dimen/margin_16"
+              android:text="@string/subject"
+              android:textColor="@color/blueDotlinked"
+              android:textSize="24sp"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/claim_user" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/lblDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_16"
-                android:text="@string/description"
-                android:textColor="@color/blueDotlinked"
-                android:textSize="24sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/claim_subject" />
+              android:id="@+id/lblDescription"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_16"
+              android:text="@string/description"
+              android:textColor="@color/blueDotlinked"
+              android:textSize="24sp"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/claim_subject" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/lblClaimDate"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_margin="@dimen/margin_16"
-                android:layout_marginTop="20dp"
-                android:text="@string/claimDate"
-                android:textColor="@color/blueDotlinked"
-                android:textSize="24sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/claim_description" />
+              android:id="@+id/lblClaimDate"
+              android:layout_width="wrap_content"
+              android:layout_height="32dp"
+              android:layout_margin="@dimen/margin_16"
+              android:layout_marginTop="20dp"
+              android:text="@string/claimDate"
+              android:textColor="@color/blueDotlinked"
+              android:textSize="24sp"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/claim_description" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/lblStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_margin="@dimen/margin_16"
-                android:layout_marginTop="20dp"
-                android:text="@string/status"
-                android:textColor="@color/blueDotlinked"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblClaimDate" />
+              android:id="@+id/lblStatus"
+              android:layout_width="wrap_content"
+              android:layout_height="32dp"
+              android:layout_margin="@dimen/margin_16"
+              android:layout_marginTop="20dp"
+              android:text="@string/status"
+              android:textColor="@color/blueDotlinked"
+              android:textSize="24sp"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/lblClaimDate" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/lblUpdate"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_margin="@dimen/margin_16"
-                android:layout_marginTop="16dp"
-                android:text="@string/updateDate"
-                android:textColor="@color/blueDotlinked"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblStatus" />
+              android:id="@+id/lblUpdate"
+              android:layout_width="wrap_content"
+              android:layout_height="32dp"
+              android:layout_margin="@dimen/margin_16"
+              android:layout_marginTop="24dp"
+              android:text="@string/updateDate"
+              android:textColor="@color/blueDotlinked"
+              android:textSize="24sp"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/lblStatus" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
+import com.example.dotlinked_proyecto.api.Class.Token;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Company;
 import com.example.dotlinked_proyecto.bean.Person;

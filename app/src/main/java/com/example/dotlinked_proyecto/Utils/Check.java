@@ -90,7 +90,7 @@ public class Check {
     return !inputLayout.isErrorEnabled();
   }
 
-  public boolean checkInternetConnection(Context context) {
+  public static boolean checkInternetConnection(Context context) {
     boolean con = false;
     ConnectivityManager con_manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo ni = Objects.requireNonNull(con_manager).getActiveNetworkInfo();

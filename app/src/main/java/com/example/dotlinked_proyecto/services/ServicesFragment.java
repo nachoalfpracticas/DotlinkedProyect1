@@ -20,10 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.Class.Token;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
@@ -153,7 +155,10 @@ public class ServicesFragment extends Fragment {
 
           @Override
           public void onFailure(Call<List<Person>> call, Throwable t) {
-            d("RESPONSE", "Error getPersonClaims: " + t.getCause());
+            if(t instanceof NoConnectivityException) {
+              UtilMessages.withoutInternet(Objects.requireNonNull(getActivity()));
+            }
+            d("RESPONSE", "Error getPersonClaims: " + t.getMessage());
           }
         });
       } else {
@@ -187,10 +192,11 @@ public class ServicesFragment extends Fragment {
   }
 
   private List<Appointment> setRecyclerViewAdapterToDay(String date) {
-    List<Appointment> tmpServiceList;
-    tmpServiceList = appointmentList.stream()
-        .filter(s -> s.getDateFrom().contains(date))
-        .collect(Collectors.toList());
+    List<Appointment> tmpServiceList = new ArrayList<>();
+    if (appointmentList != null)
+      tmpServiceList = appointmentList.stream()
+          .filter(s -> s.getDateFrom().contains(date))
+          .collect(Collectors.toList());
     setRecyclerViewAdapter(tmpServiceList);
     adapterSetOnClickListener(tmpServiceList);
     return tmpServiceList;
@@ -225,7 +231,10 @@ public class ServicesFragment extends Fragment {
 
       @Override
       public void onFailure(Call<List<Appointment>> call, Throwable t) {
-        d("RESPONSE", "Error getReservedServicesOfUser: " + t.getCause());
+        if(t instanceof NoConnectivityException) {
+          UtilMessages.withoutInternet(Objects.requireNonNull(getActivity()));
+        }
+        d("RESPONSE", "Error getReservedServicesOfUser: " + t.getMessage());
       }
     });
   }

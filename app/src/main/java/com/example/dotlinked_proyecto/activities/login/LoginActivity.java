@@ -16,12 +16,13 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Check;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.Class.Token;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.LoginService;
 import com.example.dotlinked_proyecto.appServices.RolService;
 import com.example.dotlinked_proyecto.bean.Person;
@@ -88,13 +89,13 @@ public class LoginActivity extends AppCompatActivity {
     edtPassword = findViewById(R.id.et_password);
     CardView btnSend = findViewById(R.id.cv_access);
 
-      // Si el dispositivo dispone de sistema de huellas, se verá el checkbox para usarlo.
+    // Si el dispositivo dispone de sistema de huellas, se verá el checkbox para usarlo.
     if (Check.checkFingerprint(this)) {
       checkFingerPrint.setVisibility(View.VISIBLE);
     } else {
       checkFingerPrint.setVisibility(View.GONE);
     }
-      // Si es visible (el checkbox), se podrá optar por la opción de usar la huella.
+    // Si es visible (el checkbox), se podrá optar por la opción de usar la huella.
     checkFingerPrint.setOnCheckedChangeListener((buttonView, isChecked) -> {
       // TODO implementar en session el useFingerprint
       session.setUserUseFingerprint(isChecked);
@@ -116,11 +117,6 @@ public class LoginActivity extends AppCompatActivity {
     });
 
     btnSend.setOnClickListener(v1 -> {
-
-      if (!check.checkInternetConnection(this)) {
-        UtilMessages.withoutInternet(this);
-        return;
-      }
       String username = edtUserName.getText().toString();
       String password = edtPassword.getText().toString();
 
@@ -149,10 +145,14 @@ public class LoginActivity extends AppCompatActivity {
               userForgotPassword.setVisibility(View.VISIBLE);
             }
           }
+
           // Se ha producido algún error en la conexión ???
           @Override
           public void onFailure(Call call, Throwable t) {
-            Log.d("RESPONSE", "Error getToken: " + t.getCause());
+            Log.d("RESPONSE", "Error getToken: " + t.getMessage());
+            if(t instanceof NoConnectivityException) {
+             UtilMessages.withoutInternet(LoginActivity.this);
+            }
             Toast.makeText(LoginActivity.this, getString(R.string.error_connection), Toast.LENGTH_LONG).show();
           }
         });
@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity {
       @Override
       public void onFailure(Call<List<Person>> call, Throwable t) {
         UtilMessages.showLoadDataError(LoginActivity.this, t.getMessage());
-        Log.d("RESPONSE", "Error setPersonInfo: " + t.getCause());
+        Log.d("RESPONSE", "Error setPersonInfo: " + t.getMessage());
       }
     });
   }
@@ -207,7 +207,8 @@ public class LoginActivity extends AppCompatActivity {
 
       @Override
       public void onFailure(Call call, Throwable t) {
-        Log.d("RESPONSE", "Error ListRolesByToken: " + t.getCause());
+        UtilMessages.showLoadDataError(LoginActivity.this, t.getMessage());
+        Log.d("RESPONSE", "Error ListRolesByToken: " + t.getMessage());
       }
     });
   }

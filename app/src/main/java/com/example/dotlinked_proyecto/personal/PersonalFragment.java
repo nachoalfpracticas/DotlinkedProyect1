@@ -11,18 +11,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.Class.Token;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ListEmployeesByCompanyIdService;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.personal.Adapter.ClickListener;
 import com.example.dotlinked_proyecto.personal.Adapter.RecyclerViewPersonalAdapter;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,7 +114,10 @@ public class PersonalFragment extends Fragment {
 
       @Override
       public void onFailure(Call<List<Person>> call, Throwable t) {
-        d("RESPONSE", "Error getPersonsList: " + t.getCause());
+        if(t instanceof NoConnectivityException) {
+          UtilMessages.withoutInternet(Objects.requireNonNull(getActivity()));
+        }
+        d("RESPONSE", "Error getPersonsList: " + t.getMessage());
       }
     });
 

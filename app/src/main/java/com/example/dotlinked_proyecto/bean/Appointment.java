@@ -39,6 +39,10 @@ public class Appointment implements Comparator<Appointment> {
   @Expose
   private Integer appointmentId;
 
+  @SerializedName(("maxvez"))
+  @Expose
+  private int recurrent;
+
   private boolean isPending;
 
   public Appointment(Integer serviceId, Integer personId, String dateFrom) {
@@ -123,7 +127,9 @@ public class Appointment implements Comparator<Appointment> {
     this.location = location;
   }
 
-  public Integer getAppointmentId() { return appointmentId; }
+  public Integer getAppointmentId() {
+    return appointmentId;
+  }
 
   public void setAppointmentId(Integer appointmentId) {
     this.appointmentId = appointmentId;
@@ -142,22 +148,32 @@ public class Appointment implements Comparator<Appointment> {
     isPending = pending;
   }
 
+  public int getRecurrent() {
+    return recurrent;
+  }
+
+  public void setRecurrent(int recurrent) {
+    this.recurrent = recurrent;
+  }
+
   @Override
   public String toString() {
     return "Appointment{" +
-            "serviceId=" + serviceId +
-            ", userName='" + userName + '\'' +
-            ", personId=" + personId +
-            ", serviceName='" + serviceName + '\'' +
-            ", dateFrom='" + dateFrom + '\'' +
-            ", dateTo='" + dateTo + '\'' +
-            ", cost=" + cost +
-            ", duration=" + duration +
-            ", location='" + location + '\'' +
-            ", appointmentId=" + appointmentId +
-            ", isPending=" + isPending +
-            '}';
+        "serviceId=" + serviceId +
+        ", userName='" + userName + '\'' +
+        ", personId=" + personId +
+        ", serviceName='" + serviceName + '\'' +
+        ", dateFrom='" + dateFrom + '\'' +
+        ", dateTo='" + dateTo + '\'' +
+        ", cost=" + cost +
+        ", duration=" + duration +
+        ", location='" + location + '\'' +
+        ", appointmentId=" + appointmentId +
+        ", isPending=" + isPending +
+        ", recurrent=" + recurrent +
+        '}';
   }
+
 }
 
 

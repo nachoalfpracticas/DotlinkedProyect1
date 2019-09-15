@@ -1,7 +1,7 @@
 package com.example.dotlinked_proyecto.appServices;
 
-import com.example.dotlinked_proyecto.API.Connection.Connection;
-import com.example.dotlinked_proyecto.API.RetrofitSources.IListEventsByCompanyCall;
+import com.example.dotlinked_proyecto.api.RetrofitSources.IListEventsByCompanyCall;
+import com.example.dotlinked_proyecto.api.connection.Connection;
 import com.example.dotlinked_proyecto.bean.Event;
 
 import java.util.List;
@@ -14,7 +14,8 @@ public class ListEventsByCompanyService implements IListEventsByCompanyCall {
 
   public ListEventsByCompanyService() {
     Retrofit retrofit = Connection.getRetrofitClient();
-    this.IListEventsByCompanyCall = retrofit.create(IListEventsByCompanyCall.class);
+    if (retrofit != null)
+      this.IListEventsByCompanyCall = retrofit.create(IListEventsByCompanyCall.class);
   }
 
 

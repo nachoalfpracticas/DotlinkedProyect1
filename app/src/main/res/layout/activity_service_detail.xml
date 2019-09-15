@@ -195,17 +195,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/service_endTime" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/lblTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_16"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/title"
-                android:textColor="@color/blueDotlinked"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/card_view_layout" />
+              android:id="@+id/lblTitle"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_16"
+              android:layout_marginStart="8dp"
+              android:layout_marginTop="16dp"
+              android:text="@string/service"
+              android:textColor="@color/blueDotlinked"
+              android:textSize="24sp"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="@+id/card_view_layout" />
 
 
             <com.google.android.material.textview.MaterialTextView

@@ -29,8 +29,9 @@
     android:layout_marginEnd="10dp"
     android:gravity="end"
     android:paddingStart="0dp"
-    android:paddingEnd="25dp"
+    android:paddingEnd="5dp"
     android:text="@string/serviceStatus"
+    android:textAlignment="textEnd"
     android:textSize="12sp" />
 
   <com.google.android.material.textview.MaterialTextView
@@ -50,8 +51,10 @@
     android:layout_row="1"
     android:layout_column="1"
     android:layout_gravity="end"
-    android:layout_marginEnd="40dp"
+    android:layout_marginEnd="10dp"
     android:gravity="end"
+    android:paddingStart="0dp"
+    android:paddingEnd="5dp"
     android:text="@string/location"
     android:textAlignment="textEnd"
     android:textSize="20sp" />

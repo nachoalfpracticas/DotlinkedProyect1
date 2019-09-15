@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.API.RetrofitSources;
+package com.example.dotlinked_proyecto.api.RetrofitSources;
 
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;

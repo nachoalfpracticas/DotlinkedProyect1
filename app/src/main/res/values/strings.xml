@@ -30,7 +30,7 @@
   <string name="password_invalid">Password requires one upper and one number 6–25 chars</string>
   <string name="load_data">Load data</string>
   <string name="exitApp">Exit App</string>
-  <string name="exitYes">Click yes to exit</string>
+  <string name="exitYes">Are you sure you want to leave</string>
   <string name="Yes">Yes</string>
   <string name="No">No</string>
   <string name="load_data_err">Load data error</string>
@@ -171,8 +171,10 @@
   <string name="appointment">appointment</string>
   <string name="service_selected">serviceSelected</string>
   <string name="msg_info_push_tv_select_day">Select day and push select day tag</string>
-    <string name="claim_created_ok">The claim about %1$s was created correctly</string>
+  <string name="claim_created_ok">The claim about %1$s was created correctly</string>
   <string name="claim_created_error">Could not create claim</string>
+  <string name="claim_info">Claim information</string>
+  <string name="internet_menu">Internet</string>
   <string-array name="roles_array">    
     <item>Tenant</item>    
     <item>Provider</item>    
@@ -183,6 +185,5 @@
     <item>Administrator</item>    
     <item>Super Assistant Manager</item>  
   </string-array>
-    <string name="claim_info">Claim information</string>
 
 </resources>

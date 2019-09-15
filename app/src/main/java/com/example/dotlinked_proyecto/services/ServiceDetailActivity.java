@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
@@ -140,8 +141,13 @@ public class ServiceDetailActivity extends AppCompatActivity {
         @SuppressWarnings(value = "NullableProblems")
         @Override
         public void onFailure(Call<String> call, Throwable t) {
-          UtilMessages.showLoadDataError(ServiceDetailActivity.this, t.getLocalizedMessage());
-          d("RESPONSE", "Error deleteAppointment: " + t.getCause());
+          if(t instanceof NoConnectivityException) {
+            UtilMessages.withoutInternet(ServiceDetailActivity.this);
+          } else {
+            UtilMessages.showLoadDataError(ServiceDetailActivity.this, t.getLocalizedMessage());
+
+          }
+          d("RESPONSE", "Error deleteAppointment: " + t.getMessage());
         }
       });
     });

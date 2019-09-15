@@ -17,17 +17,18 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.Class.Token;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ClaimsPersonService;
 import com.example.dotlinked_proyecto.bean.Claim;
 import com.example.dotlinked_proyecto.claims.Adapter.RecyclerViewClaimsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +42,6 @@ public class ClaimsFragment extends Fragment {
   private String access_token;
 
   private AppCompatEditText tvClaimDate;
-  private FloatingActionButton addClaim;
   private AppCompatTextView tvClaimSubject;
   private RecyclerView rvClaimsList;
 
@@ -49,12 +49,10 @@ public class ClaimsFragment extends Fragment {
   private ClaimsPersonService listClaimsService;
   private List<Claim> claimList;
   private AppCompatTextView tvClaimStatus;
-  private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY);
 
   public ClaimsFragment() {
     // Required empty public constructor
   }
-
 
   // TODO: Rename and change types and number of parameters
   public static ClaimsFragment newInstance(Token token) {
@@ -105,7 +103,10 @@ public class ClaimsFragment extends Fragment {
 
       @Override
       public void onFailure(Call<List<Claim>> call, Throwable t) {
-        d("RESPONSE", "Error getPersonClaims: " + t.getCause());
+        if(t instanceof NoConnectivityException) {
+          UtilMessages.withoutInternet(Objects.requireNonNull(getActivity()));
+        }
+        d("RESPONSE", "Error getPersonClaims: " + t.getMessage());
       }
     });
   }
@@ -114,7 +115,7 @@ public class ClaimsFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_claims, container, false);
-    addClaim = view.findViewById(R.id.btnAddClaims);
+    FloatingActionButton addClaim = view.findViewById(R.id.btnAddClaims);
     tvClaimDate = view.findViewById(R.id.claim_date);
     tvClaimSubject = view.findViewById(R.id.claim_subject);
     tvClaimStatus = view.findViewById(R.id.claim_status);

@@ -45,7 +45,7 @@
   <string name="password_invalid">Contraseña requiere una may y un número 6–25 caracts</string>
   <string name="load_data">Cargar datos</string>
   <string name="exitApp">Salir App</string>
-  <string name="exitYes">Pulse si para salir</string>
+  <string name="exitYes">Esta seguro de querer salir?</string>
   <string name="Yes">Si</string>
   <string name="No">No</string>
   <string name="load_data_err">Error cargando datos</string>
@@ -184,4 +184,5 @@
     <item>SuperAdministrador</item>
   </string-array>
   <string name="claim_info">Información reclamaciones</string>
+  <string name="internet_menu">Internet</string>
 </resources>

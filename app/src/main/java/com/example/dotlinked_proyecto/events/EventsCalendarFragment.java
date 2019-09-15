@@ -22,8 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.R;
+import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.Class.Token;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ListEventsByCompanyService;
 import com.example.dotlinked_proyecto.bean.Day;
 import com.example.dotlinked_proyecto.bean.Event;
@@ -184,6 +186,9 @@ public class EventsCalendarFragment extends Fragment {
 
         @Override
         public void onFailure(Call<List<Event>> call, Throwable t) {
+          if(t instanceof NoConnectivityException) {
+            UtilMessages.withoutInternet(Objects.requireNonNull(getActivity()));
+          }
           progressDialog.dismiss();
           d("RESPONSE", "Error getPersonClaims: " + t.getCause());
 
@@ -252,7 +257,10 @@ public class EventsCalendarFragment extends Fragment {
 
       @Override
       public void onFailure(Call<List<Event>> call, Throwable t) {
-        d("RESPONSE", "Error getEvents: " + t.getCause());
+        if(t instanceof NoConnectivityException) {
+          UtilMessages.withoutInternet(Objects.requireNonNull(getActivity()));
+        }
+        d("RESPONSE", "Error getEvents: " + t.getMessage());
         setRecyclerViewAdapter(new ArrayList<>());
       }
     });

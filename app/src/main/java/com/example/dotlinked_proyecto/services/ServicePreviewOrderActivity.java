@@ -21,6 +21,7 @@ import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.Utils.Util;
 import com.example.dotlinked_proyecto.Utils.UtilMessages;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Company;
@@ -143,17 +144,21 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
             Collections.sort(appointmentListTemp, new Appointment());
           }
           Appointment appointment = appointmentListTemp.get(0);
-          UtilMessages.showAppointmentInfoNewOrChange(ServicePreviewOrderActivity.this,
-              serviceSelected,
-              appointment,
-              appointment.getServiceName(),
-              appointment.getDateFrom().split("T")[0],
-              appointment.getDateFrom().split("T")[1]);
+          if (appointment.getRecurrent() > 1) {
+            UtilMessages.showAppointmentInfoNewOrChange(ServicePreviewOrderActivity.this,
+                serviceSelected,
+                appointment);
+
+          } else {
+            UtilMessages.showAppointmentInfoChange(ServicePreviewOrderActivity.this,
+                serviceSelected,
+                appointment);
+          }
           return;
         }
       }
       Intent intent = new Intent(this, ServiceOrderActivity.class);
-      intent.putExtra("serviceSelected", new Gson().toJson(serviceSelected));
+      intent.putExtra(getString(R.string.service_selected), new Gson().toJson(serviceSelected));
       startActivity(intent);
     });
   }
@@ -198,7 +203,10 @@ public class ServicePreviewOrderActivity extends AppCompatActivity {
 
       @Override
       public void onFailure(Call<List<Service>> call, Throwable t) {
-        d("RESPONSE", "Error getServicesByCompany: " + t.getCause());
+        if(t instanceof NoConnectivityException) {
+          UtilMessages.withoutInternet(ServicePreviewOrderActivity.this);
+        }
+        d("RESPONSE", "Error getServicesByCompany: " + t.getMessage());
       }
     });
   }

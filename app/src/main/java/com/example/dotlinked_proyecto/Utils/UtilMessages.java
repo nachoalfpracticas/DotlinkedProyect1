@@ -14,12 +14,15 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.BaseActivity;
+import com.example.dotlinked_proyecto.activities.login.AccessActivity;
 import com.example.dotlinked_proyecto.activities.login.LoginActivity;
+import com.example.dotlinked_proyecto.api.Class.Token;
+import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.LoginService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Service;
@@ -28,6 +31,8 @@ import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +45,7 @@ public class UtilMessages {
     exitDialog
         .withTitle(activity.getString(R.string.exitApp))
         .withMessage(activity.getString(R.string.exitYes))
-        .withDialogColor("#1c90ec")
+        .withDialogColor("#59ABDE")
         .withButton1Text(activity.getString(R.string.Yes))
         .withButton2Text(activity.getString(R.string.No))
         .withDuration(700)
@@ -145,6 +150,9 @@ public class UtilMessages {
 
               @Override
               public void onFailure(Call call, Throwable t) {
+                if(t instanceof NoConnectivityException) {
+                  UtilMessages.withoutInternet(activity);
+                }
                 Log.d("RESPONSE", "Error getToken: " + t.getCause());
                 button.setEnabled(true);
               }
@@ -217,7 +225,7 @@ public class UtilMessages {
     String str = activity.getString(R.string.without_connection);
     SpannableString spa = new SpannableString(str);
     int i = str.indexOf("@");
-    Drawable d = activity.getResources().getDrawable(R.drawable.claim_icon);
+    Drawable d = Objects.requireNonNull(ContextCompat.getDrawable(activity, R.drawable.claim_icon));
     d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
     spa.setSpan(new ImageSpan(d), i, i + 1, ImageSpan.ALIGN_BOTTOM);
 
@@ -233,24 +241,29 @@ public class UtilMessages {
         .withButton1Text(activity.getString(R.string.OK))
         .withEffect(Effectstype.RotateBottom)
         .isCancelableOnTouchOutside(false)
-        .setButton1Click(v -> dialogBuilder.dismiss())
+        .setButton1Click(v -> {
+          if (!(activity instanceof LoginActivity) && !(activity instanceof AccessActivity)) {
+           Intent intent = new Intent(activity, AccessActivity.class);
+           activity.startActivity(intent);
+           activity.finish();
+          }
+          dialogBuilder.dismiss();
+        })
         .show();
   }
 
-  public static void showAppointmentInfo(Activity activity,
+  public static void showAppointmentInfoChange(Activity activity,
                                          Service serviceSelected,
-                                         Appointment appointment,
-                                         String serviceName,
-                                         String date,
-                                         String time) {
-
+                                         Appointment appointment) {
+    String date = appointment.getDateFrom().split("T")[0];
+    String time = appointment.getDateFrom().split("T")[1];
 
     NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
     dialogBuilder
         .withTitle("    " + activity.getString(R.string.appointment_info))
         .withIcon(R.drawable.ic_dates_icon_white)
         .withDividerColor(R.color.daysLabelColor)
-            .withMessage(String.format(activity.getString(R.string.appointment_msg), serviceName, Util.formatDateToLocale(activity, date), time))
+            .withMessage(String.format(activity.getString(R.string.appointment_msg), serviceSelected.getServiceName(), Util.formatDateToLocale(activity, date), time))
         .withMessageColor("#FAD201")
         .withDialogColor(R.color.blueDotlinked)
         .withButton1Text(activity.getString(R.string.Yes))
@@ -274,48 +287,19 @@ public class UtilMessages {
         .show();
   }
 
-  public static void showAppointmentInfoDateNotAvailable(Activity activity,
-                                                         String serviceName,
-                                                         String date,
-                                                         String time) {
-    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
-    dialogBuilder
-        .withTitle("    " + activity.getString(R.string.appointment_info))
-        .withIcon(R.drawable.ic_dates_icon_white)
-        .withDividerColor(R.color.daysLabelColor)
-        .withMessage(String.format(activity.getString(R.string.appointment_msg), serviceName, date, time))
-        .withMessageColor("#FAD201")
-        .withDialogColor(R.color.blueDotlinked)
-        .withButton1Text(activity.getString(R.string.Yes))
-        .withButton2Text(activity.getString(R.string.cancel))
-        .withDuration(700)
-        .withEffect(Effectstype.RotateBottom)
-        .isCancelableOnTouchOutside(false)
-        .setButton1Click(v2 -> {
-
-          activity.finish();
-          dialogBuilder.dismiss();
-        })
-        .setButton2Click(v3 -> {
-          activity.finish();
-          dialogBuilder.dismiss();
-        })
-        .show();
-  }
-
   public static void showAppointmentInfoNewOrChange(Activity activity,
                                                     Service serviceSelected,
-                                                    Appointment appointment,
-                                                    String serviceName,
-                                                    String date,
-                                                    String time) {
+                                                    Appointment appointment) {
+
+    String date = appointment.getDateFrom().split("T")[0];
+    String time = appointment.getDateFrom().split("T")[1];
 
     NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
     dialogBuilder
             .withTitle("    " + activity.getString(R.string.appointment_info))
             .withIcon(R.drawable.ic_dates_icon_white)
             .withDividerColor(R.color.daysLabelColor)
-            .withMessage(String.format(activity.getString(R.string.appointment_msg_new_or_change), serviceName, Util.formatDateToLocale(activity, date), time))
+            .withMessage(String.format(activity.getString(R.string.appointment_msg_new_or_change), appointment.getServiceName(), Util.formatDateToLocale(activity, date), time))
             .withMessageColor("#FAD201")
             .withDialogColor(R.color.blueDotlinked)
             .withButton1Text(activity.getString(R.string.change))

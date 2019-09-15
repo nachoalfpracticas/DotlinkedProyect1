@@ -1,9 +1,12 @@
-package com.example.dotlinked_proyecto.API.Connection;
+package com.example.dotlinked_proyecto.api.connection;
 
 import android.util.Log;
 
+import com.example.dotlinked_proyecto.activities.login.LoginActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,6 +24,11 @@ public class Connection {
   private static OkHttpClient client = getHttpClient().build();
 
   private static OkHttpClient.Builder getHttpClient() {
+    httpClient.connectTimeout(30, TimeUnit.SECONDS);
+    httpClient.readTimeout(30, TimeUnit.SECONDS);
+
+    httpClient.addInterceptor(new WithoutInternetInterceptor(LoginActivity.context));
+
     httpClient.addInterceptor(chain -> {
       Request original = chain.request();
 
@@ -36,9 +44,9 @@ public class Connection {
   }
 
   public static Retrofit getRetrofitClient() {
-      Gson gson = new GsonBuilder()
-              .setLenient()
-              .create();
+    Gson gson = new GsonBuilder()
+        .setLenient()
+        .create();
     //If condition to ensure we don't create multiple retrofit instances in a single application
     if (retrofit == null) {
       retrofit = new Retrofit.Builder()

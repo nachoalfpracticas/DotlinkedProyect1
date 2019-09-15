@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- Este archivo te lo montas el local, con xammp -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>TypeScript HTML App</title>
+  <link rel="stylesheet" href="app.css" type="text/css" />
+  <title>Web page not available</title>
+  <style type="text/css">
+    body {
+      margin-top: 0px;
+      padding-top: 0px;
+    }
+
+    h2 {
+      margin-top: 5px;
+      padding-top: 0px;
+    }
+  </style>
+  <script type="application/javascript">
+    const url = 'https://swapi.co/api/people/5/'
+    function myFunction() {
+
+
+        const name = document.getElementById("name")
+        const mass = document.getElementById("mass")
+        const hair_color = document.getElementById("hair_color")
+        const skin_color = document.getElementById("skin_color")
+        const eye_color = document.getElementById("eye_color")
+        const birth_year = document.getElementById("birth_year")
+        const gender = document.getElementById("gender")
+        const homeworld = document.getElementById("homeworld")
+        const edited = document.getElementById("edited")
+        const urlPer = document.getElementById("url")
+
+        const http = new XMLHttpRequest()
+
+        http.open("GET", url)
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var result = JSON.parse(this.responseText)
+                name.innerText += " " + result.name
+                mass.innerText += " " + result.mass
+                hair_color.innerText += " " + result.hair_color
+                skin_color.innerText += " " + result.skin_color
+                eye_color.innerText += " " + result.eye_color
+                birth_year.innerText += " " + result.birth_year
+                gender.innerText += " " + result.gender
+                homeworld.innerText += " " + result.homeworld
+                edited.innerText += " " + result.edited
+                url.innerText += " " + result.url
+                var msg = "Name: " +  result.name + "\nMass: " +  result.mass + "\nHair color: " +  result.hair_color + "\nSkin color: " +   result.skin_color
+                + "\Eye color: " +  result.eye_color + "\nBirth year: " + result.birth_year + "\nGender: " +  result.gender + "\nHomeworld: " + result.homeworld
+                + "\nEdited: " + result.edited + "\nUrl: " + result.url
+                Android.showJavascriptRespone(msg)
+            }
+        }
+        http.send()
+
+    }
+  </script>
+</head>
+
+<body>
+
+  <div>
+    <img src="https://fotos01.diarioinformacion.com/mmp/2017/12/17/328x206/leia.jpg"
+         style="width:200px;height:200px;" align="top" />
+
+
+    <p id="name">Name:</p>
+    <p id="mass">Mass:</p>
+    <p id="hair_color">Hair color:</p>
+    <p id="skin_color">Skin color:</p>
+    <p id="eye_color">Eye color:</p>
+    <p id="birth_year">Birth day:</p>
+    <p id="gender">Gender:</p>
+    <p id="homeworld">Homeworld:</p>
+    <p id="edited">Edited:</p>
+    <p id="urlPer">Url:</p>
+    <button type="button" onclick="myFunction()">Send</button>
+  </div>
+
+
+</body>
+</html>
