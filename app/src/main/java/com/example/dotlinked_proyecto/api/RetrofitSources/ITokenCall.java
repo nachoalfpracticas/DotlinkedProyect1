@@ -1,6 +1,6 @@
-package com.example.dotlinked_proyecto.API.RetrofitSources;
+package com.example.dotlinked_proyecto.api.RetrofitSources;
 
-import com.example.dotlinked_proyecto.API.Class.Token;
+import com.example.dotlinked_proyecto.api.Class.Token;
 import com.example.dotlinked_proyecto.bean.Person;
 
 import java.util.List;

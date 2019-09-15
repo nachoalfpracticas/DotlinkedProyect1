@@ -1,4 +1,6 @@
-package com.example.dotlinked_proyecto.API.RetrofitSources;
+package com.example.dotlinked_proyecto.api.RetrofitSources;
+
+import androidx.annotation.NonNull;
 
 public class TokenFieldsCall {
   private String userName;
@@ -23,6 +25,7 @@ public class TokenFieldsCall {
     this.grant_type = "password";
   }
 
+  @NonNull
   @Override
   public String toString() {
     return "grant_type=" + grant_type +
