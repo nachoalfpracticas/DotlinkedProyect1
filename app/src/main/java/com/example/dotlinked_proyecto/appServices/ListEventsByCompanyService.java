@@ -1,6 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
-import com.example.dotlinked_proyecto.api.RetrofitSources.IListEventsByCompanyCall;
+import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.IListEventsByCompanyCall;
 import com.example.dotlinked_proyecto.bean.Event;
 
 import java.util.List;

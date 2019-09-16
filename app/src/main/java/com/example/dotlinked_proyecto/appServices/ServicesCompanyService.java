@@ -1,6 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
-import com.example.dotlinked_proyecto.api.RetrofitSources.IServicesApiCalls;
+import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.IServicesApiCalls;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;

@@ -1,6 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
-import com.example.dotlinked_proyecto.api.RetrofitSources.IClaimsApiCalls;
+import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.IClaimsApiCalls;
 import com.example.dotlinked_proyecto.bean.Claim;
 
 import java.util.List;

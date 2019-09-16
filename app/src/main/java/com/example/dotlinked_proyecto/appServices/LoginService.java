@@ -1,8 +1,8 @@
 package com.example.dotlinked_proyecto.appServices;
 
 import com.example.dotlinked_proyecto.api.Class.Token;
-import com.example.dotlinked_proyecto.api.RetrofitSources.ITokenCall;
-import com.example.dotlinked_proyecto.api.RetrofitSources.TokenFieldsCall;
+import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.ITokenCall;
+import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.TokenFieldsCall;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.interfaces.ILoginService;
 

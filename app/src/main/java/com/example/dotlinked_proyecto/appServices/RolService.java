@@ -1,6 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
-import com.example.dotlinked_proyecto.api.RetrofitSources.IListRolesByTokenCall;
+import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.IListRolesByTokenCall;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

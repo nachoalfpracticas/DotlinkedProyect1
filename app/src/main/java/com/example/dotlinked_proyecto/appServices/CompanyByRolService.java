@@ -1,6 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
-import com.example.dotlinked_proyecto.api.RetrofitSources.ICompanyUserByRolCall;
+import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.ICompanyUserByRolCall;
 import com.example.dotlinked_proyecto.bean.Company;
 
 import java.util.List;

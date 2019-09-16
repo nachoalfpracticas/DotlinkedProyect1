@@ -1,4 +1,4 @@
-package com.example.dotlinked_proyecto.api.RetrofitSources;
+package com.example.dotlinked_proyecto.api.RetrofitSourcesAPI;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
