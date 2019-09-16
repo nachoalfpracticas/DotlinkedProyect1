@@ -13,7 +13,7 @@ public class NoConnectivityException extends IOException {
   @Override
   public String getMessage() {
     return super.getMessage();
-    // You can send any message whatever you want from here.
+    // You can send any message whatever you want from here ok.
   }
 
   @Nullable

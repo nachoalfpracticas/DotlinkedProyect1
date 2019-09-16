@@ -24,6 +24,7 @@ public class WithoutInternetInterceptor implements Interceptor {
   @NonNull
   @Override
   public Response intercept(@NonNull Chain chain) throws IOException {
+    // Chequeamos internet en todas las llamadas
     if (!Check.checkInternetConnection(mContext)) {
       throw new NoConnectivityException(mContext.getString(R.string.without_connection));
     }

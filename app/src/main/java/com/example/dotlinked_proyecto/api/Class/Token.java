@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+// Class Token.
 public class Token {
   @SerializedName("access_token")
   @Expose
