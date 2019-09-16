@@ -1,7 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
 import com.example.dotlinked_proyecto.api.RetrofitSources.IClaimsApiCalls;
-import com.example.dotlinked_proyecto.api.connection.Connection;
 import com.example.dotlinked_proyecto.bean.Claim;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public class ClaimsPersonService implements IClaimsApiCalls {
   private IClaimsApiCalls iClaimsApiCalls;
 
   public ClaimsPersonService() {
-    Retrofit retrofit = Connection.getRetrofitClient();
+    Retrofit retrofit = com.example.dotlinked_proyecto.api.connection.Connection.getRetrofitClient();
     if (retrofit != null)
       iClaimsApiCalls = retrofit.create(IClaimsApiCalls.class);
   }

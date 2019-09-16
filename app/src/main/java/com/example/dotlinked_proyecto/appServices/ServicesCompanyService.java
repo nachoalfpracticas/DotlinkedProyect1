@@ -1,7 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
 import com.example.dotlinked_proyecto.api.RetrofitSources.IServicesApiCalls;
-import com.example.dotlinked_proyecto.api.connection.Connection;
 import com.example.dotlinked_proyecto.bean.Appointment;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.bean.Service;
@@ -16,7 +15,7 @@ public class ServicesCompanyService implements IServicesApiCalls {
   private IServicesApiCalls servicesApiCalls;
 
   public ServicesCompanyService() {
-    Retrofit retrofit = Connection.getRetrofitClient();
+    Retrofit retrofit = com.example.dotlinked_proyecto.api.connection.Connection.getRetrofitClient();
     if (retrofit != null)
       this.servicesApiCalls = retrofit.create(IServicesApiCalls.class);
   }

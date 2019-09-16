@@ -1,7 +1,6 @@
 package com.example.dotlinked_proyecto.appServices;
 
 import com.example.dotlinked_proyecto.api.RetrofitSources.IListEmployeesByCompanyCall;
-import com.example.dotlinked_proyecto.api.connection.Connection;
 import com.example.dotlinked_proyecto.bean.Person;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class ListEmployeesByCompanyIdService implements IListEmployeesByCompanyC
 
   @Override
   public Call<List<Person>> listEmployeesByCompany(String companyId, String token) {
-    Retrofit retrofit = Connection.getRetrofitClient();
+    Retrofit retrofit = com.example.dotlinked_proyecto.api.connection.Connection.getRetrofitClient();
     if (retrofit != null)
       listEmployeesByCompany = retrofit.create(IListEmployeesByCompanyCall.class);
     return listEmployeesByCompany.listEmployeesByCompany(companyId, token);
