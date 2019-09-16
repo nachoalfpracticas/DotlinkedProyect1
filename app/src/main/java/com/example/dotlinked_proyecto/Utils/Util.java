@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import com.example.dotlinked_proyecto.Persistence.Session;
 import com.example.dotlinked_proyecto.R;
 import com.example.dotlinked_proyecto.activities.BaseActivity;
-import com.example.dotlinked_proyecto.activities.ProviderActivity;
+import com.example.dotlinked_proyecto.provider.ProviderActivity;
 import com.example.dotlinked_proyecto.appServices.ServicesCompanyService;
 import com.example.dotlinked_proyecto.bean.Appointment;
 

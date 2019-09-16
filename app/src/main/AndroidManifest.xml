@@ -17,7 +17,7 @@
     <activity android:name=".api.connection.WithoutInternetInterceptor" />
     <activity android:name=".webView.WebViewActivity" />
     <activity android:name=".activities.login.RegisterActivity" />
-    <activity android:name=".activities.ProviderActivity" />
+    <activity android:name=".provider.ProviderActivity" />
     <activity android:name=".activities.login.ForgotPasswordActivity" />
     <activity android:name=".services.ServiceOrderActivity" />
     <activity android:name=".services.ServiceDetailActivity" />

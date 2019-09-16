@@ -165,4 +165,13 @@
     <string name="claim_created_ok">The claim about %1$s was created correctly</string>
   <string name="claim_created_error">Could not create claim</string>
   <string name="internet_menu">Internet</string>
+    <string name="login_info">Login information</string>
+    <string name="igOrderTitle">Test Title Order</string>
+  <string name="date_order">Order date</string>
+    <string name="igOrderNumber">SVR-15879</string>
+  <string name="order_number">Order number</string>
+  <string name="igOrderStatus">In process</string>
+    <string name="order_num_observations">Interventions</string>
+  <string name="igNumber">15</string>
+    <string name="orders_list">Orders list</string>
 </resources>

@@ -80,8 +80,8 @@ public class UtilMessages {
   }
 
   public static void showLoadDataError(Activity activity) {
-    NiftyDialogBuilder loadMatchErr = NiftyDialogBuilder.getInstance(activity);
-    loadMatchErr
+    NiftyDialogBuilder showDataErrWithMessage = NiftyDialogBuilder.getInstance(activity);
+    showDataErrWithMessage
         .withTitle(activity.getResources().getString(R.string.load_data))
         .withMessage(R.string.load_data_err)
         .withDialogColor("#ED0D17")
@@ -94,8 +94,8 @@ public class UtilMessages {
 //          Intent intent = new Intent(activity, MatchDetailActivity.class);
 //          intent.putExtra(MatchesActivity.EXTRA_MATCH_ID, matchSelected.getId());
 //          activity.startActivityForResult(intent, MatchesFragment.REQUEST_DETAIL_MATCH);
-          loadMatchErr.dismiss();
-          activity.finish();
+          showDataErrWithMessage.dismiss();
+//          activity.finish();
 
         })
         .show();
@@ -401,6 +401,24 @@ public class UtilMessages {
               activity.finish();
               dialogBuilder.dismiss();
             })
+            .show();
+
+  }
+
+  public static void showWrongCredentials(Activity activity) {
+    NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(activity);
+    dialogBuilder
+            .withTitle("    " + activity.getString(R.string.login_info))
+            .withIcon(R.drawable.ic_icon_personal)
+            .withDividerColor(R.color.daysLabelColor)
+            .withMessage(activity.getString(R.string.wrong_credentials))
+            .withMessageColor(Color.WHITE)
+            .withDialogColor(R.color.blueDotlinked)
+            .withButton1Text(activity.getString(R.string.OK))
+            .withDuration(700)
+            .withEffect(Effectstype.RotateBottom)
+            .isCancelableOnTouchOutside(false)
+            .setButton1Click(v2 -> dialogBuilder.dismiss())
             .show();
   }
 }

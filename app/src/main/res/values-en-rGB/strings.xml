@@ -185,4 +185,13 @@
     </string-array>
     <string name="claim_info">Claim information</string>
   <string name="internet_menu">Internet</string>
+    <string name="login_info">Login information</string>
+    <string name="igOrderTitle">Test Title Order</string>
+    <string name="date_order">Order date</string>
+    <string name="igOrderNumber">SVR-15879</string>
+    <string name="order_number">Order number</string>
+    <string name="igOrderStatus">In process</string>
+    <string name="order_num_observations">Interventions</string>
+    <string name="igNumber">15</string>
+    <string name="orders_list">Orders list</string>
 </resources>

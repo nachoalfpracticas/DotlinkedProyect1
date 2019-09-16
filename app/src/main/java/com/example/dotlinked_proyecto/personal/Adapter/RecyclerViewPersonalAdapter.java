@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotlinked_proyecto.R;
@@ -20,6 +21,7 @@ import com.example.dotlinked_proyecto.bean.Person;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Objects;
 
 
 public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerViewPersonalAdapter.ViewHolder> {
@@ -52,7 +54,7 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
     holder.tvPersonLastName.setText(person.getFullName().split(",")[1]);
 
     SpannableString spa = new SpannableString("  " + person.getMobile());
-    Drawable d = context.getResources().getDrawable(R.drawable.ic_phone_green_24dp);
+    Drawable d = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.ic_phone_green_24dp));
     d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
     spa.setSpan(new ImageSpan(d), 0, 1, ImageSpan.ALIGN_BOTTOM);
 
@@ -91,8 +93,8 @@ public class RecyclerViewPersonalAdapter extends RecyclerView.Adapter<RecyclerVi
       listenerRef = new WeakReference<>(listener);
       tvPersonName = itemView.findViewById(R.id.tv_person_name);
       tvPersonLastName = itemView.findViewById(R.id.tv_person_lastName);
-      tvPersonMobile = itemView.findViewById(R.id.tv_person_mobile);
-      tvPersonEmail = itemView.findViewById(R.id.tv_person_email);
+      tvPersonMobile = itemView.findViewById(R.id.tv_order_date);
+      tvPersonEmail = itemView.findViewById(R.id.tv_oder_number);
       tvPersonRol = itemView.findViewById(R.id.tv_person_rol);
 
       itemView.setOnClickListener(this);

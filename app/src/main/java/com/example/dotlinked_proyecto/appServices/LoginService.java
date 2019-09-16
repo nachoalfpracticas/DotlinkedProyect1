@@ -3,6 +3,7 @@ package com.example.dotlinked_proyecto.appServices;
 import com.example.dotlinked_proyecto.api.Class.Token;
 import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.ITokenCall;
 import com.example.dotlinked_proyecto.api.RetrofitSourcesAPI.TokenFieldsCall;
+import com.example.dotlinked_proyecto.api.connection.Connection;
 import com.example.dotlinked_proyecto.bean.Person;
 import com.example.dotlinked_proyecto.interfaces.ILoginService;
 
@@ -16,7 +17,7 @@ public class LoginService implements ILoginService {
   private ITokenCall tokenCall;
 
   public LoginService() {
-    Retrofit retrofit = com.example.dotlinked_proyecto.api.connection.Connection.getRetrofitClient();
+    Retrofit retrofit = Connection.getRetrofitClient();
     if (retrofit != null)
       tokenCall = retrofit.create(ITokenCall.class);
   }

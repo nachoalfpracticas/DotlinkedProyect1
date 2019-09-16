@@ -141,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
               // Las credenciales son incorrectas response = Bad request.
               Log.d("RESPONSE", "Error response getToken " + response.message());
+              UtilMessages.showWrongCredentials(LoginActivity.this);
               Toast.makeText(LoginActivity.this, getString(R.string.wrong_credentials), Toast.LENGTH_LONG).show();
               userForgotPassword.setVisibility(View.VISIBLE);
             }
