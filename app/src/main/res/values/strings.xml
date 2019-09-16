@@ -181,10 +181,15 @@
     <string name="igOrderNumber">SVR-15879</string>
   <string name="order_number">Order number</string>
   <string name="igOrderStatus">In process</string>
-    <string name="order_num_observations">Interventios</string>
+    <string name="order_num_observations">Interventions</string>
   <string name="igNumber">15</string>
     <string name="orders_list">Orders list</string>
-    <string-array name="roles_array">    
+  <string name="igName">Alfonso José</string>
+  <string name="igLastName">Perez García</string>
+  <string name="igMobile">+34 478 52 47 78</string>
+  <string name="igEmail">destroy478@gmail.com</string>
+  <string name="without_orders">Don´t have any orders in this moment\nYou can visit this page later</string>
+  <string-array name="roles_array">    
     <item>Tenant</item>    
     <item>Provider</item>    
     <item>Contact</item>   

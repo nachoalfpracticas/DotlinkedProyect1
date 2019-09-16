@@ -20,12 +20,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/tv_without_orders"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="200dp"
+      android:alpha="0.6"
+      android:background="@color/design_default_color_primary_dark"
+      android:drawableTop="@drawable/claim_icon_40x40"
+      android:gravity="center"
+      android:paddingStart="20dp"
+      android:paddingEnd="20dp"
+      android:text="@string/without_orders"
+      android:textColor="@color/colorPrimary"
+      android:textSize="30sp"
+      android:visibility="gone"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar_provider" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_orders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/toolbar_fifty_margin_toolbar_dimen"
-
         android:scrollIndicators="top|bottom"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         app:layout_constraintTop_toTopOf="parent"

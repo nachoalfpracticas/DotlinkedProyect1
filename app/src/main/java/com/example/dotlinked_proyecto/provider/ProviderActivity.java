@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +23,6 @@ import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ProviderService;
 import com.example.dotlinked_proyecto.bean.Order;
 import com.example.dotlinked_proyecto.provider.Adapter.RecyclerViewProviderAdapter;
-import com.example.dotlinked_proyecto.services.ServiceOrderActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +46,14 @@ public class ProviderActivity extends AppCompatActivity {
   private RecyclerView rvOrders;
   private ProviderService providerService;
   private Session session;
+  private TextView tvWithoutOrders;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_provider);
-    context = getApplicationContext();
 
+    context = getApplicationContext();
     session = new Session(this);
 
     Toolbar toolbar = findViewById(R.id.toolbar_provider);
@@ -59,18 +62,13 @@ public class ProviderActivity extends AppCompatActivity {
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     setTitle(getString(R.string.orders_list));
 
+    tvWithoutOrders = findViewById(R.id.tv_without_orders);
     rvOrders = findViewById(R.id.rv_orders);
     LinearLayoutManager layoutManager = new LinearLayoutManager(context);
     rvOrders.setLayoutManager(layoutManager);
-    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvOrders.getContext(),
-            layoutManager.getOrientation());
-    dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.divider_recycler)));
-    rvOrders.addItemDecoration(dividerItemDecoration);
     setRecyclerViewAdapter(new ArrayList<>());
 
     getOrders();
-
-
   }
 
   @SuppressWarnings("NullableProblems")
@@ -89,8 +87,8 @@ public class ProviderActivity extends AppCompatActivity {
           orderList = response.body();
           setRecyclerViewAdapter(orderList);
         }  else {
-          UtilMessages.showLoadDataError(ProviderActivity.this);
-          Log.d("RESPONSE", "getOrders: " + getString(R.string.save_data_err));
+          tvWithoutOrders.setVisibility(View.VISIBLE);
+          Log.d("RESPONSE", "getOrders: " + getString(R.string.load_data_err));
         }
       }
 
@@ -104,12 +102,36 @@ public class ProviderActivity extends AppCompatActivity {
         d("RESPONSE", "Error getOrders: " + t.getMessage());
       }
     });
+  }
 
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    if (item.getItemId() == R.id.home) {
+      navigateToAccessActivity();
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   private void setRecyclerViewAdapter(List<Order> orderList) {
     adapter = new RecyclerViewProviderAdapter(this, orderList);
     rvOrders.setAdapter(adapter);
+  }
+
+  private void navigateToAccessActivity() {
+    Intent intent = new Intent(this, AccessActivity.class)
+        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    intent.putExtra(TAG_AUTH, false);
+    intent.putExtra(TAG_FRAGMENT, true);
+    startActivity(intent);
+    finish();
   }
 
   @Override
@@ -120,11 +142,6 @@ public class ProviderActivity extends AppCompatActivity {
 
   @Override
   public void onBackPressed()  {
-    Intent intent = new Intent(this, AccessActivity.class)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    intent.putExtra(TAG_AUTH, false);
-    intent.putExtra(TAG_FRAGMENT, true);
-    startActivity(intent);
-
+    navigateToAccessActivity();
   }
 }

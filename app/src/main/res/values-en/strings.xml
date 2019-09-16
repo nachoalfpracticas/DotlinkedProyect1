@@ -194,4 +194,9 @@
     <string name="order_num_observations">Interventions</string>
     <string name="igNumber">15</string>
     <string name="orders_list">Orders list</string>
+  <string name="igName">Alfonso José</string>
+  <string name="igLastName">Perez García</string>
+  <string name="igMobile">+34 478 52 47 78</string>
+  <string name="igEmail">destroy478@gmail.com</string>
+  <string name="without_orders">Don´t have any orders in this moment\nYou can visit this page later</string>
 </resources>
