@@ -144,6 +144,7 @@ public class UtilMessages {
                   }
                 } else {
                   Log.d("RESPONSE", "Error response getToken " + response.message());
+                  UtilMessages.showWrongCredentials(activity);
                   Toast.makeText(activity, activity.getString(R.string.wrong_credentials), Toast.LENGTH_LONG).show();
                 }
               }

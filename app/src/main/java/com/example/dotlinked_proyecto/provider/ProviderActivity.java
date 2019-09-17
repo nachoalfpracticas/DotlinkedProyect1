@@ -23,6 +23,7 @@ import com.example.dotlinked_proyecto.api.connection.NoConnectivityException;
 import com.example.dotlinked_proyecto.appServices.ProviderService;
 import com.example.dotlinked_proyecto.bean.Order;
 import com.example.dotlinked_proyecto.provider.Adapter.RecyclerViewProviderAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,9 +91,8 @@ public class ProviderActivity extends AppCompatActivity {
           adapter.setClickListener((view, position) -> {
             Order order = orderList.get(position);
             Intent intent = new Intent(ProviderActivity.this, SegOrderDetailActivity.class);
-            intent.putExtra(getString(R.string.orderServiceId), String.valueOf(order.getOrderHisLd()));
+            intent.putExtra(getString(R.string.orderService), new Gson().toJson(order));
             startActivity(intent);
-            finish();
           });
         }  else {
           tvWithoutOrders.setVisibility(View.VISIBLE);
@@ -120,6 +120,11 @@ public class ProviderActivity extends AppCompatActivity {
     return true;
   }
 
+  private void setRecyclerViewAdapter(List<Order> orderList) {
+    adapter = new RecyclerViewProviderAdapter(this, orderList);
+    rvOrders.setAdapter(adapter);
+  }
+
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.home) {
@@ -127,12 +132,6 @@ public class ProviderActivity extends AppCompatActivity {
     }
     return super.onOptionsItemSelected(item);
   }
-
-  private void setRecyclerViewAdapter(List<Order> orderList) {
-    adapter = new RecyclerViewProviderAdapter(this, orderList);
-    rvOrders.setAdapter(adapter);
-  }
-
   private void navigateToAccessActivity() {
     Intent intent = new Intent(this, AccessActivity.class)
         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
