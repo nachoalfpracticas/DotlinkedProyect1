@@ -199,4 +199,8 @@
   <string name="igMobile">+34 478 52 47 78</string>
   <string name="igEmail">destroy478@gmail.com</string>
   <string name="without_orders">Don´t have any orders in this moment\nYou can visit this page later</string>
+    <string name="orderServiceId">orderServiceId</string>
+    <string name="update_seg">Update tracing</string>
+    <string name="provider_observations">Provider observations</string>
+    <string name="client_comments">Client comments</string>
 </resources>

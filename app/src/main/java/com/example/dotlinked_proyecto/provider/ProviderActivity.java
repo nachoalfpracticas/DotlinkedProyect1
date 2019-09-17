@@ -68,6 +68,7 @@ public class ProviderActivity extends AppCompatActivity {
     rvOrders.setLayoutManager(layoutManager);
     setRecyclerViewAdapter(new ArrayList<>());
 
+
     getOrders();
   }
 
@@ -86,6 +87,13 @@ public class ProviderActivity extends AppCompatActivity {
         if (response.body() != null && response.body().size() > 0) {
           orderList = response.body();
           setRecyclerViewAdapter(orderList);
+          adapter.setClickListener((view, position) -> {
+            Order order = orderList.get(position);
+            Intent intent = new Intent(ProviderActivity.this, SegOrderDetailActivity.class);
+            intent.putExtra(getString(R.string.orderServiceId), String.valueOf(order.getOrderHisLd()));
+            startActivity(intent);
+            finish();
+          });
         }  else {
           tvWithoutOrders.setVisibility(View.VISIBLE);
           Log.d("RESPONSE", "getOrders: " + getString(R.string.load_data_err));

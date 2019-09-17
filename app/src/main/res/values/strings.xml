@@ -1,203 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <array name="material_calendar_months_array">
-    <item>January</item>
-    <item>February</item>
-    <item>March</item>
-    <item>April</item>
-    <item>May</item>
-    <item>June</item>
-    <item>July</item>
-    <item>August</item>
-    <item>September</item>
-    <item>October</item>
-    <item>November</item>
-    <item>December</item>
-  </array>
-  <string name="name">DOTLINKED</string>
-  <string name="twitter_img">twitter</string>
-  <string name="instagram_img">instagram</string>
-  <string name="facebook_img">facebook</string>
-  <string name="well_come_user">Welcome %1$s</string>
-  <string name="not_remember_me">Stop remember me</string>
-  <string name="access">Access</string>
-  <string name="finger_print">Use fingerprint</string>
-  <string name="spinner_prompt">Choose an item</string>
-  <string name="wrong_credentials">Wrong credentials</string>
-  <string name="required_fields">Required fields</string>
-  <string name="email_validation"><![CDATA[\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b]]></string>
-  <string name="email_invalid">Invalid email</string>
-  <string name="password_invalid">Password requires one upper and one number 6–25 chars</string>
-  <string name="load_data">Load data</string>
-  <string name="exitApp">Exit App</string>
-  <string name="exitYes">Are you sure you want to leave</string>
-  <string name="Yes">Yes</string>
-  <string name="No">No</string>
-  <string name="load_data_err">Load data error</string>
-  <string name="OK">OK</string>
-  <string name="cancel">Cancel</string>
-  <string name="field_search">Fill search field</string>
-  <string name="select_item">Select %1$s</string>
-  <string name="not_user">I am not %1$s</string>
-  <string name="error_connection">connection error</string>
-  <string name="material_calendar_monday">Mon</string>
-  <string name="material_calendar_tuesday">Tus</string>
-  <string name="material_calendar_wednesday">Wes</string>
-  <string name="material_calendar_thursday">Thu</string>
-  <string name="material_calendar_friday">Fri</string>
-  <string name="material_calendar_saturday">Sat</string>
-  <string name="material_calendar_sunday">Sun</string>
-  <string name="material_calendar_today_button">Today</string>
-  <string name="material_calendar_positive_button">OK</string>
-  <string name="material_calendar_negative_button">Cancel</string>
-  <string name="rol_tenant">Tenant</string>
-  <string name="rol_provider">Provider</string>    
-  <string name="rol_contact">Contact</string>   
-  <string name="rol_doctor">Doctor</string>  
-  <string name="rol_manager">Manager</string>    
-  <string name="rol_manager_assistant">Assistant Manager</string>    
-  <string name="rol_administrator">Administrator</string>    
-  <string name="rol_super_admin">SuperAdmin</string>
-  <string name="rol_coordinator">Coordinator</string>
-  <string name="rol_employee">Employee</string>  
-  <string name="input_password_access_rol_company">Rol selected %1$s \n\nCompany %2$s</string>
-  <string name="no_event">No note</string>
-  <string name="write_note">Write note</string>
-  <string name="save">Save</string>
-  <string name="arrow_right">arrow right</string>
-  <string name="arrow_left">arrow left</string>
-  <string name="event_calendar_title">Event calendar</string>
-  <string name="bl_password_Upper">PASSWORD</string>
-  <string name="btn_send_Upper">SEND</string>
-  <string name="app_name">DotLinked_proyecto</string>
-  <string name="enterprise_name">DOTLINKED</string>
-  <string name="forgot_pass">Forgot password</string>
-  <string name="fragment1">fragment1</string>
-  <string name="hello_blank_fragment">Hello blank fragment</string>
-  <string name="input_password">Input password</string>
-  <string name="input_userName">Input username</string>
-  <string name="login">login</string>
-  <string name="logo_enterprise_des">Enterprise logo</string>
-  <string name="password">Password</string>
-  <string name="register_here">Register here</string>
-  <string name="remember_me">Remember me</string>
-  <string name="user_name">Username</string>
-  <string name="fingerprint">Fingerprint</string>
-  <string name="not_fingerprint_hasEnrolledFingerprints">You must have at least one record of a fingerprint on the device</string>
-  <string name="inform_request">Inform and request</string>
-  <string name="need_permissions">You need to enable permissions to use fingerprint</string>
-  <string name="no_have_permissions">You don´t have permissions to use fingerprint</string>
-  <string name="use_fingerprint">Use fingerprint</string>
-  <string name="select_company">Select company</string>
-  <string name="input_password_access_rol">Rol selected %1$s</string>
-  <string name="input_access_company">Company %1$s</string>
-  <string name="rol">Rol</string>
-  <string name="company">Company</string>
-  <string name="menu_eventos">Events</string>
-  <string name="navigation_drawer_open">Open</string>
-  <string name="navigation_drawer_close">Close</string>
-  <string name="title_click">Título %1$s</string>
-  <string name="events">Events</string>
-  <string name="notify">Notify</string>
-  <string name="claim">Claim</string>
-  <string name="health">Health monitoring</string>
-  <string name="dates">Dates</string>
-  <string name="personal">Personal</string>
-  <string name="title">Title</string>
-  <string name="description">Description</string>
-  <string name="location">Location</string>
-  <string name="initTime">From hour</string>
-  <string name="endTime">To hour</string>
-  <string name="cost">Cost</string>
-  <string name="list_claims">Claims list</string>
-  <string name="status">Status</string>
-  <string name="subject">Subject</string>
-  <string name="claimDate">Broadcast date</string>
-  <string name="claim_Id">Claim ident. %1$s</string>
-  <string name="img_close_button">Close button</string>
-  <string name="add_new_claim">Add new Claim</string>
-  <string name="action">Action</string>
-  <string name="dismiss">Dismiss</string>
-  <string name="dismiss_fields">By closing this window, all changes will be ignored. Are you sure?</string>
-  <string name="mobile">Mobile</string>
-  <string name="email">Email</string>
-  <string name="date_format">yyyy-MM-dd</string>
-  <string name="load_events_data">Loading events</string>
-  <string name="no_events_data">Without events</string>
-  <string name="services">Services</string>
-  <string name="internet">Internet connection</string>
-  <string name="without_connection">\@ You currently do not have an internet connection</string>
-  <string name="serviceName">Service</string>
-  <string name="dateInit">Date service</string>
-  <string name="igCost">20.50</string>
-  <string name="priceServiceEuro">%1$s €</string>
-  <string name="select_service">Select service</string>
-  <string name="exit">Exit</string>
-  <string name="no_tenants_for_contact">Without tenants for this contact</string>
-  <string name="no_services_data">Without services</string>
-  <string name="service_Id">Service ident. %1$s</string>
-  <string name="service">Service</string>
-  <string name="select">Select</string>
-  <string name="serviceStatus">service status</string>
-  <string name="service_status_passed">passed</string>
-  <string name="service_status_pending">pending</string>
-  <string name="igDate">04–09–2019</string>
-  <string name="igHour">14:30</string>
-  <string name="appointment_info">Appointment information</string>
-  <string name="appointment_msg">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change the appointment?w</string>
-  <string name="updateDate">Update date</string>
-  <string name="service_name">Service name %1$s</string>
-  <string name="select_other_day">Select  day</string>
-  <string name="other_day">Other day</string>
-  <string name="appointment_msg_new_or_change">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change it or order a new one?\n\nOtherwise touch outside this window</string>
-  <string name="change">Change</string>
-  <string name="newAppointment">New</string>
-  <string name="change_appointment">Update appointment %1$s day %2$s</string>
-  <string name="without_dates_for_day_selected">\@ No hours available for day %1$s \nIf you want select another day press another day button</string>
-  <string name="save_data_err">Save data err</string>
-  <string name="appointment_created_ok">Appointment created successfully</string>
-  <string name="appointment_created_error">Could not create appointment</string>
-  <string name="appointment_update_ok">Appointment updated correctly</string>
-  <string name="appointment_update_error">Could not update appointment</string>
-  <string name="select_day">Select in day: %1$s</string>
-  <string name="err">error</string>
-  <string name="annular">Cancel appointment</string>
-  <string name="igRoles">Tenant, Contact, Doctor</string>
-  <string name="delete">delete</string>
-  <string name="appointment_delete_ok">Appointment cancel successfully</string>
-  <string name="appointment_delete_error">Could not cancel the appointment</string>
-  <string name="update">Update appointment</string>
-  <string name="detail">detail</string>
-  <string name="appointment">appointment</string>
-  <string name="service_selected">serviceSelected</string>
-  <string name="msg_info_push_tv_select_day">Select day and push select day tag</string>
-  <string name="claim_created_ok">The claim about %1$s was created correctly</string>
-  <string name="claim_created_error">Could not create claim</string>
-  <string name="claim_info">Claim information</string>
-  <string name="internet_menu">Internet</string>
+    <array name="material_calendar_months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+    <string name="name">DOTLINKED</string>
+    <string name="twitter_img">twitter</string>
+    <string name="instagram_img">instagram</string>
+    <string name="facebook_img">facebook</string>
+    <string name="well_come_user">Welcome %1$s</string>
+    <string name="not_remember_me">Stop remember me</string>
+    <string name="access">Access</string>
+    <string name="finger_print">Use fingerprint</string>
+    <string name="spinner_prompt">Choose an item</string>
+    <string name="wrong_credentials">Wrong credentials</string>
+    <string name="required_fields">Required fields</string>
+    <string name="email_validation"><![CDATA[\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b]]></string>
+    <string name="email_invalid">Invalid email</string>
+    <string name="password_invalid">Password requires one upper and one number 6–25 chars</string>
+    <string name="load_data">Load data</string>
+    <string name="exitApp">Exit App</string>
+    <string name="exitYes">Are you sure you want to leave</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="load_data_err">Load data error</string>
+    <string name="OK">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="field_search">Fill search field</string>
+    <string name="select_item">Select %1$s</string>
+    <string name="not_user">I am not %1$s</string>
+    <string name="error_connection">connection error</string>
+    <string name="material_calendar_monday">Mon</string>
+    <string name="material_calendar_tuesday">Tus</string>
+    <string name="material_calendar_wednesday">Wes</string>
+    <string name="material_calendar_thursday">Thu</string>
+    <string name="material_calendar_friday">Fri</string>
+    <string name="material_calendar_saturday">Sat</string>
+    <string name="material_calendar_sunday">Sun</string>
+    <string name="material_calendar_today_button">Today</string>
+    <string name="material_calendar_positive_button">OK</string>
+    <string name="material_calendar_negative_button">Cancel</string>
+    <string name="rol_tenant">Tenant</string>
+    <string name="rol_provider">Provider</string>    
+    <string name="rol_contact">Contact</string>   
+    <string name="rol_doctor">Doctor</string>  
+    <string name="rol_manager">Manager</string>    
+    <string name="rol_manager_assistant">Assistant Manager</string>    
+    <string name="rol_administrator">Administrator</string>    
+    <string name="rol_super_admin">SuperAdmin</string>
+    <string name="rol_coordinator">Coordinator</string>
+    <string name="rol_employee">Employee</string>  
+    <string name="input_password_access_rol_company">Rol selected %1$s \n\nCompany %2$s</string>
+    <string name="no_event">No note</string>
+    <string name="write_note">Write note</string>
+    <string name="save">Save</string>
+    <string name="arrow_right">arrow right</string>
+    <string name="arrow_left">arrow left</string>
+    <string name="event_calendar_title">Event calendar</string>
+    <string name="bl_password_Upper">PASSWORD</string>
+    <string name="btn_send_Upper">SEND</string>
+    <string name="app_name">DotLinked_proyecto</string>
+    <string name="enterprise_name">DOTLINKED</string>
+    <string name="forgot_pass">Forgot password</string>
+    <string name="fragment1">fragment1</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_password">Input password</string>
+    <string name="input_userName">Input username</string>
+    <string name="login">login</string>
+    <string name="logo_enterprise_des">Enterprise logo</string>
+    <string name="password">Password</string>
+    <string name="register_here">Register here</string>
+    <string name="remember_me">Remember me</string>
+    <string name="user_name">Username</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="not_fingerprint_hasEnrolledFingerprints">You must have at least one record of a fingerprint on the device</string>
+    <string name="inform_request">Inform and request</string>
+    <string name="need_permissions">You need to enable permissions to use fingerprint</string>
+    <string name="no_have_permissions">You don´t have permissions to use fingerprint</string>
+    <string name="use_fingerprint">Use fingerprint</string>
+    <string name="select_company">Select company</string>
+    <string name="input_password_access_rol">Rol selected %1$s</string>
+    <string name="input_access_company">Company %1$s</string>
+    <string name="rol">Rol</string>
+    <string name="company">Company</string>
+    <string name="menu_eventos">Events</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="title_click">Título %1$s</string>
+    <string name="events">Events</string>
+    <string name="notify">Notify</string>
+    <string name="claim">Claim</string>
+    <string name="health">Health monitoring</string>
+    <string name="dates">Dates</string>
+    <string name="personal">Personal</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="initTime">From hour</string>
+    <string name="endTime">To hour</string>
+    <string name="cost">Cost</string>
+    <string name="list_claims">Claims list</string>
+    <string name="status">Status</string>
+    <string name="subject">Subject</string>
+    <string name="claimDate">Broadcast date</string>
+    <string name="claim_Id">Claim ident. %1$s</string>
+    <string name="img_close_button">Close button</string>
+    <string name="add_new_claim">Add new Claim</string>
+    <string name="action">Action</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="dismiss_fields">By closing this window, all changes will be ignored. Are you sure?</string>
+    <string name="mobile">Mobile</string>
+    <string name="email">Email</string>
+    <string name="date_format">yyyy-MM-dd</string>
+    <string name="load_events_data">Loading events</string>
+    <string name="no_events_data">Without events</string>
+    <string name="services">Services</string>
+    <string name="internet">Internet connection</string>
+    <string name="without_connection">\@ You currently do not have an internet connection</string>
+    <string name="serviceName">Service</string>
+    <string name="dateInit">Date service</string>
+    <string name="igCost">20.50</string>
+    <string name="priceServiceEuro">%1$s €</string>
+    <string name="select_service">Select service</string>
+    <string name="exit">Exit</string>
+    <string name="no_tenants_for_contact">Without tenants for this contact</string>
+    <string name="no_services_data">Without services</string>
+    <string name="service_Id">Service ident. %1$s</string>
+    <string name="service">Service</string>
+    <string name="select">Select</string>
+    <string name="serviceStatus">service status</string>
+    <string name="service_status_passed">passed</string>
+    <string name="service_status_pending">pending</string>
+    <string name="igDate">04–09–2019</string>
+    <string name="igHour">14:30</string>
+    <string name="appointment_info">Appointment information</string>
+    <string name="appointment_msg">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change the appointment?w</string>
+    <string name="updateDate">Update date</string>
+    <string name="service_name">Service name %1$s</string>
+    <string name="select_other_day">Select  day</string>
+    <string name="other_day">Other day</string>
+    <string name="appointment_msg_new_or_change">You already have an appointment reserved for the service %1$s the day %2$s at %3$s \n\nDo you want to change it or order a new one?\n\nOtherwise touch outside this window</string>
+    <string name="change">Change</string>
+    <string name="newAppointment">New</string>
+    <string name="change_appointment">Update appointment %1$s day %2$s</string>
+    <string name="without_dates_for_day_selected">\@ No hours available for day %1$s \nIf you want select another day press another day button</string>
+    <string name="save_data_err">Save data err</string>
+    <string name="appointment_created_ok">Appointment created successfully</string>
+    <string name="appointment_created_error">Could not create appointment</string>
+    <string name="appointment_update_ok">Appointment updated correctly</string>
+    <string name="appointment_update_error">Could not update appointment</string>
+    <string name="select_day">Select in day: %1$s</string>
+    <string name="err">error</string>
+    <string name="annular">Cancel appointment</string>
+    <string name="igRoles">Tenant, Contact, Doctor</string>
+    <string name="delete">delete</string>
+    <string name="appointment_delete_ok">Appointment cancel successfully</string>
+    <string name="appointment_delete_error">Could not cancel the appointment</string>
+    <string name="update">Update appointment</string>
+    <string name="detail">detail</string>
+    <string name="appointment">appointment</string>
+    <string name="service_selected">serviceSelected</string>
+    <string name="msg_info_push_tv_select_day">Select day and push select day tag</string>
+    <string name="claim_created_ok">The claim about %1$s was created correctly</string>
+    <string name="claim_created_error">Could not create claim</string>
+    <string name="claim_info">Claim information</string>
+    <string name="internet_menu">Internet</string>
     <string name="login_info">Login information</string>
     <string name="igOrderTitle">Test Title Order</string>
-  <string name="date_order">Order date</string>
+    <string name="date_order">Order date</string>
     <string name="igOrderNumber">SVR-15879</string>
-  <string name="order_number">Order number</string>
-  <string name="igOrderStatus">In process</string>
+    <string name="order_number">Order number</string>
+    <string name="igOrderStatus">In process</string>
     <string name="order_num_observations">Interventions</string>
-  <string name="igNumber">15</string>
+    <string name="igNumber">15</string>
     <string name="orders_list">Orders list</string>
-  <string name="igName">Alfonso José</string>
-  <string name="igLastName">Perez García</string>
-  <string name="igMobile">+34 478 52 47 78</string>
-  <string name="igEmail">destroy478@gmail.com</string>
-  <string name="without_orders">Don´t have any orders in this moment\nYou can visit this page later</string>
-  <string-array name="roles_array">    
-    <item>Tenant</item>    
-    <item>Provider</item>    
-    <item>Contact</item>   
-    <item>Doctor</item>  
-    <item>Manager</item>    
-    <item>Assistant Manager</item>    
-    <item>Administrator</item>    
-    <item>Super Assistant Manager</item>  
-  </string-array>
+    <string name="igName">Alfonso José</string>
+    <string name="igLastName">Perez García</string>
+    <string name="igMobile">+34 478 52 47 78</string>
+    <string name="igEmail">destroy478@gmail.com</string>
+    <string name="without_orders">Don´t have any orders in this moment\nYou can visit this page later</string>
+    <string name="orderServiceId">orderServiceId</string>
+    <string name="update_seg">Update tracyng</string>
+    <string name="provider_observations">Provider observations</string>
+    <string name="client_comments">Client observations</string>
+    <string-array name="roles_array">    
+        <item>Tenant</item>    
+        <item>Provider</item>    
+        <item>Contact</item>   
+        <item>Doctor</item>  
+        <item>Manager</item>    
+        <item>Assistant Manager</item>    
+        <item>Administrator</item>    
+        <item>Super Assistant Manager</item>  
+    </string-array>
 
 </resources>

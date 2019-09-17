@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:columnCount="3"
+        android:rowCount="1"
+        android:alignmentMode="alignBounds"
+        android:layout_marginStart="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_update_seg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:background="@color/blue"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@string/update_seg"
+            android:textColor="@color/colorWhite" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:src="@drawable/ic_chevron_left_black_24dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_row="0"
+            android:layout_column="2"
+
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="0dp"
+            android:src="@drawable/ic_chevron_right_black_24dp"
+            android:textAlignment="viewStart" />
+
+    </GridLayout>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_provider_observations"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorWhite"
+        android:enabled="false"
+        android:maxLines="10"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_provider_observations" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_client_observations"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorWhite"
+        android:enabled="false"
+        android:maxLines="10"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_client_comments" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_client_comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blueDotlinked"
+        android:text="@string/client_comments"
+        android:textAlignment="center"
+        android:textSize="23sp"
+        app:layout_constraintTop_toBottomOf="@+id/et_provider_observations" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_provider_observations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blueDotlinked"
+        android:text="@string/provider_observations"
+        android:textAlignment="center"
+        android:textSize="23sp"
+        app:layout_constraintTop_toBottomOf="@+id/grid_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
